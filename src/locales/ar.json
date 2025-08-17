@@ -1,0 +1,21 @@
+{
+  "common": {
+    "welcome": "مرحباً بكم في Next.js!",
+    "getStarted": "ابدأ الآن",
+    "learnMore": "تعلم المزيد",
+    "language": "اللغة",
+    "arabic": "العربية",
+    "english": "English"
+  },
+  "navigation": {
+    "home": "الرئيسية",
+    "about": "من نحن",
+    "contact": "اتصل بنا",
+    "services": "خدماتنا"
+  },
+  "home": {
+    "title": "مرحباً بكم في موقعنا",
+    "description": "موقع متعدد اللغات مبني بـ Next.js",
+    "cta": "ابدأ رحلتك"
+  }
+}

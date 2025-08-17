@@ -1,0 +1,21 @@
+{
+  "common": {
+    "welcome": "Welcome to Next.js!",
+    "getStarted": "Get Started",
+    "learnMore": "Learn More",
+    "language": "Language",
+    "arabic": "العربية",
+    "english": "English"
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "services": "Services"
+  },
+  "home": {
+    "title": "Welcome to our website",
+    "description": "A multilingual website built with Next.js",
+    "cta": "Start your journey"
+  }
+}
