@@ -17,5 +17,111 @@
     "title": "Welcome to our website",
     "description": "A multilingual website built with Next.js",
     "cta": "Start your journey"
+  },
+  "services": {
+    "title": "Services",
+    "loading": "Loading services...",
+    "noServicesFound": "No services found",
+    "noServicesDescription": "There are no services available at the moment.",
+    "serviceTitle": "Service Title",
+    "share": "Share",
+    "showing": "Showing",
+    "to": "to",
+    "of": "of",
+    "services": "services",
+    "defaultDescription": "This is a sample service description. The actual content will be loaded from the API."
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "loading": "Loading testimonials...",
+    "noTestimonialsFound": "No testimonials found",
+    "noTestimonialsDescription": "There are no testimonials available at the moment.",
+    "clientName": "Client Name",
+    "clientPosition": "Client Position",
+    "share": "Share",
+    "showing": "Showing",
+    "to": "to",
+    "of": "of",
+    "testimonials": "testimonials",
+    "defaultDescription": "This is a sample testimonial description. The actual content will be loaded from the API.",
+    "experienceTitle": "Over 20 years of experience we'll ensure you get the best guidance.",
+    "requestQuote": "Request Quote"
+  },
+  "faq": {
+    "title": "FAQ",
+    "loading": "Loading FAQs...",
+    "noFaqsFound": "No FAQs found",
+    "noFaqsDescription": "There are no FAQs available at the moment.",
+    "defaultQuestion": "Frequently Asked Question",
+    "defaultAnswer": "This is a sample answer. The actual content will be loaded from the API.",
+    "share": "Share",
+    "showing": "Showing",
+    "to": "to",
+    "of": "of",
+    "faqs": "FAQs"
+  },
+  "team": {
+    "title": "Meet Our Team",
+    "loading": "Loading team members...",
+    "noTeamFound": "No team members found",
+    "noTeamDescription": "There are no team members available at the moment.",
+    "memberName": "Team Member Name",
+    "memberPosition": "Team Member Position",
+    "share": "Share",
+    "showing": "Showing",
+    "to": "to",
+    "of": "of",
+    "members": "team members",
+    "defaultDescription": "This is a sample team member description. The actual content will be loaded from the API.",
+    "phone": "Phone",
+    "email": "Email",
+    "experienceTitle": "Over 20 years of experience we'll ensure you get the best guidance.",
+    "requestQuote": "Request Quote"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "share": "Share",
+    "getInTouch": "Get In Touch With Us",
+    "description": "We recently helped a small business grow from break-even to over $1m profit in less than 2 years. Please find below contact details and contact us today!",
+    "visitUs": "Visit Our Place",
+    "address": "241/84 Theme Name Discover Street New York, NY 10012, USA",
+    "callUs": "Call Us",
+    "phone": "+1 (555) 123-4567",
+    "emailUs": "Email Us",
+    "email": "info@strategizers.com",
+    "sendMessage": "Send Your Message To Us",
+    "yourContact": "Your Contact",
+    "hrDepartment": "Human Resource",
+    "hrContact": {
+      "name": "Charles Mecky",
+      "phone": "84578-25-658",
+      "email": "Charlesmeck@gmail.com"
+    },
+    "salesDepartment": "Sales Department",
+    "salesContact": {
+      "name": "Robert Fertly",
+      "phone": "98765-43-210",
+      "email": "Robertfert@gmail.com"
+    },
+    "form": {
+      "name": "Your Name*",
+      "email": "Your Email*",
+      "phoneCode": "Code",
+      "phoneNumber": "Phone Number",
+      "subject": "Subject*",
+      "message": "Your Message*",
+      "sendMessage": "Send Message",
+      "sending": "Sending..."
+    },
+    "errors": {
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email address",
+      "subjectRequired": "Subject is required",
+      "messageRequired": "Message is required"
+    },
+    "successMessage": "Your message has been sent successfully! We'll get back to you soon.",
+    "errorMessage": "Failed to send message. Please try again.",
+    "networkError": "Network error. Please check your connection and try again."
   }
 }

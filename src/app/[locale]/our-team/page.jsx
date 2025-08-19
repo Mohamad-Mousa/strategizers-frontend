@@ -1,4 +1,219 @@
+"use client";
+import { useEffect, useState } from "react";
+import { useTranslation } from "../../../hooks/useTranslation";
+
 const OurTeamPage = () => {
+  const { t, locale } = useTranslation();
+  const [team, setTeam] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalTeam, setTotalTeam] = useState(0);
+  const [limit] = useState(10); // Number of team members per page
+
+  const fetchTeam = async (page = 1) => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `http://localhost:4000/api/v1/public/team?page=${page}&limit=${limit}&sortBy=createdAt&sortDirection=desc&term=`
+      );
+      const data = await response.json();
+
+      console.log("API Response:", data);
+
+      if (data.code === 200) {
+        setTeam(data.results.data || []);
+        setTotalTeam(data.results.totalCount || 0);
+        // Calculate total pages based on total count and limit
+        const calculatedTotalPages = Math.ceil(
+          (data.results.totalCount || 0) / limit
+        );
+        setTotalPages(calculatedTotalPages);
+        console.log("Total pages:", calculatedTotalPages);
+      } else {
+        console.error("Failed to fetch team:", data.message);
+        setTeam([]);
+      }
+    } catch (error) {
+      console.error("Error fetching team:", error);
+      setTeam([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchTeam(currentPage);
+  }, [currentPage]);
+
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+      // Scroll to top when page changes
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  const renderPaginationNumbers = () => {
+    const pages = [];
+    const maxVisiblePages = 5;
+
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+    // Adjust start page if we're near the end
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(
+        <li key={i} className={i === currentPage ? "active" : ""}>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              handlePageChange(i);
+            }}
+          >
+            {i}
+          </a>
+        </li>
+      );
+    }
+
+    return pages;
+  };
+
+  const formatPhoneNumber = (phone) => {
+    if (!phone || !phone.code || !phone.number) return "";
+    return `+${phone.code}-${phone.number}`;
+  };
+
+  const renderTeam = () => {
+    if (loading) {
+      return (
+        <div className="col-md-12 text-center">
+          <div className="loading-spinner">
+            <i className="fa fa-spinner fa-spin fa-3x"></i>
+            <p>{t("team.loading")}</p>
+          </div>
+        </div>
+      );
+    }
+
+    if (team.length === 0) {
+      return (
+        <div className="col-md-12 text-center">
+          <div className="no-team">
+            <i className="fa fa-users fa-3x"></i>
+            <h3>{t("team.noTeamFound")}</h3>
+            <p>{t("team.noTeamDescription")}</p>
+          </div>
+        </div>
+      );
+    }
+
+    return team.map((member, index) => (
+      <div
+        key={member._id || index}
+        className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
+      >
+        <div className="single-team-member hvr-underline-reveal">
+          <div className="img-holder">
+            <img
+              src={member.image || `/images/team/${(index % 8) + 1}.jpg`}
+              alt={member.name?.[locale] || t("team.memberName")}
+              className="img-responsive"
+            />
+            <div className="overlay-style-one">
+              <div className="box">
+                <div className="content">
+                  <ul>
+                    {member.social?.facebook && (
+                      <li>
+                        <a
+                          href={member.social.facebook}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <i className="fa fa-facebook" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                    )}
+                    {member.social?.twitter && (
+                      <li>
+                        <a
+                          href={member.social.twitter}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <i className="fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                    )}
+                    {member.social?.linkedin && (
+                      <li>
+                        <a
+                          href={member.social.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <i className="fa fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                    )}
+                    {member.social?.instagram && (
+                      <li>
+                        <a
+                          href={member.social.instagram}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <i className="fa fa-instagram" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                    )}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="text-holder">
+            <h3>{member.name?.[locale] || t("team.memberName")}</h3>
+            <span>{member.position?.[locale] || t("team.memberPosition")}</span>
+            <div className="text">
+              <p>
+                {member.description?.[locale] || t("team.defaultDescription")}
+              </p>
+            </div>
+            <ul className="contact-info">
+              {member.phone && (
+                <li>
+                  {t("team.phone")}: {formatPhoneNumber(member.phone)}
+                </li>
+              )}
+              {member.email && (
+                <li>
+                  {t("team.email")}: <b>{member.email}</b>
+                </li>
+              )}
+            </ul>
+          </div>
+        </div>
+      </div>
+    ));
+  };
+
+  // Debug info - you can remove this later
+  console.log("Current state:", {
+    currentPage,
+    totalPages,
+    totalTeam,
+    teamCount: team.length,
+    shouldShowPagination: totalPages > 1,
+  });
+
   return (
     <>
       <section
@@ -9,489 +224,89 @@ const OurTeamPage = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="breadcrumbs">
-                <h1>Meet Our Team</h1>
+                <h1>{t("team.title")}</h1>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section className="breadcrumb-bottom-area">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <div className="left pull-left">
-                <ul>
-                  <li>
-                    <a href="index.html">Home</a>
-                  </li>
-                  <li>
-                    <i className="fa fa-angle-right" aria-hidden="true"></i>
-                  </li>
-                  <li className="active">Team</li>
-                </ul>
-              </div>
-              <div className="right pull-right">
-                <a href="#">
-                  <span>
-                    <i className="fa fa-share-alt" aria-hidden="true"></i>Share
-                  </span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+
       <section className="team-area sec-padding">
         <div className="container">
+          {/* Team Info */}
           <div className="row">
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-              <div className="single-team-member hvr-underline-reveal">
-                <div className="img-holder">
-                  <img src="/images/team/1.jpg" alt="Awesome Image" />
-                  <div className="overlay-style-one">
-                    <div className="box">
-                      <div className="content">
-                        <ul>
-                          <li>
-                            <a href="#">
-                              <i
-                                className="fa fa-facebook"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i
-                                className="fa fa-twitter"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i
-                                className="fa fa-linkedin"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="text-holder">
-                  <h3>Felicity BNovak</h3>
-                  <span>Designer</span>
-                  <div className="text">
-                    <p>
-                      Occasionally circumstances occur in which toil and pain
-                      can procure.
-                    </p>
-                  </div>
-                  <ul className="contact-info">
-                    <li>Phone: +123-456-7890</li>
-                    <li>
-                      Email: <b>Felicity@Solutions.com</b>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-              <div className="single-team-member hvr-underline-reveal">
-                <div className="img-holder">
-                  <img src="/images/team/2.jpg" alt="Awesome Image" />
-                  <div className="overlay-style-one">
-                    <div className="box">
-                      <div className="content">
-                        <ul>
-                          <li>
-                            <a href="#">
-                              <i
-                                className="fa fa-facebook"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i
-                                className="fa fa-twitter"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i
-                                className="fa fa-linkedin"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="text-holder">
-                  <h3>Mark Richarson</h3>
-                  <span>HR Manager</span>
-                  <div className="text">
-                    <p>
-                      Idea of denouncing pleasure and praising pain was born
-                      give complete.
-                    </p>
-                  </div>
-                  <ul className="contact-info">
-                    <li>Phone: +987-654-3210</li>
-                    <li>
-                      Email: <b>Rich@Solutions.com</b>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-              <div className="single-team-member hvr-underline-reveal">
-                <div className="img-holder">
-                  <img src="/images/team/3.jpg" alt="Awesome Image" />
-                  <div className="overlay-style-one">
-                    <div className="box">
-                      <div className="content">
-                        <ul>
-                          <li>
-                            <a href="#">
-                              <i
-                                className="fa fa-facebook"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i
-                                className="fa fa-twitter"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i
-                                className="fa fa-linkedin"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="text-holder">
-                  <h3>Jom Caraleno</h3>
-                  <span>Accountant</span>
-                  <div className="text">
-                    <p>
-                      Builder of human happiness one rejects, dislikes, or
-                      avoids pleasure itself.
-                    </p>
-                  </div>
-                  <ul className="contact-info">
-                    <li>Phone: +456-789-0123</li>
-                    <li>
-                      Email: <b>Caraleno@Solutions.com</b>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-              <div className="single-team-member hvr-underline-reveal">
-                <div className="img-holder">
-                  <img src="/images/team/4.jpg" alt="Awesome Image" />
-                  <div className="overlay-style-one">
-                    <div className="box">
-                      <div className="content">
-                        <ul>
-                          <li>
-                            <a href="#">
-                              <i
-                                className="fa fa-facebook"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i
-                                className="fa fa-twitter"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i
-                                className="fa fa-linkedin"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="text-holder">
-                  <h3>Asahtan Marsh</h3>
-                  <span>President</span>
-                  <div className="text">
-                    <p>
-                      Pleasure rationally encounter consequences that are
-                      extremely painful.
-                    </p>
-                  </div>
-                  <ul className="contact-info">
-                    <li>Phone: +789-012-3456</li>
-                    <li>
-                      Email: <b>Asahtan@Solutions.com</b>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-              <div className="single-team-member hvr-underline-reveal">
-                <div className="img-holder">
-                  <img src="/images/team/5.jpg" alt="Awesome Image" />
-                  <div className="overlay-style-one">
-                    <div className="box">
-                      <div className="content">
-                        <ul>
-                          <li>
-                            <a href="#">
-                              <i
-                                className="fa fa-facebook"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i
-                                className="fa fa-twitter"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i
-                                className="fa fa-linkedin"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="text-holder">
-                  <h3>Allan Donald</h3>
-                  <span>Accountant</span>
-                  <div className="text">
-                    <p>
-                      Builder of human happiness one rejects, dislikes, or
-                      avoids itself
-                    </p>
-                  </div>
-                  <ul className="contact-info">
-                    <li>Phone: +456-789-0123</li>
-                    <li>
-                      Email: <b>Donald@Solutions.com</b>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-              <div className="single-team-member hvr-underline-reveal">
-                <div className="img-holder">
-                  <img src="/images/team/6.jpg" alt="Awesome Image" />
-                  <div className="overlay-style-one">
-                    <div className="box">
-                      <div className="content">
-                        <ul>
-                          <li>
-                            <a href="#">
-                              <i
-                                className="fa fa-facebook"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i
-                                className="fa fa-twitter"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i
-                                className="fa fa-linkedin"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="text-holder">
-                  <h3>Rich Bairstow</h3>
-                  <span>President</span>
-                  <div className="text">
-                    <p>
-                      Pleasure rationally encounter consequences are extremely
-                      painful.
-                    </p>
-                  </div>
-                  <ul className="contact-info">
-                    <li>Phone: +789-012-3456</li>
-                    <li>
-                      Email: <b>Bairstow@Solutions.com</b>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-              <div className="single-team-member hvr-underline-reveal">
-                <div className="img-holder">
-                  <img src="/images/team/7.jpg" alt="Awesome Image" />
-                  <div className="overlay-style-one">
-                    <div className="box">
-                      <div className="content">
-                        <ul>
-                          <li>
-                            <a href="#">
-                              <i
-                                className="fa fa-facebook"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i
-                                className="fa fa-twitter"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i
-                                className="fa fa-linkedin"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="text-holder">
-                  <h3>Venanda Joye</h3>
-                  <span>Designer</span>
-                  <div className="text">
-                    <p>
-                      Occasionally circumstances occur in which toil and pain
-                      can procure.
-                    </p>
-                  </div>
-                  <ul className="contact-info">
-                    <li>Phone: +123-456-7890</li>
-                    <li>
-                      Email: <b>Venanda@Solutions.com</b>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-              <div className="single-team-member hvr-underline-reveal">
-                <div className="img-holder">
-                  <img src="/images/team/8.jpg" alt="Awesome Image" />
-                  <div className="overlay-style-one">
-                    <div className="box">
-                      <div className="content">
-                        <ul>
-                          <li>
-                            <a href="#">
-                              <i
-                                className="fa fa-facebook"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i
-                                className="fa fa-twitter"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i
-                                className="fa fa-linkedin"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="text-holder">
-                  <h3>Atley Fletcher</h3>
-                  <span>HR Manager</span>
-                  <div className="text">
-                    <p>
-                      Idea of denouncing pleasure and praising pain was born
-                      give complete.
-                    </p>
-                  </div>
-                  <ul className="contact-info">
-                    <li>Phone: +987-654-3210</li>
-                    <li>
-                      Email: <b>Fletcher@Solutions.com</b>
-                    </li>
-                  </ul>
-                </div>
+            <div className="col-md-12">
+              <div
+                className="team-info text-center"
+                style={{ marginBottom: "30px" }}
+              >
+                <p>
+                  {t("team.showing")} {(currentPage - 1) * limit + 1}{" "}
+                  {t("team.to")} {Math.min(currentPage * limit, totalTeam)}{" "}
+                  {t("team.of")} {totalTeam} {t("team.members")}
+                </p>
               </div>
             </div>
           </div>
+
+          {/* Team Grid */}
+          <div className="row">{renderTeam()}</div>
+
+          {/* Pagination - Always show if there are more than 1 page */}
+          {totalPages > 1 && (
+            <div className="row">
+              <div className="col-md-12">
+                <ul className="post-pagination text-center">
+                  {/* Previous Button */}
+                  <li className={currentPage === 1 ? "disabled" : ""}>
+                    <a
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (currentPage > 1) handlePageChange(currentPage - 1);
+                      }}
+                      style={{
+                        pointerEvents: currentPage === 1 ? "none" : "auto",
+                      }}
+                    >
+                      <i
+                        className={`fa fa-caret-${
+                          locale === "ar" ? "right" : "left"
+                        }`}
+                        aria-hidden="true"
+                      ></i>
+                    </a>
+                  </li>
+
+                  {/* Page Numbers */}
+                  {renderPaginationNumbers()}
+
+                  {/* Next Button */}
+                  <li className={currentPage === totalPages ? "disabled" : ""}>
+                    <a
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (currentPage < totalPages)
+                          handlePageChange(currentPage + 1);
+                      }}
+                      style={{
+                        pointerEvents:
+                          currentPage === totalPages ? "none" : "auto",
+                      }}
+                    >
+                      <i
+                        className={`fa fa-caret-${
+                          locale === "ar" ? "left" : "right"
+                        }`}
+                        aria-hidden="true"
+                      ></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -500,14 +315,11 @@ const OurTeamPage = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="title pull-left">
-                <h3>
-                  Over 20 years of experience we’ll ensure you get the best
-                  guidance.
-                </h3>
+                <h3>{t("team.experienceTitle")}</h3>
               </div>
               <div className="button pull-right">
                 <a className="thm-btn bgclr-1" href="#">
-                  Request Quote
+                  {t("team.requestQuote")}
                 </a>
               </div>
             </div>

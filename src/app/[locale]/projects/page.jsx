@@ -1,15 +1,17 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useTranslation } from "../../../hooks/useTranslation";
 
 const ProjectsPage = () => {
+  const { t, locale } = useTranslation();
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
   const [totalProjects, setTotalProjects] = useState(0);
   const [limit] = useState(9); // Number of projects per page
 
-  const fetchProjects = async (page = 0) => {
+  const fetchProjects = async (page = 1) => {
     setLoading(true);
     try {
       const response = await fetch(
@@ -17,10 +19,17 @@ const ProjectsPage = () => {
       );
       const data = await response.json();
 
+      console.log("API Response:", data);
+
       if (data.code === 200) {
         setProjects(data.results.data || []);
-        setTotalPages(data.results.limit / 9 || 1);
         setTotalProjects(data.results.totalCount || 0);
+        // Calculate total pages based on total count and limit
+        const calculatedTotalPages = Math.ceil(
+          (data.results.totalCount || 0) / limit
+        );
+        setTotalPages(calculatedTotalPages);
+        console.log("Total pages:", calculatedTotalPages);
       } else {
         console.error("Failed to fetch projects:", data.message);
         setProjects([]);
@@ -82,7 +91,7 @@ const ProjectsPage = () => {
         <div className="col-md-12 text-center">
           <div className="loading-spinner">
             <i className="fa fa-spinner fa-spin fa-3x"></i>
-            <p>Loading projects...</p>
+            <p>{t("projects.loading")}</p>
           </div>
         </div>
       );
@@ -93,8 +102,8 @@ const ProjectsPage = () => {
         <div className="col-md-12 text-center">
           <div className="no-projects">
             <i className="fa fa-folder-open fa-3x"></i>
-            <h3>No projects found</h3>
-            <p>There are no projects available at the moment.</p>
+            <h3>{t("projects.noProjectsFound")}</h3>
+            <p>{t("projects.noProjectsDescription")}</p>
           </div>
         </div>
       );
@@ -103,20 +112,23 @@ const ProjectsPage = () => {
     return projects.map((project, index) => (
       <div
         key={project._id || index}
-        className="single-project-item col-md-4 col-sm-4 col-xs-12"
+        className="single-project-item col-lg-4 col-md-6 col-sm-6 col-xs-12"
       >
         <div className="img-holder">
           <img
             src={project.image || `/images/projects/${(index % 9) + 1}.jpg`}
-            alt={project.title?.en || "Project"}
+            alt={project.title?.[locale] || t("projects.projectTitle")}
+            className="img-responsive"
           />
           <div className="overlay-style-one">
             <div className="box">
               <div className="content">
                 <a href={`/projects/${project.slug}`}>
-                  <h3>{project.title?.en || "Project Title"}</h3>
+                  <h3>
+                    {project.title?.[locale] || t("projects.projectTitle")}
+                  </h3>
                 </a>
-                <span>{project.customer || "Client"}</span>
+                <span>{project.customer || t("projects.client")}</span>
               </div>
             </div>
           </div>
@@ -124,6 +136,15 @@ const ProjectsPage = () => {
       </div>
     ));
   };
+
+  // Debug info - you can remove this later
+  console.log("Current state:", {
+    currentPage,
+    totalPages,
+    totalProjects,
+    projectsCount: projects.length,
+    shouldShowPagination: totalPages > 1,
+  });
 
   return (
     <>
@@ -135,40 +156,12 @@ const ProjectsPage = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="breadcrumbs">
-                <h1>Our Projects</h1>
+                <h1>{t("projects.title")}</h1>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      <section className="breadcrumb-bottom-area">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <div className="left pull-left">
-                <ul>
-                  <li>
-                    <a href="/">Home</a>
-                  </li>
-                  <li>
-                    <i className="fa fa-angle-right" aria-hidden="true"></i>
-                  </li>
-                  <li className="active">Our Projects</li>
-                </ul>
-              </div>
-              <div className="right pull-right">
-                <a href="#">
-                  <span>
-                    <i className="fa fa-share-alt" aria-hidden="true"></i>Share
-                  </span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="project-area sec-padding">
         <div className="container">
           {/* Projects Info */}
@@ -179,9 +172,10 @@ const ProjectsPage = () => {
                 style={{ marginBottom: "30px" }}
               >
                 <p>
-                  Showing {(currentPage - 1) * limit + 1} to{" "}
-                  {Math.min(currentPage * limit, totalProjects)} of{" "}
-                  {totalProjects} projects
+                  {t("projects.showing")} {(currentPage - 1) * limit + 1}{" "}
+                  {t("projects.to")}{" "}
+                  {Math.min(currentPage * limit, totalProjects)}{" "}
+                  {t("projects.of")} {totalProjects} {t("projects.projects")}
                 </p>
               </div>
             </div>
@@ -190,7 +184,7 @@ const ProjectsPage = () => {
           {/* Projects Grid */}
           <div className="row">{renderProjects()}</div>
 
-          {/* Pagination */}
+          {/* Pagination - Always show if there are more than 1 page */}
           {totalPages > 1 && (
             <div className="row">
               <div className="col-md-12">
@@ -207,7 +201,12 @@ const ProjectsPage = () => {
                         pointerEvents: currentPage === 1 ? "none" : "auto",
                       }}
                     >
-                      <i className="fa fa-caret-left" aria-hidden="true"></i>
+                      <i
+                        className={`fa fa-caret-${
+                          locale === "ar" ? "right" : "left"
+                        }`}
+                        aria-hidden="true"
+                      ></i>
                     </a>
                   </li>
 
@@ -228,7 +227,12 @@ const ProjectsPage = () => {
                           currentPage === totalPages ? "none" : "auto",
                       }}
                     >
-                      <i className="fa fa-caret-right" aria-hidden="true"></i>
+                      <i
+                        className={`fa fa-caret-${
+                          locale === "ar" ? "left" : "right"
+                        }`}
+                        aria-hidden="true"
+                      ></i>
                     </a>
                   </li>
                 </ul>
@@ -266,6 +270,124 @@ const ProjectsPage = () => {
 
         .post-pagination li.disabled a:hover {
           background: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+          .single-project-item {
+            margin-bottom: 30px;
+          }
+        }
+
+        @media (max-width: 991px) {
+          .single-project-item {
+            margin-bottom: 25px;
+          }
+
+          .breadcrumb-bottom-area .left,
+          .breadcrumb-bottom-area .right {
+            float: none !important;
+            text-align: center;
+            margin-bottom: 10px;
+          }
+        }
+
+        @media (max-width: 767px) {
+          .single-project-item {
+            margin-bottom: 20px;
+          }
+
+          .breadcrumbs h1 {
+            font-size: 28px;
+          }
+
+          .projects-info p {
+            font-size: 12px;
+          }
+
+          .post-pagination li {
+            margin: 0 2px;
+          }
+
+          .post-pagination li a {
+            padding: 8px 12px;
+            font-size: 14px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .single-project-item {
+            margin-bottom: 15px;
+          }
+
+          .breadcrumbs h1 {
+            font-size: 24px;
+          }
+
+          .post-pagination li a {
+            padding: 6px 10px;
+            font-size: 12px;
+          }
+        }
+
+        /* RTL Support for Arabic */
+        [dir="rtl"] .breadcrumb-bottom-area .left {
+          float: right !important;
+        }
+
+        [dir="rtl"] .breadcrumb-bottom-area .right {
+          float: left !important;
+        }
+
+        [dir="rtl"] .breadcrumb-bottom-area ul li {
+          float: right;
+        }
+
+        [dir="rtl"] .breadcrumb-bottom-area ul li i {
+          transform: rotate(180deg);
+        }
+
+        [dir="rtl"] .post-pagination li {
+          float: right;
+        }
+
+        /* Image responsiveness */
+        .img-holder img {
+          width: 100%;
+          height: auto;
+          transition: transform 0.3s ease;
+        }
+
+        .img-holder:hover img {
+          transform: scale(1.05);
+        }
+
+        /* Loading animation */
+        .loading-spinner i {
+          animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+
+        /* RTL specific animations */
+        [dir="rtl"] .loading-spinner i {
+          animation: spin-rtl 1s linear infinite;
+        }
+
+        @keyframes spin-rtl {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(-360deg);
+          }
         }
       `}</style>
     </>

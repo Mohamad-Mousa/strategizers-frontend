@@ -17,5 +17,111 @@
     "title": "مرحباً بكم في موقعنا",
     "description": "موقع متعدد اللغات مبني بـ Next.js",
     "cta": "ابدأ رحلتك"
+  },
+  "services": {
+    "title": "الخدمات",
+    "loading": "جاري تحميل الخدمات...",
+    "noServicesFound": "لم يتم العثور على خدمات",
+    "noServicesDescription": "لا توجد خدمات متاحة في الوقت الحالي.",
+    "serviceTitle": "عنوان الخدمة",
+    "share": "مشاركة",
+    "showing": "عرض",
+    "to": "إلى",
+    "of": "من",
+    "services": "خدمات",
+    "defaultDescription": "هذا وصف عينة للخدمة. سيتم تحميل المحتوى الفعلي من API."
+  },
+  "testimonials": {
+    "title": "آراء العملاء",
+    "loading": "جاري تحميل آراء العملاء...",
+    "noTestimonialsFound": "لم يتم العثور على آراء عملاء",
+    "noTestimonialsDescription": "لا توجد آراء عملاء متاحة في الوقت الحالي.",
+    "clientName": "اسم العميل",
+    "clientPosition": "منصب العميل",
+    "share": "مشاركة",
+    "showing": "عرض",
+    "to": "إلى",
+    "of": "من",
+    "testimonials": "آراء عملاء",
+    "defaultDescription": "هذا وصف عينة لرأي العميل. سيتم تحميل المحتوى الفعلي من API.",
+    "experienceTitle": "أكثر من 20 عامًا من الخبرة سنضمن لك الحصول على أفضل التوجيه.",
+    "requestQuote": "طلب عرض سعر"
+  },
+  "faq": {
+    "title": "الأسئلة الشائعة",
+    "loading": "جاري تحميل الأسئلة الشائعة...",
+    "noFaqsFound": "لم يتم العثور على أسئلة شائعة",
+    "noFaqsDescription": "لا توجد أسئلة شائعة متاحة في الوقت الحالي.",
+    "defaultQuestion": "سؤال متكرر",
+    "defaultAnswer": "هذا إجابة عينة. سيتم تحميل المحتوى الفعلي من API.",
+    "share": "مشاركة",
+    "showing": "عرض",
+    "to": "إلى",
+    "of": "من",
+    "faqs": "أسئلة شائعة"
+  },
+  "team": {
+    "title": "تعرف على فريقنا",
+    "loading": "جاري تحميل أعضاء الفريق...",
+    "noTeamFound": "لم يتم العثور على أعضاء فريق",
+    "noTeamDescription": "لا يوجد أعضاء فريق متاحون في الوقت الحالي.",
+    "memberName": "اسم عضو الفريق",
+    "memberPosition": "منصب عضو الفريق",
+    "share": "مشاركة",
+    "showing": "عرض",
+    "to": "إلى",
+    "of": "من",
+    "members": "أعضاء فريق",
+    "defaultDescription": "هذا وصف عينة لعضو الفريق. سيتم تحميل المحتوى الفعلي من API.",
+    "phone": "الهاتف",
+    "email": "البريد الإلكتروني",
+    "experienceTitle": "أكثر من 20 عامًا من الخبرة سنضمن لك الحصول على أفضل التوجيه.",
+    "requestQuote": "طلب عرض سعر"
+  },
+  "contact": {
+    "title": "اتصل بنا",
+    "share": "مشاركة",
+    "getInTouch": "تواصل معنا",
+    "description": "لقد ساعدنا مؤخرًا شركة صغيرة على النمو من نقطة التعادل إلى أكثر من مليون دولار ربح في أقل من عامين. يرجى العثور على تفاصيل الاتصال أدناه واتصل بنا اليوم!",
+    "visitUs": "زر مكاننا",
+    "address": "241/84 اسم الثيمة اكتشف الشارع نيويورك، نيويورك 10012، الولايات المتحدة",
+    "callUs": "اتصل بنا",
+    "phone": "+1 (555) 123-4567",
+    "emailUs": "راسلنا",
+    "email": "info@strategizers.com",
+    "sendMessage": "أرسل رسالتك إلينا",
+    "yourContact": "معلومات الاتصال",
+    "hrDepartment": "الموارد البشرية",
+    "hrContact": {
+      "name": "تشارلز ميكي",
+      "phone": "84578-25-658",
+      "email": "Charlesmeck@gmail.com"
+    },
+    "salesDepartment": "قسم المبيعات",
+    "salesContact": {
+      "name": "روبرت فيرتلي",
+      "phone": "98765-43-210",
+      "email": "Robertfert@gmail.com"
+    },
+    "form": {
+      "name": "اسمك*",
+      "email": "بريدك الإلكتروني*",
+      "phoneCode": "الرمز",
+      "phoneNumber": "رقم الهاتف",
+      "subject": "الموضوع*",
+      "message": "رسالتك*",
+      "sendMessage": "إرسال الرسالة",
+      "sending": "جاري الإرسال..."
+    },
+    "errors": {
+      "nameRequired": "الاسم مطلوب",
+      "emailRequired": "البريد الإلكتروني مطلوب",
+      "emailInvalid": "يرجى إدخال عنوان بريد إلكتروني صحيح",
+      "subjectRequired": "الموضوع مطلوب",
+      "messageRequired": "الرسالة مطلوبة"
+    },
+    "successMessage": "تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.",
+    "errorMessage": "فشل في إرسال الرسالة. يرجى المحاولة مرة أخرى.",
+    "networkError": "خطأ في الشبكة. يرجى التحقق من اتصالك والمحاولة مرة أخرى."
   }
 }

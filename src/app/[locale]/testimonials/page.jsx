@@ -1,4 +1,159 @@
+"use client";
+import { useEffect, useState } from "react";
+import { useTranslation } from "../../../hooks/useTranslation";
+
 const TestimonialsPage = () => {
+  const { t, locale } = useTranslation();
+  const [testimonials, setTestimonials] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalTestimonials, setTotalTestimonials] = useState(0);
+  const [limit] = useState(10); // Number of testimonials per page
+
+  const fetchTestimonials = async (page = 1) => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `http://localhost:4000/api/v1/public/testimonial?page=${page}&limit=${limit}&sortBy=createdAt&sortDirection=desc&term=`
+      );
+      const data = await response.json();
+
+      console.log("API Response:", data);
+
+      if (data.code === 200) {
+        setTestimonials(data.results.data || []);
+        setTotalTestimonials(data.results.totalCount || 0);
+        // Calculate total pages based on total count and limit
+        const calculatedTotalPages = Math.ceil(
+          (data.results.totalCount || 0) / limit
+        );
+        setTotalPages(calculatedTotalPages);
+        console.log("Total pages:", calculatedTotalPages);
+      } else {
+        console.error("Failed to fetch testimonials:", data.message);
+        setTestimonials([]);
+      }
+    } catch (error) {
+      console.error("Error fetching testimonials:", error);
+      setTestimonials([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchTestimonials(currentPage);
+  }, [currentPage]);
+
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+      // Scroll to top when page changes
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  const renderPaginationNumbers = () => {
+    const pages = [];
+    const maxVisiblePages = 5;
+
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+    // Adjust start page if we're near the end
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(
+        <li key={i} className={i === currentPage ? "active" : ""}>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              handlePageChange(i);
+            }}
+          >
+            {i}
+          </a>
+        </li>
+      );
+    }
+
+    return pages;
+  };
+
+  const renderTestimonials = () => {
+    if (loading) {
+      return (
+        <div className="col-md-12 text-center">
+          <div className="loading-spinner">
+            <i className="fa fa-spinner fa-spin fa-3x"></i>
+            <p>{t("testimonials.loading")}</p>
+          </div>
+        </div>
+      );
+    }
+
+    if (testimonials.length === 0) {
+      return (
+        <div className="col-md-12 text-center">
+          <div className="no-testimonials">
+            <i className="fa fa-comments fa-3x"></i>
+            <h3>{t("testimonials.noTestimonialsFound")}</h3>
+            <p>{t("testimonials.noTestimonialsDescription")}</p>
+          </div>
+        </div>
+      );
+    }
+
+    return testimonials.map((testimonial, index) => (
+      <div
+        key={testimonial._id || index}
+        className="col-lg-3 col-md-4 col-sm-6 col-xs-12"
+      >
+        <div className="single-testimonial-item">
+          <div className="img-holder">
+            <img
+              src={
+                testimonial.image ||
+                `/images/testimonial/${(index % 5) + 1}.png`
+              }
+              alt={testimonial.name?.[locale] || t("testimonials.clientName")}
+              className="img-responsive"
+            />
+          </div>
+          <div className="text-holder">
+            <p>
+              {testimonial.description?.[locale] ||
+                t("testimonials.defaultDescription")}
+            </p>
+          </div>
+          <div className="client-info">
+            <h3>
+              {testimonial.name?.[locale] || t("testimonials.clientName")}
+            </h3>
+            <p>
+              {testimonial.position?.[locale] ||
+                t("testimonials.clientPosition")}
+            </p>
+          </div>
+        </div>
+      </div>
+    ));
+  };
+
+  // Debug info - you can remove this later
+  console.log("Current state:", {
+    currentPage,
+    totalPages,
+    totalTestimonials,
+    testimonialsCount: testimonials.length,
+    shouldShowPagination: totalPages > 1,
+  });
+
   return (
     <>
       <section
@@ -9,34 +164,7 @@ const TestimonialsPage = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="breadcrumbs">
-                <h1>Testimonials</h1>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="breadcrumb-bottom-area">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <div className="left pull-left">
-                <ul>
-                  <li>
-                    <a href="index.html">Home</a>
-                  </li>
-                  <li>
-                    <i className="fa fa-angle-right" aria-hidden="true"></i>
-                  </li>
-                  <li className="active">Testimonials</li>
-                </ul>
-              </div>
-              <div className="right pull-right">
-                <a href="#">
-                  <span>
-                    <i className="fa fa-share-alt" aria-hidden="true"></i>Share
-                  </span>
-                </a>
+                <h1>{t("testimonials.title")}</h1>
               </div>
             </div>
           </div>
@@ -45,27 +173,82 @@ const TestimonialsPage = () => {
 
       <section className="testimonial-section sec-padding">
         <div className="container">
-          <div className="row masonary-layout">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-              <div key={item} className="col-md-3 col-sm-6 col-xs-12">
-                <div className="single-testimonial-item">
-                  <div className="img-holder">
-                    <img src="/images/testimonial/1.png" alt="Awesome Image" />
-                  </div>
-                  <div className="text-holder">
-                    <p>
-                      Who loves or pursues or desires to obtain pain of itself,
-                      because it can procure great pleasure.
-                    </p>
-                  </div>
-                  <div className="client-info">
-                    <h3>Allen Duckeat</h3>
-                    <p>Newyork</p>
-                  </div>
-                </div>
+          {/* Testimonials Info */}
+          <div className="row">
+            <div className="col-md-12">
+              <div
+                className="testimonials-info text-center"
+                style={{ marginBottom: "30px" }}
+              >
+                <p>
+                  {t("testimonials.showing")} {(currentPage - 1) * limit + 1}{" "}
+                  {t("testimonials.to")}{" "}
+                  {Math.min(currentPage * limit, totalTestimonials)}{" "}
+                  {t("testimonials.of")} {totalTestimonials}{" "}
+                  {t("testimonials.testimonials")}
+                </p>
               </div>
-            ))}
+            </div>
           </div>
+
+          {/* Testimonials Grid */}
+          <div className="row masonary-layout">{renderTestimonials()}</div>
+
+          {/* Pagination - Always show if there are more than 1 page */}
+          {totalPages > 1 && (
+            <div className="row">
+              <div className="col-md-12">
+                <ul className="post-pagination text-center">
+                  {/* Previous Button */}
+                  <li className={currentPage === 1 ? "disabled" : ""}>
+                    <a
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (currentPage > 1) handlePageChange(currentPage - 1);
+                      }}
+                      style={{
+                        pointerEvents: currentPage === 1 ? "none" : "auto",
+                      }}
+                    >
+                      <i
+                        className={`fa fa-caret-${
+                          locale === "ar" ? "right" : "left"
+                        }`}
+                        aria-hidden="true"
+                      ></i>
+                    </a>
+                  </li>
+
+                  {/* Page Numbers */}
+                  {renderPaginationNumbers()}
+
+                  {/* Next Button */}
+                  <li className={currentPage === totalPages ? "disabled" : ""}>
+                    <a
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (currentPage < totalPages)
+                          handlePageChange(currentPage + 1);
+                      }}
+                      style={{
+                        pointerEvents:
+                          currentPage === totalPages ? "none" : "auto",
+                      }}
+                    >
+                      <i
+                        className={`fa fa-caret-${
+                          locale === "ar" ? "left" : "right"
+                        }`}
+                        aria-hidden="true"
+                      ></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -74,14 +257,11 @@ const TestimonialsPage = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="title pull-left">
-                <h3>
-                  Over 20 years of experience we’ll ensure you get the best
-                  guidance.
-                </h3>
+                <h3>{t("testimonials.experienceTitle")}</h3>
               </div>
               <div className="button pull-right">
                 <a className="thm-btn bgclr-1" href="#">
-                  Request Quote
+                  {t("testimonials.requestQuote")}
                 </a>
               </div>
             </div>
