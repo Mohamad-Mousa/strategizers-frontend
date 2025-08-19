@@ -1,0 +1,1394 @@
+/* Large Layout: 1200px. */
+@media only screen and (min-width: 1200px) {
+    .container {
+        padding: 0;
+    }
+
+    .container-fluid {
+        padding: 0;
+    }
+
+
+}
+
+
+
+/* Medium screen  */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+    /*** 
+=============================================
+    Mainmenu area style
+=============================================
+***/
+    .mainmenu-area .logo {
+        padding-right: 25px;
+        padding-top: 22px;
+        padding-bottom: 23px;
+        padding-left: 10px;
+    }
+
+    .main-menu .navigation li a {
+        padding: 36px 8px 34px;
+        font-size: 13px;
+    }
+
+    .mainmenu-area .quote-button a {
+        padding: 0 8px;
+        font-size: 12px;
+    }
+
+    /*** 
+=============================================
+    Rev slider wrapper style
+=============================================
+***/
+    .rev_slider_wrapper {
+        margin-top: -140px;
+    }
+
+    .rev_slider_wrapper .slide-content-box.mar-lft {
+        margin-left: 80px !important;
+    }
+
+    .tparrows {
+        top: 55% !important;
+    }
+
+    /*** 
+=============================================
+    about area style
+=============================================
+***/
+    .about-area .text-holder {
+        margin-top: 35px;
+    }
+
+    /*** 
+=============================================
+    Project faq Area style
+=============================================
+***/
+    .project-faq-area {
+        padding-bottom: 70px;
+    }
+
+    .project-faq-area .latest-project .single-project-item {
+        width: 31.01%;
+    }
+
+    .project-faq-area .faq-content {
+        overflow: hidden;
+        padding-top: 50px;
+    }
+
+    /*** 
+=============================================
+    Footer top Area style
+=============================================
+***/
+    .footer-top-area .title h3 {
+        font-size: 20px;
+    }
+
+    /*** 
+=============================================
+    Footer Area style
+=============================================
+***/
+    .single-footer-widget.margin-lft {
+        margin-left: 0px;
+    }
+
+    .single-footer-widget.pd-bottom50 {
+        padding-bottom: 50px;
+    }
+
+    .single-footer-widget.margin-top {
+        margin-top: 50px;
+    }
+
+    /*** 
+=============================================
+    Faq Content Area style
+=============================================
+***/
+    .faq-content-area {
+        padding-bottom: 80px;
+    }
+
+    .faq-content-area .question-form {
+        margin-top: 60px;
+    }
+
+    /*** 
+=============================================
+    Blog Default Area style
+=============================================
+***/
+    .blog-default-area .sidebar-wrapper {
+        border-left: none;
+        padding-left: 0;
+        margin-top: 0;
+        padding-top: 70px;
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+    }
+
+    /*** 
+=============================================
+    Blog Large Area style
+=============================================
+***/
+    .blog-large-area .blog-post {
+        border-right: none;
+        margin-right: 0;
+        padding-right: 0;
+    }
+
+    .blog-large-area .sidebar-wrapper {
+        padding-left: 0;
+        padding-top: 70px;
+    }
+
+    /*** 
+=============================================
+    Get touch Area style
+=============================================
+***/
+    .get-touch-area .single-item {
+        padding: 39px 5px 31px;
+    }
+
+    /*** 
+=============================================
+    Project Single Area style
+=============================================
+***/
+    .project-single-area .single-project-img-box img {
+        width: 100%;
+    }
+
+    .project-single-area .single-project-content {
+        border-right: none;
+        margin-right: 0;
+        padding-right: 0;
+    }
+
+    .project-single-area .sidebar-wrapper {
+        padding-left: 0;
+        padding-top: 70px;
+    }
+
+    /*** 
+=============================================
+    Single Service Area style
+=============================================
+***/
+    #single-service-area .content-box .specific-services {
+        margin-bottom: 70px;
+    }
+
+    #single-service-area .content-box .specific-services .single-item {
+        margin-bottom: 10px;
+    }
+
+    #single-service-area .content-box .benefits-service-content .video-holder {
+        margin: 40px 0 0;
+    }
+
+    /*** 
+=============================================
+    Shop Area style
+=============================================
+***/
+    .shop-area .shop-content {
+        padding-bottom: 70px;
+    }
+
+    /*** 
+=============================================
+    Checkout Area style
+=============================================
+***/
+    .checkout-area .form.shipping-info {
+        padding-top: 70px;
+    }
+
+    /*** 
+=============================================
+    Login Register Area style
+=============================================
+***/
+    .login-register-area .form .social-icon {
+        float: left;
+        margin-right: -8px;
+        margin-top: 15px;
+    }
+
+    .login-register-area .form.register {
+        padding-top: 70px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+/* Tablet Layout: 768px. */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+    /*** 
+=============================================
+    Top bar Area style
+=============================================
+***/
+    .top-bar-area {
+        background: #222;
+        position: relative;
+        line-height: 50px;
+        z-index: 999;
+    }
+
+    .top-bar-area .top-left {
+        width: 420px;
+        margin: 0 auto;
+    }
+
+    .top-bar-area .top-right {
+        float: none;
+        width: 410px;
+        margin: 5px auto 0;
+    }
+
+    .outer-search-box {
+        float: left;
+        height: 40px;
+        width: 40px;
+        margin: 14px 0;
+        margin-right: 10px;
+        border-left: 1px solid #efeded;
+    }
+
+    /*** 
+=============================================
+    Mainmenu Area style
+=============================================
+***/
+    .mainmenu-area {
+        background: #F7F7F7;
+    }
+
+    .mainmenu-area .logo {
+        display: block;
+        padding-right: 0;
+        padding-left: 0;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        float: none !important;
+        text-align: center;
+    }
+
+    .main-menu .navigation li a {
+        padding: 25px 9px 23px;
+    }
+
+    .mainmenu-area .quote-button a {
+        line-height: 68px;
+        padding: 0 15px;
+    }
+
+    /*** 
+=============================================
+    Rev slider wrapper style
+=============================================
+***/
+    .rev_slider_wrapper {
+        margin-top: 0;
+    }
+
+    .rev_slider_wrapper .slide-content-box.mar-lft {
+        margin-left: 80px !important;
+    }
+
+    .tparrows {
+        top: 55% !important;
+    }
+
+    /*** 
+=============================================
+    Welcome Area style
+=============================================
+***/
+    .welcome-area {
+        padding-top: 80px;
+        padding-bottom: 20px;
+    }
+
+    .sec-title p {
+        padding: 0 60px;
+    }
+
+    .single-service-item {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    /*** 
+=============================================
+    about area style
+=============================================
+***/
+    .about-area .text-holder {
+        margin-top: 35px;
+    }
+
+    .about-area .promotion-box .singel-box {
+        margin-bottom: 30px;
+    }
+
+    /*** 
+=============================================
+    Consultations area style
+=============================================
+***/
+    .consultations-area .contact-info {
+        margin-bottom: 50px;
+    }
+
+    .consultations-area .request-form button {
+        margin: 20px 0 0;
+    }
+
+    .consultations-area .request-form .text {
+        padding-left: 30px;
+        margin: 35px 0 0;
+    }
+
+
+    /*** 
+=============================================
+    Latest blog Area style
+=============================================
+***/
+    .latest-blog-area {
+        padding-bottom: 30px;
+    }
+
+    .latest-blog-area .single-blog-item {
+        margin-bottom: 50px;
+    }
+
+    /*** 
+=============================================
+    Project faq Area style
+=============================================
+***/
+    .project-faq-area {
+        padding-bottom: 70px;
+    }
+
+    .project-faq-area .latest-project .single-project-item {
+        width: 30.01%;
+    }
+
+    .project-faq-area .faq-content {
+        overflow: hidden;
+        padding-top: 50px;
+    }
+
+    /*** 
+=============================================
+    Footer Area style
+=============================================
+***/
+    .single-footer-widget.margin-lft {
+        margin-left: 0px;
+    }
+
+    .single-footer-widget.pd-bottom50 {
+        padding-bottom: 50px;
+    }
+
+    /*** 
+=============================================
+    Footer bottom Area style
+=============================================
+***/
+    .footer-bottom-area {}
+
+    .copyright-text p {
+        text-align: center;
+    }
+
+    .footer-menu {
+        float: none;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .footer-menu li {
+        display: inline-block;
+        float: none;
+        margin: 0 6px;
+    }
+
+    /*** 
+=============================================
+    Footer top Area style
+=============================================
+***/
+    .footer-top-area {
+        padding-bottom: 45px;
+        padding-top: 35px;
+    }
+
+    .footer-top-area .title {
+        float: none !important;
+        margin: 0 0 15px;
+        text-align: center;
+    }
+
+    .footer-top-area .button {
+        display: block;
+        float: none !important;
+        margin: 0 auto;
+        overflow: hidden;
+        width: 190px;
+    }
+
+    .footer-top-area .button a {
+        padding: 10px 30px 10px;
+    }
+
+    /*** 
+=============================================
+    Faq Content Area style
+=============================================
+***/
+    .faq-content-area {
+        padding-bottom: 80px;
+    }
+
+    .faq-content-area .question-form {
+        margin-top: 60px;
+    }
+
+    /*** 
+=============================================
+    Blog Default Area style
+=============================================
+***/
+    .blog-default-area .sidebar-wrapper {
+        border-left: none;
+        padding-left: 0;
+        margin-top: 0;
+        padding-top: 70px;
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+    }
+
+    /*** 
+=============================================
+    Blog Large Area style
+=============================================
+***/
+    .blog-large-area .blog-post {
+        border-right: none;
+        margin-right: 0;
+        padding-right: 0;
+    }
+
+    .blog-large-area .sidebar-wrapper {
+        padding-left: 0;
+        padding-top: 70px;
+    }
+
+    /*** 
+=============================================
+    Get Touch Area style
+=============================================
+***/
+    .get-touch-area {
+        padding-bottom: 40px;
+    }
+
+    .get-touch-area .single-item {
+        margin-bottom: 40px;
+    }
+
+    /*** 
+=============================================
+    Contact Form Area style
+=============================================
+***/
+    .contact-form-area .contact-form {
+        margin-bottom: 60px;
+    }
+
+    /*** 
+=============================================
+    Project Single Area style
+=============================================
+***/
+    .project-single-area .single-project-content {
+        border-right: none;
+        margin-right: 0;
+        padding-right: 0;
+    }
+
+    .project-single-area .single-project-img-box img {
+        width: 100%;
+    }
+
+    .project-single-area .legal-work-content {
+        padding-top: 50px;
+    }
+
+    .project-single-area .sidebar-wrapper {
+        padding-left: 0;
+        padding-top: 70px;
+    }
+
+    /*** 
+=============================================
+    Single Service Area style
+=============================================
+***/
+    #single-service-area .content-box .specific-services {
+        margin-bottom: 70px;
+    }
+
+    #single-service-area .content-box .specific-services .single-item {
+        margin-bottom: 10px;
+    }
+
+    #single-service-area .content-box .benefits-service-content .video-holder {
+        margin: 40px 0 0;
+    }
+
+    #single-service-area .content-box .consultation-form form textarea {
+        margin-top: 22px;
+    }
+
+    .left-sidebar .single-sidebar {
+        margin-top: 70px;
+    }
+
+    /*** 
+=============================================
+    Shop Area style
+=============================================
+***/
+    .shop-area .shop-content {
+        padding-bottom: 70px;
+    }
+
+    /*** 
+=============================================
+   Single Shop Area style
+=============================================
+***/
+    .single-shop-content .img-holder {
+        margin-right: 0;
+    }
+
+    .single-shop-content .content-box {
+        margin-top: 40px;
+        margin-left: 0;
+    }
+
+    .single-shop-area .sidebar-wrapper {
+        padding-top: 50px;
+    }
+
+    /*** 
+=============================================
+   Cart area  style
+=============================================
+***/
+    .cart-total {
+        padding-top: 70px;
+    }
+
+    /*** 
+=============================================
+    Checkout Area style
+=============================================
+***/
+    .checkout-area .form.shipping-info {
+        padding-top: 70px;
+    }
+
+    /*** 
+=============================================
+    Login Register Area style
+=============================================
+***/
+    .login-register-area .form .social-icon {
+        float: left;
+        margin-right: -8px;
+        margin-top: 15px;
+    }
+
+    .login-register-area .form.register {
+        padding-top: 70px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+/* Mobile Layout: 320px. */
+@media only screen and (max-width: 767px) {
+
+    /*** 
+=============================================
+    Top bar Area style
+=============================================
+***/
+    .top-bar-area {
+        background: #222222;
+        padding: 12px 0 15px;
+    }
+
+    .top-bar-area .top-left {
+        width: 220px;
+        margin: 0 auto;
+    }
+
+    .top-bar-area .top-right {
+        float: none;
+        width: 280px;
+        margin: 5px auto 0;
+    }
+
+    .search-box {
+        right: 0px;
+    }
+
+    .outer-search-box {
+        float: left;
+        height: 40px;
+        width: 40px;
+        margin: 22px 0;
+        margin-right: 0px;
+        border-left: 0px solid #efeded;
+    }
+
+
+    /*** 
+=============================================
+    Mainmenu area style
+=============================================
+***/
+    .mainmenu-area {
+        background: #F7F7F7;
+    }
+
+    .mainmenu-area .logo {
+        display: inline-block;
+        padding-right: 10px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 0;
+    }
+
+    .mainmenu-right-box {
+        position: absolute;
+        top: 0;
+        right: 70px;
+        z-index: 99999;
+    }
+
+    .mainmenu-area .quote-button {
+        display: none;
+    }
+
+    .mainmenu-area .quote-button a {
+        line-height: 60px;
+        padding: 0 15px;
+        margin: 0;
+    }
+
+    .main-menu {
+        display: block;
+        float: none !important;
+        padding-bottom: 0;
+        padding-top: 0;
+        z-index: 5;
+        width: 100%;
+    }
+
+    .main-menu .navigation li {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0;
+    }
+
+    .main-menu .collapse {
+        border: 0px solid #eabb06 !important;
+        border-radius: 0px !important;
+        float: none;
+        margin: 0;
+        max-height: 300px;
+        overflow: auto;
+        padding: 0;
+        width: 100%;
+    }
+
+    .main-menu .collapse.in,
+    .main-menu .collapsing {
+        border: 0px solid #4b4b4b;
+        border-radius: 3px;
+        margin: 0 0 20px;
+        padding: 0;
+        border-top: none;
+    }
+
+    .main-menu .navbar-header {
+        position: relative;
+        float: none;
+        display: block;
+        text-align: right;
+        width: 100%;
+        padding: 0;
+        right: 0px;
+        z-index: 12;
+    }
+
+    .main-menu .navbar-header .navbar-toggle {
+        display: inline-block;
+        z-index: 7;
+        border: 2px solid #222222;
+        float: none;
+        margin: 23px 0;
+        border-radius: 0;
+        padding: 10px 9px;
+    }
+
+    .main-menu .navbar-header .navbar-toggle .icon-bar {
+        background: #8a3594 none repeat scroll 0 0;
+        font-weight: 700;
+    }
+
+    .main-menu .navbar-collapse>.navigation {
+        background: #8a3594;
+        float: none !important;
+        margin: 0 !important;
+        width: 100% !important;
+    }
+
+    .main-menu .navbar-collapse>.navigation>li {
+        margin: 0px !important;
+        float: none !important;
+        width: 100%;
+        padding: 0;
+    }
+
+    .main-menu .navbar-collapse .navigation>li>ul>li {
+        border-bottom: 0px solid #2b2b2b;
+    }
+
+    .main-menu .navigation li.dropdown>a:after {
+        display: none !important;
+    }
+
+    .main-menu .navigation>li>a:before {
+        display: none;
+    }
+
+    .main-menu .navbar-collapse>.navigation>li>a {
+        padding: 10px 10px !important;
+    }
+
+    .main-menu .navbar-collapse>.navigation>li>ul,
+    .main-menu .navbar-collapse>.navigation>li>ul>li>ul {
+        position: relative;
+        border: none;
+        float: none;
+        visibility: visible;
+        opacity: 1;
+        display: none;
+        margin: 0px;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        width: 100%;
+        background: none;
+        border-radius: 0px;
+        -webkit-border-radius: 0px;
+        -ms-border-radius: 0px;
+        -o-border-radius: 0px;
+        -moz-border-radius: 0px;
+        transition: none !important;
+        -webkit-transition: none !important;
+        -ms-transition: none !important;
+        -o-transition: none !important;
+        -moz-transition: none !important;
+    }
+
+    .main-menu .navbar-collapse>.navigation>li>ul,
+    .main-menu .navbar-collapse>.navigation>li>ul>li>ul {
+        border-top: 0px solid rgba(255, 255, 255, 1) !important;
+    }
+
+    .main-menu .navbar-collapse>.navigation>li,
+    .main-menu .navbar-collapse>.navigation>li>ul>li,
+    .main-menu .navbar-collapse>.navigation>li>ul>li>ul>li {
+        border-top: 1px solid #8a3594 !important;
+        opacity: 1 !important;
+        top: 0px !important;
+        left: 0px !important;
+        visibility: visible !important;
+    }
+
+    .main-menu .navbar-collapse>.navigation>li:last-child,
+    .main-menu .navbar-collapse>.navigation>li>ul>li:last-child,
+    .main-menu .navbar-collapse>.navigation>li>ul>li>ul>li:last-child {
+        border-top: 1px solid #8a3594 !important;
+    }
+
+    .main-menu .navbar-collapse>.navigation>li>a,
+    .main-menu .navbar-collapse>.navigation>li>ul>li>a,
+    .main-menu .navbar-collapse>.navigation>li>ul>li>ul>li>a {
+        padding: 10px 10px !important;
+        line-height: 22px;
+        color: #222222;
+        background: #8a3594;
+        text-align: left;
+    }
+
+    .main-menu .navbar-collapse .navigation>li>ul li a::before {
+        display: none;
+    }
+
+    .main-menu .navbar-collapse>.navigation>li:hover>a,
+    .main-menu .navbar-collapse>.navigation>li>ul>li:hover>a,
+    .main-menu .navbar-collapse>.navigation>li>ul>li>ul>li:hover>a,
+    .main-menu .navbar-collapse>.navigation>li.current>a {
+        background: #222222;
+        color: #fff !important;
+    }
+
+    .main-menu .navbar-collapse>.navigation li.dropdown .dropdown-btn {
+        display: block;
+    }
+
+
+    /*** 
+=============================================
+    Rev slider wrapper style
+=============================================
+***/
+    .rev_slider_wrapper {
+        margin-top: 0;
+    }
+
+    .rev_slider_wrapper .slide-content-box.mar-lft {
+        margin-left: 50px !important;
+    }
+
+    .tparrows {
+        display: none;
+    }
+
+    /*** 
+=============================================
+    Breadcrumb bottom area style
+=============================================
+***/
+    .breadcrumb-bottom-area .left {
+        float: none !important;
+    }
+
+    .breadcrumb-bottom-area .left ul {
+        text-align: center;
+    }
+
+    .breadcrumb-bottom-area .left ul li {
+        margin: 0 4px;
+    }
+
+    .breadcrumb-bottom-area .right {
+        float: none !important;
+        text-align: center;
+        margin: 2px 0 0;
+    }
+
+    /*** 
+=============================================
+    Welcome Area style
+=============================================
+***/
+    .welcome-area {
+        padding-top: 80px;
+        padding-bottom: 20px;
+    }
+
+    .sec-title p {
+        padding: 0 20px;
+    }
+
+    .single-service-item {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    /*** 
+=============================================
+    Consultations area style
+=============================================
+***/
+    .consultations-area .contact-info {
+        margin-bottom: 50px;
+    }
+
+    .consultations-area .request-form button {
+        margin: 20px 0 0;
+    }
+
+    .consultations-area .request-form .text {
+        padding-left: 0px;
+    }
+
+    /*** 
+=============================================
+    Latest blog Area style
+=============================================
+***/
+    .latest-blog-area {
+        padding-bottom: 30px;
+    }
+
+    .latest-blog-area .single-blog-item {
+        margin-bottom: 50px;
+    }
+
+    /*** 
+=============================================
+    Project faq Area style
+=============================================
+***/
+    .project-faq-area {
+        padding-bottom: 70px;
+    }
+
+    .project-faq-area .latest-project {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .project-faq-area .latest-project .single-project-item {
+        display: block;
+        float: left;
+        margin: 0 0 15px;
+        width: 100%;
+    }
+
+    .project-faq-area .faq-content {
+        overflow: hidden;
+        padding-top: 50px;
+    }
+
+    /*** 
+=============================================
+    Footer Area style
+=============================================
+***/
+
+    .single-footer-widget.pd-bottom50 {
+        padding-bottom: 50px;
+    }
+
+    .single-footer-widget.martop50 {
+        margin-top: 50px;
+    }
+
+    .single-footer-widget.margin-lft {
+        margin-left: 0;
+    }
+
+
+    /*** 
+=============================================
+    Footer bottom Area style
+=============================================
+***/
+    .footer-bottom-area {}
+
+    .copyright-text p {
+        text-align: center;
+    }
+
+    .footer-menu {
+        float: none;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .footer-menu li {
+        display: inline-block;
+        float: none;
+        margin: 0 6px;
+    }
+
+    /*** 
+=============================================
+    Footer top Area style
+=============================================
+***/
+    .footer-top-area {
+        padding-bottom: 45px;
+        padding-top: 35px;
+    }
+
+    .footer-top-area .title {
+        float: none !important;
+        margin: 0 0 15px;
+        text-align: center;
+    }
+
+    .footer-top-area .button {
+        display: block;
+        float: none !important;
+        margin: 0 auto;
+        overflow: hidden;
+        width: 190px;
+    }
+
+    .footer-top-area .button a {
+        padding: 10px 30px 10px;
+    }
+
+    /*** 
+=============================================
+    Faq Content Area style
+=============================================
+***/
+    .faq-content-area {
+        padding-bottom: 80px;
+    }
+
+    .faq-content-area .question-form {
+        margin-top: 60px;
+    }
+
+    /*** 
+=============================================
+    Blog Default Area style
+=============================================
+***/
+    .blog-default-area .sidebar-wrapper {
+        border-left: none;
+        padding-left: 0;
+        margin-top: 0;
+        padding-top: 70px;
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+    }
+
+    /*** 
+=============================================
+    Blog Large Area style
+=============================================
+***/
+    .blog-large-area .blog-post {
+        border-right: none;
+        margin-right: 0;
+        padding-right: 0;
+    }
+
+    .blog-large-area .sidebar-wrapper {
+        padding-left: 0;
+        padding-top: 70px;
+    }
+
+    /*** 
+=============================================
+    Blog Single Area style
+=============================================
+***/
+    .blog-single-area .middle-content-box .img-holder,
+    .blog-single-area .middle-content-box .text-holder {
+        display: block;
+    }
+
+    .blog-single-area .middle-content-box .img-holder {
+        width: 100%;
+    }
+
+    .blog-single-area .middle-content-box .img-holder img {
+        width: 100%;
+    }
+
+    .blog-single-area .middle-content-box .text-holder {
+        padding-left: 0;
+        padding-top: 45px;
+    }
+
+    .blog-single-area .middle-content-box .text-holder:before {
+        top: 20px;
+        left: 0px;
+    }
+
+    .blog-single-area .tag-social-share-box .social-share {
+        float: left !important;
+        margin-top: 25px;
+    }
+
+    .single-blog-item .text-holder .meta-info li {
+        line-height: 22px;
+    }
+
+    /*** 
+=============================================
+    Breadcrumb Area style
+=============================================
+***/
+    .breadcrumb-area .breadcrumbs h1 {
+        line-height: 60px;
+    }
+
+    /*** 
+=============================================
+    Get Touch Area style
+=============================================
+***/
+    .get-touch-area {
+        padding-bottom: 40px;
+    }
+
+    .get-touch-area .single-item {
+        margin-bottom: 40px;
+    }
+
+    /*** 
+=============================================
+    Contact Form Area style
+=============================================
+***/
+    .contact-form-area .contact-form {
+        margin-bottom: 60px;
+    }
+
+    /*** 
+=============================================
+    Project Single Area style
+=============================================
+***/
+    .project-single-area .single-project-content {
+        border-right: none;
+        margin-right: 0;
+        padding-right: 0;
+    }
+
+    .project-single-area .single-project-img-box img {
+        width: 100%;
+    }
+
+    .project-single-area .legal-work-content {
+        padding-top: 50px;
+    }
+
+    .project-single-area .sidebar-wrapper {
+        padding-left: 0;
+        padding-top: 70px;
+    }
+
+    /*** 
+=============================================
+    Single Service Area style
+=============================================
+***/
+    #single-service-area .content-box .specific-services {
+        margin-bottom: 70px;
+    }
+
+    #single-service-area .content-box .specific-services .single-item {
+        margin-bottom: 10px;
+    }
+
+    #single-service-area .content-box .benefits-service-content .video-holder {
+        margin: 40px 0 0;
+    }
+
+    #single-service-area .content-box .consultation-form form textarea {
+        margin-top: 22px;
+    }
+
+    .left-sidebar .single-sidebar {
+        margin-top: 70px;
+    }
+
+    /*** 
+=============================================
+    Shop Area style
+=============================================
+***/
+    .shop-area .shop-content {
+        padding-bottom: 70px;
+    }
+
+    .shop-area .showing-result-shorting .showing {
+        float: none !important;
+        display: block;
+    }
+
+    .shop-area .showing-result-shorting .shorting {
+        float: none !important;
+        display: block;
+        margin-top: 15px;
+    }
+
+    /*** 
+=============================================
+   Single Shop Area style
+=============================================
+***/
+    .single-shop-content .img-holder {
+        margin-right: 0;
+    }
+
+    .single-shop-content .content-box {
+        margin-top: 40px;
+        margin-left: 0;
+    }
+
+    .single-shop-area .sidebar-wrapper {
+        padding-top: 50px;
+    }
+
+    /*** 
+=============================================
+   Cart area  style
+=============================================
+***/
+    .cart-middle .apply-coupon {
+        padding-left: 0;
+    }
+
+    .cart-middle .apply-coupon input[type="text"] {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .cart-middle .update-cart {
+        float: left !important;
+        margin-top: 20px;
+    }
+
+    .cart-total {
+        padding-top: 70px;
+    }
+
+    /*** 
+=============================================
+    Checkout Area style
+=============================================
+***/
+    .checkout-area .form.shipping-info {
+        padding-top: 70px;
+    }
+
+    .checkout-area .exisitng-customer h5 a {
+        display: block;
+        padding-left: 0;
+        margin: 7px 0 0;
+    }
+
+    .checkout-area .coupon h5 a {
+        display: block;
+        padding-left: 0;
+        margin: 7px 0 0;
+    }
+
+    /*** 
+=============================================
+    Login Register Area style
+=============================================
+***/
+    .login-register-area .form .social-icon {
+        float: left;
+        margin-right: -8px;
+        margin-top: 15px;
+    }
+
+    .login-register-area .form .social-icon .login-with {
+        left: 0;
+        position: relative;
+        top: 0;
+    }
+
+    .login-register-area .form.register {
+        padding-top: 70px;
+    }
+
+    .login-register-area .form h6 {
+        margin: 28px 0 0 0px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+/* Wide Mobile Layout: 480px. */
+@media only screen and (min-width: 480px) and (max-width: 767px) {}

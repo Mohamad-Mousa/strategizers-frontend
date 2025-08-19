@@ -1,15 +1,1 @@
-/* Import Google Fonts for Arabic support */
 @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap");
-
-/* RTL Support */
-[dir="rtl"] {
-  text-align: right;
-}
-
-[dir="rtl"] .language-switcher {
-  text-align: right;
-}
-
-[dir="rtl"] body {
-  font-family: "Cairo", sans-serif;
-}
