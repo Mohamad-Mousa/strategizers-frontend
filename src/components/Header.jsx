@@ -1,9 +1,11 @@
 "use client";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 
 const Header = () => {
   const { locale } = useParams();
+  const pathname = usePathname();
+  const pageName = pathname.split("/")[2];
 
   return (
     <>
@@ -111,10 +113,19 @@ const Header = () => {
                   </div>
                   <div className="navbar-collapse collapse clearfix">
                     <ul className="navigation clearfix">
-                      <li>
+                      <li className={pageName === undefined ? "current" : ""}>
                         <Link href={`/${locale}`}>Home</Link>
                       </li>
-                      <li className="dropdown">
+                      <li
+                        className={
+                          pageName === "about" ||
+                          pageName === "our-team" ||
+                          pageName === "faq" ||
+                          pageName === "testimonials"
+                            ? "current"
+                            : "dropdown"
+                        }
+                      >
                         <Link href={`/${locale}/about`}>ABOUT US</Link>
                         <ul>
                           <li>
@@ -135,16 +146,16 @@ const Header = () => {
                           </li>
                         </ul>
                       </li>
-                      <li>
+                      <li className={pageName === "services" ? "current" : ""}>
                         <Link href={`/${locale}/services`}>Services</Link>
                       </li>
-                      <li>
+                      <li className={pageName === "blogs" ? "current" : ""}>
                         <Link href={`/${locale}/blogs`}>Blog</Link>
                       </li>
-                      <li>
+                      <li className={pageName === "projects" ? "current" : ""}>
                         <Link href={`/${locale}/projects`}>Projects</Link>
                       </li>
-                      <li className="current">
+                      <li className={pageName === "contact" ? "current" : ""}>
                         <Link href={`/${locale}/contact`}>Contact Us</Link>
                       </li>
                     </ul>
