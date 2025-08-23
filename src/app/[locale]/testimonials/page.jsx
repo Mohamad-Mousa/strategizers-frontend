@@ -1,50 +1,36 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useTranslation } from "../../../hooks/useTranslation";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchTestimonials } from "../../../store/slices/testimonialsSlice";
 
 const TestimonialsPage = () => {
   const { t, locale } = useTranslation();
-  const [testimonials, setTestimonials] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [totalTestimonials, setTotalTestimonials] = useState(0);
   const [limit] = useState(10); // Number of testimonials per page
 
-  const fetchTestimonials = async (page = 1) => {
-    setLoading(true);
-    try {
-      const response = await fetch(
-        `http://localhost:4000/api/v1/public/testimonial?page=${page}&limit=${limit}&sortBy=createdAt&sortDirection=desc&term=`
-      );
-      const data = await response.json();
+  // Get testimonials data from Redux store
+  const { testimonials, loading, error, pagination } = useSelector(
+    (state) => state.testimonials
+  );
+  const { totalCount, totalPages } = pagination;
 
-      console.log("API Response:", data);
-
-      if (data.code === 200) {
-        setTestimonials(data.results.data || []);
-        setTotalTestimonials(data.results.totalCount || 0);
-        // Calculate total pages based on total count and limit
-        const calculatedTotalPages = Math.ceil(
-          (data.results.totalCount || 0) / limit
-        );
-        setTotalPages(calculatedTotalPages);
-        console.log("Total pages:", calculatedTotalPages);
-      } else {
-        console.error("Failed to fetch testimonials:", data.message);
-        setTestimonials([]);
-      }
-    } catch (error) {
-      console.error("Error fetching testimonials:", error);
-      setTestimonials([]);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const banner = useSelector(
+    (state) => state?.website?.data?.testimonialsPage?.banner
+  );
 
   useEffect(() => {
-    fetchTestimonials(currentPage);
-  }, [currentPage]);
+    dispatch(
+      fetchTestimonials({
+        page: currentPage,
+        limit,
+        sortBy: "createdAt",
+        sortDirection: "desc",
+        term: "",
+      })
+    );
+  }, [dispatch, currentPage, limit]);
 
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
@@ -53,6 +39,11 @@ const TestimonialsPage = () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
+
+  // Handle error display
+  if (error) {
+    console.error("Testimonials error:", error);
+  }
 
   const renderPaginationNumbers = () => {
     const pages = [];
@@ -149,7 +140,7 @@ const TestimonialsPage = () => {
   console.log("Current state:", {
     currentPage,
     totalPages,
-    totalTestimonials,
+    totalCount,
     testimonialsCount: testimonials.length,
     shouldShowPagination: totalPages > 1,
   });
@@ -158,7 +149,9 @@ const TestimonialsPage = () => {
     <>
       <section
         className="breadcrumb-area"
-        style={{ backgroundImage: "url(/images/resources/breadcrumb-bg.jpg)" }}
+        style={{
+          backgroundImage: `url(${"http://localhost:4000" + banner})`,
+        }}
       >
         <div className="container">
           <div className="row">
@@ -183,8 +176,8 @@ const TestimonialsPage = () => {
                 <p>
                   {t("testimonials.showing")} {(currentPage - 1) * limit + 1}{" "}
                   {t("testimonials.to")}{" "}
-                  {Math.min(currentPage * limit, totalTestimonials)}{" "}
-                  {t("testimonials.of")} {totalTestimonials}{" "}
+                  {Math.min(currentPage * limit, totalCount)}{" "}
+                  {t("testimonials.of")} {totalCount}{" "}
                   {t("testimonials.testimonials")}
                 </p>
               </div>

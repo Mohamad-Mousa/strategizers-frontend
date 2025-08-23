@@ -1,18 +1,19 @@
+"use client";
 import { Inter } from "next/font/google";
 import "../globals.css";
 import { LanguageProvider } from "../../components/LanguageProvider";
+import { Provider } from "react-redux";
+import { store } from "../../store";
 import Script from "next/script";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
+import DataLoader from "../../components/DataLoader";
+import { use } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export async function generateStaticParams() {
-  return [{ locale: "ar" }, { locale: "en" }];
-}
-
 export default function LocaleLayout({ children, params }) {
-  const { locale } = params;
+  const { locale } = use(params);
   const isRTL = locale === "ar";
 
   return (
@@ -41,16 +42,29 @@ export default function LocaleLayout({ children, params }) {
         />
       </head>
       <body className={inter.className}>
-        <LanguageProvider defaultLocale={locale}>
-          <div className="boxed_wrapper">
-            <Header />
-            {children}
-            <div className="scroll-to-top scroll-to-target" data-target="html">
-              <span className="fa fa-chevron-circle-up"></span>
-            </div>
-            <Footer />
-          </div>
-        </LanguageProvider>
+        <Provider store={store}>
+          <LanguageProvider defaultLocale={locale}>
+            <DataLoader>
+              <div
+                className="boxed_wrapper"
+                style={{
+                  direction: isRTL ? "rtl" : "ltr",
+                  textAlign: isRTL ? "right" : "left",
+                }}
+              >
+                <Header />
+                {children}
+                <div
+                  className="scroll-to-top scroll-to-target"
+                  data-target="html"
+                >
+                  <span className="fa fa-chevron-circle-up"></span>
+                </div>
+                <Footer />
+              </div>
+            </DataLoader>
+          </LanguageProvider>
+        </Provider>
         <Script src="/js/jquery-1.12.4.min.js" strategy="beforeInteractive" />
         <Script src="/js/wow.js" strategy="beforeInteractive" />
         <Script src="/js/bootstrap.min.js" strategy="beforeInteractive" />

@@ -7,6 +7,14 @@
     "arabic": "العربية",
     "english": "English"
   },
+  "social": {
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "linkedin": "LinkedIn",
+    "instagram": "Instagram",
+    "youtube": "YouTube",
+    "tiktok": "TikTok"
+  },
   "navigation": {
     "home": "Home",
     "about": "About",
@@ -123,5 +131,55 @@
     "successMessage": "Your message has been sent successfully! We'll get back to you soon.",
     "errorMessage": "Failed to send message. Please try again.",
     "networkError": "Network error. Please check your connection and try again."
+  },
+  "projects": {
+    "title": "Our Projects",
+    "loading": "Loading projects...",
+    "noProjectsFound": "No projects found",
+    "noProjectsDescription": "There are no projects available at the moment.",
+    "projectTitle": "Project Title",
+    "client": "Client",
+    "share": "Share",
+    "showing": "Showing",
+    "to": "to",
+    "of": "of",
+    "projects": "projects",
+    "defaultDescription": "This is a sample project description. The actual content will be loaded from the API.",
+    "experienceTitle": "Over 20 years of experience we'll ensure you get the best guidance.",
+    "requestQuote": "Request Quote"
+  },
+  "blogs": {
+    "title": "Our Blog",
+    "loading": "Loading blogs...",
+    "noBlogsFound": "No blogs found",
+    "noBlogsDescription": "There are no blogs available at the moment.",
+    "blogTitle": "Blog Title",
+    "category": "Category",
+    "author": "Author",
+    "by": "by",
+    "comments": "comments",
+    "readMore": "Read More",
+    "share": "Share",
+    "showing": "Showing",
+    "to": "to",
+    "of": "of",
+    "blogs": "blogs",
+    "defaultDescription": "This is a sample blog description. The actual content will be loaded from the API.",
+    "experienceTitle": "Over 20 years of experience we'll ensure you get the best guidance.",
+    "requestQuote": "Request Quote"
+  },
+  "about": {
+    "title": "About Us",
+    "loading": "Loading about page...",
+    "error": "Error",
+    "awesomeImage": "Awesome Image",
+    "mission": "Mission",
+    "vision": "Vision",
+    "values": "Values",
+    "smartApproach": "Our Smart Approach",
+    "viewServices": "View Services",
+    "achievements": "Our Achievements",
+    "experienceTitle": "Over 20 years of experience we'll ensure you get the best guidance.",
+    "requestQuote": "Request Quote"
   }
 }

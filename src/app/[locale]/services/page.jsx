@@ -1,50 +1,36 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useTranslation } from "../../../hooks/useTranslation";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchServices } from "../../../store/slices/servicesSlice";
 
 const ServicesPage = () => {
   const { t, locale } = useTranslation();
-  const [services, setServices] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [totalServices, setTotalServices] = useState(0);
   const [limit] = useState(10); // Number of services per page
 
-  const fetchServices = async (page = 1) => {
-    setLoading(true);
-    try {
-      const response = await fetch(
-        `http://localhost:4000/api/v1/public/service?page=${page}&limit=${limit}&sortBy=createdAt&sortDirection=desc&term=`
-      );
-      const data = await response.json();
+  // Get services data from Redux store
+  const { services, loading, error, pagination } = useSelector(
+    (state) => state.services
+  );
+  const { totalCount, totalPages } = pagination;
 
-      console.log("API Response:", data);
-
-      if (data.code === 200) {
-        setServices(data.results.data || []);
-        setTotalServices(data.results.totalCount || 0);
-        // Calculate total pages based on total count and limit
-        const calculatedTotalPages = Math.ceil(
-          (data.results.totalCount || 0) / limit
-        );
-        setTotalPages(calculatedTotalPages);
-        console.log("Total pages:", calculatedTotalPages);
-      } else {
-        console.error("Failed to fetch services:", data.message);
-        setServices([]);
-      }
-    } catch (error) {
-      console.error("Error fetching services:", error);
-      setServices([]);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const banner = useSelector(
+    (state) => state?.website?.data?.servicesPage?.banner
+  );
 
   useEffect(() => {
-    fetchServices(currentPage);
-  }, [currentPage]);
+    dispatch(
+      fetchServices({
+        page: currentPage,
+        limit,
+        sortBy: "createdAt",
+        sortDirection: "desc",
+        term: "",
+      })
+    );
+  }, [dispatch, currentPage, limit]);
 
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
@@ -53,6 +39,11 @@ const ServicesPage = () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
+
+  // Handle error display
+  if (error) {
+    console.error("Services error:", error);
+  }
 
   const renderPaginationNumbers = () => {
     const pages = [];
@@ -159,7 +150,7 @@ const ServicesPage = () => {
   console.log("Current state:", {
     currentPage,
     totalPages,
-    totalServices,
+    totalCount,
     servicesCount: services.length,
     shouldShowPagination: totalPages > 1,
   });
@@ -168,7 +159,9 @@ const ServicesPage = () => {
     <>
       <section
         className="breadcrumb-area"
-        style={{ backgroundImage: "url(/images/resources/breadcrumb-bg.jpg)" }}
+        style={{
+          backgroundImage: `url(${"http://localhost:4000" + banner})`,
+        }}
       >
         <div className="container">
           <div className="row">
@@ -192,9 +185,8 @@ const ServicesPage = () => {
               >
                 <p>
                   {t("services.showing")} {(currentPage - 1) * limit + 1}{" "}
-                  {t("services.to")}{" "}
-                  {Math.min(currentPage * limit, totalServices)}{" "}
-                  {t("services.of")} {totalServices} {t("services.services")}
+                  {t("services.to")} {Math.min(currentPage * limit, totalCount)}{" "}
+                  {t("services.of")} {totalCount} {t("services.services")}
                 </p>
               </div>
             </div>

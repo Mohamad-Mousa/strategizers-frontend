@@ -1,51 +1,35 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useTranslation } from "../../../hooks/useTranslation";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchFaqs } from "../../../store/slices/faqSlice";
 
 const FAQPage = () => {
   const { t, locale } = useTranslation();
-  const [faqs, setFaqs] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [totalFaqs, setTotalFaqs] = useState(0);
   const [limit] = useState(10); // Number of FAQs per page
   const [activeAccordion, setActiveAccordion] = useState(null);
 
-  const fetchFaqs = async (page = 1) => {
-    setLoading(true);
-    try {
-      const response = await fetch(
-        `http://localhost:4000/api/v1/public/faq?page=${page}&limit=${limit}&sortBy=createdAt&sortDirection=desc&term=`
-      );
-      const data = await response.json();
+  // Get FAQs data from Redux store
+  const { faqs, loading, error, pagination } = useSelector(
+    (state) => state.faq
+  );
+  const { totalCount, totalPages } = pagination;
 
-      console.log("API Response:", data);
-
-      if (data.code === 200) {
-        setFaqs(data.results.data || []);
-        setTotalFaqs(data.results.totalCount || 0);
-        // Calculate total pages based on total count and limit
-        const calculatedTotalPages = Math.ceil(
-          (data.results.totalCount || 0) / limit
-        );
-        setTotalPages(calculatedTotalPages);
-        console.log("Total pages:", calculatedTotalPages);
-      } else {
-        console.error("Failed to fetch FAQs:", data.message);
-        setFaqs([]);
-      }
-    } catch (error) {
-      console.error("Error fetching FAQs:", error);
-      setFaqs([]);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const banner = useSelector((state) => state?.website?.data?.faqPage?.banner);
 
   useEffect(() => {
-    fetchFaqs(currentPage);
-  }, [currentPage]);
+    dispatch(
+      fetchFaqs({
+        page: currentPage,
+        limit,
+        sortBy: "createdAt",
+        sortDirection: "desc",
+        term: "",
+      })
+    );
+  }, [dispatch, currentPage, limit]);
 
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
@@ -55,6 +39,11 @@ const FAQPage = () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
+
+  // Handle error display
+  if (error) {
+    console.error("FAQ error:", error);
+  }
 
   const handleAccordionToggle = (faqId) => {
     setActiveAccordion(activeAccordion === faqId ? null : faqId);
@@ -144,7 +133,7 @@ const FAQPage = () => {
   console.log("Current state:", {
     currentPage,
     totalPages,
-    totalFaqs,
+    totalCount,
     faqsCount: faqs.length,
     shouldShowPagination: totalPages > 1,
   });
@@ -153,7 +142,9 @@ const FAQPage = () => {
     <>
       <section
         className="breadcrumb-area"
-        style={{ backgroundImage: "url(/images/resources/breadcrumb-bg.jpg)" }}
+        style={{
+          backgroundImage: `url(${"http://localhost:4000" + banner})`,
+        }}
       >
         <div className="container">
           <div className="row">
@@ -177,8 +168,8 @@ const FAQPage = () => {
               >
                 <p>
                   {t("faq.showing")} {(currentPage - 1) * limit + 1}{" "}
-                  {t("faq.to")} {Math.min(currentPage * limit, totalFaqs)}{" "}
-                  {t("faq.of")} {totalFaqs} {t("faq.faqs")}
+                  {t("faq.to")} {Math.min(currentPage * limit, totalCount)}{" "}
+                  {t("faq.of")} {totalCount} {t("faq.faqs")}
                 </p>
               </div>
             </div>

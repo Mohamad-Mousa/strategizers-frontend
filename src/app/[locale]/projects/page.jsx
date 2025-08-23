@@ -1,50 +1,38 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useTranslation } from "../../../hooks/useTranslation";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchProjects } from "../../../store/slices/projectsSlice";
 
 const ProjectsPage = () => {
   const { t, locale } = useTranslation();
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [totalProjects, setTotalProjects] = useState(0);
   const [limit] = useState(9); // Number of projects per page
 
-  const fetchProjects = async (page = 1) => {
-    setLoading(true);
-    try {
-      const response = await fetch(
-        `http://localhost:4000/api/v1/public/project?page=${page}&limit=${limit}&sortBy=createdAt&sortDirection=desc&term=&service=&tags=`
-      );
-      const data = await response.json();
+  // Get projects data from Redux store
+  const { projects, loading, error, pagination } = useSelector(
+    (state) => state.projects
+  );
+  const { totalCount, totalPages } = pagination;
 
-      console.log("API Response:", data);
-
-      if (data.code === 200) {
-        setProjects(data.results.data || []);
-        setTotalProjects(data.results.totalCount || 0);
-        // Calculate total pages based on total count and limit
-        const calculatedTotalPages = Math.ceil(
-          (data.results.totalCount || 0) / limit
-        );
-        setTotalPages(calculatedTotalPages);
-        console.log("Total pages:", calculatedTotalPages);
-      } else {
-        console.error("Failed to fetch projects:", data.message);
-        setProjects([]);
-      }
-    } catch (error) {
-      console.error("Error fetching projects:", error);
-      setProjects([]);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const banner = useSelector(
+    (state) => state?.website?.data?.projectsPage?.banner
+  );
 
   useEffect(() => {
-    fetchProjects(currentPage);
-  }, [currentPage]);
+    dispatch(
+      fetchProjects({
+        page: currentPage,
+        limit,
+        sortBy: "createdAt",
+        sortDirection: "desc",
+        term: "",
+        service: "",
+        tags: "",
+      })
+    );
+  }, [dispatch, currentPage, limit]);
 
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
@@ -53,6 +41,11 @@ const ProjectsPage = () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
+
+  // Handle error display
+  if (error) {
+    console.error("Projects error:", error);
+  }
 
   const renderPaginationNumbers = () => {
     const pages = [];
@@ -141,7 +134,7 @@ const ProjectsPage = () => {
   console.log("Current state:", {
     currentPage,
     totalPages,
-    totalProjects,
+    totalCount,
     projectsCount: projects.length,
     shouldShowPagination: totalPages > 1,
   });
@@ -150,7 +143,9 @@ const ProjectsPage = () => {
     <>
       <section
         className="breadcrumb-area"
-        style={{ backgroundImage: "url(/images/resources/breadcrumb-bg.jpg)" }}
+        style={{
+          backgroundImage: `url(${"http://localhost:4000" + banner})`,
+        }}
       >
         <div className="container">
           <div className="row">
@@ -173,9 +168,8 @@ const ProjectsPage = () => {
               >
                 <p>
                   {t("projects.showing")} {(currentPage - 1) * limit + 1}{" "}
-                  {t("projects.to")}{" "}
-                  {Math.min(currentPage * limit, totalProjects)}{" "}
-                  {t("projects.of")} {totalProjects} {t("projects.projects")}
+                  {t("projects.to")} {Math.min(currentPage * limit, totalCount)}{" "}
+                  {t("projects.of")} {totalCount} {t("projects.projects")}
                 </p>
               </div>
             </div>

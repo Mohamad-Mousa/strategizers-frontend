@@ -7,6 +7,14 @@
     "arabic": "العربية",
     "english": "English"
   },
+  "social": {
+    "facebook": "فيسبوك",
+    "twitter": "تويتر",
+    "linkedin": "لينكد إن",
+    "instagram": "إنستغرام",
+    "youtube": "يوتيوب",
+    "tiktok": "تيك توك"
+  },
   "navigation": {
     "home": "الرئيسية",
     "about": "من نحن",
@@ -123,5 +131,55 @@
     "successMessage": "تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.",
     "errorMessage": "فشل في إرسال الرسالة. يرجى المحاولة مرة أخرى.",
     "networkError": "خطأ في الشبكة. يرجى التحقق من اتصالك والمحاولة مرة أخرى."
+  },
+  "projects": {
+    "title": "مشاريعنا",
+    "loading": "جاري تحميل المشاريع...",
+    "noProjectsFound": "لم يتم العثور على مشاريع",
+    "noProjectsDescription": "لا توجد مشاريع متاحة في الوقت الحالي.",
+    "projectTitle": "عنوان المشروع",
+    "client": "العميل",
+    "share": "مشاركة",
+    "showing": "عرض",
+    "to": "إلى",
+    "of": "من",
+    "projects": "مشاريع",
+    "defaultDescription": "هذا وصف عينة للمشروع. سيتم تحميل المحتوى الفعلي من API.",
+    "experienceTitle": "أكثر من 20 عامًا من الخبرة سنضمن لك الحصول على أفضل التوجيه.",
+    "requestQuote": "طلب عرض سعر"
+  },
+  "blogs": {
+    "title": "مدونتنا",
+    "loading": "جاري تحميل المدونات...",
+    "noBlogsFound": "لم يتم العثور على مدونات",
+    "noBlogsDescription": "لا توجد مدونات متاحة في الوقت الحالي.",
+    "blogTitle": "عنوان المدونة",
+    "category": "الفئة",
+    "author": "الكاتب",
+    "by": "بواسطة",
+    "comments": "تعليقات",
+    "readMore": "اقرأ المزيد",
+    "share": "مشاركة",
+    "showing": "عرض",
+    "to": "إلى",
+    "of": "من",
+    "blogs": "مدونات",
+    "defaultDescription": "هذا وصف عينة للمدونة. سيتم تحميل المحتوى الفعلي من API.",
+    "experienceTitle": "أكثر من 20 عامًا من الخبرة سنضمن لك الحصول على أفضل التوجيه.",
+    "requestQuote": "طلب عرض سعر"
+  },
+  "about": {
+    "title": "من نحن",
+    "loading": "جاري تحميل صفحة من نحن...",
+    "error": "خطأ",
+    "awesomeImage": "صورة رائعة",
+    "mission": "المهمة",
+    "vision": "الرؤية",
+    "values": "القيم",
+    "smartApproach": "نهجنا الذكي",
+    "viewServices": "عرض الخدمات",
+    "achievements": "إنجازاتنا",
+    "experienceTitle": "أكثر من 20 عامًا من الخبرة سنضمن لك الحصول على أفضل التوجيه.",
+    "requestQuote": "طلب عرض سعر"
   }
 }

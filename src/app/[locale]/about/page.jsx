@@ -1,42 +1,28 @@
 "use client";
 import Slider from "../../../components/Slider";
 import ContentSlider from "../../../components/ContentSlider";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchWebsiteData } from "../../../store/slices/websiteSlice";
+import { useTranslation } from "../../../hooks/useTranslation";
 
 const AboutPage = () => {
   const { locale } = useParams();
+  const { t } = useTranslation();
+  const dispatch = useDispatch();
 
-  const [websiteData, setWebsiteData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // Get website data from Redux store
+  const {
+    data: websiteData,
+    loading,
+    error,
+  } = useSelector((state) => state.website);
 
   useEffect(() => {
-    const fetchWebsiteData = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch(
-          "http://localhost:4000/api/v1/public/website"
-        );
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        setWebsiteData(data.results);
-        setError(null);
-      } catch (err) {
-        console.error("Error fetching website data:", err);
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchWebsiteData();
-  }, []);
+    dispatch(fetchWebsiteData());
+  }, [dispatch]);
   // Show loading state
   if (loading) {
     return (
@@ -49,7 +35,7 @@ const AboutPage = () => {
           fontSize: "18px",
         }}
       >
-        Loading...
+        {t("about.loading")}
       </div>
     );
   }
@@ -67,7 +53,7 @@ const AboutPage = () => {
           color: "red",
         }}
       >
-        Error: {error}
+        {t("about.error")}: {error}
       </div>
     );
   }
@@ -76,13 +62,17 @@ const AboutPage = () => {
     <>
       <section
         className="breadcrumb-area"
-        style={{ backgroundImage: "url(/images/resources/breadcrumb-bg.jpg)" }}
+        style={{
+          backgroundImage: `url(${
+            "http://localhost:4000" + websiteData?.aboutPage?.banner
+          })`,
+        }}
       >
         <div className="container">
           <div className="row">
             <div className="col-md-12">
               <div className="breadcrumbs">
-                <h1>About Us</h1>
+                <h1>{t("about.title")}</h1>
               </div>
             </div>
           </div>
@@ -93,7 +83,10 @@ const AboutPage = () => {
           <div className="row">
             <div className="col-lg-6 col-md-12">
               <div className="img-holder">
-                <img src={websiteData?.aboutPage?.banner} alt="Awesome Image" />
+                <img
+                  src={`http://localhost:4000${websiteData?.aboutPage?.banner}`}
+                  alt={t("about.awesomeImage")}
+                />
               </div>
             </div>
             <div className="col-lg-6 col-md-12">
@@ -123,8 +116,8 @@ const AboutPage = () => {
               >
                 <div className="img-holder">
                   <img
-                    src={websiteData?.aboutPage?.mission?.image}
-                    alt="Mission"
+                    src={`http://localhost:4000${websiteData?.aboutPage?.mission?.image}`}
+                    alt={t("about.mission")}
                   />
                 </div>
                 <div className="text-holder">
@@ -151,8 +144,8 @@ const AboutPage = () => {
               >
                 <div className="img-holder">
                   <img
-                    src={websiteData?.aboutPage?.vision?.image}
-                    alt="Vision"
+                    src={`http://localhost:4000${websiteData?.aboutPage?.vision?.image}`}
+                    alt={t("about.vision")}
                   />
                 </div>
                 <div className="text-holder">
@@ -179,8 +172,8 @@ const AboutPage = () => {
               >
                 <div className="img-holder">
                   <img
-                    src={websiteData?.aboutPage?.values?.image}
-                    alt="Values"
+                    src={`http://localhost:4000${websiteData?.aboutPage?.values?.image}`}
+                    alt={t("about.values")}
                   />
                 </div>
                 <div className="text-holder">
@@ -203,7 +196,7 @@ const AboutPage = () => {
       <section className="smart-approach-area">
         <div className="container">
           <div className="sec-title pdb-50 text-center">
-            <h1>Our Smart Approach</h1>
+            <h1>{t("about.smartApproach")}</h1>
             <span className="border-center"></span>
           </div>
           <div className="row">
@@ -281,7 +274,7 @@ const AboutPage = () => {
                         ?.ar}
                 </p>
                 <Link href={`/${locale}/services`}>
-                  {locale === "en" ? "View Services" : "عرض الخدمات"}
+                  {t("about.viewServices")}
                 </Link>
               </div>
             </div>
@@ -333,7 +326,7 @@ const AboutPage = () => {
       <section className="achivements-area sec-padding">
         <div className="container">
           <div className="sec-title pdb-50">
-            <h1>{locale === "en" ? "Our Achievements" : "الإنجازات"}</h1>
+            <h1>{t("about.achievements")}</h1>
             <span className="border"></span>
           </div>
           <div className="row">
@@ -391,15 +384,11 @@ const AboutPage = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="title pull-left">
-                <h3>
-                  {locale === "en"
-                    ? "Over 20 years of experience we'll ensure you get the best guidance."
-                    : "20 عاما من الخبرة نضمن لك الحصول على أفضل الموجهات."}
-                </h3>
+                <h3>{t("about.experienceTitle")}</h3>
               </div>
               <div className="button pull-right">
                 <a className="thm-btn bgclr-1" href="#">
-                  {locale === "en" ? "Request Quote" : "طلب عرض"}
+                  {t("about.requestQuote")}
                 </a>
               </div>
             </div>

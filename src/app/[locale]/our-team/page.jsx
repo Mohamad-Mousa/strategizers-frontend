@@ -1,50 +1,34 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useTranslation } from "../../../hooks/useTranslation";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchTeam } from "../../../store/slices/teamSlice";
 
 const OurTeamPage = () => {
   const { t, locale } = useTranslation();
-  const [team, setTeam] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [totalTeam, setTotalTeam] = useState(0);
   const [limit] = useState(10); // Number of team members per page
 
-  const fetchTeam = async (page = 1) => {
-    setLoading(true);
-    try {
-      const response = await fetch(
-        `http://localhost:4000/api/v1/public/team?page=${page}&limit=${limit}&sortBy=createdAt&sortDirection=desc&term=`
-      );
-      const data = await response.json();
+  // Get team data from Redux store
+  const { team, loading, error, pagination } = useSelector(
+    (state) => state.team
+  );
+  const { totalCount, totalPages } = pagination;
 
-      console.log("API Response:", data);
-
-      if (data.code === 200) {
-        setTeam(data.results.data || []);
-        setTotalTeam(data.results.totalCount || 0);
-        // Calculate total pages based on total count and limit
-        const calculatedTotalPages = Math.ceil(
-          (data.results.totalCount || 0) / limit
-        );
-        setTotalPages(calculatedTotalPages);
-        console.log("Total pages:", calculatedTotalPages);
-      } else {
-        console.error("Failed to fetch team:", data.message);
-        setTeam([]);
-      }
-    } catch (error) {
-      console.error("Error fetching team:", error);
-      setTeam([]);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const banner = useSelector((state) => state?.website?.data?.teamPage?.banner);
 
   useEffect(() => {
-    fetchTeam(currentPage);
-  }, [currentPage]);
+    dispatch(
+      fetchTeam({
+        page: currentPage,
+        limit,
+        sortBy: "createdAt",
+        sortDirection: "desc",
+        term: "",
+      })
+    );
+  }, [dispatch, currentPage, limit]);
 
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
@@ -53,6 +37,11 @@ const OurTeamPage = () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
+
+  // Handle error display
+  if (error) {
+    console.error("Team error:", error);
+  }
 
   const renderPaginationNumbers = () => {
     const pages = [];
@@ -209,7 +198,7 @@ const OurTeamPage = () => {
   console.log("Current state:", {
     currentPage,
     totalPages,
-    totalTeam,
+    totalCount,
     teamCount: team.length,
     shouldShowPagination: totalPages > 1,
   });
@@ -218,7 +207,9 @@ const OurTeamPage = () => {
     <>
       <section
         className="breadcrumb-area"
-        style={{ backgroundImage: "url(/images/resources/breadcrumb-bg.jpg)" }}
+        style={{
+          backgroundImage: `url(${"http://localhost:4000" + banner})`,
+        }}
       >
         <div className="container">
           <div className="row">
@@ -242,8 +233,8 @@ const OurTeamPage = () => {
               >
                 <p>
                   {t("team.showing")} {(currentPage - 1) * limit + 1}{" "}
-                  {t("team.to")} {Math.min(currentPage * limit, totalTeam)}{" "}
-                  {t("team.of")} {totalTeam} {t("team.members")}
+                  {t("team.to")} {Math.min(currentPage * limit, totalCount)}{" "}
+                  {t("team.of")} {totalCount} {t("team.members")}
                 </p>
               </div>
             </div>

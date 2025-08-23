@@ -2,9 +2,18 @@
 import { useState } from "react";
 import { useTranslation } from "../../../hooks/useTranslation";
 import Card from "../../../components/Card";
+import { useSelector } from "react-redux";
+import { useParams } from "next/navigation";
 
 const ContactPage = () => {
-  const { t, locale } = useTranslation();
+  const { t } = useTranslation();
+  const { locale } = useParams();
+
+  const settings = useSelector((state) => state.settings.settings);
+  const banner = useSelector(
+    (state) => state?.website?.data?.contactPage?.banner
+  );
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -122,7 +131,9 @@ const ContactPage = () => {
     <>
       <section
         className="breadcrumb-area"
-        style={{ backgroundImage: "url(/images/resources/breadcrumb-bg.jpg)" }}
+        style={{
+          backgroundImage: `url(${"http://localhost:4000" + banner})`,
+        }}
       >
         <div className="container">
           <div className="row">
@@ -146,21 +157,21 @@ const ContactPage = () => {
             <div className="col-md-4">
               <Card
                 title={t("contact.visitUs")}
-                description={t("contact.address")}
+                description={settings?.contact?.address}
                 icon="flaticon-location-pin"
               />
             </div>
             <div className="col-md-4">
               <Card
                 title={t("contact.callUs")}
-                description={t("contact.phone")}
+                description={`+${settings?.contact?.phone?.code} ${settings?.contact?.phone?.number}`}
                 icon="flaticon-telephone"
               />
             </div>
             <div className="col-md-4">
               <Card
                 title={t("contact.emailUs")}
-                description={t("contact.email")}
+                description={settings?.contact?.email}
                 icon="flaticon-back"
               />
             </div>
@@ -289,44 +300,38 @@ const ContactPage = () => {
                   <span className="border"></span>
                 </div>
                 <ul>
-                  <li>
-                    <div className="title">
-                      <h3>{t("contact.hrDepartment")}:</h3>
-                    </div>
-                    <div className="img-holder">
-                      <img src="/images/resources/contact-1.jpg" alt="" />
-                    </div>
-                    <div className="text-holder">
-                      <h5>{t("contact.hrContact.name")}</h5>
-                      <p>
-                        <span className="flaticon-telephone"></span>
-                        {t("contact.hrContact.phone")}
-                      </p>
-                      <p>
-                        <span className="flaticon-back"></span>
-                        {t("contact.hrContact.email")}
-                      </p>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="title">
-                      <h3>{t("contact.salesDepartment")}:</h3>
-                    </div>
-                    <div className="img-holder">
-                      <img src="/images/resources/contact-2.jpg" alt="" />
-                    </div>
-                    <div className="text-holder">
-                      <h5>{t("contact.salesContact.name")}</h5>
-                      <p>
-                        <span className="flaticon-telephone"></span>
-                        {t("contact.salesContact.phone")}
-                      </p>
-                      <p>
-                        <span className="flaticon-back"></span>
-                        {t("contact.salesContact.email")}
-                      </p>
-                    </div>
-                  </li>
+                  {settings?.contactTeam &&
+                    settings?.contactTeam?.length > 0 &&
+                    settings?.contactTeam?.map((item) => (
+                      <li>
+                        <div className="title">
+                          <h3>
+                            {locale === "en"
+                              ? item?.position?.en
+                              : item?.position?.ar}
+                          </h3>
+                        </div>
+                        <div className="img-holder">
+                          <img
+                            src={"http://localhost:4000" + item?.image?.url}
+                            alt=""
+                          />
+                        </div>
+                        <div className="text-holder">
+                          <h5>
+                            {locale === "en" ? item?.name?.en : item?.name?.ar}
+                          </h5>
+                          <p>
+                            <span className="flaticon-telephone"></span>+
+                            {item?.phone?.code} {item?.phone?.number}
+                          </p>
+                          <p>
+                            <span className="flaticon-back"></span>
+                            {item?.email}
+                          </p>
+                        </div>
+                      </li>
+                    ))}
                 </ul>
               </div>
             </div>
@@ -334,18 +339,33 @@ const ContactPage = () => {
         </div>
       </section>
 
-      <section className="contact-map-area">
+      <section
+        className="contact-map-area"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          height: "100%",
+        }}
+      >
         <div className="container-fluid">
-          <div className="google-map-inner">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15247.333825976364!2d35.825970514375555!3d34.43248262287867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1521f6ab9db89d33%3A0x323c52527dde8578!2sTripoli!5e0!3m2!1sen!2slb!4v1755435912344!5m2!1sen!2slb"
-              width="800"
-              height="600"
-              style={{ border: 0, width: "100%", height: "440px" }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+          <div
+            className="google-map-inner"
+            style={{
+              width: "100%",
+              height: "440px",
+            }}
+          >
+            <div
+              dangerouslySetInnerHTML={{
+                __html: settings?.contact?.map,
+              }}
+              style={{
+                width: "100%",
+                height: "440px",
+              }}
+            />
           </div>
         </div>
       </section>
