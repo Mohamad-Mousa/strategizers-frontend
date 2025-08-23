@@ -133,7 +133,7 @@ const BlogsPage = () => {
           <div className="overlay-style-one">
             <div className="box">
               <div className="content">
-                <a href={`/blogs/${blog.slug}`}>
+                <a href={`/${locale}/blogs/${blog.slug}`}>
                   <i className="fa fa-link" aria-hidden="true"></i>
                 </a>
               </div>
@@ -145,7 +145,7 @@ const BlogsPage = () => {
         </div>
         <div className="text-holder">
           <span>{blog.category?.[locale] || t("blogs.category")}</span>
-          <a href={`/blogs/${blog.slug}`}>
+          <a href={`/${locale}/blogs/${blog.slug}`}>
             <h3 className="blog-title">
               {blog.title?.[locale] || t("blogs.blogTitle")}
             </h3>
@@ -173,7 +173,7 @@ const BlogsPage = () => {
             </p>
           </div>
           <div className="read-more-button">
-            <a href={`/blogs/${blog.slug}`}>{t("blogs.readMore")}</a>
+            <a href={`/${locale}/blogs/${blog.slug}`}>{t("blogs.readMore")}</a>
           </div>
         </div>
       </div>

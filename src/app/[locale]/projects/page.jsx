@@ -123,7 +123,7 @@ const ProjectsPage = () => {
           <div className="overlay-style-one">
             <div className="box">
               <div className="content">
-                <a href={`/projects/${project.slug}`}>
+                <a href={`/${locale}/projects/${project.slug}`}>
                   <h3>
                     {project.title?.[locale] || t("projects.projectTitle")}
                   </h3>

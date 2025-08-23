@@ -1,7 +1,6 @@
 import { Inter } from "next/font/google";
 import "../globals.css";
 import { LanguageProvider } from "../../components/LanguageProvider";
-import { use } from "react";
 import Script from "next/script";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
@@ -13,7 +12,7 @@ export async function generateStaticParams() {
 }
 
 export default function LocaleLayout({ children, params }) {
-  const { locale } = use(params);
+  const { locale } = params;
   const isRTL = locale === "ar";
 
   return (
