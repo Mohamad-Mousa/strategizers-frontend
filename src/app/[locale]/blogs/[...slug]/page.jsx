@@ -1,14 +1,26 @@
 "use client";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchBlogBySlug } from "../../../../store/slices/blogsSlice";
+import { useTranslation } from "../../../../hooks/useTranslation";
 
 const SingleBlogPage = () => {
   const params = useParams();
   const { slug, locale } = params;
+  const { t } = useTranslation();
+  const dispatch = useDispatch();
   // Handle catch-all route - slug is an array, join it into a string
   const slugString = Array.isArray(slug) ? slug.join("/") : slug;
-  const [blog, setBlog] = useState(null);
-  const [loading, setLoading] = useState(true);
+
+  // Get blog data from Redux store
+  const { currentBlog, singleLoading, singleError } = useSelector(
+    (state) => state.blogs
+  );
+
+  const banner = useSelector(
+    (state) => state?.website?.data?.blogsPage?.banner
+  );
 
   console.log("SingleBlogPage rendered with params:", {
     slug,
@@ -17,67 +29,39 @@ const SingleBlogPage = () => {
   });
 
   useEffect(() => {
-    const fetchBlog = async () => {
-      setLoading(true);
-      console.log("Fetching blog with slug:", slugString);
-      console.log("Full params:", params);
-
-      try {
-        const response = await fetch(
-          `http://localhost:4000/api/v1/public/blog/${slugString}`
-        );
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log("API Response:", data);
-
-        if (data.code === 200) {
-          setBlog(data.results.blog);
-        } else {
-          console.error("Failed to fetch blog:", data.message);
-          setBlog(null);
-        }
-      } catch (error) {
-        console.error("Error fetching blog:", error);
-        setBlog(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     if (slugString) {
-      fetchBlog();
+      console.log("Fetching blog with slug:", slugString);
+      dispatch(fetchBlogBySlug(slugString));
     } else {
       console.error("No slug provided");
-      setLoading(false);
     }
-  }, [slugString, params]);
+  }, [dispatch, slugString]);
 
-  if (loading) {
+  // Handle error display
+  if (singleError) {
+    console.error("Blog error:", singleError);
+  }
+
+  if (singleLoading) {
     return (
       <div className="container text-center" style={{ padding: "50px 0" }}>
         <div className="loading-spinner">
           <i className="fa fa-spinner fa-spin fa-3x"></i>
-          <p>Loading blog...</p>
+          <p>{t("blog.loading")}</p>
         </div>
       </div>
     );
   }
 
-  if (!blog) {
+  if (!currentBlog) {
     return (
       <div className="container text-center" style={{ padding: "50px 0" }}>
         <div className="no-blog">
           <i className="fa fa-exclamation-triangle fa-3x"></i>
-          <h3>Blog not found</h3>
-          <p>
-            The blog you're looking for doesn't exist or may have been removed.
-          </p>
+          <h3>{t("blog.notFound")}</h3>
+          <p>{t("blog.notFoundDescription")}</p>
           <a href={`/${locale}/blogs`} className="thm-btn bgclr-1">
-            Back to Blogs
+            {t("blog.backToBlogs")}
           </a>
         </div>
       </div>
@@ -102,19 +86,21 @@ const SingleBlogPage = () => {
       .filter((t) => t);
   };
 
-  const tags = formatTags(blog.tags);
+  const tags = formatTags(currentBlog.tags);
 
   return (
     <div>
       <section
         className="breadcrumb-area"
-        style={{ backgroundImage: "url(/images/resources/breadcrumb-bg.jpg)" }}
+        style={{
+          backgroundImage: `url(${"http://localhost:4000" + banner})`,
+        }}
       >
         <div className="container">
           <div className="row">
             <div className="col-md-12">
               <div className="breadcrumbs">
-                <h1>{blog.title?.[locale] || "Blog Post"}</h1>
+                <h1>{currentBlog.title?.[locale] || t("blog.blogPost")}</h1>
               </div>
             </div>
           </div>
@@ -128,25 +114,33 @@ const SingleBlogPage = () => {
                 <div className="single-blog-item">
                   <div className="img-holder">
                     <img
-                      src={blog.image || "/images/blog/blog-single.jpg"}
-                      alt={blog.title?.[locale] || "Blog Image"}
+                      src={
+                        `http://localhost:4000${currentBlog.image}` ||
+                        "/images/blog/blog-single.jpg"
+                      }
+                      alt={currentBlog.title?.[locale] || t("blog.blogImage")}
                       className="img-responsive"
                     />
                     <div className="post-date">
-                      <h5>{formatDate(blog.createdAt).split(" ")[1]}</h5>
+                      <h5>{formatDate(currentBlog.createdAt).split(" ")[1]}</h5>
                     </div>
                   </div>
                   <div className="text-holder">
-                    <span>{blog.subTitle?.[locale] || "Blog"}</span>
+                    <span>
+                      {currentBlog.subTitle?.[locale] || t("blog.blog")}
+                    </span>
                     <h3 className="blog-title">
-                      {blog.title?.[locale] || "Blog Title"}
+                      {currentBlog.title?.[locale] || t("blog.blogTitle")}
                     </h3>
                     <ul className="meta-info">
                       <li>
-                        <a href="#">by {blog.author || "Unknown Author"}</a>
+                        <a href="#">
+                          {t("blog.by")}{" "}
+                          {currentBlog.author || t("blog.unknownAuthor")}
+                        </a>
                       </li>
                       <li>
-                        <a href="#">{formatDate(blog.createdAt)}</a>
+                        <a href="#">{formatDate(currentBlog.createdAt)}</a>
                       </li>
                       {tags.length > 0 && (
                         <li>
@@ -158,8 +152,8 @@ const SingleBlogPage = () => {
                       <div
                         dangerouslySetInnerHTML={{
                           __html:
-                            blog.description?.[locale] ||
-                            "No content available.",
+                            currentBlog.description?.[locale] ||
+                            t("blog.noContentAvailable"),
                         }}
                       />
                     </div>
@@ -172,12 +166,12 @@ const SingleBlogPage = () => {
                       <div className="col-md-12">
                         <div className="tag pull-left">
                           <p>
-                            <span>Tags:</span> {tags.join(", ")}
+                            <span>{t("blog.tags")}:</span> {tags.join(", ")}
                           </p>
                         </div>
                         <div className="social-share pull-right">
                           <h5>
-                            Share
+                            {t("blog.share")}
                             <i
                               className="fa fa-share-alt"
                               aria-hidden="true"
@@ -212,7 +206,7 @@ const SingleBlogPage = () => {
                                     `https://twitter.com/intent/tweet?url=${encodeURIComponent(
                                       window.location.href
                                     )}&text=${encodeURIComponent(
-                                      blog.title?.[locale] || ""
+                                      currentBlog.title?.[locale] || ""
                                     )}`,
                                     "_blank"
                                   );

@@ -1,62 +1,42 @@
 "use client";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchProjectBySlug } from "../../../../store/slices/projectsSlice";
+import { useTranslation } from "../../../../hooks/useTranslation";
 
 const SingleProjectPage = () => {
   const params = useParams();
   const { slug, locale } = params;
+  const { t } = useTranslation();
+  const dispatch = useDispatch();
   // Handle catch-all route - slug is an array, join it into a string
   const slugString = Array.isArray(slug) ? slug.join("/") : slug;
-  const [project, setProject] = useState(null);
-  const [loading, setLoading] = useState(true);
 
-  console.log("SingleProjectPage rendered with params:", {
-    slug,
-    locale,
-    slugString,
-  });
+  // Get project data from Redux store
+  const { currentProject, singleLoading, singleError } = useSelector(
+    (state) => state.projects
+  );
+
+  const banner = useSelector(
+    (state) => state?.website?.data?.projectsPage?.banner
+  );
 
   useEffect(() => {
-    const fetchProject = async () => {
-      setLoading(true);
-      console.log("Fetching project with slug:", slugString);
-      console.log("Full params:", params);
-
-      try {
-        const response = await fetch(
-          `http://localhost:4000/api/v1/public/project/${slugString}`
-        );
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log("API Response:", data);
-
-        if (data.code === 200) {
-          setProject(data.results.project);
-        } else {
-          console.error("Failed to fetch project:", data.message);
-          setProject(null);
-        }
-      } catch (error) {
-        console.error("Error fetching project:", error);
-        setProject(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     if (slugString) {
-      fetchProject();
+      console.log("Fetching project with slug:", slugString);
+      dispatch(fetchProjectBySlug(slugString));
     } else {
       console.error("No slug provided");
-      setLoading(false);
     }
-  }, [slugString, params]);
+  }, [dispatch, slugString]);
 
-  if (loading) {
+  // Handle error display
+  if (singleError) {
+    console.error("Project error:", singleError);
+  }
+
+  if (singleLoading) {
     return (
       <div
         className="container text-center"
@@ -64,24 +44,21 @@ const SingleProjectPage = () => {
       >
         <div className="loading-spinner">
           <i className="fa fa-spinner fa-spin fa-3x"></i>
-          <p>Loading project...</p>
+          <p>{t("project.loading")}</p>
         </div>
       </div>
     );
   }
 
-  if (!project) {
+  if (!currentProject) {
     return (
       <div className="container text-center" style={{ padding: "50px 0" }}>
         <div className="no-project">
           <i className="fa fa-exclamation-triangle fa-3x"></i>
-          <h3>Project not found</h3>
-          <p>
-            The project you're looking for doesn't exist or may have been
-            removed.
-          </p>
+          <h3>{t("project.notFound")}</h3>
+          <p>{t("project.notFoundDescription")}</p>
           <a href={`/${locale}/projects`} className="thm-btn bgclr-1">
-            Back to Projects
+            {t("project.backToProjects")}
           </a>
         </div>
       </div>
@@ -101,13 +78,18 @@ const SingleProjectPage = () => {
     <div>
       <section
         className="breadcrumb-area"
-        style={{ backgroundImage: "url(/images/resources/breadcrumb-bg.jpg)" }}
+        style={{
+          backgroundImage: `url(${"http://localhost:4000" + banner})`,
+        }}
       >
         <div className="container">
           <div className="row">
             <div className="col-md-12">
               <div className="breadcrumbs">
-                <h1>{project.title?.[locale] || "Project Details"}</h1>
+                <h1>
+                  {currentProject.title?.[locale] ||
+                    t("project.projectDetails")}
+                </h1>
               </div>
             </div>
           </div>
@@ -123,9 +105,13 @@ const SingleProjectPage = () => {
                     <div className="single-project-img-box">
                       <img
                         src={
-                          project.image || "/images/projects/single-project.jpg"
+                          `http://localhost:4000${currentProject.image}` ||
+                          "/images/projects/single-project.jpg"
                         }
-                        alt={project.title?.[locale] || "Project Image"}
+                        alt={
+                          currentProject.title?.[locale] ||
+                          t("project.projectImage")
+                        }
                         className="img-responsive"
                       />
                     </div>
@@ -136,15 +122,18 @@ const SingleProjectPage = () => {
                     <div className="project-info">
                       <ul>
                         <li>
-                          <b>Customer</b>:
-                          <span>{project.customer || "N/A"}</span>
+                          <b>{t("project.customer")}</b>:
+                          <span>
+                            {currentProject.customer ||
+                              t("project.notAvailable")}
+                          </span>
                         </li>
-                        {project.link && (
+                        {currentProject.link && (
                           <li>
-                            <b>Live demo</b>:
+                            <b>{t("project.liveDemo")}</b>:
                             <span>
                               <a
-                                href={project.link}
+                                href={currentProject.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 style={{
@@ -152,43 +141,60 @@ const SingleProjectPage = () => {
                                   textDecoration: "none",
                                 }}
                               >
-                                {project.link}
+                                {currentProject.link}
                               </a>
                             </span>
                           </li>
                         )}
-                        {project.service && (
+                        {currentProject.service && (
                           <li>
-                            <b>Category</b>:<span>{project.service}</span>
+                            <b>{t("project.category")}</b>:
+                            <span>
+                              {currentProject.service.title?.[locale] ||
+                                t("project.notAvailable")}
+                            </span>
                           </li>
                         )}
                         <li>
-                          <b>Date</b>:<span>{formatDate(project.date)}</span>
+                          <b>{t("project.date")}</b>:
+                          <span>{formatDate(currentProject.date)}</span>
                         </li>
-                        {project.tags && project.tags.length > 0 && (
-                          <li>
-                            <b>Tags</b>:<span>{project.tags.join(", ")}</span>
-                          </li>
-                        )}
+                        {currentProject.tags &&
+                          currentProject.tags.length > 0 && (
+                            <li>
+                              <b>{t("project.tags")}</b>:
+                              {currentProject.tags.map((tag) => (
+                                <span key={tag}>{tag}</span>
+                              ))}
+                            </li>
+                          )}
                       </ul>
                     </div>
                   </div>
                   <div className="col-md-6">
                     <div className="legal-work-content">
-                      <h3>{project.title?.[locale] || "Project Title"}</h3>
-                      {project.service && <span>{project.service}</span>}
+                      <h3>
+                        {currentProject.title?.[locale] ||
+                          t("project.projectTitle")}
+                      </h3>
+                      {currentProject.service && (
+                        <span>
+                          {currentProject.service.title?.[locale] ||
+                            t("project.notAvailable")}
+                        </span>
+                      )}
                       <p>
-                        {project.shortDescription?.[locale] ||
-                          "No description available."}
+                        {currentProject.shortDescription?.[locale] ||
+                          t("project.noDescriptionAvailable")}
                       </p>
-                      {project.link && (
+                      {currentProject.link && (
                         <a
                           className="thm-btn bgclr-1"
-                          href={project.link}
+                          href={currentProject.link}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          Launch Project
+                          {t("project.launchProject")}
                         </a>
                       )}
                     </div>
@@ -198,14 +204,23 @@ const SingleProjectPage = () => {
                   <div className="col-md-12">
                     <div className="project-analysis">
                       <div className="sec-title pdb-50">
-                        <h1>Project Analysis</h1>
+                        <h1>{t("project.projectAnalysis")}</h1>
                         <span className="border"></span>
                       </div>
                       <div className="text-holder">
                         <p>
-                          {project.projectAnalysis?.[locale] ||
-                            "No project analysis available."}
+                          {currentProject.projectAnalysis?.[locale] ||
+                            t("project.noProjectAnalysisAvailable")}
                         </p>
+                      </div>
+                      <div className="chart-box">
+                        <img
+                          src={
+                            `http://localhost:4000${currentProject.projectAnalysis.image}` ||
+                            "/images/projects/analysis-chart.jpg"
+                          }
+                          alt="Project Analysis"
+                        />
                       </div>
                     </div>
                   </div>
@@ -214,14 +229,23 @@ const SingleProjectPage = () => {
                   <div className="col-md-12">
                     <div className="project-solution">
                       <div className="sec-title pdb-50">
-                        <h1>Project Solutions</h1>
+                        <h1>{t("project.projectSolutions")}</h1>
                         <span className="border"></span>
                       </div>
                       <div className="text-holder">
                         <p>
-                          {project.projectSolutions?.[locale] ||
-                            "No project solutions available."}
+                          {currentProject.projectSolutions?.[locale] ||
+                            t("project.noProjectSolutionsAvailable")}
                         </p>
+                      </div>
+                      <div className="chart-box">
+                        <img
+                          src={
+                            `http://localhost:4000${currentProject.projectSolutions.image}` ||
+                            "/images/projects/analysis-chart.jpg"
+                          }
+                          alt="Project Solutions"
+                        />
                       </div>
                     </div>
                   </div>
@@ -230,14 +254,23 @@ const SingleProjectPage = () => {
                   <div className="col-md-12">
                     <div className="project-results">
                       <div className="sec-title pdb-50">
-                        <h1>Project Results</h1>
+                        <h1>{t("project.projectResults")}</h1>
                         <span className="border"></span>
                       </div>
                       <div className="text-holder">
                         <p>
-                          {project.projectResults?.[locale] ||
-                            "No project results available."}
+                          {currentProject.projectResults?.[locale] ||
+                            t("project.noProjectResultsAvailable")}
                         </p>
+                      </div>
+                      <div className="chart-box">
+                        <img
+                          src={
+                            `http://localhost:4000${currentProject.projectResults.image}` ||
+                            "/images/projects/results-chart.jpg"
+                          }
+                          alt="Project Results"
+                        />
                       </div>
                     </div>
                   </div>

@@ -148,6 +148,29 @@
     "experienceTitle": "Over 20 years of experience we'll ensure you get the best guidance.",
     "requestQuote": "Request Quote"
   },
+  "project": {
+    "loading": "Loading project...",
+    "notFound": "Project not found",
+    "notFoundDescription": "The project you're looking for doesn't exist or may have been removed.",
+    "backToProjects": "Back to Projects",
+    "projectDetails": "Project Details",
+    "projectImage": "Project Image",
+    "projectTitle": "Project Title",
+    "customer": "Customer",
+    "notAvailable": "N/A",
+    "liveDemo": "Live demo",
+    "category": "Category",
+    "date": "Date",
+    "tags": "Tags",
+    "noDescriptionAvailable": "No description available.",
+    "launchProject": "Launch Project",
+    "projectAnalysis": "Project Analysis",
+    "noProjectAnalysisAvailable": "No project analysis available.",
+    "projectSolutions": "Project Solutions",
+    "noProjectSolutionsAvailable": "No project solutions available.",
+    "projectResults": "Project Results",
+    "noProjectResultsAvailable": "No project results available."
+  },
   "blogs": {
     "title": "Our Blog",
     "loading": "Loading blogs...",
@@ -167,6 +190,21 @@
     "defaultDescription": "This is a sample blog description. The actual content will be loaded from the API.",
     "experienceTitle": "Over 20 years of experience we'll ensure you get the best guidance.",
     "requestQuote": "Request Quote"
+  },
+  "blog": {
+    "loading": "Loading blog...",
+    "notFound": "Blog not found",
+    "notFoundDescription": "The blog you're looking for doesn't exist or may have been removed.",
+    "backToBlogs": "Back to Blogs",
+    "blogPost": "Blog Post",
+    "blogImage": "Blog Image",
+    "blog": "Blog",
+    "blogTitle": "Blog Title",
+    "by": "by",
+    "unknownAuthor": "Unknown Author",
+    "noContentAvailable": "No content available.",
+    "tags": "Tags",
+    "share": "Share"
   },
   "about": {
     "title": "About Us",

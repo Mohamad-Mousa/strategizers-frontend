@@ -148,6 +148,29 @@
     "experienceTitle": "أكثر من 20 عامًا من الخبرة سنضمن لك الحصول على أفضل التوجيه.",
     "requestQuote": "طلب عرض سعر"
   },
+  "project": {
+    "loading": "جاري تحميل المشروع...",
+    "notFound": "لم يتم العثور على المشروع",
+    "notFoundDescription": "المشروع الذي تبحث عنه غير موجود أو قد يكون قد أزيل.",
+    "backToProjects": "العودة إلى المشاريع",
+    "projectDetails": "تفاصيل المشروع",
+    "projectImage": "صورة المشروع",
+    "projectTitle": "عنوان المشروع",
+    "customer": "العميل",
+    "notAvailable": "غير متاح",
+    "liveDemo": "عرض مباشر",
+    "category": "الفئة",
+    "date": "التاريخ",
+    "tags": "العلامات",
+    "noDescriptionAvailable": "لا يوجد وصف متاح.",
+    "launchProject": "إطلاق المشروع",
+    "projectAnalysis": "تحليل المشروع",
+    "noProjectAnalysisAvailable": "لا يوجد تحليل للمشروع متاح.",
+    "projectSolutions": "حلول المشروع",
+    "noProjectSolutionsAvailable": "لا توجد حلول للمشروع متاحة.",
+    "projectResults": "نتائج المشروع",
+    "noProjectResultsAvailable": "لا توجد نتائج للمشروع متاحة."
+  },
   "blogs": {
     "title": "مدونتنا",
     "loading": "جاري تحميل المدونات...",
@@ -167,6 +190,21 @@
     "defaultDescription": "هذا وصف عينة للمدونة. سيتم تحميل المحتوى الفعلي من API.",
     "experienceTitle": "أكثر من 20 عامًا من الخبرة سنضمن لك الحصول على أفضل التوجيه.",
     "requestQuote": "طلب عرض سعر"
+  },
+  "blog": {
+    "loading": "جاري تحميل المدونة...",
+    "notFound": "لم يتم العثور على المدونة",
+    "notFoundDescription": "المدونة التي تبحث عنها غير موجودة أو قد تكون قد أزيلت.",
+    "backToBlogs": "العودة إلى المدونات",
+    "blogPost": "مقال المدونة",
+    "blogImage": "صورة المدونة",
+    "blog": "مدونة",
+    "blogTitle": "عنوان المدونة",
+    "by": "بواسطة",
+    "unknownAuthor": "كاتب غير معروف",
+    "noContentAvailable": "لا يوجد محتوى متاح.",
+    "tags": "العلامات",
+    "share": "مشاركة"
   },
   "about": {
     "title": "من نحن",
