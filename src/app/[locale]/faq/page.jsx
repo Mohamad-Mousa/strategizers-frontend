@@ -46,7 +46,14 @@ const FAQPage = () => {
   }
 
   const handleAccordionToggle = (faqId) => {
-    setActiveAccordion(activeAccordion === faqId ? null : faqId);
+    // If clicking the same accordion, close it. Otherwise, open the clicked one
+    const newActiveAccordion = activeAccordion === faqId ? null : faqId;
+    console.log("Accordion toggle:", {
+      faqId,
+      currentActive: activeAccordion,
+      newActive: newActiveAccordion,
+    });
+    setActiveAccordion(newActiveAccordion);
   };
 
   const renderPaginationNumbers = () => {
@@ -105,26 +112,34 @@ const FAQPage = () => {
     }
 
     return (
-      <div className="accordion-box">
-        {faqs.map((faq, index) => (
-          <div key={faq._id || index} className="accordion accordion-block">
-            <div
-              className={`accord-btn ${
-                activeAccordion === faq._id ? "active" : ""
-              }`}
-              onClick={() => handleAccordionToggle(faq._id)}
-            >
-              <h4>{faq.question?.[locale] || t("faq.defaultQuestion")}</h4>
+      <div className="faq-accordion">
+        {faqs.map((faq, index) => {
+          const isActive = activeAccordion === faq._id;
+          return (
+            <div key={faq._id || index} className="faq-item">
+              <button
+                className={`faq-question ${isActive ? "active" : ""}`}
+                onClick={() => handleAccordionToggle(faq._id)}
+                aria-expanded={isActive}
+                aria-controls={`faq-answer-${faq._id}`}
+              >
+                <span className="faq-text">
+                  {faq.question?.[locale] || t("faq.defaultQuestion")}
+                </span>
+                <span className="faq-icon">{isActive ? "−" : "+"}</span>
+              </button>
+              <div
+                id={`faq-answer-${faq._id}`}
+                className={`faq-answer ${isActive ? "active" : ""}`}
+                aria-hidden={!isActive}
+              >
+                <div className="faq-answer-content">
+                  {faq.answer?.[locale] || t("faq.defaultAnswer")}
+                </div>
+              </div>
             </div>
-            <div
-              className={`accord-content ${
-                activeAccordion === faq._id ? "" : "collapsed"
-              }`}
-            >
-              <p>{faq.answer?.[locale] || t("faq.defaultAnswer")}</p>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     );
   };
@@ -238,15 +253,15 @@ const FAQPage = () => {
         </div>
       </section>
 
-      <style jsx>{`
+      <style>{`
         .loading-spinner {
           padding: 50px 0;
-          color: #666;
+          color: #8a3594;
         }
 
         .no-faqs {
           padding: 50px 0;
-          color: #666;
+          color: #8a3594;
         }
 
         .no-faqs i {
@@ -255,7 +270,7 @@ const FAQPage = () => {
         }
 
         .faq-info {
-          color: #666;
+          color: #8a3594;
           font-size: 14px;
         }
 
@@ -394,132 +409,118 @@ const FAQPage = () => {
         }
 
         /* FAQ specific responsive styles */
-        .accordion-box {
+        .faq-accordion {
           background: #fff;
           border-radius: 8px;
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
           overflow: hidden;
         }
 
-        .accordion {
+        .faq-item {
           border-bottom: 1px solid #eee;
-          transition: all 0.3s ease;
         }
 
-        .accordion:last-child {
+        .faq-item:last-child {
           border-bottom: none;
         }
 
-        .accord-btn {
+        .faq-question {
+          width: 100%;
           padding: 20px 25px;
-          cursor: pointer;
           background: #f8f9fa;
-          transition: background 0.3s ease;
-          position: relative;
+          border: none;
+          text-align: left;
+          cursor: pointer;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          transition: background-color 0.3s ease;
+          font-size: 16px;
+          font-weight: 600;
+          color: #333;
+          outline: none;
         }
 
-        .accord-btn:hover {
+        .faq-question:hover {
           background: #e9ecef;
         }
 
-        .accord-btn.active {
-          background: #007bff;
+        .faq-question.active {
+          background: #8a3594;
           color: #fff;
         }
 
-        .accord-btn h4 {
-          margin: 0;
-          font-weight: 600;
-          font-size: 16px;
-          line-height: 1.4;
+        .faq-text {
+          flex: 1;
+          margin-right: 15px;
         }
 
-        .accord-btn::after {
-          content: "+";
-          position: absolute;
-          right: 25px;
-          top: 50%;
-          transform: translateY(-50%);
+        .faq-icon {
           font-size: 20px;
           font-weight: bold;
           transition: transform 0.3s ease;
         }
 
-        .accord-btn.active::after {
-          transform: translateY(-50%) rotate(45deg);
+        .faq-question.active .faq-icon {
+          transform: rotate(180deg);
         }
 
-        .accord-content {
-          padding: 0 25px;
+        .faq-answer {
           max-height: 0;
           overflow: hidden;
-          transition: all 0.3s ease;
+          transition: max-height 0.3s ease;
+          background: #fff;
         }
 
-        .accord-content.collapsed {
-          padding: 0 25px;
+        .faq-answer.active {
+          max-height: 500px;
         }
 
-        .accord-content p {
-          padding: 20px 0;
-          margin: 0;
-          color: #666;
+        .faq-answer-content {
+          padding: 20px 25px;
+          color: #8a3594;
           line-height: 1.6;
         }
 
-        /* RTL support for accordion */
-        [dir="rtl"] .accord-btn::after {
-          right: auto;
-          left: 25px;
+        /* RTL support for FAQ */
+        [dir="rtl"] .faq-question {
+          text-align: right;
+        }
+
+        [dir="rtl"] .faq-text {
+          margin-right: 0;
+          margin-left: 15px;
         }
 
         @media (max-width: 767px) {
-          .accord-btn {
+          .faq-question {
             padding: 15px 20px;
-          }
-
-          .accord-btn h4 {
             font-size: 14px;
-            padding-right: 30px;
           }
 
-          .accord-btn::after {
-            right: 20px;
-            font-size: 18px;
-          }
-
-          .accord-content {
-            padding: 0 20px;
-          }
-
-          .accord-content p {
-            padding: 15px 0;
+          .faq-answer-content {
+            padding: 15px 20px;
             font-size: 13px;
+          }
+
+          .faq-icon {
+            font-size: 18px;
           }
         }
 
         @media (max-width: 480px) {
-          .accord-btn {
+          .faq-question {
             padding: 12px 15px;
-          }
-
-          .accord-btn h4 {
             font-size: 13px;
-            padding-right: 25px;
           }
 
-          .accord-btn::after {
-            right: 15px;
-            font-size: 16px;
-          }
-
-          .accord-content {
-            padding: 0 15px;
-          }
-
-          .accord-content p {
-            padding: 12px 0;
+          .faq-answer-content {
+            padding: 12px 15px;
             font-size: 12px;
+          }
+
+          .faq-icon {
+            font-size: 16px;
           }
         }
       `}</style>
