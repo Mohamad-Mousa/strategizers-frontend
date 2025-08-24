@@ -24,7 +24,26 @@
   "home": {
     "title": "Welcome to our website",
     "description": "A multilingual website built with Next.js",
-    "cta": "Start your journey"
+    "cta": "Start your journey",
+    "ourServices": "Our Services",
+    "requestForCallBack": "Request For Call Back",
+    "name": "Name *",
+    "phone": "Ph Num",
+    "email": "Email *",
+    "enquiryAbout": "Enquiry About",
+    "businessGrowth": "Business Growth",
+    "sustainability": "Sustainability",
+    "performance": "Performance",
+    "advancedAnalytics": "Advanced Analytics",
+    "organization": "Organization",
+    "customerInsights": "Customer Insights",
+    "submitNow": "Submit Now",
+    "weAreOpened": "We are Opened: Monday to Saturday: 9.00am to 16.pm.",
+    "latestFromBlog": "Latest From Blog",
+    "readMore": "Read More",
+    "latestProjects": "Latest Projects",
+    "contactDetails": "Contact Details",
+    "pleaseFindBelow": "Please find below contact details and contact us today!"
   },
   "services": {
     "title": "Services",
@@ -37,7 +56,8 @@
     "to": "to",
     "of": "of",
     "services": "services",
-    "defaultDescription": "This is a sample service description. The actual content will be loaded from the API."
+    "defaultDescription": "This is a sample service description. The actual content will be loaded from the API.",
+    "ourServices": "Our Services"
   },
   "testimonials": {
     "title": "Testimonials",
@@ -218,6 +238,33 @@
     "viewServices": "View Services",
     "achievements": "Our Achievements",
     "experienceTitle": "Over 20 years of experience we'll ensure you get the best guidance.",
-    "requestQuote": "Request Quote"
+    "requestQuote": "Request Quote",
+    "readMore": "Read More",
+    "projects": "Our Projects"
+  },
+  "header": {
+    "phone": "Phone",
+    "stayConnected": "Stay Connected",
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "linkedin": "LinkedIn",
+    "instagram": "Instagram",
+    "youtube": "YouTube",
+    "tiktok": "TikTok",
+    "arabic": "العربية",
+    "english": "English",
+    "logoAlt": "Awesome Logo",
+    "toggleNavigation": "Toggle Navigation",
+    "home": "Home",
+    "aboutUs": "ABOUT US",
+    "about": "About",
+    "meetOurTeam": "Meet Our Team",
+    "faqs": "FAQ's",
+    "testimonials": "Testimonials",
+    "services": "Services",
+    "blog": "Blog",
+    "projects": "Projects",
+    "contactUs": "Contact Us",
+    "bookASession": "Book A Session"
   }
 }

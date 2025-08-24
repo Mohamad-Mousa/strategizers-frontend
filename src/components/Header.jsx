@@ -2,76 +2,16 @@
 import Link from "next/link";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
+import { useTranslation } from "../hooks/useTranslation";
 
 const Header = () => {
   const { locale } = useParams();
   const pathname = usePathname();
   const pageName = pathname.split("/")[2];
   const router = useRouter();
+  const { t } = useTranslation();
 
   const settings = useSelector((state) => state.settings.settings);
-
-  // Translation function
-  const t = (key) => {
-    const translations = {
-      en: {
-        phone: "Phone",
-        email: "Mailus@Strategizers.com",
-        stayConnected: "Stay Connected",
-        facebook: "Facebook",
-        twitter: "Twitter",
-        googlePlus: "Google Plus",
-        linkedin: "LinkedIn",
-        english: "English",
-        french: "French",
-        german: "German",
-        italian: "Italian",
-        spanish: "Spanish",
-        logoAlt: "Awesome Logo",
-        toggleNavigation: "Toggle Navigation",
-        home: "Home",
-        aboutUs: "ABOUT US",
-        about: "About",
-        meetOurTeam: "Meet Our Team",
-        faqs: "FAQ's",
-        testimonials: "Testimonials",
-        services: "Services",
-        blog: "Blog",
-        projects: "Projects",
-        contactUs: "Contact Us",
-        bookASession: "Book A Session",
-      },
-      ar: {
-        phone: "الهاتف",
-        email: "Mailus@Strategizers.com",
-        stayConnected: "ابق على تواصل",
-        facebook: "فيسبوك",
-        twitter: "تويتر",
-        googlePlus: "جوجل بلس",
-        linkedin: "لينكد إن",
-        english: "الإنجليزية",
-        french: "الفرنسية",
-        german: "الألمانية",
-        italian: "الإيطالية",
-        spanish: "الإسبانية",
-        logoAlt: "شعار رائع",
-        toggleNavigation: "تبديل التنقل",
-        home: "الرئيسية",
-        aboutUs: "من نحن",
-        about: "حول",
-        meetOurTeam: "تعرف على فريقنا",
-        faqs: "الأسئلة الشائعة",
-        testimonials: "آراء العملاء",
-        services: "الخدمات",
-        blog: "المدونة",
-        projects: "المشاريع",
-        contactUs: "اتصل بنا",
-        bookASession: "احجز جلسة",
-      },
-    };
-
-    return translations[locale]?.[key] || translations.en[key] || key;
-  };
 
   const handleLanguageChange = (newLocale) => {
     // Get the current path without the locale
@@ -93,7 +33,7 @@ const Header = () => {
                     settings?.contact?.phone?.number && (
                       <li>
                         <span className="flaticon-technology"></span>
-                        {t("phone")}: +{settings.contact.phone.code}{" "}
+                        {t("header.phone")}: +{settings.contact.phone.code}{" "}
                         {settings.contact.phone.number}
                       </li>
                     )}
@@ -108,14 +48,14 @@ const Header = () => {
             </div>
             <div className="col-lg-5 col-md-6 col-sm-12 col-xs-12">
               <div className="top-right clearfix">
-                <h5>{t("stayConnected")}:</h5>
+                <h5>{t("header.stayConnected")}:</h5>
                 <ul className="social-links">
                   {settings?.social?.facebook && (
                     <li>
                       <Link
                         href={settings.social.facebook}
                         target="_blank"
-                        aria-label={t("facebook")}
+                        aria-label={t("header.facebook")}
                       >
                         <i className="fa fa-facebook"></i>
                       </Link>
@@ -126,7 +66,7 @@ const Header = () => {
                       <Link
                         href={settings.social.twitter}
                         target="_blank"
-                        aria-label={t("twitter")}
+                        aria-label={t("header.twitter")}
                       >
                         <i className="fa fa-twitter"></i>
                       </Link>
@@ -137,7 +77,7 @@ const Header = () => {
                       <Link
                         href={settings.social.linkedin}
                         target="_blank"
-                        aria-label={t("linkedin")}
+                        aria-label={t("header.linkedin")}
                       >
                         <i className="fa fa-linkedin"></i>
                       </Link>
@@ -148,7 +88,7 @@ const Header = () => {
                       <Link
                         href={settings.social.instagram}
                         target="_blank"
-                        aria-label={t("instagram")}
+                        aria-label={t("header.instagram")}
                       >
                         <i className="fa fa-instagram"></i>
                       </Link>
@@ -159,7 +99,7 @@ const Header = () => {
                       <Link
                         href={settings.social.youtube}
                         target="_blank"
-                        aria-label={t("youtube")}
+                        aria-label={t("header.youtube")}
                       >
                         <i className="fa fa-youtube"></i>
                       </Link>
@@ -170,7 +110,7 @@ const Header = () => {
                       <Link
                         href={settings.social.tiktok}
                         target="_blank"
-                        aria-label={t("tiktok")}
+                        aria-label={t("header.tiktok")}
                       >
                         <i className="fa fa-music"></i>
                       </Link>
@@ -184,7 +124,9 @@ const Header = () => {
                         handleLanguageChange(locale === "en" ? "ar" : "en");
                       }}
                     >
-                      {locale === "en" ? t("arabic") : t("english")}
+                      {locale === "en"
+                        ? t("header.arabic")
+                        : t("header.english")}
                     </a>
                   </li>
                 </ul>
@@ -202,7 +144,7 @@ const Header = () => {
                   <a href="index.html">
                     <img
                       src="/images/resources/logo2.png"
-                      alt={t("logoAlt")}
+                      alt={t("header.logoAlt")}
                       style={{
                         objectFit: "contain",
                         width: "244px",
@@ -218,7 +160,7 @@ const Header = () => {
                       className="navbar-toggle"
                       data-toggle="collapse"
                       data-target=".navbar-collapse"
-                      aria-label={t("toggleNavigation")}
+                      aria-label={t("header.toggleNavigation")}
                     >
                       <span className="icon-bar"></span>
                       <span className="icon-bar"></span>
@@ -228,7 +170,7 @@ const Header = () => {
                   <div className="navbar-collapse collapse clearfix">
                     <ul className="navigation clearfix">
                       <li className={pageName === undefined ? "current" : ""}>
-                        <Link href={`/${locale}`}>{t("home")}</Link>
+                        <Link href={`/${locale}`}>{t("header.home")}</Link>
                       </li>
                       <li
                         className={
@@ -240,42 +182,50 @@ const Header = () => {
                             : "dropdown"
                         }
                       >
-                        <Link href={`/${locale}/about`}>{t("aboutUs")}</Link>
+                        <Link href={`/${locale}/about`}>
+                          {t("header.aboutUs")}
+                        </Link>
                         <ul>
                           <li>
-                            <Link href={`/${locale}/about`}>{t("about")}</Link>
-                          </li>
-                          <li>
-                            <Link href={`/${locale}/our-team`}>
-                              {t("meetOurTeam")}
+                            <Link href={`/${locale}/about`}>
+                              {t("header.about")}
                             </Link>
                           </li>
                           <li>
-                            <Link href={`/${locale}/faq`}>{t("faqs")}</Link>
+                            <Link href={`/${locale}/our-team`}>
+                              {t("header.meetOurTeam")}
+                            </Link>
+                          </li>
+                          <li>
+                            <Link href={`/${locale}/faq`}>
+                              {t("header.faqs")}
+                            </Link>
                           </li>
                           <li>
                             <Link href={`/${locale}/testimonials`}>
-                              {t("testimonials")}
+                              {t("header.testimonials")}
                             </Link>
                           </li>
                         </ul>
                       </li>
                       <li className={pageName === "services" ? "current" : ""}>
                         <Link href={`/${locale}/services`}>
-                          {t("services")}
+                          {t("header.services")}
                         </Link>
                       </li>
                       <li className={pageName === "blogs" ? "current" : ""}>
-                        <Link href={`/${locale}/blogs`}>{t("blog")}</Link>
+                        <Link href={`/${locale}/blogs`}>
+                          {t("header.blog")}
+                        </Link>
                       </li>
                       <li className={pageName === "projects" ? "current" : ""}>
                         <Link href={`/${locale}/projects`}>
-                          {t("projects")}
+                          {t("header.projects")}
                         </Link>
                       </li>
                       <li className={pageName === "contact" ? "current" : ""}>
                         <Link href={`/${locale}/contact`}>
-                          {t("contactUs")}
+                          {t("header.contactUs")}
                         </Link>
                       </li>
                     </ul>
@@ -283,7 +233,7 @@ const Header = () => {
                 </nav>
                 <div className="mainmenu-right-box pull-right clearfix">
                   <div className="quote-button">
-                    <a href="#">{t("bookASession")}</a>
+                    <a href="#">{t("header.bookASession")}</a>
                   </div>
                 </div>
               </div>

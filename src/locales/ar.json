@@ -24,7 +24,26 @@
   "home": {
     "title": "مرحباً بكم في موقعنا",
     "description": "موقع متعدد اللغات مبني بـ Next.js",
-    "cta": "ابدأ رحلتك"
+    "cta": "ابدأ رحلتك",
+    "ourServices": "خدماتنا",
+    "requestForCallBack": "طلب اتصال",
+    "name": "الاسم *",
+    "phone": "رقم الهاتف",
+    "email": "البريد الإلكتروني *",
+    "enquiryAbout": "استفسار حول",
+    "businessGrowth": "نمو الأعمال",
+    "sustainability": "الاستدامة",
+    "performance": "الأداء",
+    "advancedAnalytics": "التحليلات المتقدمة",
+    "organization": "التنظيم",
+    "customerInsights": "رؤى العملاء",
+    "submitNow": "إرسال الآن",
+    "weAreOpened": "نحن مفتوحون: من الاثنين إلى السبت من 9:00 صباحاً إلى 4:00 مساءً.",
+    "latestFromBlog": "أحدث من المدونة",
+    "readMore": "اقرأ المزيد",
+    "latestProjects": "أحدث المشاريع",
+    "contactDetails": "تفاصيل الاتصال",
+    "pleaseFindBelow": "يرجى العثور على تفاصيل الاتصال أدناه واتصل بنا اليوم!"
   },
   "services": {
     "title": "الخدمات",
@@ -37,7 +56,8 @@
     "to": "إلى",
     "of": "من",
     "services": "خدمات",
-    "defaultDescription": "هذا وصف عينة للخدمة. سيتم تحميل المحتوى الفعلي من API."
+    "defaultDescription": "هذا وصف عينة للخدمة. سيتم تحميل المحتوى الفعلي من API.",
+    "ourServices": "خدماتنا"
   },
   "testimonials": {
     "title": "آراء العملاء",
@@ -218,6 +238,33 @@
     "viewServices": "عرض الخدمات",
     "achievements": "إنجازاتنا",
     "experienceTitle": "أكثر من 20 عامًا من الخبرة سنضمن لك الحصول على أفضل التوجيه.",
-    "requestQuote": "طلب عرض سعر"
+    "requestQuote": "طلب عرض سعر",
+    "readMore": "اقرأ المزيد",
+    "projects": "مشاريعنا"
+  },
+  "header": {
+    "phone": "الهاتف",
+    "stayConnected": "ابق على تواصل",
+    "facebook": "فيسبوك",
+    "twitter": "تويتر",
+    "linkedin": "لينكد إن",
+    "instagram": "إنستغرام",
+    "youtube": "يوتيوب",
+    "tiktok": "تيك توك",
+    "arabic": "العربية",
+    "english": "English",
+    "logoAlt": "شعار رائع",
+    "toggleNavigation": "تبديل التنقل",
+    "home": "الرئيسية",
+    "aboutUs": "من نحن",
+    "about": "حول",
+    "meetOurTeam": "تعرف على فريقنا",
+    "faqs": "الأسئلة الشائعة",
+    "testimonials": "آراء العملاء",
+    "services": "الخدمات",
+    "blog": "المدونة",
+    "projects": "المشاريع",
+    "contactUs": "اتصل بنا",
+    "bookASession": "احجز جلسة"
   }
 }

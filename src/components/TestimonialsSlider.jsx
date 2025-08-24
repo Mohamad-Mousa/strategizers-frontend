@@ -1,8 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useTranslation } from "../hooks/useTranslation";
+import { useParams } from "next/navigation";
 
 const TestimonialsSlider = ({ items }) => {
+  const { locale } = useParams();
   const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -58,18 +60,18 @@ const TestimonialsSlider = ({ items }) => {
               <div className="single-item">
                 <div className="text-box">
                   <p>
-                    {items[currentSlide]?.description?.[t.locale] ||
+                    {items[currentSlide]?.description?.[locale] ||
                       items[currentSlide]?.description?.en}
                   </p>
                   <span className="border"></span>
                 </div>
                 <div className="client-info">
                   <h3>
-                    {items[currentSlide]?.name?.[t.locale] ||
+                    {items[currentSlide]?.name?.[locale] ||
                       items[currentSlide]?.name?.en}
                   </h3>
                   <span>
-                    {items[currentSlide]?.position?.[t.locale] ||
+                    {items[currentSlide]?.position?.[locale] ||
                       items[currentSlide]?.position?.en}
                   </span>
                 </div>

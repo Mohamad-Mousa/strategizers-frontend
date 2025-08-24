@@ -114,7 +114,7 @@ export default function LocalePage({ params }) {
       <section className="service-area">
         <div className="container">
           <div className="sec-title pdb-50">
-            <h1>Our Services</h1>
+            <h1>{t("home.ourServices")}</h1>
             <span className="border"></span>
           </div>
           <div className="row">
@@ -197,14 +197,11 @@ export default function LocalePage({ params }) {
             <div className="col-md-4 col-sm-6 col-xs-12">
               <div className="contact-info">
                 <div className="sec-title">
-                  <h2>Contact Details</h2>
+                  <h2>{t("home.contactDetails")}</h2>
                   <span className="border"></span>
                 </div>
                 <div className="text">
-                  <p>
-                    Please find below contact details <br />
-                    and contact us today!
-                  </p>
+                  <p>{t("home.pleaseFindBelow")}</p>
                 </div>
                 <ul>
                   <li>
@@ -226,7 +223,7 @@ export default function LocalePage({ params }) {
             <div className="col-md-8 col-sm-12 col-xs-12">
               <div className="request-form">
                 <div className="sec-title pdb-50">
-                  <h1>Request For Call Back</h1>
+                  <h1>{t("home.requestForCallBack")}</h1>
                   <span className="border"></span>
                 </div>
                 <form
@@ -240,42 +237,42 @@ export default function LocalePage({ params }) {
                       <input
                         type="text"
                         name="form_name"
-                        placeholder="Name *"
+                        placeholder={t("home.name")}
                         required
                       />
                       <input
                         type="text"
                         name="form_phone"
-                        placeholder="Ph Num"
+                        placeholder={t("home.phone")}
                       />
                     </div>
                     <div className="col-md-6">
                       <input
                         type="email"
                         name="form_email"
-                        placeholder="Email *"
+                        placeholder={t("home.email")}
                         required
                       />
                       <select className="selectmenu">
-                        <option>Enquiry About</option>
-                        <option>Business Growth</option>
-                        <option>Sustainability</option>
-                        <option>Performance</option>
-                        <option>Advanced Analytics</option>
-                        <option>Organization</option>
-                        <option>Customer Insights</option>
+                        <option>{t("home.enquiryAbout")}</option>
+                        <option>{t("home.businessGrowth")}</option>
+                        <option>{t("home.sustainability")}</option>
+                        <option>{t("home.performance")}</option>
+                        <option>{t("home.advancedAnalytics")}</option>
+                        <option>{t("home.organization")}</option>
+                        <option>{t("home.customerInsights")}</option>
                       </select>
                     </div>
                   </div>
                   <div className="row">
                     <div className="col-md-12">
                       <button className="thm-btn bgclr-1" type="submit">
-                        Submit Now
+                        {t("home.submitNow")}
                       </button>
                       <div className="text">
                         <p>
-                          <i className="fa fa-clock-o" aria-hidden="true"></i>We
-                          are Opened: Monday to Saturday: 9.00am to 16.pm.
+                          <i className="fa fa-clock-o" aria-hidden="true"></i>
+                          {t("home.weAreOpened")}
                         </p>
                       </div>
                     </div>
@@ -289,7 +286,7 @@ export default function LocalePage({ params }) {
       <section className="latest-blog-area sec-padding">
         <div className="container">
           <div className="sec-title pdb-50 text-center">
-            <h1>Latest From Blog</h1>
+            <h1>{t("home.latestFromBlog")}</h1>
             <span className="border-center"></span>
           </div>
           <div className="row">
@@ -339,7 +336,7 @@ export default function LocalePage({ params }) {
                       <div className="bottom">
                         <div className="left pull-left">
                           <Link href={`${locale}/blogs/${item?.slug}`}>
-                            Read More
+                            {t("home.readMore")}
                           </Link>
                         </div>
                       </div>
@@ -443,7 +440,7 @@ export default function LocalePage({ params }) {
             </div>
           </div> */}
           <div className="sec-title pdb-50 text-center">
-            <h1>Latest Projects</h1>
+            <h1>{t("home.latestProjects")}</h1>
             <span className="border-center"></span>
           </div>
           <div className="row">
@@ -492,7 +489,7 @@ export default function LocalePage({ params }) {
                       <div className="bottom">
                         <div className="left pull-left">
                           <Link href={`${locale}/projects/${item?.slug}`}>
-                            Read More
+                            {t("home.readMore")}
                           </Link>
                         </div>
                       </div>
