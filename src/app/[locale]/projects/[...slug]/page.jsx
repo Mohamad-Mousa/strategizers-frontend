@@ -113,6 +113,11 @@ const SingleProjectPage = () => {
                           t("project.projectImage")
                         }
                         className="img-responsive"
+                        style={{
+                          width: "100%",
+                          height: "auto",
+                          objectFit: "cover",
+                        }}
                       />
                     </div>
                   </div>

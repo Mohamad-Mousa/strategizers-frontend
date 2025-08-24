@@ -118,7 +118,7 @@ const Slider = ({
                 alt={image.alt || `Achievement ${index + 1}`}
                 style={{
                   width: "100%",
-                  height: "200px",
+                  height: "130px",
                   objectFit: "cover",
                   borderRadius: "8px",
                   boxShadow: "0 4px 8px rgba(0,0,0,0.1)",

@@ -117,6 +117,11 @@ const OurTeamPage = () => {
               }
               alt={member.name?.[locale] || t("team.memberName")}
               className="img-responsive"
+              style={{
+                width: "100%",
+                height: "250px",
+                objectFit: "cover",
+              }}
             />
             <div className="overlay-style-one">
               <div className="box">

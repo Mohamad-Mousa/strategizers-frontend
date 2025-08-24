@@ -45,7 +45,22 @@ const ContentSlider = ({
     // Custom styles for navigation buttons
     const style = document.createElement("style");
     style.textContent = `
-      .content-swiper .swiper-button-next,
+             .content-swiper {
+         height: auto;
+       }
+       
+       .content-swiper .swiper-wrapper {
+         align-items: stretch;
+         display: flex;
+       }
+       
+       .content-swiper .swiper-slide {
+         height: auto;
+         display: flex;
+         align-items: stretch;
+       }
+       
+       .content-swiper .swiper-button-next,
       .content-swiper .swiper-button-prev {
         color: #333;
         background: rgba(255, 255, 255, 0.9);
@@ -78,25 +93,31 @@ const ContentSlider = ({
         background: #007bff;
       }
       
-      .content-swiper .swiper-slide {
-        transition: transform 0.3s ease;
-      }
+             .content-swiper .swiper-slide {
+         transition: transform 0.3s ease;
+         height: auto;
+         display: flex;
+         align-items: stretch;
+       }
       
       .content-swiper .swiper-slide:hover {
         transform: translateY(-5px);
       }
       
-      .content-swiper .single-item {
-        padding: 20px;
-        text-align: center;
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
+             .content-swiper .single-item {
+         padding: 20px;
+         text-align: center;
+         background: #fff;
+         border-radius: 8px;
+         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+         height: 100%;
+         display: flex;
+         flex-direction: column;
+         justify-content: space-between;
+         width: 100%;
+         min-height: 0;
+         flex: 1;
+       }
       
       .content-swiper .img-holder {
         margin-bottom: 20px;
@@ -120,11 +141,19 @@ const ContentSlider = ({
         margin-bottom: 10px;
       }
       
-      .content-swiper .text-holder p {
-        color: #666;
-        line-height: 1.6;
-        margin: 0;
-      }
+             .content-swiper .text-holder {
+         flex: 1;
+         display: flex;
+         flex-direction: column;
+         justify-content: space-between;
+       }
+       
+       .content-swiper .text-holder p {
+         color: #666;
+         line-height: 1.6;
+         margin: 0;
+         flex: 1;
+       }
     `;
     document.head.appendChild(style);
 

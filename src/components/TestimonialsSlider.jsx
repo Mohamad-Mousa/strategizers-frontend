@@ -1,73 +1,34 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchTestimonials } from "../store/slices/testimonialsSlice";
 import { useTranslation } from "../hooks/useTranslation";
 
-const TestimonialsSlider = () => {
-  const dispatch = useDispatch();
+const TestimonialsSlider = ({ items }) => {
   const { t } = useTranslation();
-  const { testimonials, loading } = useSelector((state) => state.testimonials);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
-    dispatch(
-      fetchTestimonials({
-        page: 1,
-        limit: 10,
-        sortBy: "createdAt",
-        sortDirection: "desc",
-        term: "",
-      })
-    );
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (testimonials.length > 0) {
+    if (items.length > 0) {
       const interval = setInterval(() => {
-        setCurrentSlide((prev) => (prev + 1) % testimonials.length);
+        setCurrentSlide((prev) => (prev + 1) % items.length);
       }, 5000); // Change slide every 5 seconds
 
       return () => clearInterval(interval);
     }
-  }, [testimonials.length]);
+  }, [items.length]);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % testimonials.length);
+    setCurrentSlide((prev) => (prev + 1) % items.length);
   };
 
   const prevSlide = () => {
-    setCurrentSlide(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length
-    );
+    setCurrentSlide((prev) => (prev - 1 + items.length) % items.length);
   };
 
   const goToSlide = (index) => {
     setCurrentSlide(index);
   };
 
-  if (loading) {
-    return (
-      <section className="testimonial-area">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <div className="testimonial-carousel">
-                <div className="single-item">
-                  <div className="text-box">
-                    <p>Loading testimonials...</p>
-                    <span className="border"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  if (!testimonials || testimonials.length === 0) {
+  if (!items || items.length === 0) {
     return (
       <section className="testimonial-area">
         <div className="container">
@@ -97,19 +58,19 @@ const TestimonialsSlider = () => {
               <div className="single-item">
                 <div className="text-box">
                   <p>
-                    {testimonials[currentSlide]?.description?.[t.locale] ||
-                      testimonials[currentSlide]?.description?.en}
+                    {items[currentSlide]?.description?.[t.locale] ||
+                      items[currentSlide]?.description?.en}
                   </p>
                   <span className="border"></span>
                 </div>
                 <div className="client-info">
                   <h3>
-                    {testimonials[currentSlide]?.name?.[t.locale] ||
-                      testimonials[currentSlide]?.name?.en}
+                    {items[currentSlide]?.name?.[t.locale] ||
+                      items[currentSlide]?.name?.en}
                   </h3>
                   <span>
-                    {testimonials[currentSlide]?.position?.[t.locale] ||
-                      testimonials[currentSlide]?.position?.en}
+                    {items[currentSlide]?.position?.[t.locale] ||
+                      items[currentSlide]?.position?.en}
                   </span>
                 </div>
               </div>
@@ -120,7 +81,7 @@ const TestimonialsSlider = () => {
               className="testimonial-dots"
               style={{ textAlign: "center", marginTop: "20px" }}
             >
-              {testimonials.map((_, index) => (
+              {items.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
@@ -140,7 +101,7 @@ const TestimonialsSlider = () => {
             </div>
 
             {/* Navigation Arrows */}
-            {testimonials.length > 1 && (
+            {items.length > 1 && (
               <>
                 <button
                   onClick={prevSlide}

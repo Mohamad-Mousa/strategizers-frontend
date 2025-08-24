@@ -6,6 +6,12 @@ import { useRouter } from "next/navigation";
 import { use } from "react";
 import Slider from "../../components/Slider";
 import TestimonialsSlider from "../../components/TestimonialsSlider";
+import ContentSlider from "../../components/ContentSlider";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchWebsiteData } from "../../store/slices/websiteSlice";
+import { fetchSettings } from "../../store/slices/settingsSlice";
+import Link from "next/link";
 
 export default function LocalePage({ params }) {
   const { locale } = use(params);
@@ -13,10 +19,28 @@ export default function LocalePage({ params }) {
   const { isRTL } = useLanguage();
   const router = useRouter();
 
+  const dispatch = useDispatch();
+
+  const {
+    data: websiteData,
+    loading,
+    error,
+  } = useSelector((state) => state.website);
+
+  const settings = useSelector((state) => state.settings.settings);
+
+  useEffect(() => {
+    dispatch(fetchWebsiteData());
+  }, [dispatch]);
+
   const handleLanguageChange = (newLocale) => {
     // Navigate to the new locale
     router.push(`/${newLocale}`);
   };
+
+  if (!websiteData) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
@@ -337,6 +361,7 @@ export default function LocalePage({ params }) {
           </div>
         </div>
       </section>
+
       <section className="service-area">
         <div className="container">
           <div className="sec-title pdb-50">
@@ -345,198 +370,106 @@ export default function LocalePage({ params }) {
           </div>
           <div className="row">
             <div className="col-md-12">
-              <div className="servicecarousel">
-                <div className="single-item text-center">
-                  <div className="item">
-                    <div className="icon-holder">
-                      <span className="flaticon-stats"></span>
-                      <h3>Business Growth</h3>
-                    </div>
-                    <div className="text-holder">
-                      <p>
-                        The process of improving some of our an enterprise's
-                        success. Business growth can be a achieved.
-                      </p>
-                      <a className="thm-btn bgclr-1" href="#">
-                        Read More
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="single-item text-center">
-                  <div className="item">
-                    <div className="icon-holder">
-                      <span className="flaticon-light-bulb"></span>
-                      <h3>Sustainability</h3>
-                    </div>
-                    <div className="text-holder">
-                      <p>
-                        When it comes to sustainability & corporate
-                        responsibility, we believe thenormal rules of business.
-                      </p>
-                      <a className="thm-btn bgclr-1" href="#">
-                        Read More
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="single-item text-center">
-                  <div className="item">
-                    <div className="icon-holder">
-                      <span className="flaticon-business"></span>
-                      <h3>Performance</h3>
-                    </div>
-                    <div className="text-holder">
-                      <p>
-                        In a contract, performance deemed to be the fulfillment
-                        of an obligation in a manner that releases.
-                      </p>
-                      <a className="thm-btn bgclr-1" href="#">
-                        Read More
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="single-item text-center">
-                  <div className="item">
-                    <div className="icon-holder">
-                      <span className="flaticon-computer"></span>
-                      <h3>Organization</h3>
-                    </div>
-                    <div className="text-holder">
-                      <p>
-                        We help business improve financial performaance by
-                        ensuring the entire organization system is aligned.
-                      </p>
-                      <a className="thm-btn bgclr-1" href="#">
-                        Read More
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <ContentSlider
+                items={websiteData?.homePage?.services?.map((item) => ({
+                  image: `http://localhost:4000/${item?.image}`,
+                  title: item?.title?.[locale],
+                  description: item?.description?.[locale],
+                }))}
+                className="history-carousel"
+                slidesPerView={3}
+                spaceBetween={30}
+                autoplay={true}
+                loop={true}
+                navigation={true}
+                pagination={false}
+              />
             </div>
           </div>
         </div>
       </section>
+
       <section className="about-area sec-padding">
         <div className="container">
           <div className="sec-title pdb-50 text-center">
-            <h1>About Our Company</h1>
+            <h1>{websiteData?.homePage?.welcomeSection?.title?.[locale]}</h1>
             <span className="border-center"></span>
           </div>
           <div className="row">
             <div className="col-lg-6 col-md-12">
               <div className="img-holder">
-                <img src="images/about/about-company.jpg" alt="Awesome Image" />
+                <img
+                  src="/images/resources/logo2.png"
+                  alt="Strategizers Logo"
+                  style={{
+                    width: "100%",
+                    height: "200px",
+                    objectFit: "contain",
+                  }}
+                />
               </div>
             </div>
             <div className="col-lg-6 col-md-12">
               <div className="text-holder">
                 <div className="top-text">
-                  <h3>
-                    We are always looking for specific approach to each cases &
-                    Provide full solutions.
-                  </h3>
                   <p>
-                    We have built an enviable reputation in the consumer goods,
-                    heavy industry, high-tech, manufacturing, medical,
-                    recreational vehicle, and transportation sectors.
-                    multidisciplinary team of engineering experts, who loves or
-                    pursues or desires to obtain pain of itself, because it is
-                    pain occasionally.
-                  </p>
-                </div>
-                <div className="bottom-text">
-                  <span>Reliable & Trustworthy</span>
-                  <p>
-                    Who loves or pursues or desires to obtain pain of itself,
-                    because it is pain, but because occasionally circumstances
-                    occur in which toil and pain desires to obtain pain of
-                    itself, because it is pain, but because occur in which toil
-                    and pain.
+                    {
+                      websiteData?.homePage?.welcomeSection?.description?.[
+                        locale
+                      ]
+                    }
                   </p>
                 </div>
                 <div className="bottom">
-                  <a className="readmore thm-btn bgclr-1" href="#">
-                    Read More
-                  </a>
-                  <div className="signature">
-                    <img src="images/about/signature.png" alt="Signature" />
-                  </div>
+                  <Link
+                    className="readmore thm-btn bgclr-1"
+                    href={`${locale}/about`}
+                  >
+                    {t("about.readMore")}
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
           <div className="promotion-box">
             <div className="row">
-              <div className="col-md-4">
-                <div className="singel-box hvr-float">
-                  <div className="top">
-                    <div className="icon-holder">
-                      <span className="flaticon-innovation"></span>
-                    </div>
-                    <div className="title-holder">
-                      <h3>Innovative Works</h3>
-                    </div>
-                  </div>
-                  <div className="text-holder">
-                    <p>
-                      How all this mistaken idea of denouncing pleasures and
-                      praising pain was born and we will give you a complete
-                      account of the system.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-md-4">
-                <div className="singel-box hvr-float">
-                  <div className="top">
-                    <div className="icon-holder">
-                      <span className="flaticon-shapes"></span>
-                    </div>
-                    <div className="title-holder">
-                      <h3>Certified Company</h3>
+              {websiteData?.homePage?.welcomeSection?.featuredServices?.map(
+                (item, index) => (
+                  <div key={index} className="col-md-4">
+                    <div className="singel-box hvr-float">
+                      <div className="top">
+                        <div className="icon-holder">
+                          <span
+                            style={{
+                              width: "100px",
+                              height: "100px",
+                              objectFit: "contain",
+                            }}
+                          >
+                            <img
+                              src={`http://localhost:4000/${item?.icon}`}
+                              alt="Icon"
+                            />
+                          </span>
+                        </div>
+                        <div className="title-holder">
+                          <h3>{item?.title?.[locale]}</h3>
+                        </div>
+                      </div>
+                      <div className="text-holder">
+                        <p>{item?.description?.[locale]}</p>
+                      </div>
                     </div>
                   </div>
-                  <div className="text-holder">
-                    <p>
-                      Ever undertakes laborious physical exercise, except to
-                      obtain some advantage from it. To find fault with a
-                      consequences.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-md-4">
-                <div className="singel-box hvr-float">
-                  <div className="top">
-                    <div className="icon-holder">
-                      <span className="flaticon-suitcase"></span>
-                    </div>
-                    <div className="title-holder">
-                      <h3>Very Experinced</h3>
-                    </div>
-                  </div>
-                  <div className="text-holder">
-                    <p>
-                      Again is there anyone who loves or pursues desires to
-                      obtain pain of itself, because it pain, but because
-                      circumstances great pleasure.
-                    </p>
-                  </div>
-                </div>
-              </div>
+                )
+              )}
             </div>
           </div>
         </div>
       </section>
-      <TestimonialsSlider />
+
+      <TestimonialsSlider items={websiteData?.homePage?.testimonials} />
+
       <section className="consultations-area sec-padding">
         <div className="container">
           <div className="row">
@@ -554,15 +487,17 @@ export default function LocalePage({ params }) {
                 </div>
                 <ul>
                   <li>
-                    <span className="fa fa-phone"></span>Phone: +321 456 78 901
+                    <span className="fa fa-phone"></span>Phone: +
+                    {settings?.contact?.phone?.code}{" "}
+                    {settings?.contact?.phone?.number}
                   </li>
                   <li>
                     <span className="fa fa-envelope"></span>
-                    Mailus@Strategizers.com
+                    Mail: {settings?.contact?.email}
                   </li>
                   <li>
-                    <span className="fa fa-clock-o"></span>Apple Street, New
-                    York, USA
+                    <span className="fa fa-clock-o"></span>
+                    {settings?.contact?.address}
                   </li>
                 </ul>
               </div>
@@ -633,6 +568,7 @@ export default function LocalePage({ params }) {
           </div>
         </div>
       </section>
+
       <section className="latest-blog-area sec-padding">
         <div className="container">
           <div className="sec-title pdb-50 text-center">
@@ -640,280 +576,102 @@ export default function LocalePage({ params }) {
             <span className="border-center"></span>
           </div>
           <div className="row">
-            <div className="col-md-4">
-              <div className="single-blog-item">
-                <div className="img-holder">
-                  <img
-                    src="images/blog/latest-blog-1.jpg"
-                    alt="Awesome Image"
-                  />
-                  <div className="overlay-style-one">
-                    <div className="box">
-                      <div className="content">
-                        <a href="blog-single.html">
-                          <i className="fa fa-link" aria-hidden="true"></i>
-                        </a>
+            {websiteData?.homePage?.blogs &&
+              websiteData?.homePage?.blogs?.length > 0 &&
+              websiteData?.homePage?.blogs?.map((item, index) => (
+                <div key={index} className="col-md-4">
+                  <div className="single-blog-item">
+                    <div className="img-holder">
+                      <img
+                        src={`http://localhost:4000/${item?.image}`}
+                        alt="Awesome Image"
+                        style={{
+                          width: "100%",
+                          height: "250px",
+                          objectFit: "cover",
+                        }}
+                      />
+                      <div className="overlay-style-one">
+                        <div className="box">
+                          <div className="content">
+                            <Link href={`${locale}/blogs/${item?.slug}`}>
+                              <i className="fa fa-link" aria-hidden="true"></i>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-holder">
+                      <ul className="meta-info">
+                        <li>
+                          <a href="#">by {item?.author}</a>
+                        </li>
+                        <li>
+                          <a href="#">{item?.tags?.[0]}</a>
+                        </li>
+                      </ul>
+                      <a href="blog-single.html">
+                        <h3 className="blog-title">{item?.title?.[locale]}</h3>
+                      </a>
+                      <div
+                        className="text"
+                        style={{ height: "100px", overflow: "hidden" }}
+                      >
+                        <p>{item?.description?.[locale]}</p>
+                      </div>
+                      <div className="bottom">
+                        <div className="left pull-left">
+                          <Link href={`${locale}/blogs/${item?.slug}`}>
+                            Read More
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div className="post-date">
-                    <h5>14 Aprl</h5>
-                  </div>
                 </div>
-                <div className="text-holder">
-                  <ul className="meta-info">
-                    <li>
-                      <a href="#">by fletcher</a>
-                    </li>
-                    <li>
-                      <a href="#">Marketing</a>
-                    </li>
-                  </ul>
-                  <a href="blog-single.html">
-                    <h3 className="blog-title">
-                      Retail banks wake up to digital
-                    </h3>
-                  </a>
-                  <div className="text">
-                    <p>
-                      know how to pursue pleasure rationally seds encounter
-                      consequences.
-                    </p>
-                  </div>
-                  <div className="bottom">
-                    <div className="left pull-left">
-                      <a href="#">Read More</a>
-                    </div>
-                    <div className="right pull-right">
-                      <h5>
-                        <span className="flaticon-interface"></span>15
-                      </h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-md-4">
-              <div className="single-blog-item">
-                <div className="img-holder">
-                  <img
-                    src="images/blog/latest-blog-2.jpg"
-                    alt="Awesome Image"
-                  />
-                  <div className="overlay-style-one">
-                    <div className="box">
-                      <div className="content">
-                        <a href="blog-single.html">
-                          <i className="fa fa-link" aria-hidden="true"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="post-date">
-                    <h5>24 Mar</h5>
-                  </div>
-                </div>
-                <div className="text-holder">
-                  <ul className="meta-info">
-                    <li>
-                      <a href="#">by georgly</a>
-                    </li>
-                    <li>
-                      <a href="#">Financial</a>
-                    </li>
-                  </ul>
-                  <a href="blog-single.html">
-                    <h3 className="blog-title">Create great WordPress theme</h3>
-                  </a>
-                  <div className="text">
-                    <p>
-                      Desires to obtain pain ut of itself, because it is pain
-                      because occasionally.
-                    </p>
-                  </div>
-                  <div className="bottom">
-                    <div className="left pull-left">
-                      <a href="#">Read More</a>
-                    </div>
-                    <div className="right pull-right">
-                      <h5>
-                        <span className="flaticon-interface"></span>08
-                      </h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-md-4">
-              <div className="single-blog-item">
-                <div className="img-holder">
-                  <img
-                    src="images/blog/latest-blog-3.jpg"
-                    alt="Awesome Image"
-                  />
-                  <div className="overlay-style-one">
-                    <div className="box">
-                      <div className="content">
-                        <a href="blog-single.html">
-                          <i className="fa fa-link" aria-hidden="true"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="post-date">
-                    <h5>05 Jan</h5>
-                  </div>
-                </div>
-                <div className="text-holder">
-                  <ul className="meta-info">
-                    <li>
-                      <a href="#">by fernancy</a>
-                    </li>
-                    <li>
-                      <a href="#">Consulting</a>
-                    </li>
-                  </ul>
-                  <a href="blog-single.html">
-                    <h3 className="blog-title">
-                      How to improve employees skills
-                    </h3>
-                  </a>
-                  <div className="text">
-                    <p>
-                      Great pleasure to take a trivial example, which of us
-                      undertakes laborious.
-                    </p>
-                  </div>
-                  <div className="bottom">
-                    <div className="left pull-left">
-                      <a href="#">Read More</a>
-                    </div>
-                    <div className="right pull-right">
-                      <h5>
-                        <span className="flaticon-interface"></span>12
-                      </h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+              ))}
           </div>
         </div>
       </section>
 
       <section className="project-faq-area sec-padding">
         <div className="container">
-          <div className="row">
+          {/* <div className="row">
             <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
               <div className="sec-title pdb-50">
                 <h1>Latest Projects</h1>
                 <span className="border"></span>
               </div>
               <div className="latest-project">
-                <div className="single-project-item">
-                  <div className="img-holder">
-                    <img
-                      src="images/projects/latest-project-1.jpg"
-                      alt="Awesome Image"
-                    />
-                    <div className="overlay-style-one">
-                      <div className="box">
-                        <div className="content">
-                          <a href="projects-single.html">
-                            <i className="fa fa-link" aria-hidden="true"></i>
-                          </a>
+                {websiteData?.homePage?.projects &&
+                  websiteData?.homePage?.projects?.length > 0 &&
+                  websiteData?.homePage?.projects?.map((item, index) => (
+                    <div key={index} className="single-project-item">
+                      <div className="img-holder">
+                        <img
+                          src={`http://localhost:4000/${item?.image}`}
+                          alt="Awesome Image"
+                          style={{
+                            width: "250px",
+                            height: "250px",
+                            objectFit: "cover",
+                          }}
+                        />
+                        <div className="overlay-style-one">
+                          <div className="box">
+                            <div className="content">
+                              <Link href={`${locale}/projects/${item?.slug}`}>
+                                <i
+                                  className="fa fa-link"
+                                  aria-hidden="true"
+                                ></i>
+                              </Link>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div className="single-project-item">
-                  <div className="img-holder">
-                    <img
-                      src="images/projects/latest-project-2.jpg"
-                      alt="Awesome Image"
-                    />
-                    <div className="overlay-style-one">
-                      <div className="box">
-                        <div className="content">
-                          <a href="projects-single.html">
-                            <i className="fa fa-link" aria-hidden="true"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="single-project-item">
-                  <div className="img-holder">
-                    <img
-                      src="images/projects/latest-project-3.jpg"
-                      alt="Awesome Image"
-                    />
-                    <div className="overlay-style-one">
-                      <div className="box">
-                        <div className="content">
-                          <a href="projects-single.html">
-                            <i className="fa fa-link" aria-hidden="true"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="single-project-item">
-                  <div className="img-holder">
-                    <img
-                      src="images/projects/latest-project-4.jpg"
-                      alt="Awesome Image"
-                    />
-                    <div className="overlay-style-one">
-                      <div className="box">
-                        <div className="content">
-                          <a href="projects-single.html">
-                            <i className="fa fa-link" aria-hidden="true"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="single-project-item">
-                  <div className="img-holder">
-                    <img
-                      src="images/projects/latest-project-5.jpg"
-                      alt="Awesome Image"
-                    />
-                    <div className="overlay-style-one">
-                      <div className="box">
-                        <div className="content">
-                          <a href="projects-single.html">
-                            <i className="fa fa-link" aria-hidden="true"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="single-project-item">
-                  <div className="img-holder">
-                    <img
-                      src="images/projects/latest-project-6.jpg"
-                      alt="Awesome Image"
-                    />
-                    <div className="overlay-style-one">
-                      <div className="box">
-                        <div className="content">
-                          <a href="projects-single.html">
-                            <i className="fa fa-link" aria-hidden="true"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  ))}
               </div>
             </div>
             <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
@@ -967,13 +725,74 @@ export default function LocalePage({ params }) {
                 </div>
               </div>
             </div>
+          </div> */}
+          <div className="sec-title pdb-50 text-center">
+            <h1>Latest Projects</h1>
+            <span className="border-center"></span>
+          </div>
+          <div className="row">
+            {websiteData?.homePage?.projects &&
+              websiteData?.homePage?.projects?.length > 0 &&
+              websiteData?.homePage?.projects?.map((item, index) => (
+                <div key={index} className="col-md-4">
+                  <div className="single-blog-item">
+                    <div className="img-holder">
+                      <img
+                        src={`http://localhost:4000/${item?.image}`}
+                        alt="Awesome Image"
+                        style={{
+                          width: "100%",
+                          height: "250px",
+                          objectFit: "cover",
+                        }}
+                      />
+                      <div className="overlay-style-one">
+                        <div className="box">
+                          <div className="content">
+                            <Link href={`${locale}/projects/${item?.slug}`}>
+                              <i className="fa fa-link" aria-hidden="true"></i>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-holder">
+                      <ul className="meta-info">
+                        {item?.tags?.map((tag, index) => (
+                          <li key={index}>
+                            <p>{tag}</p>
+                          </li>
+                        ))}
+                      </ul>
+                      <a href="blog-single.html">
+                        <h3 className="blog-title">{item?.title?.[locale]}</h3>
+                      </a>
+                      <div
+                        className="text"
+                        style={{ height: "100px", overflow: "hidden" }}
+                      >
+                        <p>{item?.shortDescription?.[locale]}</p>
+                      </div>
+                      <div className="bottom">
+                        <div className="left pull-left">
+                          <Link href={`${locale}/projects/${item?.slug}`}>
+                            Read More
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
           </div>
         </div>
       </section>
+
+      {/* TODO: fix here */}
       <section className="achivements-area sec-padding">
         <div className="container">
           <div className="sec-title pdb-50">
-            <h1>{t("about.achievements")}</h1>
+            <h1>{t("about.projects")}</h1>
             <span className="border"></span>
           </div>
           <div className="row">

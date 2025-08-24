@@ -105,7 +105,7 @@ const ProjectsPage = () => {
     return projects.map((project, index) => (
       <div
         key={project._id || index}
-        className="single-project-item col-lg-4 col-md-6 col-sm-6 col-xs-12"
+        className="single-project-item col-lg-4 col-md-6 col-sm-6 col-xs-12 "
       >
         <div className="img-holder">
           <img
@@ -115,6 +115,11 @@ const ProjectsPage = () => {
             }
             alt={project.title?.[locale] || t("projects.projectTitle")}
             className="img-responsive"
+            style={{
+              width: "100%",
+              height: "250px",
+              objectFit: "cover",
+            }}
           />
           <div className="overlay-style-one">
             <div className="box">

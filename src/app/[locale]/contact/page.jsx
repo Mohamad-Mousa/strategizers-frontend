@@ -158,7 +158,7 @@ const ContactPage = () => {
               <Card
                 title={t("contact.visitUs")}
                 description={settings?.contact?.address}
-                icon="flaticon-location-pin"
+                icon="flaticon-magnifying-glass"
               />
             </div>
             <div className="col-md-4">
@@ -172,7 +172,7 @@ const ContactPage = () => {
               <Card
                 title={t("contact.emailUs")}
                 description={settings?.contact?.email}
-                icon="flaticon-back"
+                icon="flaticon-clock"
               />
             </div>
           </div>
@@ -313,8 +313,13 @@ const ContactPage = () => {
                         </div>
                         <div className="img-holder">
                           <img
-                            src={"http://localhost:4000/" + item?.image?.url}
-                            alt=""
+                            src={"http://localhost:4000/" + item?.image}
+                            alt={item?.name?.[locale]}
+                            style={{
+                              width: "2200px",
+                              height: "100px",
+                              objectFit: "contain",
+                            }}
                           />
                         </div>
                         <div className="text-holder">

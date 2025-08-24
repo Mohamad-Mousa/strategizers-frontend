@@ -118,9 +118,20 @@ const AboutPage = () => {
                   <img
                     src={`http://localhost:4000/${websiteData?.aboutPage?.mission?.image}`}
                     alt={t("about.mission")}
+                    style={{
+                      width: "100%",
+                      height: "250px",
+                      objectFit: "cover",
+                    }}
                   />
                 </div>
-                <div className="text-holder">
+                <div
+                  className="text-holder"
+                  style={{
+                    height: "200px",
+                    overflow: "hidden",
+                  }}
+                >
                   <h3>
                     {locale === "en"
                       ? websiteData?.aboutPage?.mission?.title?.en
@@ -146,9 +157,20 @@ const AboutPage = () => {
                   <img
                     src={`http://localhost:4000/${websiteData?.aboutPage?.vision?.image}`}
                     alt={t("about.vision")}
+                    style={{
+                      width: "100%",
+                      height: "250px",
+                      objectFit: "cover",
+                    }}
                   />
                 </div>
-                <div className="text-holder">
+                <div
+                  className="text-holder"
+                  style={{
+                    height: "200px",
+                    overflow: "hidden",
+                  }}
+                >
                   <h3>
                     {locale === "en"
                       ? websiteData?.aboutPage?.vision?.title?.en
@@ -174,9 +196,20 @@ const AboutPage = () => {
                   <img
                     src={`http://localhost:4000/${websiteData?.aboutPage?.values?.image}`}
                     alt={t("about.values")}
+                    style={{
+                      width: "100%",
+                      height: "250px",
+                      objectFit: "cover",
+                    }}
                   />
                 </div>
-                <div className="text-holder">
+                <div
+                  className="text-holder"
+                  style={{
+                    height: "200px",
+                    overflow: "hidden",
+                  }}
+                >
                   <h3>
                     {locale === "en"
                       ? websiteData?.aboutPage?.values?.title?.en
@@ -206,11 +239,23 @@ const AboutPage = () => {
                   key={index}
                   className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
                 >
-                  <div className="single-item">
+                  <div
+                    className="single-item"
+                    style={{
+                      height: "300px",
+                      overflow: "hidden",
+                    }}
+                  >
+                    <img
+                      src={`http://localhost:4000/${item.image}`}
+                      alt=""
+                      style={{
+                        width: "100%",
+                        height: "150px",
+                        objectFit: "cover",
+                      }}
+                    />
                     <div className="inner-content">
-                      <div className="iocn-holder">
-                        <span className="flaticon-money"></span>
-                      </div>
                       <span className="border"></span>
                       <div className="title-holder">
                         <h3>
@@ -297,7 +342,7 @@ const AboutPage = () => {
               <ContentSlider
                 items={websiteData?.aboutPage?.historySection?.timeline?.map(
                   (item) => ({
-                    image: item.image,
+                    image: "http://localhost:4000/" + item.image,
                     title: locale === "en" ? item.title?.en : item.title?.ar,
                     date: new Date(item.date).toLocaleDateString("en-US", {
                       year: "numeric",

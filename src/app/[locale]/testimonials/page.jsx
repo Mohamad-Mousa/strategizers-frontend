@@ -106,16 +106,6 @@ const TestimonialsPage = () => {
         className="col-lg-3 col-md-4 col-sm-6 col-xs-12"
       >
         <div className="single-testimonial-item">
-          <div className="img-holder">
-            <img
-              src={
-                testimonial.image ||
-                `/images/testimonial/${(index % 5) + 1}.png`
-              }
-              alt={testimonial.name?.[locale] || t("testimonials.clientName")}
-              className="img-responsive"
-            />
-          </div>
           <div className="text-holder">
             <p>
               {testimonial.description?.[locale] ||
