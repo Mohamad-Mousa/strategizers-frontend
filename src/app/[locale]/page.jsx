@@ -44,324 +44,61 @@ export default function LocalePage({ params }) {
 
   return (
     <div>
-      <section className="rev_slider_wrapper">
-        <div id="slider1" className="rev_slider" data-version="5.0">
-          <ul>
-            <li data-transition="rs-20">
-              <img
-                src="images/slides/1.jpg"
-                alt=""
-                width="1920"
-                height="800"
-                data-bgposition="top center"
-                data-bgfit="cover"
-                data-bgrepeat="no-repeat"
-                data-bgparallax="1"
-              />
-
-              <div
-                className="tp-caption tp-resizeme"
-                data-x="left"
-                data-hoffset="0"
-                data-y="top"
-                data-voffset="310"
-                data-transform_idle="o:1;"
-                data-transform_in="x:[-175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0.01;s:3000;e:Power3.easeOut;"
-                data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
-                data-mask_in="x:[100%];y:0;s:inherit;e:inherit;"
-                data-splitin="none"
-                data-splitout="none"
-                data-responsive_offset="on"
-                data-start="700"
-              >
-                <div className="slide-content-box mar-lft">
-                  <h1>
-                    Looking for first class
-                    <br />
-                    business plan?
-                  </h1>
-                  <p>
-                    With over 10 years of experience helping businesses to find
-                    <br />
-                    comprehensive solutions.
-                  </p>
-                </div>
+      <section
+        className="breadcrumb-area"
+        style={{
+          backgroundImage: `url(${
+            "http://localhost:4000" + websiteData?.homePage?.banner
+          })`,
+        }}
+      >
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="breadcrumbs">
+                <h1>{t("homepage")}</h1>
               </div>
-              <div
-                className="tp-caption tp-resizeme"
-                data-x="left"
-                data-hoffset="0"
-                data-y="top"
-                data-voffset="558"
-                data-transform_idle="o:1;"
-                data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
-                data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
-                data-splitin="none"
-                data-splitout="none"
-                data-responsive_offset="on"
-                data-start="2300"
-              >
-                <div className="slide-content-box mar-lft">
-                  <div className="button">
-                    <a className="" href="#">
-                      Our Company
-                    </a>
-                    <a className="btn-style-two" href="#">
-                      Contact Us
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li data-transition="fade">
-              <img
-                src="images/slides/2.jpg"
-                alt=""
-                width="1920"
-                height="800"
-                data-bgposition="top center"
-                data-bgfit="cover"
-                data-bgrepeat="no-repeat"
-                data-bgparallax="1"
-              />
-
-              <div
-                className="tp-caption tp-resizeme slogan"
-                data-x="center"
-                data-hoffset="0"
-                data-y="center"
-                data-voffset="-65"
-                data-transform_idle="o:1;"
-                data-transform_in="x:[-175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0.01;s:3000;e:Power3.easeOut;"
-                data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
-                data-mask_in="x:[100%];y:0;s:inherit;e:inherit;"
-                data-splitin="none"
-                data-splitout="none"
-                data-start="500"
-              >
-                <div className="slide-content-box middle-slide">
-                  <h1>Plan for tomorrow & live for today</h1>
-                </div>
-              </div>
-              <div
-                className="tp-caption tp-resizeme"
-                data-x="center"
-                data-hoffset="0"
-                data-y="center"
-                data-voffset="13"
-                data-transform_idle="o:1;"
-                data-transform_in="x:[175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0.01;s:3000;e:Power3.easeOut;"
-                data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
-                data-mask_in="x:[-100%];y:0;s:inherit;e:inherit;"
-                data-splitin="none"
-                data-splitout="none"
-                data-responsive_offset="on"
-                data-start="1500"
-              >
-                <div className="slide-content-box middle-slide">
-                  <p>
-                    With over 10 years of experience helping businesses to find
-                    <br />
-                    comprehensive solutions.
-                  </p>
-                </div>
-              </div>
-              <div
-                className="tp-caption tp-resizeme"
-                data-x="center"
-                data-hoffset="0"
-                data-y="center"
-                data-voffset="100"
-                data-transform_idle="o:1;"
-                data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
-                data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
-                data-splitin="none"
-                data-splitout="none"
-                data-responsive_offset="on"
-                data-start="2300"
-              >
-                <div className="slide-content-box middle-slide">
-                  <div className="button">
-                    <a className="#" href="#">
-                      Our Company
-                    </a>
-                    <a className="btn-style-two" href="#">
-                      Contact Us
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li data-transition="fade">
-              <img
-                src="images/slides/3.jpg"
-                alt=""
-                width="1920"
-                height="800"
-                data-bgposition="top center"
-                data-bgfit="cover"
-                data-bgrepeat="no-repeat"
-                data-bgparallax="1"
-              />
-
-              <div
-                className="tp-caption tp-resizeme"
-                data-x="right"
-                data-hoffset="0"
-                data-y="top"
-                data-voffset="310"
-                data-transform_idle="o:1;"
-                data-transform_in="x:[-175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0.01;s:3000;e:Power3.easeOut;"
-                data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
-                data-mask_in="x:[100%];y:0;s:inherit;e:inherit;"
-                data-splitin="none"
-                data-splitout="none"
-                data-responsive_offset="on"
-                data-start="700"
-              >
-                <div className="slide-content-box">
-                  <h1>
-                    Choose right solution
-                    <br />
-                    for your business
-                  </h1>
-                  <p>
-                    With over 10 years of experience helping businesses to find
-                    <br />
-                    comprehensive solutions.
-                  </p>
-                </div>
-              </div>
-
-              <div
-                className="tp-caption tp-resizeme"
-                data-x="center"
-                data-hoffset="135"
-                data-y="top"
-                data-voffset="558"
-                data-transform_idle="o:1;"
-                data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
-                data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
-                data-splitin="none"
-                data-splitout="none"
-                data-responsive_offset="on"
-                data-start="2300"
-              >
-                <div className="slide-content-box mar-lft">
-                  <div className="button">
-                    <a className="" href="#">
-                      Our Company
-                    </a>
-                    <a className="btn-style-two" href="#">
-                      Contact Us
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </section>
+
       <section className="welcome-area sec-padding">
         <div className="container">
           <div className="sec-title text-center">
-            <h1>Welcome to the Strategizers</h1>
+            <h1>{websiteData?.homePage?.welcomeSection?.title?.[locale]}</h1>
             <span className="border-center"></span>
             <p>
-              We are experts in this industry with over 100 years experience.
-              What that means is you are going to get right solution. please
-              find our services.
+              {websiteData?.homePage?.welcomeSection?.description?.[locale]}
             </p>
           </div>
           <div className="row">
-            <div className="col-md-4 col-sm-12 col-xs-12">
-              <div className="single-service-item text-center">
-                <div className="img-holder">
-                  <img src="images/services/1.jpg" alt="Awesome Image" />
-                  <div className="overlay-style-one">
-                    <div className="box">
-                      <div className="content">
+            {websiteData?.homePage?.welcomeSection?.featuredServices?.map(
+              (item, index) => (
+                <div className="col-md-4 col-sm-12 col-xs-12">
+                  <div className="single-service-item text-center">
+                    <div className="img-holder">
+                      <img
+                        src={`http://localhost:4000/${item?.image}`}
+                        alt="Awesome Image"
+                      />
+                      <div className="overlay-style-one"></div>
+                    </div>
+                    <div className="text-holder">
+                      <div className="text">
                         <a href="#">
-                          <i className="fa fa-link" aria-hidden="true"></i>
+                          <h3 className="title">{item?.title?.[locale]}</h3>
                         </a>
+                        <p>{item?.description?.[locale]}</p>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="text-holder">
-                  <div className="text">
-                    <a href="#">
-                      <h3 className="title">About Business</h3>
-                    </a>
-                    <p>
-                      We have built enviable reputation in all the consumer
-                      goods, heavy industry, hightech & manufacturing.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-md-4 col-sm-12 col-xs-12">
-              <div className="single-service-item text-center">
-                <div className="img-holder">
-                  <img src="images/services/2.jpg" alt="Awesome Image" />
-                  <div className="overlay-style-one">
-                    <div className="box">
-                      <div className="content">
-                        <a href="#">
-                          <i className="fa fa-link" aria-hidden="true"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="text-holder">
-                  <div className="text">
-                    <a href="#">
-                      <h3 className="title">Advanced Analytics</h3>
-                    </a>
-                    <p>
-                      Business analytics (BA) is the practice ofiterative,
-                      methodical exploration of our organization's data
-                      emphasis.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-md-4 col-sm-12 col-xs-12">
-              <div className="single-service-item text-center">
-                <div className="img-holder">
-                  <img src="images/services/3.jpg" alt="Awesome Image" />
-                  <div className="overlay-style-one">
-                    <div className="box">
-                      <div className="content">
-                        <a href="#">
-                          <i className="fa fa-link" aria-hidden="true"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="text-holder">
-                  <div className="text">
-                    <a href="#">
-                      <h3 className="title">Customer Insignts</h3>
-                    </a>
-                    <p>
-                      Customer Insight Analytics solutions delivertargeted and
-                      actionable customer analysis thathelp financial.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+              )
+            )}
           </div>
         </div>
       </section>
-
       <section className="service-area">
         <div className="container">
           <div className="sec-title pdb-50">
@@ -372,9 +109,9 @@ export default function LocalePage({ params }) {
             <div className="col-md-12">
               <ContentSlider
                 items={websiteData?.homePage?.services?.map((item) => ({
-                  image: `http://localhost:4000/${item?.image}`,
+                  image: "http://localhost:4000/" + item.image,
                   title: item?.title?.[locale],
-                  description: item?.description?.[locale],
+                  description: item?.shortDescription?.[locale],
                 }))}
                 className="history-carousel"
                 slidesPerView={3}
@@ -383,6 +120,9 @@ export default function LocalePage({ params }) {
                 loop={true}
                 navigation={true}
                 pagination={false}
+                onClick={(item) => {
+                  router.push(`/${locale}/services/${item?.slug}`);
+                }}
               />
             </div>
           </div>
@@ -392,18 +132,18 @@ export default function LocalePage({ params }) {
       <section className="about-area sec-padding">
         <div className="container">
           <div className="sec-title pdb-50 text-center">
-            <h1>{websiteData?.homePage?.welcomeSection?.title?.[locale]}</h1>
+            <h1>{websiteData?.aboutPage?.shortDescription?.[locale]}</h1>
             <span className="border-center"></span>
           </div>
           <div className="row">
             <div className="col-lg-6 col-md-12">
               <div className="img-holder">
                 <img
-                  src="/images/resources/logo2.png"
+                  src={`http://localhost:4000/${websiteData?.aboutPage?.banner}`}
                   alt="Strategizers Logo"
                   style={{
                     width: "100%",
-                    height: "200px",
+                    height: "400px",
                     objectFit: "contain",
                   }}
                 />
@@ -412,12 +152,15 @@ export default function LocalePage({ params }) {
             <div className="col-lg-6 col-md-12">
               <div className="text-holder">
                 <div className="top-text">
-                  <p>
-                    {
-                      websiteData?.homePage?.welcomeSection?.description?.[
-                        locale
-                      ]
-                    }
+                  <p
+                    style={{
+                      display: "-webkit-box",
+                      WebkitBoxOrient: "vertical",
+                      WebkitLineClamp: 12,
+                      overflow: "hidden",
+                    }}
+                  >
+                    {websiteData?.aboutPage?.longDescription?.[locale]}
                   </p>
                 </div>
                 <div className="bottom">
@@ -431,45 +174,10 @@ export default function LocalePage({ params }) {
               </div>
             </div>
           </div>
-          <div className="promotion-box">
-            <div className="row">
-              {websiteData?.homePage?.welcomeSection?.featuredServices?.map(
-                (item, index) => (
-                  <div key={index} className="col-md-4">
-                    <div className="singel-box hvr-float">
-                      <div className="top">
-                        <div className="icon-holder">
-                          <span
-                            style={{
-                              width: "100px",
-                              height: "100px",
-                              objectFit: "contain",
-                            }}
-                          >
-                            <img
-                              src={`http://localhost:4000/${item?.icon}`}
-                              alt="Icon"
-                            />
-                          </span>
-                        </div>
-                        <div className="title-holder">
-                          <h3>{item?.title?.[locale]}</h3>
-                        </div>
-                      </div>
-                      <div className="text-holder">
-                        <p>{item?.description?.[locale]}</p>
-                      </div>
-                    </div>
-                  </div>
-                )
-              )}
-            </div>
-          </div>
         </div>
       </section>
 
       <TestimonialsSlider items={websiteData?.homePage?.testimonials} />
-
       <section className="consultations-area sec-padding">
         <div className="container">
           <div className="row">
@@ -568,7 +276,6 @@ export default function LocalePage({ params }) {
           </div>
         </div>
       </section>
-
       <section className="latest-blog-area sec-padding">
         <div className="container">
           <div className="sec-title pdb-50 text-center">
@@ -610,9 +317,9 @@ export default function LocalePage({ params }) {
                           <a href="#">{item?.tags?.[0]}</a>
                         </li>
                       </ul>
-                      <a href="blog-single.html">
+                      <Link href={`${locale}/blogs/${item?.slug}`}>
                         <h3 className="blog-title">{item?.title?.[locale]}</h3>
-                      </a>
+                      </Link>
                       <div
                         className="text"
                         style={{ height: "100px", overflow: "hidden" }}
@@ -633,7 +340,6 @@ export default function LocalePage({ params }) {
           </div>
         </div>
       </section>
-
       <section className="project-faq-area sec-padding">
         <div className="container">
           {/* <div className="row">
@@ -764,9 +470,9 @@ export default function LocalePage({ params }) {
                           </li>
                         ))}
                       </ul>
-                      <a href="blog-single.html">
+                      <Link href={`${locale}/projects/${item?.slug}`}>
                         <h3 className="blog-title">{item?.title?.[locale]}</h3>
-                      </a>
+                      </Link>
                       <div
                         className="text"
                         style={{ height: "100px", overflow: "hidden" }}
@@ -787,7 +493,6 @@ export default function LocalePage({ params }) {
           </div>
         </div>
       </section>
-
       {/* TODO: fix here */}
       <section className="achivements-area sec-padding">
         <div className="container">

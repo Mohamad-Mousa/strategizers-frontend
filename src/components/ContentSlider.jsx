@@ -38,6 +38,7 @@ const ContentSlider = ({
       spaceBetween: 30,
     },
   },
+  onClick = () => {},
 }) => {
   const swiperRef = useRef(null);
 
@@ -181,7 +182,19 @@ const ContentSlider = ({
       >
         {items.map((item, index) => (
           <SwiperSlide key={index}>
-            <div className="single-item text-center">
+            <div
+              className={`single-item text-center ${
+                onClick ? "cursor-pointer" : ""
+              }`}
+              style={{
+                cursor: onClick ? "pointer" : "default",
+              }}
+              onClick={() => {
+                if (onClick) {
+                  onClick(item);
+                }
+              }}
+            >
               <div className="img-holder">
                 <img
                   src={item.image}
