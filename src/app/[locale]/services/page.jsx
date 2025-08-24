@@ -120,6 +120,7 @@ const ServicesPage = () => {
               }
               alt={service.title?.[locale] || t("services.serviceTitle")}
               className="img-responsive"
+              style={{ width: "100%", height: "250px", objectFit: "cover" }}
             />
             <div className="overlay-style-one">
               <div className="box">

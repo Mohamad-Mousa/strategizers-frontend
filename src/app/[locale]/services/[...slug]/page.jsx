@@ -56,7 +56,7 @@ const SingleServicePage = () => {
       <section
         className="breadcrumb-area"
         style={{
-          backgroundImage: `url(http://localhost:4000/${currentService?.banner?.image})`,
+          backgroundImage: `url(http://localhost:4000/${currentService?.banner})`,
         }}
       >
         <div className="container">
@@ -102,17 +102,24 @@ const SingleServicePage = () => {
                   </div>
                   <div className="row">
                     {currentService?.subServices?.map((item, index) => (
-                      <div className="col-lg-4 col-md-12">
+                      <div key={index} className="col-lg-4 col-md-12">
                         <div className="single-item">
                           <div className="icon-holder">
-                            <img
-                              src={`http://localhost:4000/${item?.icon} || /images/services/sustainability.jpg`}
-                              alt="service image"
-                            />
+                            <span className={item?.icon}></span>
                           </div>
                           <div className="text-holder">
                             <h3>{item?.title?.[locale]}</h3>
-                            <p>{item?.description?.[locale]}</p>
+                            <p
+                              style={{
+                                height: "100px",
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                                display: "-webkit-box",
+                                WebkitLineClamp: 3,
+                              }}
+                            >
+                              {item?.description?.[locale]}
+                            </p>
                             <a href="#">Know More</a>
                           </div>
                         </div>
@@ -148,33 +155,22 @@ const SingleServicePage = () => {
                             </ul>
                           </div>
                         </div>
-                        <div className="col-lg-6 col-md-12">
-                          <div className="video-holder">
-                            <img
-                              src={
-                                `http://localhost:4000/${currentService?.benefits?.video}` ||
-                                "/images/services/video-gallery.jpg"
-                              }
-                              alt="Awesome Video Gallery"
-                            />
-                            <div className="overlay-gallery">
-                              <div className="icon-holder">
-                                <div className="icon">
-                                  <a
-                                    className="html5lightbox"
-                                    title="Strategizers Video Gallery"
-                                    href="https://www.youtube.com/watch?v=-VW_tLcGgwA"
-                                  >
-                                    <img
-                                      src="/images/icon/play-btn.png"
-                                      alt="Play Button"
-                                    />
-                                  </a>
-                                </div>
-                              </div>
+                        {currentService?.benefits?.video && (
+                          <div className="col-lg-12 col-md-12">
+                            <div className="video-holder">
+                              <iframe
+                                width="100%"
+                                height="400"
+                                src={currentService?.benefits?.video}
+                                title="Management Consulting Vs Strategy Consulting (Differences Explained)"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerPolicy="strict-origin-when-cross-origin"
+                                allowFullScreen
+                              ></iframe>
                             </div>
                           </div>
-                        </div>
+                        )}
                       </div>
                     </div>
                   </div>

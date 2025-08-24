@@ -135,6 +135,7 @@ export default function LocalePage({ params }) {
                 onClick={(item) => {
                   router.push(`/${locale}/services/${item?.slug}`);
                 }}
+                imageHeight="150px"
               />
             </div>
           </div>
@@ -239,14 +240,12 @@ export default function LocalePage({ params }) {
                       <input
                         type="text"
                         name="form_name"
-                        value=""
                         placeholder="Name *"
-                        required=""
+                        required
                       />
                       <input
                         type="text"
                         name="form_phone"
-                        value=""
                         placeholder="Ph Num"
                       />
                     </div>
@@ -254,12 +253,11 @@ export default function LocalePage({ params }) {
                       <input
                         type="email"
                         name="form_email"
-                        value=""
                         placeholder="Email *"
-                        required=""
+                        required
                       />
                       <select className="selectmenu">
-                        <option selected="selected">Enquiry About</option>
+                        <option>Enquiry About</option>
                         <option>Business Growth</option>
                         <option>Sustainability</option>
                         <option>Performance</option>

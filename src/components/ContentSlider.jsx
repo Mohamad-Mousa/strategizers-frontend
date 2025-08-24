@@ -39,6 +39,7 @@ const ContentSlider = ({
     },
   },
   onClick = () => {},
+  imageHeight = "100%",
 }) => {
   const swiperRef = useRef(null);
 
@@ -199,7 +200,11 @@ const ContentSlider = ({
                 <img
                   src={item.image}
                   alt={item.title || `Item ${index + 1}`}
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  style={{
+                    width: "100%",
+                    height: imageHeight || "100%",
+                    objectFit: "cover",
+                  }}
                 />
               </div>
               <div className="text-holder">
