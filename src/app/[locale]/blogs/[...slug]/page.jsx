@@ -93,7 +93,9 @@ const SingleBlogPage = () => {
       <section
         className="breadcrumb-area"
         style={{
-          backgroundImage: `url(${"http://localhost:4000/" + banner})`,
+          backgroundImage: `url(${
+            "http://localhost:4000/" + currentBlog.image
+          })`,
         }}
       >
         <div className="container">

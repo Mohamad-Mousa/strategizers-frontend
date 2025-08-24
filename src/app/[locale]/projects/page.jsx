@@ -17,7 +17,7 @@ const ProjectsPage = () => {
   const { totalCount, totalPages } = pagination;
 
   const banner = useSelector(
-    (state) => state?.website?.data?.projectsPage?.banner
+    (state) => state?.website?.data?.projectPage?.banner
   );
 
   useEffect(() => {

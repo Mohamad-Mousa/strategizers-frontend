@@ -79,7 +79,9 @@ const SingleProjectPage = () => {
       <section
         className="breadcrumb-area"
         style={{
-          backgroundImage: `url(${"http://localhost:4000/" + banner})`,
+          backgroundImage: `url(${
+            "http://localhost:4000/" + currentProject.image
+          })`,
         }}
       >
         <div className="container">

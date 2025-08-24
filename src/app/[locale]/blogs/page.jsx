@@ -16,9 +16,7 @@ const BlogsPage = () => {
   );
   const { totalCount, totalPages } = pagination;
 
-  const banner = useSelector(
-    (state) => state?.website?.data?.blogsPage?.banner
-  );
+  const banner = useSelector((state) => state?.website?.data?.blogPage?.banner);
 
   useEffect(() => {
     dispatch(

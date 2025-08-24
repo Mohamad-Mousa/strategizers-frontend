@@ -18,7 +18,7 @@ const ServicesPage = () => {
   const { totalCount, totalPages } = pagination;
 
   const banner = useSelector(
-    (state) => state?.website?.data?.servicesPage?.banner
+    (state) => state?.website?.data?.servicePage?.banner
   );
 
   useEffect(() => {

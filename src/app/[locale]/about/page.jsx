@@ -20,6 +20,10 @@ const AboutPage = () => {
     error,
   } = useSelector((state) => state.website);
 
+  const banner = useSelector(
+    (state) => state?.website?.data?.aboutPage?.banner
+  );
+
   useEffect(() => {
     dispatch(fetchWebsiteData());
   }, [dispatch]);
@@ -63,9 +67,7 @@ const AboutPage = () => {
       <section
         className="breadcrumb-area"
         style={{
-          backgroundImage: `url(${
-            "http://localhost:4000/" + websiteData?.aboutPage?.banner
-          })`,
+          backgroundImage: `url(${"http://localhost:4000/" + banner})`,
         }}
       >
         <div className="container">
