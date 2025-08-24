@@ -3,7 +3,7 @@ import { useTranslation } from "../../hooks/useTranslation";
 import { useLanguage } from "../../components/LanguageProvider";
 import LanguageSwitcher from "../../components/LanguageSwitcher";
 import { useRouter } from "next/navigation";
-import { use } from "react";
+import { use, useState } from "react";
 import Slider from "../../components/Slider";
 import TestimonialsSlider from "../../components/TestimonialsSlider";
 import ContentSlider from "../../components/ContentSlider";
@@ -33,10 +33,20 @@ export default function LocalePage({ params }) {
     dispatch(fetchWebsiteData());
   }, [dispatch]);
 
-  const handleLanguageChange = (newLocale) => {
-    // Navigate to the new locale
-    router.push(`/${newLocale}`);
-  };
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const banners = websiteData?.homePage?.banner || [];
+
+  useEffect(() => {
+    if (!banners.length) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % banners.length);
+    }, 5000); // 5000ms = 5 seconds
+
+    return () => clearInterval(interval); // cleanup on unmount
+  }, [banners.length]);
+
+  const currentBanner = banners[currentIndex];
 
   if (!websiteData) {
     return <div>Loading...</div>;
@@ -47,16 +57,18 @@ export default function LocalePage({ params }) {
       <section
         className="breadcrumb-area"
         style={{
-          backgroundImage: `url(${
-            "http://localhost:4000" + websiteData?.homePage?.banner
-          })`,
+          backgroundImage: `url(http://localhost:4000/${currentBanner?.image})`,
+          transition: "background-image 0.5s ease-in-out",
         }}
       >
         <div className="container">
           <div className="row">
             <div className="col-md-12">
               <div className="breadcrumbs">
-                <h1>{t("homepage")}</h1>
+                <h1 style={{ marginBottom: "20px" }}>
+                  {currentBanner?.title?.[locale]}
+                </h1>
+                <p>{currentBanner?.description?.[locale]}</p>
               </div>
             </div>
           </div>

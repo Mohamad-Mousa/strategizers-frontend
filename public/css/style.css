@@ -2400,14 +2400,14 @@ select:focus {
   background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;
-  padding-top: 135px;
+  padding-top: 150px;
   position: relative;
   z-index: 1;
   margin-top: -140px;
 }
 
 .breadcrumb-area::before {
-  background: rgba(27, 48, 83, 0.9) none repeat scroll 0 0;
+  background: rgba(27, 48, 83, 0.4) none repeat scroll 0 0;
   background-position: center top;
   content: "";
   height: 100%;
@@ -2428,6 +2428,15 @@ select:focus {
   font-size: 48px;
   font-weight: 700;
   line-height: 50px;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.breadcrumb-area .breadcrumbs p {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 20px;
   text-transform: capitalize;
   text-align: center;
 }
