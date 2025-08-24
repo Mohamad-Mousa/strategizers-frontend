@@ -119,7 +119,10 @@ const BlogsPage = () => {
       <div key={blog._id || index} className="single-blog-item">
         <div className="img-holder">
           <img
-            src={blog.image || `/images/blog/blog-large-${(index % 4) + 1}.jpg`}
+            src={
+              "http://localhost:4000/" + blog.image ||
+              `/images/blog/blog-large-${(index % 4) + 1}.jpg`
+            }
             alt={blog.title?.[locale] || t("blogs.blogTitle")}
             className="img-responsive"
           />
@@ -187,7 +190,7 @@ const BlogsPage = () => {
       <section
         className="breadcrumb-area"
         style={{
-          backgroundImage: `url(${"http://localhost:4000" + banner})`,
+          backgroundImage: `url(${"http://localhost:4000/" + banner})`,
         }}
       >
         <div className="container">

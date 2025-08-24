@@ -111,7 +111,10 @@ const OurTeamPage = () => {
         <div className="single-team-member hvr-underline-reveal">
           <div className="img-holder">
             <img
-              src={member.image || `/images/team/${(index % 8) + 1}.jpg`}
+              src={
+                "http://localhost:4000/" + member.image ||
+                `/images/team/${(index % 8) + 1}.jpg`
+              }
               alt={member.name?.[locale] || t("team.memberName")}
               className="img-responsive"
             />

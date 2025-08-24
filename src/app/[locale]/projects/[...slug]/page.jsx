@@ -79,7 +79,7 @@ const SingleProjectPage = () => {
       <section
         className="breadcrumb-area"
         style={{
-          backgroundImage: `url(${"http://localhost:4000" + banner})`,
+          backgroundImage: `url(${"http://localhost:4000/" + banner})`,
         }}
       >
         <div className="container">
@@ -105,7 +105,7 @@ const SingleProjectPage = () => {
                     <div className="single-project-img-box">
                       <img
                         src={
-                          `http://localhost:4000${currentProject.image}` ||
+                          `http://localhost:4000/${currentProject.image}` ||
                           "/images/projects/single-project.jpg"
                         }
                         alt={
@@ -209,14 +209,15 @@ const SingleProjectPage = () => {
                       </div>
                       <div className="text-holder">
                         <p>
-                          {currentProject.projectAnalysis?.[locale] ||
-                            t("project.noProjectAnalysisAvailable")}
+                          {currentProject.projectAnalysis?.description?.[
+                            locale
+                          ] || t("project.noProjectAnalysisAvailable")}
                         </p>
                       </div>
                       <div className="chart-box">
                         <img
                           src={
-                            `http://localhost:4000${currentProject.projectAnalysis.image}` ||
+                            `http://localhost:4000/${currentProject.projectAnalysis.image}` ||
                             "/images/projects/analysis-chart.jpg"
                           }
                           alt="Project Analysis"
@@ -234,14 +235,15 @@ const SingleProjectPage = () => {
                       </div>
                       <div className="text-holder">
                         <p>
-                          {currentProject.projectSolutions?.[locale] ||
-                            t("project.noProjectSolutionsAvailable")}
+                          {currentProject.projectSolutions?.description?.[
+                            locale
+                          ] || t("project.noProjectSolutionsAvailable")}
                         </p>
                       </div>
                       <div className="chart-box">
                         <img
                           src={
-                            `http://localhost:4000${currentProject.projectSolutions.image}` ||
+                            `http://localhost:4000/${currentProject.projectSolutions.image}` ||
                             "/images/projects/analysis-chart.jpg"
                           }
                           alt="Project Solutions"
@@ -259,14 +261,15 @@ const SingleProjectPage = () => {
                       </div>
                       <div className="text-holder">
                         <p>
-                          {currentProject.projectResults?.[locale] ||
-                            t("project.noProjectResultsAvailable")}
+                          {currentProject.projectResults?.description?.[
+                            locale
+                          ] || t("project.noProjectResultsAvailable")}
                         </p>
                       </div>
                       <div className="chart-box">
                         <img
                           src={
-                            `http://localhost:4000${currentProject.projectResults.image}` ||
+                            `http://localhost:4000/${currentProject.projectResults.image}` ||
                             "/images/projects/results-chart.jpg"
                           }
                           alt="Project Results"

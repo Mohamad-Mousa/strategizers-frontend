@@ -109,7 +109,10 @@ const ProjectsPage = () => {
       >
         <div className="img-holder">
           <img
-            src={project.image || `/images/projects/${(index % 9) + 1}.jpg`}
+            src={
+              "http://localhost:4000/" + project.image ||
+              `/images/projects/${(index % 9) + 1}.jpg`
+            }
             alt={project.title?.[locale] || t("projects.projectTitle")}
             className="img-responsive"
           />
@@ -144,7 +147,7 @@ const ProjectsPage = () => {
       <section
         className="breadcrumb-area"
         style={{
-          backgroundImage: `url(${"http://localhost:4000" + banner})`,
+          backgroundImage: `url(${"http://localhost:4000/" + banner})`,
         }}
       >
         <div className="container">

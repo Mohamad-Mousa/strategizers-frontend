@@ -132,7 +132,7 @@ const ContactPage = () => {
       <section
         className="breadcrumb-area"
         style={{
-          backgroundImage: `url(${"http://localhost:4000" + banner})`,
+          backgroundImage: `url(${"http://localhost:4000/" + banner})`,
         }}
       >
         <div className="container">
@@ -313,7 +313,7 @@ const ContactPage = () => {
                         </div>
                         <div className="img-holder">
                           <img
-                            src={"http://localhost:4000" + item?.image?.url}
+                            src={"http://localhost:4000/" + item?.image?.url}
                             alt=""
                           />
                         </div>

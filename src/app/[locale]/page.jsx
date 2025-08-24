@@ -4,6 +4,8 @@ import { useLanguage } from "../../components/LanguageProvider";
 import LanguageSwitcher from "../../components/LanguageSwitcher";
 import { useRouter } from "next/navigation";
 import { use } from "react";
+import Slider from "../../components/Slider";
+import TestimonialsSlider from "../../components/TestimonialsSlider";
 
 export default function LocalePage({ params }) {
   const { locale } = use(params);
@@ -534,60 +536,7 @@ export default function LocalePage({ params }) {
           </div>
         </div>
       </section>
-      <section className="testimonial-area">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <div className="testimonial-carousel">
-                <div className="single-item">
-                  <div className="text-box">
-                    <p>
-                      For any types of Business task, Solutions wordPress theme
-                      is the best choice of embraced innovation to provide a
-                      superior level of excellence.
-                    </p>
-                    <span className="border"></span>
-                  </div>
-                  <div className="client-info">
-                    <h3>Stephanie Gaskel</h3>
-                    <span>Newyork</span>
-                  </div>
-                </div>
-
-                <div className="single-item">
-                  <div className="text-box">
-                    <p>
-                      For any types of Business task, Solutions wordPress theme
-                      is the best choice of embraced innovation to provide a
-                      superior level of excellence.
-                    </p>
-                    <span className="border"></span>
-                  </div>
-                  <div className="client-info">
-                    <h3>Stephanie Gaskel</h3>
-                    <span>Newyork</span>
-                  </div>
-                </div>
-
-                <div className="single-item">
-                  <div className="text-box">
-                    <p>
-                      For any types of Business task, Solutions wordPress theme
-                      is the best choice of embraced innovation to provide a
-                      superior level of excellence.
-                    </p>
-                    <span className="border"></span>
-                  </div>
-                  <div className="client-info">
-                    <h3>Stephanie Gaskel</h3>
-                    <span>Newyork</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <TestimonialsSlider />
       <section className="consultations-area sec-padding">
         <div className="container">
           <div className="row">
@@ -1021,45 +970,45 @@ export default function LocalePage({ params }) {
           </div>
         </div>
       </section>
-      <section className="brand-area">
+      <section className="achivements-area sec-padding">
         <div className="container">
           <div className="sec-title pdb-50">
-            <h1>Our Partners</h1>
+            <h1>{t("about.achievements")}</h1>
             <span className="border"></span>
           </div>
           <div className="row">
             <div className="col-md-12">
-              <div className="brand">
-                <a className="tool_tip" title="Media Partner" href="#">
-                  <div className="single-item">
-                    <img src="images/brand/1.png" alt="Awesome Brand Image" />
-                  </div>
-                </a>
-
-                <a className="tool_tip" title="Media Partner" href="#">
-                  <div className="single-item">
-                    <img src="images/brand/2.png" alt="Awesome Brand Image" />
-                  </div>
-                </a>
-
-                <a className="tool_tip" title="Media Partner" href="#">
-                  <div className="single-item">
-                    <img src="images/brand/3.png" alt="Awesome Brand Image" />
-                  </div>
-                </a>
-
-                <a className="tool_tip" title="Media Partner" href="#">
-                  <div className="single-item" title="Media Partner">
-                    <img src="images/brand/4.png" alt="Awesome Brand Image" />
-                  </div>
-                </a>
-
-                <a className="tool_tip" title="Media Partner" href="#">
-                  <div className="single-item">
-                    <img src="images/brand/5.png" alt="Awesome Brand Image" />
-                  </div>
-                </a>
-              </div>
+              <Slider
+                images={[
+                  {
+                    src: "/images/brand/1.png",
+                    alt: "Achievement 1",
+                  },
+                  {
+                    src: "/images/brand/2.png",
+                    alt: "Achievement 2",
+                  },
+                  {
+                    src: "/images/brand/3.png",
+                    alt: "Achievement 3",
+                  },
+                  {
+                    src: "/images/brand/4.png",
+                    alt: "Achievement 4",
+                  },
+                  {
+                    src: "/images/brand/5.png",
+                    alt: "Achievement 5",
+                  },
+                ]}
+                className="achivement-carousel"
+                slidesPerView={4}
+                spaceBetween={30}
+                autoplay={true}
+                loop={true}
+                navigation={true}
+                pagination={false}
+              />
             </div>
           </div>
         </div>

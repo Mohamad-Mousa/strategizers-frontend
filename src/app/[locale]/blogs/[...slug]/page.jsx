@@ -93,7 +93,7 @@ const SingleBlogPage = () => {
       <section
         className="breadcrumb-area"
         style={{
-          backgroundImage: `url(${"http://localhost:4000" + banner})`,
+          backgroundImage: `url(${"http://localhost:4000/" + banner})`,
         }}
       >
         <div className="container">
@@ -115,7 +115,7 @@ const SingleBlogPage = () => {
                   <div className="img-holder">
                     <img
                       src={
-                        `http://localhost:4000${currentBlog.image}` ||
+                        `http://localhost:4000/${currentBlog.image}` ||
                         "/images/blog/blog-single.jpg"
                       }
                       alt={currentBlog.title?.[locale] || t("blog.blogImage")}

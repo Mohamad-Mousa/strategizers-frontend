@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "../../../hooks/useTranslation";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchServices } from "../../../store/slices/servicesSlice";
+import Link from "next/link";
 
 const ServicesPage = () => {
   const { t, locale } = useTranslation();
@@ -113,27 +114,30 @@ const ServicesPage = () => {
         >
           <div className="img-holder">
             <img
-              src={service.image || `/images/services/${(index % 6) + 1}.jpg`}
+              src={
+                "http://localhost:4000/" + service.icon ||
+                `/images/services/${(index % 6) + 1}.jpg`
+              }
               alt={service.title?.[locale] || t("services.serviceTitle")}
               className="img-responsive"
             />
             <div className="overlay-style-one">
               <div className="box">
                 <div className="content">
-                  <a href={`/services/${service.slug}`}>
+                  <Link href={`/${locale}/services/${service.slug}`}>
                     <i className="fa fa-link" aria-hidden="true"></i>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
           <div className="text-holder">
             <div className="text">
-              <a href={`/services/${service.slug}`}>
+              <Link href={`/${locale}/services/${service.slug}`}>
                 <h3 className="title">
                   {service.title?.[locale] || t("services.serviceTitle")}
                 </h3>
-              </a>
+              </Link>
               <p>
                 {service.shortDescription?.[locale] ||
                   service.description?.[locale] ||
@@ -160,7 +164,7 @@ const ServicesPage = () => {
       <section
         className="breadcrumb-area"
         style={{
-          backgroundImage: `url(${"http://localhost:4000" + banner})`,
+          backgroundImage: `url(${"http://localhost:4000/" + banner})`,
         }}
       >
         <div className="container">

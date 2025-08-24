@@ -56,7 +56,7 @@ const SingleServicePage = () => {
       <section
         className="breadcrumb-area"
         style={{
-          backgroundImage: `url(http://localhost:4000${currentService?.banner?.image})`,
+          backgroundImage: `url(http://localhost:4000/${currentService?.banner?.image})`,
         }}
       >
         <div className="container">
@@ -80,7 +80,7 @@ const SingleServicePage = () => {
                       <div className="img-holder">
                         <img
                           src={
-                            `http://localhost:4000${currentService?.image}` ||
+                            `http://localhost:4000/${currentService?.image}` ||
                             "/images/services/sustainability.jpg"
                           }
                           alt="Awesome Image"
@@ -106,7 +106,7 @@ const SingleServicePage = () => {
                         <div className="single-item">
                           <div className="icon-holder">
                             <img
-                              src={`http://localhost:4000${item?.icon} || /images/services/sustainability.jpg`}
+                              src={`http://localhost:4000/${item?.icon} || /images/services/sustainability.jpg`}
                               alt="service image"
                             />
                           </div>
@@ -152,7 +152,7 @@ const SingleServicePage = () => {
                           <div className="video-holder">
                             <img
                               src={
-                                `http://localhost:4000${currentService?.benefits?.video}` ||
+                                `http://localhost:4000/${currentService?.benefits?.video}` ||
                                 "/images/services/video-gallery.jpg"
                               }
                               alt="Awesome Video Gallery"
@@ -254,7 +254,7 @@ const SingleServicePage = () => {
                     {currentService?.brochure?.pdf && (
                       <li>
                         <Link
-                          href={`http://localhost:4000${currentService?.brochure?.pdf}`}
+                          href={`http://localhost:4000/${currentService?.brochure?.pdf}`}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -273,7 +273,7 @@ const SingleServicePage = () => {
                     {currentService?.brochure?.document && (
                       <li>
                         <Link
-                          href={`http://localhost:4000${currentService?.brochure?.document}`}
+                          href={`http://localhost:4000/${currentService?.brochure?.document}`}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -304,7 +304,7 @@ const SingleServicePage = () => {
                             <div className="img-holder">
                               <img
                                 src={
-                                  `http://localhost:4000${item?.image}` ||
+                                  `http://localhost:4000/${item?.image}` ||
                                   "/images/blog/blog-single.jpg"
                                 }
                                 alt=""

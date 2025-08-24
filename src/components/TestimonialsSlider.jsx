@@ -1,0 +1,192 @@
+"use client";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTestimonials } from "../store/slices/testimonialsSlice";
+import { useTranslation } from "../hooks/useTranslation";
+
+const TestimonialsSlider = () => {
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
+  const { testimonials, loading } = useSelector((state) => state.testimonials);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    dispatch(
+      fetchTestimonials({
+        page: 1,
+        limit: 10,
+        sortBy: "createdAt",
+        sortDirection: "desc",
+        term: "",
+      })
+    );
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (testimonials.length > 0) {
+      const interval = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % testimonials.length);
+      }, 5000); // Change slide every 5 seconds
+
+      return () => clearInterval(interval);
+    }
+  }, [testimonials.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide(
+      (prev) => (prev - 1 + testimonials.length) % testimonials.length
+    );
+  };
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+  };
+
+  if (loading) {
+    return (
+      <section className="testimonial-area">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="testimonial-carousel">
+                <div className="single-item">
+                  <div className="text-box">
+                    <p>Loading testimonials...</p>
+                    <span className="border"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (!testimonials || testimonials.length === 0) {
+    return (
+      <section className="testimonial-area">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="testimonial-carousel">
+                <div className="single-item">
+                  <div className="text-box">
+                    <p>No testimonials available at the moment.</p>
+                    <span className="border"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section className="testimonial-area">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12">
+            <div className="testimonial-carousel">
+              <div className="single-item">
+                <div className="text-box">
+                  <p>
+                    {testimonials[currentSlide]?.description?.[t.locale] ||
+                      testimonials[currentSlide]?.description?.en}
+                  </p>
+                  <span className="border"></span>
+                </div>
+                <div className="client-info">
+                  <h3>
+                    {testimonials[currentSlide]?.name?.[t.locale] ||
+                      testimonials[currentSlide]?.name?.en}
+                  </h3>
+                  <span>
+                    {testimonials[currentSlide]?.position?.[t.locale] ||
+                      testimonials[currentSlide]?.position?.en}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Navigation Dots */}
+            <div
+              className="testimonial-dots"
+              style={{ textAlign: "center", marginTop: "20px" }}
+            >
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  style={{
+                    width: "12px",
+                    height: "12px",
+                    borderRadius: "50%",
+                    border: "1px solid white",
+                    backgroundColor:
+                      index === currentSlide ? "white" : "transparent",
+                    margin: "0 5px",
+                    cursor: "pointer",
+                    transition: "background-color 0.3s ease",
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Navigation Arrows */}
+            {testimonials.length > 1 && (
+              <>
+                <button
+                  onClick={prevSlide}
+                  style={{
+                    position: "absolute",
+                    left: "20px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    background: "rgba(0,0,0,0.5)",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "50%",
+                    width: "40px",
+                    height: "40px",
+                    cursor: "pointer",
+                    fontSize: "18px",
+                  }}
+                >
+                  ‹
+                </button>
+                <button
+                  onClick={nextSlide}
+                  style={{
+                    position: "absolute",
+                    right: "20px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    background: "rgba(0,0,0,0.5)",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "50%",
+                    width: "40px",
+                    height: "40px",
+                    cursor: "pointer",
+                    fontSize: "18px",
+                  }}
+                >
+                  ›
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default TestimonialsSlider;

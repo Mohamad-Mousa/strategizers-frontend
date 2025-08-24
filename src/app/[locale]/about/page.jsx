@@ -64,7 +64,7 @@ const AboutPage = () => {
         className="breadcrumb-area"
         style={{
           backgroundImage: `url(${
-            "http://localhost:4000" + websiteData?.aboutPage?.banner
+            "http://localhost:4000/" + websiteData?.aboutPage?.banner
           })`,
         }}
       >
@@ -84,7 +84,7 @@ const AboutPage = () => {
             <div className="col-lg-6 col-md-12">
               <div className="img-holder">
                 <img
-                  src={`http://localhost:4000${websiteData?.aboutPage?.banner}`}
+                  src={`http://localhost:4000/${websiteData?.aboutPage?.banner}`}
                   alt={t("about.awesomeImage")}
                 />
               </div>
@@ -116,7 +116,7 @@ const AboutPage = () => {
               >
                 <div className="img-holder">
                   <img
-                    src={`http://localhost:4000${websiteData?.aboutPage?.mission?.image}`}
+                    src={`http://localhost:4000/${websiteData?.aboutPage?.mission?.image}`}
                     alt={t("about.mission")}
                   />
                 </div>
@@ -144,7 +144,7 @@ const AboutPage = () => {
               >
                 <div className="img-holder">
                   <img
-                    src={`http://localhost:4000${websiteData?.aboutPage?.vision?.image}`}
+                    src={`http://localhost:4000/${websiteData?.aboutPage?.vision?.image}`}
                     alt={t("about.vision")}
                   />
                 </div>
@@ -172,7 +172,7 @@ const AboutPage = () => {
               >
                 <div className="img-holder">
                   <img
-                    src={`http://localhost:4000${websiteData?.aboutPage?.values?.image}`}
+                    src={`http://localhost:4000/${websiteData?.aboutPage?.values?.image}`}
                     alt={t("about.values")}
                   />
                 </div>
