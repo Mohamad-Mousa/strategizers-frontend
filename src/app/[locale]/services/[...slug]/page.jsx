@@ -117,9 +117,10 @@ const SingleServicePage = () => {
                                 display: "-webkit-box",
                                 WebkitLineClamp: 3,
                               }}
-                            >
-                              {item?.description?.[locale]}
-                            </p>
+                              dangerouslySetInnerHTML={{
+                                __html: item?.description?.[locale],
+                              }}
+                            />
                             <a href="#">Know More</a>
                           </div>
                         </div>

@@ -43,7 +43,9 @@
     "readMore": "Read More",
     "latestProjects": "Latest Projects",
     "contactDetails": "Contact Details",
-    "pleaseFindBelow": "Please find below contact details and contact us today!"
+    "pleaseFindBelow": "Please find below contact details and contact us today!",
+    "aboutUs": "About Us",
+    "contactUs": "Contact Us"
   },
   "services": {
     "title": "Services",

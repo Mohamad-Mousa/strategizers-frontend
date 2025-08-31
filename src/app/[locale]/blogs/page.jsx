@@ -160,11 +160,14 @@ const BlogsPage = () => {
             </li>
           </ul>
           <div className="text">
-            <p>
-              {blog.shortDescription?.[locale] ||
-                blog.description?.[locale] ||
-                t("blogs.defaultDescription")}
-            </p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html:
+                  blog.shortDescription?.[locale] ||
+                  blog.description?.[locale] ||
+                  t("blogs.defaultDescription"),
+              }}
+            />
           </div>
           <div className="read-more-button">
             <a href={`/${locale}/blogs/${blog.slug}`}>{t("blogs.readMore")}</a>

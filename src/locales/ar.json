@@ -43,7 +43,9 @@
     "readMore": "اقرأ المزيد",
     "latestProjects": "أحدث المشاريع",
     "contactDetails": "تفاصيل الاتصال",
-    "pleaseFindBelow": "يرجى العثور على تفاصيل الاتصال أدناه واتصل بنا اليوم!"
+    "pleaseFindBelow": "يرجى العثور على تفاصيل الاتصال أدناه واتصل بنا اليوم!",
+    "aboutUs": "من نحن",
+    "contactUs": "اتصل بنا"
   },
   "services": {
     "title": "الخدمات",

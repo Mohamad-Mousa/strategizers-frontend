@@ -180,9 +180,13 @@ const OurTeamPage = () => {
             <h3>{member.name?.[locale] || t("team.memberName")}</h3>
             <span>{member.position?.[locale] || t("team.memberPosition")}</span>
             <div className="text">
-              <p>
-                {member.description?.[locale] || t("team.defaultDescription")}
-              </p>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html:
+                    member.description?.[locale] ||
+                    t("team.defaultDescription"),
+                }}
+              />
             </div>
             <ul className="contact-info">
               {member.phone && (

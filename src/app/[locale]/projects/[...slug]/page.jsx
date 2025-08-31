@@ -215,11 +215,14 @@ const SingleProjectPage = () => {
                         <span className="border"></span>
                       </div>
                       <div className="text-holder">
-                        <p>
-                          {currentProject.projectAnalysis?.description?.[
-                            locale
-                          ] || t("project.noProjectAnalysisAvailable")}
-                        </p>
+                        <p
+                          dangerouslySetInnerHTML={{
+                            __html:
+                              currentProject.projectAnalysis?.description?.[
+                                locale
+                              ] || t("project.noProjectAnalysisAvailable"),
+                          }}
+                        />
                       </div>
                       <div className="chart-box">
                         <img
@@ -241,11 +244,14 @@ const SingleProjectPage = () => {
                         <span className="border"></span>
                       </div>
                       <div className="text-holder">
-                        <p>
-                          {currentProject.projectSolutions?.description?.[
-                            locale
-                          ] || t("project.noProjectSolutionsAvailable")}
-                        </p>
+                        <p
+                          dangerouslySetInnerHTML={{
+                            __html:
+                              currentProject.projectSolutions?.description?.[
+                                locale
+                              ] || t("project.noProjectSolutionsAvailable"),
+                          }}
+                        />
                       </div>
                       <div className="chart-box">
                         <img
@@ -267,11 +273,14 @@ const SingleProjectPage = () => {
                         <span className="border"></span>
                       </div>
                       <div className="text-holder">
-                        <p>
-                          {currentProject.projectResults?.description?.[
-                            locale
-                          ] || t("project.noProjectResultsAvailable")}
-                        </p>
+                        <p
+                          dangerouslySetInnerHTML={{
+                            __html:
+                              currentProject.projectResults?.description?.[
+                                locale
+                              ] || t("project.noProjectResultsAvailable"),
+                          }}
+                        />
                       </div>
                       <div className="chart-box">
                         <img

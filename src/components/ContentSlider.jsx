@@ -210,7 +210,7 @@ const ContentSlider = ({
               <div className="text-holder">
                 <h3>{item.title}</h3>
                 <span>{item.date}</span>
-                <p>{item.description}</p>
+                <p dangerouslySetInnerHTML={{ __html: item.description }} />
               </div>
             </div>
           </SwiperSlide>

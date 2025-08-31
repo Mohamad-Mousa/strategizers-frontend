@@ -94,16 +94,22 @@ const AboutPage = () => {
             <div className="col-lg-6 col-md-12">
               <div className="text-holder">
                 <div className="bottom-text">
-                  <span>
-                    {locale === "en"
-                      ? websiteData?.aboutPage?.shortDescription?.en
-                      : websiteData?.aboutPage?.shortDescription?.ar}
-                  </span>
-                  <p>
-                    {locale === "en"
-                      ? websiteData?.aboutPage?.longDescription?.en
-                      : websiteData?.aboutPage?.longDescription?.ar}
-                  </p>
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        locale === "en"
+                          ? websiteData?.aboutPage?.shortDescription?.en
+                          : websiteData?.aboutPage?.shortDescription?.ar,
+                    }}
+                  />
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        locale === "en"
+                          ? websiteData?.aboutPage?.longDescription?.en
+                          : websiteData?.aboutPage?.longDescription?.ar,
+                    }}
+                  />
                 </div>
               </div>
             </div>
@@ -139,11 +145,14 @@ const AboutPage = () => {
                       ? websiteData?.aboutPage?.mission?.title?.en
                       : websiteData?.aboutPage?.mission?.title?.ar}
                   </h3>
-                  <p>
-                    {locale === "en"
-                      ? websiteData?.aboutPage?.mission?.description?.en
-                      : websiteData?.aboutPage?.mission?.description?.ar}
-                  </p>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        locale === "en"
+                          ? websiteData?.aboutPage?.mission?.description?.en
+                          : websiteData?.aboutPage?.mission?.description?.ar,
+                    }}
+                  />
                 </div>
               </div>
             </div>
@@ -178,11 +187,14 @@ const AboutPage = () => {
                       ? websiteData?.aboutPage?.vision?.title?.en
                       : websiteData?.aboutPage?.vision?.title?.ar}
                   </h3>
-                  <p>
-                    {locale === "en"
-                      ? websiteData?.aboutPage?.vision?.description?.en
-                      : websiteData?.aboutPage?.vision?.description?.ar}
-                  </p>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        locale === "en"
+                          ? websiteData?.aboutPage?.vision?.description?.en
+                          : websiteData?.aboutPage?.vision?.description?.ar,
+                    }}
+                  />
                 </div>
               </div>
             </div>
@@ -217,11 +229,14 @@ const AboutPage = () => {
                       ? websiteData?.aboutPage?.values?.title?.en
                       : websiteData?.aboutPage?.values?.title?.ar}
                   </h3>
-                  <p>
-                    {locale === "en"
-                      ? websiteData?.aboutPage?.values?.description?.en
-                      : websiteData?.aboutPage?.values?.description?.ar}
-                  </p>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        locale === "en"
+                          ? websiteData?.aboutPage?.values?.description?.en
+                          : websiteData?.aboutPage?.values?.description?.ar,
+                    }}
+                  />
                 </div>
               </div>
             </div>
@@ -282,11 +297,14 @@ const AboutPage = () => {
                               : item.subTitle?.ar}
                           </b>
                           <span className="border"></span>
-                          <p>
-                            {locale === "en"
-                              ? item.description?.en
-                              : item.description?.ar}
-                          </p>
+                          <p
+                            dangerouslySetInnerHTML={{
+                              __html:
+                                locale === "en"
+                                  ? item.description?.en
+                                  : item.description?.ar,
+                            }}
+                          />
                         </div>
                       </div>
                     </div>
@@ -313,13 +331,16 @@ const AboutPage = () => {
                     ? websiteData?.aboutPage?.oppertunitiesSection?.title?.en
                     : websiteData?.aboutPage?.oppertunitiesSection?.title?.ar}
                 </h1>
-                <p>
-                  {locale === "en"
-                    ? websiteData?.aboutPage?.oppertunitiesSection?.description
-                        ?.en
-                    : websiteData?.aboutPage?.oppertunitiesSection?.description
-                        ?.ar}
-                </p>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      locale === "en"
+                        ? websiteData?.aboutPage?.oppertunitiesSection
+                            ?.description?.en
+                        : websiteData?.aboutPage?.oppertunitiesSection
+                            ?.description?.ar,
+                  }}
+                />
                 <Link href={`/${locale}/services`}>
                   {t("about.viewServices")}
                 </Link>

@@ -107,10 +107,11 @@ const TestimonialsPage = () => {
       >
         <div className="single-testimonial-item">
           <div className="text-holder">
-            <p>
-              {testimonial.description?.[locale] ||
-                t("testimonials.defaultDescription")}
-            </p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: testimonial.description?.[locale],
+              }}
+            />
           </div>
           <div className="client-info">
             <h3>

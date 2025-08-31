@@ -141,7 +141,7 @@ const Header = () => {
             <div className="col-lg-12">
               <div className="mainmenu-bg clearfix">
                 <div className="logo pull-left">
-                  <a href="index.html">
+                  <Link href={`/${locale}`} style={{ cursor: "pointer" }}>
                     <img
                       src="/images/resources/logo2.png"
                       alt={t("header.logoAlt")}
@@ -151,7 +151,7 @@ const Header = () => {
                         height: "45px",
                       }}
                     />
-                  </a>
+                  </Link>
                 </div>
                 <nav className="main-menu pull-left">
                   <div className="navbar-header">

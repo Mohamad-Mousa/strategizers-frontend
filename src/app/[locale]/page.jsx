@@ -68,7 +68,62 @@ export default function LocalePage({ params }) {
                 <h1 style={{ marginBottom: "20px" }}>
                   {currentBanner?.title?.[locale]}
                 </h1>
-                <p>{currentBanner?.description?.[locale]}</p>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: currentBanner?.description?.[locale],
+                  }}
+                />
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "10px",
+                    width: "100%",
+                    marginTop: "20px",
+                  }}
+                >
+                  <button
+                    style={{
+                      backgroundColor: "transparent",
+                      border: "1px solid white",
+                      color: "white",
+                      padding: "10px 20px",
+                      borderRadius: "5px",
+                      cursor: "pointer",
+                      transition: "all 0.3s ease",
+                      "&:hover": {
+                        backgroundColor: "white",
+                        color: "#8a3594",
+                      },
+                    }}
+                    onClick={() => {
+                      router.push(`/${locale}/about`);
+                    }}
+                  >
+                    {t("home.aboutUs")}
+                  </button>
+                  <button
+                    style={{
+                      backgroundColor: "#8a3594",
+                      border: "1px solid #8a3594",
+                      color: "white",
+                      padding: "10px 20px",
+                      borderRadius: "5px",
+                      cursor: "pointer",
+                      transition: "all 0.3s ease",
+                      "&:hover": {
+                        backgroundColor: "white",
+                        color: "#8a3594",
+                      },
+                    }}
+                    onClick={() => {
+                      router.push(`/${locale}/contact`);
+                    }}
+                  >
+                    {t("home.contactUs")}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -80,9 +135,12 @@ export default function LocalePage({ params }) {
           <div className="sec-title text-center">
             <h1>{websiteData?.homePage?.welcomeSection?.title?.[locale]}</h1>
             <span className="border-center"></span>
-            <p>
-              {websiteData?.homePage?.welcomeSection?.description?.[locale]}
-            </p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html:
+                  websiteData?.homePage?.welcomeSection?.description?.[locale],
+              }}
+            />
           </div>
           <div className="row">
             {websiteData?.homePage?.welcomeSection?.featuredServices?.map(
@@ -101,7 +159,11 @@ export default function LocalePage({ params }) {
                         <a href="#">
                           <h3 className="title">{item?.title?.[locale]}</h3>
                         </a>
-                        <p>{item?.description?.[locale]}</p>
+                        <p
+                          dangerouslySetInnerHTML={{
+                            __html: item?.description?.[locale],
+                          }}
+                        />
                       </div>
                     </div>
                   </div>
@@ -331,7 +393,11 @@ export default function LocalePage({ params }) {
                         className="text"
                         style={{ height: "100px", overflow: "hidden" }}
                       >
-                        <p>{item?.description?.[locale]}</p>
+                        <p
+                          dangerouslySetInnerHTML={{
+                            __html: item?.description?.[locale],
+                          }}
+                        />
                       </div>
                       <div className="bottom">
                         <div className="left pull-left">

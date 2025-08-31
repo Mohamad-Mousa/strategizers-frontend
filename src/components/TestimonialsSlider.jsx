@@ -59,10 +59,11 @@ const TestimonialsSlider = ({ items }) => {
             <div className="testimonial-carousel">
               <div className="single-item">
                 <div className="text-box">
-                  <p>
-                    {items[currentSlide]?.description?.[locale] ||
-                      items[currentSlide]?.description?.en}
-                  </p>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: items[currentSlide]?.description?.[locale],
+                    }}
+                  />
                   <span className="border"></span>
                 </div>
                 <div className="client-info">

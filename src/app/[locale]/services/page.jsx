@@ -139,11 +139,14 @@ const ServicesPage = () => {
                   {service.title?.[locale] || t("services.serviceTitle")}
                 </h3>
               </Link>
-              <p>
-                {service.shortDescription?.[locale] ||
-                  service.description?.[locale] ||
-                  t("services.defaultDescription")}
-              </p>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html:
+                    service.shortDescription?.[locale] ||
+                    service.description?.[locale] ||
+                    t("services.defaultDescription"),
+                }}
+              />
             </div>
           </div>
         </div>
