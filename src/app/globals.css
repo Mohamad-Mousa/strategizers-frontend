@@ -202,3 +202,127 @@ html[dir="rtl"] .footer-flex-container {
     margin-bottom: 20px;
   }
 }
+
+/* Header Responsive Styles */
+.mainmenu-area .mainmenu-bg {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.mainmenu-area .logo {
+  flex-shrink: 0;
+}
+
+.main-menu {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.main-menu .navbar-collapse {
+  display: flex;
+  justify-content: center;
+}
+
+.main-menu .navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.main-menu .navigation li {
+  display: flex;
+  align-items: center;
+}
+
+.mainmenu-area .mainmenu-right-box {
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .mainmenu-area .mainmenu-bg {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .mainmenu-area .logo {
+    align-self: flex-start;
+    padding: 15px 20px;
+  }
+
+  .main-menu {
+    order: 3;
+    width: 100%;
+  }
+
+  .main-menu .navbar-collapse {
+    width: 100%;
+  }
+
+  .main-menu .navigation {
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+  }
+
+  .main-menu .navigation li {
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .main-menu .navigation li:last-child {
+    border-bottom: none;
+  }
+
+  .main-menu .navigation li a {
+    width: 100%;
+    padding: 15px 20px !important;
+    text-align: center;
+  }
+
+  .mainmenu-area .mainmenu-right-box {
+    order: 2;
+    align-self: center;
+    margin: 10px 0;
+  }
+
+  .mainmenu-area .quote-button {
+    margin: 0;
+  }
+}
+
+/* RTL Support for Header */
+html[dir="rtl"] .mainmenu-area .mainmenu-bg {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+html[dir="rtl"] .main-menu .navigation {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  html[dir="rtl"] .mainmenu-area .mainmenu-bg {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  html[dir="rtl"] .main-menu .navigation {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  html[dir="rtl"] .main-menu .navigation li a {
+    text-align: center;
+  }
+}

@@ -9,7 +9,7 @@ const TermsPage = () => {
 
   const { settings } = useSelector((state) => state.settings);
   const banner = useSelector(
-    (state) => state?.website?.data?.contactPage?.banner
+    (state) => state?.website?.data?.termsPage?.banner
   );
 
   console.log({ settings });
