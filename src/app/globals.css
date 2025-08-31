@@ -159,3 +159,46 @@ html[dir="rtl"] .select-wrapper::after {
 .select-wrapper:hover::after {
   border-top-color: #3452ff;
 }
+
+/* Footer Responsive Styles */
+.footer-flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+@media (max-width: 768px) {
+  .footer-flex-container {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: flex-start;
+    gap: 20px;
+  }
+
+  .footer-flex-container .col-lg-3 {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+/* RTL Support for Footer */
+html[dir="rtl"] .footer-flex-container {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+@media (max-width: 768px) {
+  html[dir="rtl"] .footer-flex-container {
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    gap: 20px;
+  }
+
+  html[dir="rtl"] .footer-flex-container .col-lg-3 {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
