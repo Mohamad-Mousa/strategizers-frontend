@@ -12,6 +12,7 @@ const Footer = () => {
   const dispatch = useDispatch();
   const { services } = useSelector((state) => state.services);
   const { blogs } = useSelector((state) => state.blogs);
+  const settings = useSelector((state) => state.settings.settings);
 
   useEffect(() => {
     dispatch(
@@ -204,31 +205,84 @@ const Footer = () => {
                   <span className="border"></span>
                 </div>
                 <ul className="footer-social-links">
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-facebook"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-twitter"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-google-plus"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-linkedin"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-skype"></i>
-                    </a>
-                  </li>
+                  {settings?.social?.facebook && (
+                    <li>
+                      <Link
+                        href={`https://${settings.social.facebook.replace(
+                          /^https?:\/\//,
+                          ""
+                        )}`}
+                        target="_blank"
+                      >
+                        <i className="fa fa-facebook"></i>
+                      </Link>
+                    </li>
+                  )}
+                  {settings?.social?.twitter && (
+                    <li>
+                      <Link
+                        href={`https://${settings.social.twitter.replace(
+                          /^https?:\/\//,
+                          ""
+                        )}`}
+                        target="_blank"
+                      >
+                        <i className="fa fa-twitter"></i>
+                      </Link>
+                    </li>
+                  )}
+                  {settings?.social?.linkedin && (
+                    <li>
+                      <Link
+                        href={`https://${settings.social.linkedin.replace(
+                          /^https?:\/\//,
+                          ""
+                        )}`}
+                        target="_blank"
+                      >
+                        <i className="fa fa-linkedin"></i>
+                      </Link>
+                    </li>
+                  )}
+                  {settings?.social?.instagram && (
+                    <li>
+                      <Link
+                        href={`https://${settings.social.instagram.replace(
+                          /^https?:\/\//,
+                          ""
+                        )}`}
+                        target="_blank"
+                      >
+                        <i className="fa fa-instagram"></i>
+                      </Link>
+                    </li>
+                  )}
+                  {settings?.social?.youtube && (
+                    <li>
+                      <Link
+                        href={`https://${settings.social.youtube.replace(
+                          /^https?:\/\//,
+                          ""
+                        )}`}
+                        target="_blank"
+                      >
+                        <i className="fa fa-youtube"></i>
+                      </Link>
+                    </li>
+                  )}
+                  {settings?.social?.tiktok && (
+                    <li>
+                      <Link
+                        href={`https://${settings.social.tiktok.replace(
+                          /^https?:\/\//,
+                          ""
+                        )}`}
+                        target="_blank"
+                      >
+                        <i className="fa fa-music"></i>
+                      </Link>
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>

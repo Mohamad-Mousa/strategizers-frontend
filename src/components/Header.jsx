@@ -32,15 +32,23 @@ const Header = () => {
                   {settings?.contact?.phone?.code &&
                     settings?.contact?.phone?.number && (
                       <li>
-                        <span className="flaticon-technology"></span>
-                        {t("header.phone")}: +{settings.contact.phone.code}{" "}
-                        {settings.contact.phone.number}
+                        <a
+                          href={`tel:+${settings.contact.phone.code}${settings.contact.phone.number}`}
+                        >
+                          <span className="flaticon-technology"></span>
+                          {t("header.phone")}: +{settings.contact.phone.code}{" "}
+                          {settings.contact.phone.number}
+                        </a>
                       </li>
                     )}
                   {settings?.contact?.email && (
                     <li>
-                      <span className="flaticon-contact"></span>
-                      {settings.contact.email}
+                      <a
+                        href={`mailto:${settings.contact.email}?subject=Hello&body=I%20want%20to%20get%20in%20touch`}
+                      >
+                        <span className="flaticon-contact"></span>
+                        {settings.contact.email}
+                      </a>
                     </li>
                   )}
                 </ul>
@@ -48,12 +56,14 @@ const Header = () => {
             </div>
             <div className="col-lg-5 col-md-6 col-sm-12 col-xs-12">
               <div className="top-right clearfix">
-                <h5>{t("header.stayConnected")}:</h5>
                 <ul className="social-links">
                   {settings?.social?.facebook && (
                     <li>
                       <Link
-                        href={settings.social.facebook}
+                        href={`https://${settings.social.facebook.replace(
+                          /^https?:\/\//,
+                          ""
+                        )}`}
                         target="_blank"
                         aria-label={t("header.facebook")}
                       >
@@ -64,7 +74,10 @@ const Header = () => {
                   {settings?.social?.twitter && (
                     <li>
                       <Link
-                        href={settings.social.twitter}
+                        href={`https://${settings.social.twitter.replace(
+                          /^https?:\/\//,
+                          ""
+                        )}`}
                         target="_blank"
                         aria-label={t("header.twitter")}
                       >
@@ -75,7 +88,10 @@ const Header = () => {
                   {settings?.social?.linkedin && (
                     <li>
                       <Link
-                        href={settings.social.linkedin}
+                        href={`https://${settings.social.linkedin.replace(
+                          /^https?:\/\//,
+                          ""
+                        )}`}
                         target="_blank"
                         aria-label={t("header.linkedin")}
                       >
@@ -86,7 +102,10 @@ const Header = () => {
                   {settings?.social?.instagram && (
                     <li>
                       <Link
-                        href={settings.social.instagram}
+                        href={`https://${settings.social.instagram.replace(
+                          /^https?:\/\//,
+                          ""
+                        )}`}
                         target="_blank"
                         aria-label={t("header.instagram")}
                       >
@@ -97,7 +116,10 @@ const Header = () => {
                   {settings?.social?.youtube && (
                     <li>
                       <Link
-                        href={settings.social.youtube}
+                        href={`https://${settings.social.youtube.replace(
+                          /^https?:\/\//,
+                          ""
+                        )}`}
                         target="_blank"
                         aria-label={t("header.youtube")}
                       >
@@ -108,7 +130,10 @@ const Header = () => {
                   {settings?.social?.tiktok && (
                     <li>
                       <Link
-                        href={settings.social.tiktok}
+                        href={`https://${settings.social.tiktok.replace(
+                          /^https?:\/\//,
+                          ""
+                        )}`}
                         target="_blank"
                         aria-label={t("header.tiktok")}
                       >
