@@ -575,34 +575,25 @@ export default function LocalePage({ params }) {
       <section className="achivements-area sec-padding">
         <div className="container">
           <div className="sec-title pdb-50">
-            <h1>{t("about.projects")}</h1>
+            <h1>{t("about.partners")}</h1>
             <span className="border"></span>
           </div>
           <div className="row">
             <div className="col-md-12">
               <Slider
-                images={[
-                  {
-                    src: "/images/brand/1.png",
-                    alt: "Achievement 1",
-                  },
-                  {
-                    src: "/images/brand/2.png",
-                    alt: "Achievement 2",
-                  },
-                  {
-                    src: "/images/brand/3.png",
-                    alt: "Achievement 3",
-                  },
-                  {
-                    src: "/images/brand/4.png",
-                    alt: "Achievement 4",
-                  },
-                  {
-                    src: "/images/brand/5.png",
-                    alt: "Achievement 5",
-                  },
-                ]}
+                images={
+                  websiteData?.homePage?.partners?.map((partner) => ({
+                    src: `http://localhost:4000/${partner?.image}`,
+                    alt:
+                      partner?.title?.[locale] ||
+                      partner?.title?.en ||
+                      "Partner",
+                    title:
+                      partner?.title?.[locale] ||
+                      partner?.title?.en ||
+                      "Partner",
+                  })) || []
+                }
                 className="achivement-carousel"
                 slidesPerView={4}
                 spaceBetween={30}
