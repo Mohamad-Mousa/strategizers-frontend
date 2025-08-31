@@ -190,10 +190,13 @@ const SingleProjectPage = () => {
                             t("project.notAvailable")}
                         </span>
                       )}
-                      <p>
-                        {currentProject.shortDescription?.[locale] ||
-                          t("project.noDescriptionAvailable")}
-                      </p>
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html:
+                            currentProject.shortDescription?.[locale] ||
+                            t("project.noDescriptionAvailable"),
+                        }}
+                      />
                       {currentProject.link && (
                         <a
                           className="thm-btn bgclr-1"

@@ -207,7 +207,11 @@ export default function LocalePage({ params }) {
       <section className="about-area sec-padding">
         <div className="container">
           <div className="sec-title pdb-50 text-center">
-            <h1>{websiteData?.aboutPage?.shortDescription?.[locale]}</h1>
+            <h1
+              dangerouslySetInnerHTML={{
+                __html: websiteData?.aboutPage?.shortDescription?.[locale],
+              }}
+            />
             <span className="border-center"></span>
           </div>
           <div className="row">
@@ -234,9 +238,10 @@ export default function LocalePage({ params }) {
                       WebkitLineClamp: 12,
                       overflow: "hidden",
                     }}
-                  >
-                    {websiteData?.aboutPage?.longDescription?.[locale]}
-                  </p>
+                    dangerouslySetInnerHTML={{
+                      __html: websiteData?.aboutPage?.longDescription?.[locale],
+                    }}
+                  />
                 </div>
                 <div className="bottom">
                   <Link

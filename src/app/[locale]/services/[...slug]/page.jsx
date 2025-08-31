@@ -87,10 +87,17 @@ const SingleServicePage = () => {
                         />
                       </div>
                       <div className="text-holder">
-                        <p className="mar-btm15">
-                          {currentService?.shortDescription?.[locale]}
-                        </p>
-                        <p>{currentService?.longDescription?.[locale]}</p>
+                        <p
+                          className="mar-btm15"
+                          dangerouslySetInnerHTML={{
+                            __html: currentService?.shortDescription?.[locale],
+                          }}
+                        />
+                        <p
+                          dangerouslySetInnerHTML={{
+                            __html: currentService?.longDescription?.[locale],
+                          }}
+                        />
                       </div>
                     </div>
                   </div>
