@@ -83,14 +83,6 @@ const Footer = () => {
                   {services?.map((item, index) => (
                     <li key={index}>
                       <Link href={`/${locale}/services/${item.slug}`}>
-                        <i
-                          className={
-                            locale === "en"
-                              ? "fa fa-angle-right"
-                              : "fa fa-angle-left"
-                          }
-                          aria-hidden="true"
-                        ></i>
                         {locale === "en" ? item?.title?.en : item?.title?.ar}
                       </Link>
                     </li>

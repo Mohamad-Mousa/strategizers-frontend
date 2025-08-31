@@ -17,7 +17,7 @@ const TestimonialsPage = () => {
   const { totalCount, totalPages } = pagination;
 
   const banner = useSelector(
-    (state) => state?.website?.data?.testimonialsPage?.banner
+    (state) => state?.website?.data?.testimonialPage?.banner
   );
 
   useEffect(() => {
@@ -141,7 +141,7 @@ const TestimonialsPage = () => {
       <section
         className="breadcrumb-area"
         style={{
-          backgroundImage: `url(${"http://localhost:4000" + banner})`,
+          backgroundImage: `url(${"http://localhost:4000/" + banner})`,
         }}
       >
         <div className="container">
