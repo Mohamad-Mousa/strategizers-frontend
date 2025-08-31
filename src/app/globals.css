@@ -64,3 +64,98 @@ html[dir="rtl"] .ml-0 {
 html[dir="rtl"] .mr-0 {
   margin-right: 0 !important;
 }
+
+/* Enhanced Select Dropdown Styling */
+.selectmenu {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  color: #333;
+  font-size: 14px;
+  font-family: "Cairo", sans-serif;
+  height: 50px;
+  padding: 12px 40px 12px 15px;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 8.825L1.175 4 2.238 2.938 6 6.7l3.763-3.762L10.825 4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 12px;
+}
+
+.selectmenu:hover {
+  border-color: #3452ff;
+  box-shadow: 0 0 0 2px rgba(52, 82, 255, 0.1);
+}
+
+.selectmenu:focus {
+  outline: none;
+  border-color: #3452ff;
+  box-shadow: 0 0 0 3px rgba(52, 82, 255, 0.2);
+}
+
+.selectmenu option {
+  background: #fff;
+  color: #333;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-family: "Cairo", sans-serif;
+}
+
+.selectmenu option:hover {
+  background: #f8f9fa;
+}
+
+.selectmenu option:checked {
+  background: #3452ff;
+  color: #fff;
+}
+
+/* RTL Support for Select */
+html[dir="rtl"] .selectmenu {
+  padding: 12px 15px 12px 40px;
+  background-position: left 15px center;
+}
+
+/* Disabled state */
+.selectmenu:disabled {
+  background-color: #f5f5f5;
+  color: #999;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Custom select wrapper for additional styling */
+.select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.select-wrapper::after {
+  content: "";
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #333;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+html[dir="rtl"] .select-wrapper::after {
+  right: auto;
+  left: 15px;
+}
+
+.select-wrapper:hover::after {
+  border-top-color: #3452ff;
+}

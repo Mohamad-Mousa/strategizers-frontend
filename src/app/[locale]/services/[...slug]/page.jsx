@@ -104,7 +104,9 @@ const SingleServicePage = () => {
                 </div>
                 <div className="specific-services">
                   <div className="sec-title pdb-50">
-                    <h1>Specific Services</h1>
+                    <h1>
+                      {locale === "en" ? "Subservices" : "الخدمات الفرعية"}
+                    </h1>
                     <span className="border"></span>
                   </div>
                   <div className="row">
@@ -128,7 +130,6 @@ const SingleServicePage = () => {
                                 __html: item?.description?.[locale],
                               }}
                             />
-                            <a href="#">Know More</a>
                           </div>
                         </div>
                       </div>
@@ -139,7 +140,11 @@ const SingleServicePage = () => {
                   <div className="row">
                     <div className="col-md-12">
                       <div className="sec-title pdb-50">
-                        <h1>Key Benefits of the Service</h1>
+                        <h1>
+                          {locale === "en"
+                            ? "Key Benefits of the Service"
+                            : "الفوائد الرئيسية للخدمة"}
+                        </h1>
                         <span className="border"></span>
                       </div>
                       <div className="row">
@@ -186,7 +191,11 @@ const SingleServicePage = () => {
 
                 <div className="consultation-form">
                   <div className="sec-title pdb-50">
-                    <h1>Request Free Consultation</h1>
+                    <h1>
+                      {locale === "en"
+                        ? "Request Free Consultation"
+                        : "طلب استشارة مجانية"}
+                    </h1>
                     <span className="border"></span>
                   </div>
                   <form id="consultation-form" action="#" method="post">
@@ -204,14 +213,21 @@ const SingleServicePage = () => {
                           placeholder="Your Mail*"
                           required
                         />
-                        <select className="selectmenu">
-                          <option>Select Service</option>
-                          <option>Business Growth</option>
-                          <option>Sustainability</option>
-                          <option>Performance</option>
-                          <option>Advanced Analytics</option>
-                          <option>Organization</option>
-                          <option>Customer Insights</option>
+                        <select
+                          className="selectmenu"
+                          name="form_service"
+                          required
+                        >
+                          <option value="">
+                            {locale === "en" ? "Select Service" : "اختر الخدمة"}
+                          </option>
+                          {services?.map((item, index) => (
+                            <option value={item?._id}>
+                              {locale === "en"
+                                ? item?.title?.en
+                                : item?.title?.ar}
+                            </option>
+                          ))}
                         </select>
                       </div>
                       <div className="col-md-6">
@@ -225,7 +241,7 @@ const SingleServicePage = () => {
                     <div className="row">
                       <div className="col-md-12">
                         <button className="thm-btn bgclr-1" type="submit">
-                          Submit Now
+                          {locale === "en" ? "Submit Now" : "أرسل الآن"}
                         </button>
                       </div>
                     </div>
@@ -253,7 +269,7 @@ const SingleServicePage = () => {
                 </div>
 
                 <div className="single-sidebar">
-                  <h3>Our Brochures</h3>
+                  <h3>{locale === "en" ? "Our Brochures" : "المرفقات"}</h3>
                   <ul className="brochures-dwn-link">
                     {currentService?.brochure?.pdf && (
                       <li>
@@ -269,7 +285,9 @@ const SingleServicePage = () => {
                             ></i>
                           </div>
                           <div className="title-holder">
-                            <h5>Download PDF</h5>
+                            <h5>
+                              {locale === "en" ? "Download PDF" : "تحميل  PDF"}
+                            </h5>
                           </div>
                         </Link>
                       </li>
@@ -288,7 +306,9 @@ const SingleServicePage = () => {
                             ></i>
                           </div>
                           <div className="title-holder">
-                            <h5>Download DOC</h5>
+                            <h5>
+                              {locale === "en" ? "Download DOC" : "تحميل DOC"}
+                            </h5>
                           </div>
                         </Link>
                       </li>

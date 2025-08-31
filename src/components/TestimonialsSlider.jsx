@@ -123,7 +123,7 @@ const TestimonialsSlider = ({ items }) => {
                     fontSize: "18px",
                   }}
                 >
-                  ‹
+                  {locale === "en" ? "<" : ">"}
                 </button>
                 <button
                   onClick={nextSlide}
@@ -142,7 +142,7 @@ const TestimonialsSlider = ({ items }) => {
                     fontSize: "18px",
                   }}
                 >
-                  ›
+                  {locale === "en" ? ">" : "<"}
                 </button>
               </>
             )}
