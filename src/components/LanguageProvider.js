@@ -3,7 +3,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 
 const LanguageContext = createContext();
 
-export function LanguageProvider({ children, defaultLocale = "ar" }) {
+export function LanguageProvider({ children, defaultLocale = "en" }) {
   const [locale, setLocale] = useState(defaultLocale);
   const [isRTL, setIsRTL] = useState(defaultLocale === "ar");
 

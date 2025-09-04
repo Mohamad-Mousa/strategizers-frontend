@@ -12,7 +12,7 @@ export function useTranslation() {
 
   const t = (key) => {
     const keys = key.split(".");
-    let value = translations[locale] || translations.ar;
+    let value = translations[locale] || translations.en;
 
     for (const k of keys) {
       value = value?.[k];
