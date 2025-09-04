@@ -183,9 +183,12 @@ export default function LocalePage({ params }) {
             <div className="col-md-12">
               <ContentSlider
                 items={websiteData?.homePage?.services?.map((item) => ({
-                  image: `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}` + item.image,
+                  image:
+                    `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}` +
+                    item.image,
                   title: item?.title?.[locale],
                   description: item?.shortDescription?.[locale],
+                  slug: item?.slug,
                 }))}
                 className="history-carousel"
                 slidesPerView={3}
