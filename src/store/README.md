@@ -231,7 +231,7 @@ Use memoized selectors for expensive computations and filtering operations.
 
 ## API Integration
 
-All slices use the same API base URL: `http://localhost:4000/api/v1/`
+All slices use the same API base URL: `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL}/`
 
 ### Common API Patterns
 

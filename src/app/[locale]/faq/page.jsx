@@ -158,7 +158,7 @@ const FAQPage = () => {
       <section
         className="breadcrumb-area"
         style={{
-          backgroundImage: `url(${"http://localhost:4000/" + banner})`,
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${banner})`,
         }}
       >
         <div className="container">

@@ -6,7 +6,7 @@ export const fetchSettings = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        "http://localhost:4000/api/v1/public/setting",
+        `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL}/public/setting`,
         {
           method: "GET",
           headers: {

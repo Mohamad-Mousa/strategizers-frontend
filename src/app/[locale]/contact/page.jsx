@@ -83,7 +83,7 @@ const ContactPage = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:4000/api/v1/public/contact",
+        `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL}/public/contact`,
         {
           method: "POST",
           headers: {
@@ -132,7 +132,7 @@ const ContactPage = () => {
       <section
         className="breadcrumb-area"
         style={{
-          backgroundImage: `url(${"http://localhost:4000/" + banner})`,
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${banner})`,
         }}
       >
         <div className="container">
@@ -313,7 +313,7 @@ const ContactPage = () => {
                         </div>
                         <div className="img-holder">
                           <img
-                            src={"http://localhost:4000/" + item?.image}
+                            src={`${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${item?.image}`}
                             alt={item?.name?.[locale]}
                             style={{
                               width: "2200px",

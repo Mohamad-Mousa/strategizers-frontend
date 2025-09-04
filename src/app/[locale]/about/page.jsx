@@ -67,7 +67,7 @@ const AboutPage = () => {
       <section
         className="breadcrumb-area"
         style={{
-          backgroundImage: `url(${"http://localhost:4000/" + banner})`,
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${banner})`,
         }}
       >
         <div className="container">
@@ -86,7 +86,7 @@ const AboutPage = () => {
             <div className="col-lg-6 col-md-12">
               <div className="img-holder">
                 <img
-                  src={`http://localhost:4000/${websiteData?.aboutPage?.banner}`}
+                  src={`${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${websiteData?.aboutPage?.banner}`}
                   alt={t("about.awesomeImage")}
                 />
               </div>
@@ -124,7 +124,7 @@ const AboutPage = () => {
               >
                 <div className="img-holder">
                   <img
-                    src={`http://localhost:4000/${websiteData?.aboutPage?.mission?.image}`}
+                    src={`${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${websiteData?.aboutPage?.mission?.image}`}
                     alt={t("about.mission")}
                     style={{
                       width: "100%",
@@ -166,7 +166,7 @@ const AboutPage = () => {
               >
                 <div className="img-holder">
                   <img
-                    src={`http://localhost:4000/${websiteData?.aboutPage?.vision?.image}`}
+                    src={`${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${websiteData?.aboutPage?.vision?.image}`}
                     alt={t("about.vision")}
                     style={{
                       width: "100%",
@@ -208,7 +208,7 @@ const AboutPage = () => {
               >
                 <div className="img-holder">
                   <img
-                    src={`http://localhost:4000/${websiteData?.aboutPage?.values?.image}`}
+                    src={`${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${websiteData?.aboutPage?.values?.image}`}
                     alt={t("about.values")}
                     style={{
                       width: "100%",
@@ -264,7 +264,7 @@ const AboutPage = () => {
                     }}
                   >
                     <img
-                      src={`http://localhost:4000/${item.image}`}
+                      src={`${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${item.image}`}
                       alt=""
                       style={{
                         width: "100%",
@@ -365,7 +365,7 @@ const AboutPage = () => {
               <ContentSlider
                 items={websiteData?.aboutPage?.historySection?.timeline?.map(
                   (item) => ({
-                    image: "http://localhost:4000/" + item.image,
+                    image: `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${item.image}`,
                     title: locale === "en" ? item.title?.en : item.title?.ar,
                     date: new Date(item.date).toLocaleDateString("en-US", {
                       year: "numeric",

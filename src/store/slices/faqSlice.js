@@ -23,7 +23,7 @@ export const fetchFaqs = createAsyncThunk(
       });
 
       const response = await fetch(
-        `http://localhost:4000/api/v1/public/faq?${queryParams}`
+        `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL}/public/faq?${queryParams}`
       );
       const data = await response.json();
 

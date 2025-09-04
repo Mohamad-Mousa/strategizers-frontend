@@ -80,7 +80,7 @@ const SingleProjectPage = () => {
         className="breadcrumb-area"
         style={{
           backgroundImage: `url(${
-            "http://localhost:4000/" + currentProject.image
+            `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${currentProject.image}`
           })`,
         }}
       >
@@ -107,7 +107,7 @@ const SingleProjectPage = () => {
                     <div className="single-project-img-box">
                       <img
                         src={
-                          `http://localhost:4000/${currentProject.image}` ||
+                          `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${currentProject.image}` ||
                           "/images/projects/single-project.jpg"
                         }
                         alt={
@@ -230,7 +230,7 @@ const SingleProjectPage = () => {
                       <div className="chart-box">
                         <img
                           src={
-                            `http://localhost:4000/${currentProject.projectAnalysis.image}` ||
+                            `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${currentProject.projectAnalysis.image}` ||
                             "/images/projects/analysis-chart.jpg"
                           }
                           alt="Project Analysis"
@@ -259,7 +259,7 @@ const SingleProjectPage = () => {
                       <div className="chart-box">
                         <img
                           src={
-                            `http://localhost:4000/${currentProject.projectSolutions.image}` ||
+                            `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${currentProject.projectSolutions.image}` ||
                             "/images/projects/analysis-chart.jpg"
                           }
                           alt="Project Solutions"
@@ -288,7 +288,7 @@ const SingleProjectPage = () => {
                       <div className="chart-box">
                         <img
                           src={
-                            `http://localhost:4000/${currentProject.projectResults.image}` ||
+                            `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${currentProject.projectResults.image}` ||
                             "/images/projects/results-chart.jpg"
                           }
                           alt="Project Results"

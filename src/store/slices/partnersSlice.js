@@ -23,7 +23,7 @@ export const fetchPartners = createAsyncThunk(
       });
 
       const response = await fetch(
-        `http://localhost:4000/api/v1/public/partner?${queryParams}`
+        `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL}/public/partner?${queryParams}`
       );
       const data = await response.json();
 

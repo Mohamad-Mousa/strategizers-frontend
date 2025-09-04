@@ -23,7 +23,7 @@ export const fetchTestimonials = createAsyncThunk(
       });
 
       const response = await fetch(
-        `http://localhost:4000/api/v1/public/testimonial?${queryParams}`
+        `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL}/public/testimonial?${queryParams}`
       );
       const data = await response.json();
 

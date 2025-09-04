@@ -27,7 +27,7 @@ export const fetchServices = createAsyncThunk(
       });
 
       const response = await fetch(
-        `http://localhost:4000/api/v1/public/service?${queryParams}`
+        `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL}/public/service?${queryParams}`
       );
       const data = await response.json();
 
@@ -53,7 +53,7 @@ export const fetchServiceBySlug = createAsyncThunk(
   async (slug, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        `http://localhost:4000/api/v1/public/service/${slug}`
+        `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL}/public/service/${slug}`
       );
       const data = await response.json();
 

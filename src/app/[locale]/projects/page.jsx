@@ -110,7 +110,7 @@ const ProjectsPage = () => {
         <div className="img-holder">
           <img
             src={
-              "http://localhost:4000/" + project.image ||
+              `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${project.image}` ||
               `/images/projects/${(index % 9) + 1}.jpg`
             }
             alt={project.title?.[locale] || t("projects.projectTitle")}
@@ -152,7 +152,7 @@ const ProjectsPage = () => {
       <section
         className="breadcrumb-area"
         style={{
-          backgroundImage: `url(${"http://localhost:4000/" + banner})`,
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${banner})`,
         }}
       >
         <div className="container">

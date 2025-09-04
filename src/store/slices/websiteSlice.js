@@ -6,7 +6,7 @@ export const fetchWebsiteData = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        "http://localhost:4000/api/v1/public/website"
+        `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL}/public/website`
       );
       const data = await response.json();
 
@@ -27,7 +27,7 @@ export const updateWebsiteData = createAsyncThunk(
   async (formData, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        "http://localhost:4000/api/v1/admin/website",
+        `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL}/admin/website`,
         {
           method: "PUT",
           body: formData, // FormData for file uploads

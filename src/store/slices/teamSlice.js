@@ -23,7 +23,7 @@ export const fetchTeam = createAsyncThunk(
       });
 
       const response = await fetch(
-        `http://localhost:4000/api/v1/public/team?${queryParams}`
+        `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL}/public/team?${queryParams}`
       );
       const data = await response.json();
 

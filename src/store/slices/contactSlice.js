@@ -6,7 +6,7 @@ export const submitContactForm = createAsyncThunk(
   async (formData, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        "http://localhost:4000/api/v1/public/contact",
+        `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL}/public/contact`,
         {
           method: "POST",
           headers: {

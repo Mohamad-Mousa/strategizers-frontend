@@ -118,7 +118,7 @@ const BlogsPage = () => {
         <div className="img-holder">
           <img
             src={
-              "http://localhost:4000/" + blog.image ||
+              `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${blog.image}` ||
               `/images/blog/blog-large-${(index % 4) + 1}.jpg`
             }
             alt={blog.title?.[locale] || t("blogs.blogTitle")}
@@ -191,7 +191,7 @@ const BlogsPage = () => {
       <section
         className="breadcrumb-area"
         style={{
-          backgroundImage: `url(${"http://localhost:4000/" + banner})`,
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${banner})`,
         }}
       >
         <div className="container">

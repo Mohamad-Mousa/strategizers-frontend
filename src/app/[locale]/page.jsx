@@ -57,7 +57,7 @@ export default function LocalePage({ params }) {
       <section
         className="breadcrumb-area"
         style={{
-          backgroundImage: `url(http://localhost:4000/${currentBanner?.image})`,
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${currentBanner?.image})`,
           transition: "background-image 0.5s ease-in-out",
         }}
       >
@@ -149,7 +149,7 @@ export default function LocalePage({ params }) {
                   <div className="single-service-item text-center">
                     <div className="img-holder">
                       <img
-                        src={`http://localhost:4000/${item?.image}`}
+                        src={`${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${item?.image}`}
                         alt="Awesome Image"
                       />
                       <div className="overlay-style-one"></div>
@@ -183,7 +183,7 @@ export default function LocalePage({ params }) {
             <div className="col-md-12">
               <ContentSlider
                 items={websiteData?.homePage?.services?.map((item) => ({
-                  image: "http://localhost:4000/" + item.image,
+                  image: `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}` + item.image,
                   title: item?.title?.[locale],
                   description: item?.shortDescription?.[locale],
                 }))}
@@ -218,7 +218,7 @@ export default function LocalePage({ params }) {
             <div className="col-lg-6 col-md-12">
               <div className="img-holder">
                 <img
-                  src={`http://localhost:4000/${websiteData?.aboutPage?.banner}`}
+                  src={`${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${websiteData?.aboutPage?.banner}`}
                   alt="Strategizers Logo"
                   style={{
                     width: "100%",
@@ -364,7 +364,7 @@ export default function LocalePage({ params }) {
                   <div className="single-blog-item">
                     <div className="img-holder">
                       <img
-                        src={`http://localhost:4000/${item?.image}`}
+                        src={`${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${item?.image}`}
                         alt="Awesome Image"
                         style={{
                           width: "100%",
@@ -433,7 +433,7 @@ export default function LocalePage({ params }) {
                     <div key={index} className="single-project-item">
                       <div className="img-holder">
                         <img
-                          src={`http://localhost:4000/${item?.image}`}
+                          src={`${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${item?.image}`}
                           alt="Awesome Image"
                           style={{
                             width: "250px",
@@ -522,7 +522,7 @@ export default function LocalePage({ params }) {
                   <div className="single-blog-item">
                     <div className="img-holder">
                       <img
-                        src={`http://localhost:4000/${item?.image}`}
+                        src={`${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${item?.image}`}
                         alt="Awesome Image"
                         style={{
                           width: "100%",
@@ -583,7 +583,7 @@ export default function LocalePage({ params }) {
               <Slider
                 images={
                   websiteData?.homePage?.partners?.map((partner) => ({
-                    src: `http://localhost:4000/${partner?.image}`,
+                    src: `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${partner?.image}`,
                     alt:
                       partner?.title?.[locale] ||
                       partner?.title?.en ||

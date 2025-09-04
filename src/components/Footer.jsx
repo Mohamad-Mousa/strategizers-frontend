@@ -108,7 +108,7 @@ const Footer = () => {
                       <div className="img-holder">
                         <img
                           src={
-                            `http://localhost:4000/${item?.image}` ||
+                            `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${item?.image}` ||
                             "/images/services/sustainability.jpg"
                           }
                           alt="Awesome Image"

@@ -56,7 +56,7 @@ const SingleServicePage = () => {
       <section
         className="breadcrumb-area"
         style={{
-          backgroundImage: `url(http://localhost:4000/${currentService?.banner})`,
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${currentService?.banner})`,
         }}
       >
         <div className="container">
@@ -80,7 +80,7 @@ const SingleServicePage = () => {
                       <div className="img-holder">
                         <img
                           src={
-                            `http://localhost:4000/${currentService?.image}` ||
+                            `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${currentService?.image}` ||
                             "/images/services/sustainability.jpg"
                           }
                           alt="Awesome Image"
@@ -274,7 +274,7 @@ const SingleServicePage = () => {
                     {currentService?.brochure?.pdf && (
                       <li>
                         <Link
-                          href={`http://localhost:4000/${currentService?.brochure?.pdf}`}
+                          href={`${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${currentService?.brochure?.pdf}`}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -295,7 +295,7 @@ const SingleServicePage = () => {
                     {currentService?.brochure?.document && (
                       <li>
                         <Link
-                          href={`http://localhost:4000/${currentService?.brochure?.document}`}
+                          href={`${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${currentService?.brochure?.document}`}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -328,7 +328,7 @@ const SingleServicePage = () => {
                             <div className="img-holder">
                               <img
                                 src={
-                                  `http://localhost:4000/${item?.image}` ||
+                                  `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${item?.image}` ||
                                   "/images/blog/blog-single.jpg"
                                 }
                                 alt=""

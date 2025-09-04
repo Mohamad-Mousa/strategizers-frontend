@@ -94,7 +94,7 @@ const SingleBlogPage = () => {
         className="breadcrumb-area"
         style={{
           backgroundImage: `url(${
-            "http://localhost:4000/" + currentBlog.image
+            `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${currentBlog.image}`
           })`,
         }}
       >
@@ -117,7 +117,7 @@ const SingleBlogPage = () => {
                   <div className="img-holder">
                     <img
                       src={
-                        `http://localhost:4000/${currentBlog.image}` ||
+                        `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL_IMAGE}${currentBlog.image}` ||
                         "/images/blog/blog-single.jpg"
                       }
                       alt={currentBlog.title?.[locale] || t("blog.blogImage")}
