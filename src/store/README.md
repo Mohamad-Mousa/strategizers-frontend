@@ -1,297 +1,162 @@
 # Redux Store Documentation
 
-This document explains the Redux setup and usage patterns in the Strategizers frontend application.
+This document describes the Redux store setup and usage for the Strategizers frontend application.
 
-## Overview
+## Store Structure
 
-The application uses Redux Toolkit for state management with the following structure:
+The Redux store is configured with the following slices:
 
-```
-src/store/
-├── index.js              # Main store configuration
-├── hooks.js              # Typed Redux hooks
-├── selectors.js          # Common selectors
-├── middleware.js         # Custom middleware
-├── slices/               # Redux slices
-│   ├── websiteSlice.js
-│   ├── servicesSlice.js
-│   ├── projectsSlice.js
-│   ├── blogsSlice.js
-│   ├── testimonialsSlice.js
-│   ├── teamSlice.js
-│   ├── faqSlice.js
-│   └── contactSlice.js
-└── README.md
-```
+- **settings**: Website settings and configuration
+- **website**: Complete website content and data
 
-## Store Configuration
+## Website Store
 
-The main store is configured in `src/store/index.js` with the following features:
+### Overview
 
-- **Redux Toolkit**: Uses `configureStore` for simplified setup
-- **Serializable Check**: Configured to ignore certain action types and paths
-- **Middleware**: Includes default middleware with custom configuration
+The website store manages all website content including homepage data, about page, services, projects, testimonials, blogs, and partners.
 
-## Available Slices
+### State Structure
 
-### 1. Website Slice (`websiteSlice.js`)
-
-- **Purpose**: Manages website configuration data
-- **Actions**:
-  - `fetchWebsiteData`: Fetch website data from API
-  - `updateWebsiteData`: Update website data (with FormData support)
-- **State**: `{ data, loading, error, updateLoading, updateError }`
-
-### 2. Services Slice (`servicesSlice.js`)
-
-- **Purpose**: Manages services data with pagination and filtering
-- **Actions**:
-  - `fetchServices`: Fetch services with pagination and filters
-  - `fetchServiceBySlug`: Fetch single service by slug
-- **State**: `{ services, currentService, loading, pagination, filters }`
-
-### 3. Projects Slice (`projectsSlice.js`)
-
-- **Purpose**: Manages projects data with pagination and filtering
-- **Actions**:
-  - `fetchProjects`: Fetch projects with pagination and filters
-  - `fetchProjectBySlug`: Fetch single project by slug
-- **State**: `{ projects, currentProject, loading, pagination, filters }`
-
-### 4. Blogs Slice (`blogsSlice.js`)
-
-- **Purpose**: Manages blogs data with pagination and filtering
-- **Actions**:
-  - `fetchBlogs`: Fetch blogs with pagination and filters
-  - `fetchBlogBySlug`: Fetch single blog by slug
-- **State**: `{ blogs, currentBlog, loading, pagination, filters }`
-
-### 5. Testimonials Slice (`testimonialsSlice.js`)
-
-- **Purpose**: Manages testimonials data with pagination
-- **Actions**:
-  - `fetchTestimonials`: Fetch testimonials with pagination and filters
-- **State**: `{ testimonials, loading, pagination, filters }`
-
-### 6. Team Slice (`teamSlice.js`)
-
-- **Purpose**: Manages team members data with pagination
-- **Actions**:
-  - `fetchTeam`: Fetch team members with pagination and filters
-- **State**: `{ team, loading, pagination, filters }`
-
-### 7. FAQ Slice (`faqSlice.js`)
-
-- **Purpose**: Manages FAQ data with pagination
-- **Actions**:
-  - `fetchFaqs`: Fetch FAQs with pagination and filters
-- **State**: `{ faqs, loading, pagination, filters }`
-
-### 8. Contact Slice (`contactSlice.js`)
-
-- **Purpose**: Manages contact form submissions
-- **Actions**:
-  - `submitContactForm`: Submit contact form data
-- **State**: `{ loading, error, success, submittedData }`
-
-## Usage Examples
-
-### Basic Usage in Components
-
-```jsx
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { fetchServices } from "../store/slices/servicesSlice";
-import { selectServices, selectServicesLoading } from "../store/selectors";
-
-const ServicesPage = () => {
-  const dispatch = useAppDispatch();
-  const services = useAppSelector(selectServices);
-  const loading = useAppSelector(selectServicesLoading);
-
-  useEffect(() => {
-    dispatch(fetchServices({ page: 1, limit: 10 }));
-  }, [dispatch]);
-
-  if (loading) return <div>Loading...</div>;
-
-  return (
-    <div>
-      {services.map((service) => (
-        <div key={service._id}>{service.title.en}</div>
-      ))}
-    </div>
-  );
-};
-```
-
-### Using Selectors with Parameters
-
-```jsx
-import { useAppSelector } from "../store/hooks";
-import { selectServicesByCategory } from "../store/selectors";
-
-const ServiceCategory = ({ category }) => {
-  const services = useAppSelector((state) =>
-    selectServicesByCategory(state, category)
-  );
-
-  return (
-    <div>
-      {services.map((service) => (
-        <div key={service._id}>{service.title.en}</div>
-      ))}
-    </div>
-  );
-};
-```
-
-### Handling Form Submissions
-
-```jsx
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { submitContactForm } from "../store/slices/contactSlice";
-import { selectContactLoading, selectContactSuccess } from "../store/selectors";
-
-const ContactForm = () => {
-  const dispatch = useAppDispatch();
-  const loading = useAppSelector(selectContactLoading);
-  const success = useAppSelector(selectContactSuccess);
-
-  const handleSubmit = (formData) => {
-    dispatch(submitContactForm(formData));
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      {/* form fields */}
-      <button type="submit" disabled={loading}>
-        {loading ? "Submitting..." : "Submit"}
-      </button>
-      {success && <div>Form submitted successfully!</div>}
-    </form>
-  );
-};
-```
-
-### Error Handling
-
-```jsx
-import { useAppSelector } from "../store/hooks";
-import { selectServicesError } from "../store/selectors";
-
-const ServicesPage = () => {
-  const error = useAppSelector(selectServicesError);
-
-  if (error) {
-    return (
-      <div className="error">
-        Error: {error}
-        <button onClick={() => dispatch(fetchServices())}>Retry</button>
-      </div>
-    );
-  }
-
-  // rest of component
-};
-```
-
-## Best Practices
-
-### 1. Use Typed Hooks
-
-Always use `useAppDispatch` and `useAppSelector` instead of the plain Redux hooks for better TypeScript support.
-
-### 2. Use Selectors
-
-Use selectors to access state data instead of directly accessing the state object.
-
-### 3. Handle Loading States
-
-Always check loading states before rendering data to provide better UX.
-
-### 4. Error Handling
-
-Implement proper error handling for all async operations.
-
-### 5. Cleanup on Unmount
-
-Clear errors and reset state when components unmount:
-
-```jsx
-useEffect(() => {
-  return () => {
-    dispatch(clearServicesError());
-  };
-}, [dispatch]);
-```
-
-### 6. Optimize Re-renders
-
-Use memoized selectors for expensive computations and filtering operations.
-
-## API Integration
-
-All slices use the same API base URL: `${process.env.NEXT_PUBLIC_SERVER_API_BASEURL}/`
-
-### Common API Patterns
-
-1. **Public Endpoints**: `/public/[resource]`
-2. **Admin Endpoints**: `/admin/[resource]`
-3. **Pagination**: Uses query parameters `page`, `limit`, `sortBy`, `sortDirection`
-4. **Filtering**: Uses query parameters `term`, `service`, `tags`
-5. **Response Format**: All APIs return `{ code: 200, results: data, message: "Success" }`
-
-### Error Handling
-
-All async thunks use `rejectWithValue` to handle API errors consistently:
-
-```javascript
-if (data.code === 200) {
-  return data.results;
-} else {
-  return rejectWithValue(data.message || "Failed to fetch data");
+```typescript
+interface WebsiteState {
+  website: Website | null;
+  loading: boolean;
+  error: string | null;
 }
 ```
 
-## Development Tools
+### Available Actions
 
-### Redux DevTools
+- `fetchWebsite()`: Fetches website data from `/public/website` API
+- `clearWebsite()`: Clears website data from store
+- `clearError()`: Clears error state
 
-The store is configured to work with Redux DevTools for debugging. Install the browser extension to inspect state changes and actions.
+### Usage
 
-### Logging Middleware
+#### Using the Custom Hook (Recommended)
 
-Custom logging middleware is included for development that logs all actions and state changes to the console.
+```typescript
+import { useWebsite } from "@/hooks/useWebsite";
 
-## Performance Considerations
+const MyComponent = () => {
+  const { website, loading, error, refetchWebsite } = useWebsite();
 
-1. **Memoized Selectors**: Use `createSelector` for expensive computations
-2. **Pagination**: Implement proper pagination to avoid loading large datasets
-3. **Caching**: Consider implementing caching strategies for frequently accessed data
-4. **Bundle Size**: Redux Toolkit is tree-shakeable, so only used features are included in the bundle
+  // The hook automatically fetches data if not already loaded
 
-## Migration from Local State
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!website) return <div>No data</div>;
 
-If you're migrating from local state to Redux:
+  return (
+    <div>
+      <h1>{website.homePage.welcomeSection.title.en}</h1>
+      {/* Use website data */}
+    </div>
+  );
+};
+```
 
-1. Identify the data that needs to be shared across components
-2. Create appropriate slices for that data
-3. Replace `useState` with Redux state
-4. Replace direct API calls with async thunks
-5. Update components to use `useAppSelector` and `useAppDispatch`
+#### Using Redux Hooks Directly
 
-## Troubleshooting
+```typescript
+import { useAppSelector, useAppDispatch } from "@/store/hooks";
+import { fetchWebsite } from "@/store/slices/websiteSlice";
 
-### Common Issues
+const MyComponent = () => {
+  const dispatch = useAppDispatch();
+  const { website, loading, error } = useAppSelector((state) => state.website);
 
-1. **State not updating**: Check if the action is being dispatched correctly
-2. **Infinite re-renders**: Ensure selectors are not creating new objects on every call
-3. **API errors**: Check the network tab and ensure the API endpoint is correct
-4. **TypeScript errors**: Make sure to use the typed hooks and selectors
+  useEffect(() => {
+    if (!website) {
+      dispatch(fetchWebsite());
+    }
+  }, [dispatch, website]);
 
-### Debug Tips
+  // Component logic
+};
+```
 
-1. Use Redux DevTools to inspect state changes
-2. Add console logs in middleware to track actions
-3. Check the browser's network tab for API calls
-4. Use the React DevTools to inspect component props and state
+### Data Structure
+
+The website data includes:
+
+- **homePage**: Welcome section, banners, projects, testimonials, blogs, services, partners
+- **aboutPage**: Company information, mission, vision, values, timeline
+- **Page banners**: For different sections (service, blog, project, contact, team, FAQ, testimonial, terms, privacy)
+
+### Features
+
+- **Automatic Fetching**: Data is automatically fetched when component mounts if not already loaded
+- **Error Handling**: Comprehensive error handling with retry functionality
+- **Loading States**: Built-in loading states for better UX
+- **TypeScript Support**: Full TypeScript support with proper type definitions
+- **Multilingual**: Supports both English and Arabic content
+
+### API Integration
+
+- **Endpoint**: `/public/website`
+- **Method**: GET
+- **Response**: Complete website data structure
+- **Error Handling**: Graceful error handling with user-friendly messages
+
+### Console Logging
+
+The website data is logged to console every time it's fetched:
+
+```javascript
+console.log("Website data fetched:", response.results);
+```
+
+This helps with debugging and development.
+
+### Example Components
+
+See `src/components/WebsiteDisplay.tsx` for a complete example of how to use the website data in a component.
+
+## Best Practices
+
+1. **Use the Custom Hook**: Prefer `useWebsite()` over direct Redux hooks
+2. **Check Loading States**: Always handle loading and error states
+3. **Multilingual Support**: Use locale-aware content rendering
+4. **Error Recovery**: Provide retry mechanisms for failed requests
+5. **Type Safety**: Use TypeScript interfaces for type safety
+
+## File Structure
+
+```
+src/
+├── store/
+│   ├── index.ts                 # Store configuration
+│   ├── hooks.ts                 # Typed Redux hooks
+│   ├── slices/
+│   │   ├── settingsSlice.ts     # Settings slice
+│   │   └── websiteSlice.ts      # Website slice
+│   └── README.md               # This documentation
+├── types/
+│   ├── settings.ts             # Settings types
+│   └── website.ts              # Website types
+└── hooks/
+    ├── useSettings.ts          # Settings hook
+    └── useWebsite.ts           # Website hook
+```
+
+## Integration with Existing Components
+
+The website store can be easily integrated with existing components:
+
+1. Import the `useWebsite` hook
+2. Use the website data in your component
+3. Handle loading and error states appropriately
+4. Ensure multilingual support using the locale
+
+Example integration:
+
+```typescript
+const { website } = useWebsite();
+const locale = useLocale();
+
+const title =
+  website?.homePage.welcomeSection.title[
+    locale as keyof typeof website.homePage.welcomeSection.title
+  ] || website?.homePage.welcomeSection.title.en;
+```
