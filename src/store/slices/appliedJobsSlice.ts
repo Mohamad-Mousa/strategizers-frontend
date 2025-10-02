@@ -6,6 +6,11 @@ const APPLIED_JOBS_STORAGE_KEY = "strategizers_applied_jobs";
 
 // Helper functions for localStorage
 const loadAppliedJobsFromStorage = (): AppliedJob[] => {
+  // Check if we're in a browser environment
+  if (typeof window === "undefined") {
+    return [];
+  }
+
   try {
     const stored = localStorage.getItem(APPLIED_JOBS_STORAGE_KEY);
     return stored ? JSON.parse(stored) : [];
@@ -16,6 +21,11 @@ const loadAppliedJobsFromStorage = (): AppliedJob[] => {
 };
 
 const saveAppliedJobsToStorage = (appliedJobs: AppliedJob[]): void => {
+  // Check if we're in a browser environment
+  if (typeof window === "undefined") {
+    return;
+  }
+
   try {
     localStorage.setItem(APPLIED_JOBS_STORAGE_KEY, JSON.stringify(appliedJobs));
   } catch (error) {
@@ -69,8 +79,10 @@ export const removeAppliedJob = createAsyncThunk(
 export const clearAppliedJobs = createAsyncThunk(
   "appliedJobs/clearAppliedJobs",
   async () => {
-    // Clear from localStorage immediately
-    localStorage.removeItem(APPLIED_JOBS_STORAGE_KEY);
+    // Clear from localStorage immediately (only in browser)
+    if (typeof window !== "undefined") {
+      localStorage.removeItem(APPLIED_JOBS_STORAGE_KEY);
+    }
 
     console.log("All applied jobs cleared");
     return [];
