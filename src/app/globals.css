@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-web-primary: #8a3594;
+  --color-web-gray: #222222;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.7s ease-out both;
+}
+
+/* Academy Dropdown Animations */
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInStagger {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideInFromRight {
+  animation: slideInFromRight 0.4s ease-out both;
+}
+
+.animate-slideInFromLeft {
+  animation: slideInFromLeft 0.4s ease-out both;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.3s ease-out both;
+}
+
+.animate-fadeInStagger {
+  animation: fadeInStagger 0.4s ease-out both;
+}
+
+/* Partners Swiper Custom Styles */
+.partners-swiper {
+  padding: 20px 0 50px 0 !important;
+}
+
+.partners-swiper .swiper-button-next,
+.partners-swiper .swiper-button-prev {
+  color: var(--color-web-primary) !important;
+  background: white !important;
+  border-radius: 50% !important;
+  width: 44px !important;
+  height: 44px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+.partners-swiper .swiper-button-next:hover,
+.partners-swiper .swiper-button-prev:hover {
+  background: var(--color-web-primary);
+  color: white !important;
+  transform: scale(1.1) !important;
+}
+
+.partners-swiper .swiper-button-next:after,
+.partners-swiper .swiper-button-prev:after {
+  font-size: 18px !important;
+  font-weight: bold !important;
+}
+
+.partners-swiper .swiper-pagination-bullet {
+  background: var(--color-web-primary) !important;
+  opacity: 0.3 !important;
+  transition: all 0.3s ease !important;
+}
+
+.partners-swiper .swiper-pagination-bullet-active {
+  opacity: 1 !important;
+  transform: scale(1.2) !important;
+}

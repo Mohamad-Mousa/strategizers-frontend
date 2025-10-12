@@ -1,0 +1,783 @@
+{
+  "message": "Success!",
+  "error": false,
+  "code": 200,
+  "results": {
+    "homePage": {
+      "welcomeSection": {
+        "title": {
+          "en": "Welcome to Strategizers",
+          "ar": "مرحبًا بكم في ستراتيجيزرز"
+        },
+        "description": {
+          "en": "<p>We are a consultancy company dedicated to helping businesses overcome challenges and unlock new opportunities.</p><p><strong>new</strong></p>",
+          "ar": "<p>نحن شركة استشارية مكرسة لمساعدة الشركات على التغلب على التحديات واغتنام الفرص الجديدة.</p>"
+        },
+        "featuredServices": [
+          {
+            "title": {
+              "en": "Business Strategy",
+              "ar": "الاستراتيجية للأعمال"
+            },
+            "description": {
+              "en": "<p>Crafting tailored strategies to ensure long-term growth.</p><p><strong>dasdaad</strong></p>",
+              "ar": "<p>تصميم استراتيجيات مخصصة لضمان النمو على المدى الطويل.</p>"
+            },
+            "image": "website/1756026430662_business-consultants-is-checking-and-analysis-sales-figures-to-plan-business-strategies-photo.jpg",
+            "_id": "68b4630eff7c6c0c1ece3668"
+          },
+          {
+            "title": {
+              "en": "Financial Consulting",
+              "ar": "الاستشارات المالية"
+            },
+            "description": {
+              "en": "<p>Optimizing financial structures and investment decisions.</p>",
+              "ar": "<p>تحسين الهياكل المالية والقرارات الاستثمارية.</p>"
+            },
+            "image": "website/1756026430663_business-team-collaboration-discussing-working-600nw-1823020430.webp",
+            "_id": "68b4630eff7c6c0c1ece3669"
+          },
+          {
+            "title": {
+              "en": "HR Solutions",
+              "ar": "حلول الموارد البشرية"
+            },
+            "description": {
+              "en": "<p>Building strong teams that drive success.</p>",
+              "ar": "<p>بناء فرق قوية تقود إلى النجاح.</p>"
+            },
+            "image": "website/1756026430663_business-consultants-is-checking-and-analysis-sales-figures-to-plan-business-strategies-photo.jpg",
+            "_id": "68b4630eff7c6c0c1ece366a"
+          }
+        ]
+      },
+      "banner": [
+        {
+          "title": {
+            "en": "Strategizers – Shaping the Future of Business",
+            "ar": "ستراتيجيزرز - نصنع مستقبل الأعمال"
+          },
+          "description": {
+            "en": "<p>We provide world-class consultancy services that empower businesses to grow, innovate, and lead.</p>",
+            "ar": "<p>نحن نقدم خدمات استشارية عالمية المستوى تمكّن الشركات من النمو والابتكار والريادة.</p>"
+          },
+          "image": "website/1756026430665_business-team-collaboration-discussing-working-600nw-1823020430.webp",
+          "_id": "68b4630eff7c6c0c1ece3666"
+        },
+        {
+          "title": {
+            "en": "Your Partner in Strategy & Success",
+            "ar": "شريكك في الاستراتيجية والنجاح"
+          },
+          "description": {
+            "en": "<p>From strategic planning to execution, we guide you every step of the way.</p>",
+            "ar": "<p>من التخطيط الاستراتيجي إلى التنفيذ، نرشدك في كل خطوة.</p>"
+          },
+          "image": "website/1756026430666_business-consulting-meeting-working-brainstorming-new-project-finance-investment-concept-148096487.webp",
+          "_id": "68b4630eff7c6c0c1ece3667"
+        }
+      ],
+      "projects": [
+        {
+          "title": {
+            "en": "Market Expansion Strategy for Tech Startup",
+            "ar": "استراتيجية التوسع في السوق لشركة ناشئة تكنولوجية"
+          },
+          "shortDescription": {
+            "en": "We analyzed the competitive landscape, customer demographics, and regulatory challenges. We reviewed market trends, pricing strategies, and technological disruptions. We assessed brand positioning, value propositions, and product differentiation. We examined distribution channels, sales performance, and operational efficiency. We evaluated customer behavior, loyalty drivers, and emerging expectations. We studied financial performance, funding patterns, and profitability metrics. We identified risks, compliance requirements, and geopolitical influences. We compared marketing campaigns, digital presence, and engagement levels. We investigated supply chain dynamics, vendor relations, and logistics models. Finally, we explored innovation pipelines, R&D investments, and future growth opportunities.",
+            "ar": "قمنا بتحليل المشهد التنافسي، والتركيبة السكانية للعملاء، والتحديات التنظيمية. قمنا بمراجعة اتجاهات السوق واستراتيجيات التسعير والاضطرابات التكنولوجية. قمنا بتقييم وضع العلامة التجارية، ومقترحات القيمة، وتمايز المنتجات. قمنا بفحص قنوات التوزيع وأداء المبيعات والكفاءة التشغيلية. قمنا بتقييم سلوك العملاء، ومحركات الولاء، والتوقعات الناشئة. لقد درسنا الأداء المالي وأنماط التمويل ومقاييس الربحية. لقد حددنا المخاطر ومتطلبات الامتثال والتأثيرات الجيوسياسية. قمنا بمقارنة الحملات التسويقية والتواجد الرقمي ومستويات المشاركة. قمنا بالتحقق من ديناميكيات سلسلة التوريد، والعلاقات مع البائعين، والنماذج اللوجستية. وأخيرًا، استكشفنا خطوط الابتكار، واستثمارات البحث والتطوير، وفرص النمو المستقبلية."
+          },
+          "projectAnalysis": {
+            "description": {
+              "en": "We conducted a thorough review of industry benchmarks, competitive strengths, and market gaps. We examined consumer preferences, purchasing behaviors, and evolving lifestyle patterns. We evaluated organizational capabilities, workforce efficiency, and leadership alignment. We analyzed digital adoption, technology integration, and automation potential. We studied financial sustainability, investment priorities, and cost optimization strategies. We explored partnership opportunities, strategic alliances, and expansion models. We assessed brand reputation, customer trust, and public perception. We reviewed regulatory frameworks, compliance standards, and emerging policy shifts. We investigated innovation ecosystems, startup activity, and disruptive entrants. Finally, we mapped long-term growth trajectories, scalability potential, and market resilience.",
+              "ar": "لقد أجرينا مراجعة شاملة لمعايير الصناعة ونقاط القوة التنافسية والفجوات في السوق. قمنا بفحص تفضيلات المستهلك، وسلوكيات الشراء، وأنماط الحياة المتطورة. قمنا بتقييم القدرات التنظيمية، وكفاءة القوى العاملة، ومواءمة القيادة. قمنا بتحليل الاعتماد الرقمي، وتكامل التكنولوجيا، وإمكانات الأتمتة. لقد درسنا الاستدامة المالية وأولويات الاستثمار واستراتيجيات تحسين التكلفة. لقد استكشفنا فرص الشراكة والتحالفات الإستراتيجية ونماذج التوسع. قمنا بتقييم سمعة العلامة التجارية وثقة العملاء والتصور العام. لقد قمنا بمراجعة الأطر التنظيمية، ومعايير الامتثال، والتحولات الناشئة في السياسات. لقد بحثنا في النظم الإيكولوجية للابتكار، ونشاط الشركات الناشئة، والوافدين المزعجين. وأخيرًا، قمنا بتحديد مسارات النمو على المدى الطويل، وإمكانات التوسع، ومرونة السوق."
+            },
+            "image": "projects/1756033473965_Untitled-design4-min1.png"
+          },
+          "projectSolutions": {
+            "description": {
+              "en": "We examined shifting consumer demands, emerging market niches, and untapped opportunities. We analyzed pricing flexibility, product adaptability, and competitive response times. We assessed operational bottlenecks, workflow efficiency, and process improvements. We studied technological enablers, digital platforms, and data-driven decision-making. We reviewed customer satisfaction, service quality, and loyalty retention strategies. We evaluated revenue streams, cost structures, and profitability levers. We explored sustainability practices, environmental impact, and social responsibility factors. We investigated talent acquisition, employee engagement, and skill development trends. We compared innovation cycles, product roadmaps, and time-to-market strategies. Finally, we outlined potential growth pathways, risk mitigation measures, and strategic priorities for the future.",
+              "ar": "لقد درسنا طلبات المستهلكين المتغيرة، ومنافذ الأسواق الناشئة، والفرص غير المستغلة. قمنا بتحليل مرونة التسعير، والقدرة على التكيف المنتج، وأوقات الاستجابة التنافسية. قمنا بتقييم الاختناقات التشغيلية، وكفاءة سير العمل، وتحسينات العملية. لقد درسنا عوامل التمكين التكنولوجية، والمنصات الرقمية، وصنع القرار القائم على البيانات. قمنا بمراجعة رضا العملاء وجودة الخدمة واستراتيجيات الاحتفاظ بالولاء. قمنا بتقييم تدفقات الإيرادات، وهياكل التكلفة، وأدوات الربحية. لقد استكشفنا ممارسات الاستدامة والأثر البيئي وعوامل المسؤولية الاجتماعية. قمنا بالتحقق من اكتساب المواهب، وإشراك الموظفين، واتجاهات تنمية المهارات. قمنا بمقارنة دورات الابتكار، وخرائط طريق المنتج، واستراتيجيات وقت الوصول إلى السوق. وأخيرا، قمنا بتحديد مسارات النمو المحتملة، وتدابير تخفيف المخاطر، والأولويات الاستراتيجية للمستقبل."
+            },
+            "image": "projects/1756033473968_360_F_589427987_DHuYZn4ZIhPQVSA5aoQYiWw5inuKCWig.jpg"
+          },
+          "projectResults": {
+            "description": {
+              "en": "We analyzed global market dynamics, regional shifts, and sector-specific challenges. We reviewed customer journeys, purchasing motivations, and long-term retention factors. We assessed competitive advantages, brand equity, and differentiation strategies. We examined revenue diversification, pricing models, and margin optimization. We studied operational scalability, infrastructure readiness, and resource allocation. We explored digital transformation, automation tools, and emerging technologies. We evaluated risk exposure, crisis management, and regulatory adaptation. We investigated supply resilience, vendor performance, and logistics efficiency. We compared communication strategies, stakeholder engagement, and public relations outcomes. Finally, we mapped strategic opportunities, innovation pipelines, and sustainable growth directions.",
+              "ar": "قمنا بتحليل ديناميكيات السوق العالمية، والتحولات الإقليمية، والتحديات الخاصة بكل قطاع. لقد قمنا بمراجعة رحلات العملاء ودوافع الشراء وعوامل الاحتفاظ بالمنتجات على المدى الطويل. قمنا بتقييم المزايا التنافسية، وقيمة العلامة التجارية، واستراتيجيات التمايز. قمنا بدراسة تنويع الإيرادات ونماذج التسعير وتحسين الهامش. لقد درسنا قابلية التوسع التشغيلي، وجاهزية البنية التحتية، وتخصيص الموارد. لقد استكشفنا التحول الرقمي وأدوات الأتمتة والتقنيات الناشئة. قمنا بتقييم التعرض للمخاطر، وإدارة الأزمات، والتكيف التنظيمي. لقد قمنا بالتحقق من مرونة العرض وأداء البائعين والكفاءة اللوجستية. قمنا بمقارنة استراتيجيات الاتصال، وإشراك أصحاب المصلحة، ونتائج العلاقات العامة. وأخيرًا، قمنا بتحديد الفرص الإستراتيجية وخطوط الابتكار واتجاهات النمو المستدام."
+            },
+            "image": "projects/1756033473969_premium_photo-1661434270550-fc467725a2ed.jpeg"
+          },
+          "_id": "68a9fab85c26e42c980d2951",
+          "image": "projects/1755970378982_business-consultants-is-checking-and-analysis-sales-figures-to-plan-business-strategies-photo.jpg",
+          "slug": "market-expansion-strategy-for-tech-startup",
+          "service": {
+            "title": {
+              "en": "Business Strategy Consulting",
+              "ar": "الاستشارات الاستراتيجية للأعمال"
+            },
+            "_id": "68a9f7df5c26e42c980d2940"
+          },
+          "customer": "InnoTech Solutions",
+          "link": "https://innotech.com",
+          "date": "2023-08-15T00:00:00.000Z",
+          "tags": ["strategy", "startup", "market expansion"],
+          "isActive": true,
+          "updatedAt": "2025-08-24T11:04:34.234Z"
+        },
+        {
+          "title": {
+            "en": "Financial Restructuring for Retail Chain",
+            "ar": "إعادة الهيكلة المالية لسلسلة متاجر التجزئة"
+          },
+          "shortDescription": {
+            "en": "We studied shifting consumer expectations, evolving cultural influences, and lifestyle-driven purchasing habits. We analyzed market fragmentation, niche growth segments, and emerging competitors. We assessed organizational adaptability, leadership strategies, and change management practices. We examined product innovation, technology adoption, and digital-first business models. Finally, we evaluated long-term opportunities for expansion, sustainability, and resilience.",
+            "ar": "قمنا بدراسة توقعات المستهلكين المتغيرة، والتأثيرات الثقافية المتطورة، وعادات الشراء المدفوعة بنمط الحياة. وحللنا تجزئة السوق، ونمو الشرائح المتخصصة، والمنافسين الجدد. كما قمنا بتقييم قدرة المؤسسات على التكيف، واستراتيجيات القيادة، وممارسات إدارة التغيير. وراجعنا ابتكارات المنتجات، واعتماد التكنولوجيا، ونماذج الأعمال الرقمية أولاً. وأخيرًا، قمنا بتقييم فرص التوسع طويلة المدى، والاستدامة، والمرونة."
+          },
+          "projectAnalysis": {
+            "description": {
+              "en": "We analyzed operational efficiency, workflow alignment, and resource utilization. We reviewed cost optimization strategies, profitability drivers, and investment priorities. We examined brand identity, market perception, and customer trust levels. We explored new distribution channels, strategic alliances, and partnership models. Lastly, we assessed innovation capacity, R&D initiatives, and competitive differentiation.",
+              "ar": "قمنا بتحليل كفاءة العمليات، ومواءمة سير العمل، واستغلال الموارد. وراجعنا استراتيجيات خفض التكاليف، ومحركات الربحية، وأولويات الاستثمار. كما قمنا بفحص هوية العلامة التجارية، والانطباع السوقي، ومستويات ثقة العملاء. واستكشفنا قنوات التوزيع الجديدة، والتحالفات الاستراتيجية، ونماذج الشراكة. وأخيرًا، قمنا بتقييم القدرة على الابتكار، ومبادرات البحث والتطوير، والتميّز التنافسي."
+            },
+            "image": "projects/1756033663633_image_870x_647829fc0e10e.jpg"
+          },
+          "projectSolutions": {
+            "description": {
+              "en": "We examined global trends, regional risks, and local regulatory frameworks. We studied financial performance, revenue diversification, and capital allocation. We assessed workforce development, talent retention, and leadership pipelines. We investigated customer engagement, loyalty programs, and personalized experiences. Finally, we outlined pathways for sustainable growth, market resilience, and long-term value creation.",
+              "ar": "قمنا بدراسة الاتجاهات العالمية، والمخاطر الإقليمية، والأطر التنظيمية المحلية. كما حللنا الأداء المالي، وتنويع الإيرادات، وتخصيص رأس المال. وقمنا بتقييم تطوير القوى العاملة، والاحتفاظ بالمواهب، ومسارات القيادة. وحققنا في تفاعل العملاء، وبرامج الولاء، والتجارب المخصصة. وأخيرًا، وضعنا مسارات للنمو المستدام، والمرونة السوقية، وتحقيق القيمة طويلة الأمد."
+            },
+            "image": "projects/1756033663633_tyler-franta-iusj25iyu1c-unsplash-1024x684.jpg"
+          },
+          "projectResults": {
+            "description": {
+              "en": "We studied shifting consumer expectations, evolving cultural influences, and lifestyle-driven purchasing habits. We analyzed market fragmentation, niche growth segments, and emerging competitors. We assessed organizational adaptability, leadership strategies, and change management practices. We examined product innovation, technology adoption, and digital-first business models. Finally, we evaluated long-term opportunities for expansion, sustainability, and resilience.",
+              "ar": "قمنا بدراسة توقعات المستهلكين المتغيرة، والتأثيرات الثقافية المتطورة، وعادات الشراء المدفوعة بنمط الحياة. وحللنا تجزئة السوق، ونمو الشرائح المتخصصة، والمنافسين الجدد. كما قمنا بتقييم قدرة المؤسسات على التكيف، واستراتيجيات القيادة، وممارسات إدارة التغيير. وراجعنا ابتكارات المنتجات، واعتماد التكنولوجيا، ونماذج الأعمال الرقمية أولاً. وأخيرًا، قمنا بتقييم فرص التوسع طويلة المدى، والاستدامة، والمرونة."
+            },
+            "image": "projects/1756033663634_iStock-1252881113-e1641585871435.jpg"
+          },
+          "_id": "68a9fab85c26e42c980d2952",
+          "image": "projects/1755970393308_istockphoto-1445807259-612x612.jpg",
+          "slug": "financial-restructuring-for-retail-chain",
+          "service": {
+            "title": {
+              "en": "Financial Consultancy",
+              "ar": "الاستشارات المالية"
+            },
+            "_id": "68a9f7df5c26e42c980d2941"
+          },
+          "customer": "StyleMart Retail",
+          "link": "https://stylemart.com",
+          "date": "2023-05-10T00:00:00.000Z",
+          "tags": ["finance", "restructuring", "retail"],
+          "isActive": true,
+          "updatedAt": "2025-08-24T11:07:43.903Z"
+        },
+        {
+          "title": {
+            "en": "HR Transformation for Healthcare Provider",
+            "ar": "تحول الموارد البشرية لمزود رعاية صحية"
+          },
+          "shortDescription": {
+            "en": "We explored customer acquisition strategies, retention methods, and lifetime value drivers. We assessed pricing flexibility, promotional effectiveness, and discounting patterns. We analyzed digital marketing channels, content strategies, and audience engagement. We reviewed sales conversion funnels, lead generation tactics, and performance metrics. Finally, we identified opportunities for growth, scalability, and competitive edge.",
+            "ar": "قمنا باستكشاف استراتيجيات جذب العملاء، وأساليب الاحتفاظ بهم، والعوامل التي تزيد من قيمتهم على المدى الطويل. وقيّمنا مرونة التسعير، وفعالية العروض الترويجية، وأنماط الخصومات. كما حللنا قنوات التسويق الرقمي، واستراتيجيات المحتوى، وتفاعل الجمهور. وراجعنا مسارات تحويل المبيعات، وأساليب توليد العملاء المحتملين، ومؤشرات الأداء. وأخيرًا، حددنا فرص النمو، وقابلية التوسع، والميزة التنافسية."
+          },
+          "projectAnalysis": {
+            "description": {
+              "en": "We examined risk management practices, compliance monitoring, and crisis response systems. We analyzed economic volatility, policy shifts, and regulatory challenges. We assessed cybersecurity readiness, data governance, and privacy measures. We explored sustainability goals, green initiatives, and ethical business models. Ultimately, we mapped strategies to ensure resilience, adaptability, and long-term stability.",
+              "ar": "قمنا بدراسة ممارسات إدارة المخاطر، ومراقبة الامتثال، وأنظمة الاستجابة للأزمات. كما حللنا تقلبات الاقتصاد، وتغير السياسات، والتحديات التنظيمية. وقيّمنا جاهزية الأمن السيبراني، وحوكمة البيانات، وإجراءات الخصوصية. واستكشفنا الأهداف المتعلقة بالاستدامة، والمبادرات البيئية، ونماذج الأعمال الأخلاقية. وفي النهاية، وضعنا استراتيجيات تضمن المرونة، والقدرة على التكيف، والاستقرار على المدى الطويل."
+            },
+            "image": "projects/1756033792251_1693687605489.jpeg"
+          },
+          "projectSolutions": {
+            "description": {
+              "en": "We analyzed organizational culture, employee satisfaction, and leadership alignment. We assessed training programs, career development paths, and succession planning. We studied workforce productivity, collaboration models, and performance incentives. We examined internal communication, decision-making processes, and governance structures. Finally, we highlighted opportunities to strengthen talent pipelines, innovation capacity, and organizational growth.",
+              "ar": "قمنا بتحليل ثقافة المؤسسة، ورضا الموظفين، ومواءمة القيادة. وقيّمنا برامج التدريب، ومسارات التطوير الوظيفي، وخطط التعاقب الإداري. كما درسنا إنتاجية القوى العاملة، ونماذج التعاون، وحوافز الأداء. وفحصنا أساليب التواصل الداخلي، وعمليات اتخاذ القرار، والهياكل الإدارية. وأخيرًا، أبرزنا الفرص لتعزيز مسارات المواهب، وقدرات الابتكار، ونمو المؤسسة."
+            },
+            "image": "projects/1756033792252_istockphoto-1273843154-612x612.jpg"
+          },
+          "projectResults": {
+            "description": {
+              "en": "We explored customer acquisition strategies, retention methods, and lifetime value drivers. We assessed pricing flexibility, promotional effectiveness, and discounting patterns. We analyzed digital marketing channels, content strategies, and audience engagement. We reviewed sales conversion funnels, lead generation tactics, and performance metrics. Finally, we identified opportunities for growth, scalability, and competitive edge.",
+              "ar": "قمنا باستكشاف استراتيجيات جذب العملاء، وأساليب الاحتفاظ بهم، والعوامل التي تزيد من قيمتهم على المدى الطويل. وقيّمنا مرونة التسعير، وفعالية العروض الترويجية، وأنماط الخصومات. كما حللنا قنوات التسويق الرقمي، واستراتيجيات المحتوى، وتفاعل الجمهور. وراجعنا مسارات تحويل المبيعات، وأساليب توليد العملاء المحتملين، ومؤشرات الأداء. وأخيرًا، حددنا فرص النمو، وقابلية التوسع، والميزة التنافسية."
+            },
+            "image": "projects/1756033792257_premium_photo-1661782505582-07ea68e3e760.jpeg"
+          },
+          "_id": "68a9fab85c26e42c980d2953",
+          "image": "projects/1755970414107_photo-1454165804606-c3d57bc86b40.jpg",
+          "slug": "hr-transformation-for-healthcare-provider",
+          "service": {
+            "title": {
+              "en": "HR & Talent Management",
+              "ar": "إدارة الموارد البشرية والمواهب"
+            },
+            "_id": "68a9f7df5c26e42c980d2942"
+          },
+          "customer": "MediCare Clinics",
+          "link": "https://medicareclinics.com",
+          "date": "2023-11-01T00:00:00.000Z",
+          "tags": ["HR", "healthcare", "talent management"],
+          "isActive": true,
+          "updatedAt": "2025-08-24T11:09:52.552Z"
+        }
+      ],
+      "testimonials": [
+        {
+          "name": {
+            "en": "John Doe",
+            "ar": "جون دو"
+          },
+          "position": {
+            "en": "Software Engineer",
+            "ar": "مهندس برمجيات"
+          },
+          "description": {
+            "en": "This service was exceptional! The team was professional and delivered beyond expectations.",
+            "ar": "كانت الخدمة استثنائية! كان الفريق محترفًا وقدم أكثر مما توقعت."
+          },
+          "_id": "68a0e420b846fd77e37f5515",
+          "isActive": true,
+          "createdAt": "2025-08-16T20:03:44.258Z",
+          "updatedAt": "2025-08-23T17:12:28.323Z",
+          "isFeatured": true,
+          "image": "testimonials/1755969148315_istockphoto-1682296067-612x612.jpg"
+        },
+        {
+          "name": {
+            "en": "Michael Smith",
+            "ar": "مايكل سميث"
+          },
+          "position": {
+            "en": "Project Manager",
+            "ar": "مدير مشروع"
+          },
+          "description": {
+            "en": "Highly recommended! The quality and support were outstanding.",
+            "ar": "أنصح به بشدة! كانت الجودة والدعم ممتازين."
+          },
+          "_id": "68a0e44cb846fd77e37f551e",
+          "isActive": true,
+          "createdAt": "2025-08-16T20:04:28.492Z",
+          "updatedAt": "2025-08-23T17:12:20.510Z",
+          "isFeatured": true,
+          "image": "testimonials/1755969140507_1-intro-photo-final.jpg"
+        },
+        {
+          "name": {
+            "en": "Sarah Ahmed",
+            "ar": "سارة أحمد"
+          },
+          "position": {
+            "en": "Marketing Specialist",
+            "ar": "أخصائية تسويق"
+          },
+          "description": {
+            "en": "<p>I had a wonderful experience. Everything was smooth and well-organized.</p>",
+            "ar": "<p>كانت تجربتي رائعة. كل شيء كان سلسًا ومنظمًا بشكل جيد.</p>"
+          },
+          "_id": "68a0e459b846fd77e37f5524",
+          "isActive": true,
+          "createdAt": "2025-08-16T20:04:41.292Z",
+          "updatedAt": "2025-08-27T13:40:54.261Z",
+          "isFeatured": true,
+          "image": "testimonials/1755969132610_profile.jpg"
+        }
+      ],
+      "blogs": [
+        {
+          "title": {
+            "en": "Strategic Planning for Business Growth",
+            "ar": "التخطيط الاستراتيجي لنمو الأعمال"
+          },
+          "subTitle": {
+            "en": "How consultancy helps organizations achieve sustainable success",
+            "ar": "كيف تساعد الاستشارات المؤسسات على تحقيق النجاح المستدام"
+          },
+          "description": {
+            "en": "<p>In today’s competitive market, businesses require a clear strategy to achieve growth. Our consultancy team provides expert guidance in strategic planning, helping companies identify opportunities, mitigate risks, and create roadmaps for long-term success.In today’s competitive market, businesses require a clear strategy to achieve growth. Our consultancy team provides expert guidance in strategic planning, helping companies identify opportunities, mitigate risks, and create roadmaps for long-term success.In today’s competitive market, businesses require a clear strategy to achieve growth. Our consultancy team provides expert guidance in strategic planning, helping companies identify opportunities, mitigate risks, and create roadmaps for long-term success.</p>",
+            "ar": "<p>في سوق اليوم التنافسي، تحتاج الشركات إلى استراتيجية واضحة لتحقيق النمو. يقدم فريقنا الاستشاري إرشادات متخصصة في التخطيط الاستراتيجي، لمساعدة الشركات على تحديد الفرص وتقليل المخاطر وإنشاء خرائط طريق للنجاح على المدى الطويل.</p>"
+          },
+          "_id": "68a9f78d5c26e42c980d293b",
+          "slug": "strategic-planning-for-business-growth",
+          "image": "blogs/1755969774664_business-consultants-is-checking-and-analysis-sales-figures-to-plan-business-strategies-photo.jpg",
+          "service": "68a9f7df5c26e42c980d2940",
+          "author": "John Doe",
+          "tags": ["business", "strategy", "consultancy", "test"],
+          "isActive": true,
+          "updatedAt": "2025-08-27T13:56:01.404Z"
+        },
+        {
+          "title": {
+            "en": "The Importance of Financial Consultancy",
+            "ar": "أهمية الاستشارات المالية"
+          },
+          "subTitle": {
+            "en": "Improving financial performance through expert insights",
+            "ar": "تحسين الأداء المالي من خلال الرؤى المتخصصة"
+          },
+          "description": {
+            "en": "Financial consultancy plays a vital role in ensuring stability and profitability. Our experts assist organizations in managing budgets, reducing costs, and developing investment strategies tailored to their goals.",
+            "ar": "تلعب الاستشارات المالية دورًا حيويًا في ضمان الاستقرار والربحية. يساعد خبراؤنا المؤسسات في إدارة الميزانيات وتقليل التكاليف وتطوير استراتيجيات استثمار مخصصة لأهدافها."
+          },
+          "_id": "68a9f78d5c26e42c980d293c",
+          "slug": "the-importance-of-financial-consultancy",
+          "image": "blogs/1755969786489_istockphoto-1445807259-612x612.jpg",
+          "service": "68a9f7df5c26e42c980d2941",
+          "author": "Sarah Smith",
+          "tags": ["finance", "investment", "consultancy"],
+          "isActive": true,
+          "updatedAt": "2025-08-23T17:23:07.214Z"
+        },
+        {
+          "title": {
+            "en": "HR Consultancy: Building Strong Teams",
+            "ar": "الاستشارات الإدارية: بناء فرق قوية"
+          },
+          "subTitle": {
+            "en": "Enhancing productivity with effective HR strategies",
+            "ar": "تعزيز الإنتاجية من خلال استراتيجيات الموارد البشرية الفعالة"
+          },
+          "description": {
+            "en": "Human Resources consultancy empowers companies to attract, retain, and develop talent. By implementing effective HR practices, businesses can foster a culture of collaboration and growth.",
+            "ar": "تمكّن استشارات الموارد البشرية الشركات من جذب المواهب والاحتفاظ بها وتطويرها. من خلال تطبيق ممارسات فعالة للموارد البشرية، يمكن للشركات تعزيز ثقافة التعاون والنمو."
+          },
+          "_id": "68a9f78d5c26e42c980d293d",
+          "slug": "hr-consultancy-building-strong-teams",
+          "image": "blogs/1755969852817_photo-1454165804606-c3d57bc86b40.jpg",
+          "service": "68a9f7df5c26e42c980d2942",
+          "author": "Michael Johnson",
+          "tags": ["HR", "teamwork", "consultancy"],
+          "isActive": true,
+          "updatedAt": "2025-08-23T17:24:13.044Z"
+        }
+      ],
+      "services": [
+        {
+          "title": {
+            "en": "Business Strategy Consulting",
+            "ar": "الاستشارات الاستراتيجية للأعمال"
+          },
+          "shortDescription": {
+            "en": "Helping organizations define and execute winning strategies.",
+            "ar": "مساعدة المؤسسات على تحديد وتنفيذ استراتيجيات ناجحة."
+          },
+          "longDescription": {
+            "en": "Our business strategy consulting service focuses on creating actionable plans that enable companies to achieve sustainable growth, expand into new markets, and stay competitive in dynamic industries.",
+            "ar": "تركز خدمات الاستشارات الاستراتيجية للأعمال على إنشاء خطط قابلة للتنفيذ تمكّن الشركات من تحقيق نمو مستدام والتوسع في الأسواق الجديدة والبقاء قادرة على المنافسة في الصناعات الديناميكية."
+          },
+          "benefits": {
+            "description": {
+              "en": "Empowers businesses with strategies that align with their vision and market dynamics.",
+              "ar": "تمكّن الشركات من وضع استراتيجيات تتماشى مع رؤيتها وديناميكيات السوق."
+            },
+            "video": "https://www.youtube.com/embed/MjamAL6FBJY",
+            "features": []
+          },
+          "brochure": {
+            "pdf": "brochures/strategy.pdf",
+            "document": "brochures/strategy.docx"
+          },
+          "_id": "68a9f7df5c26e42c980d2940",
+          "slug": "business-strategy-consulting",
+          "icon": "blogs/1755969774664_business-consultants-is-checking-and-analysis-sales-figures-to-plan-business-strategies-photo.jpg",
+          "banner": "projects/1755970414107_photo-1454165804606-c3d57bc86b40.jpg",
+          "image": "blogs/1755969774664_business-consultants-is-checking-and-analysis-sales-figures-to-plan-business-strategies-photo.jpg",
+          "subServices": [
+            {
+              "title": {
+                "en": "Market Analysis",
+                "ar": "تحليل السوق"
+              },
+              "description": {
+                "en": "Providing deep insights into market trends, customer behavior, and competitive landscapes.",
+                "ar": "تقديم رؤى معمقة حول اتجاهات السوق وسلوك العملاء والمشهد التنافسي."
+              },
+              "_id": "68d7b8f7fc12817403c08743",
+              "icon": "flaticon-graphic"
+            },
+            {
+              "title": {
+                "en": "Growth Roadmaps",
+                "ar": "خرائط النمو"
+              },
+              "description": {
+                "en": "Designing clear roadmaps to achieve long-term business goals.",
+                "ar": "تصميم خرائط طريق واضحة لتحقيق أهداف الأعمال طويلة المدى."
+              },
+              "_id": "68d7b8f7fc12817403c08744",
+              "icon": "flaticon-technology-1"
+            }
+          ],
+          "isActive": true,
+          "isDeleted": false
+        },
+        {
+          "title": {
+            "en": "Financial Consultancy",
+            "ar": "الاستشارات المالية"
+          },
+          "shortDescription": {
+            "en": "Optimizing financial performance and investment strategies.",
+            "ar": "تحسين الأداء المالي واستراتيجيات الاستثمار."
+          },
+          "longDescription": {
+            "en": "We help organizations manage their finances effectively by offering expert guidance in cost optimization, financial planning, and investment opportunities that maximize profitability.",
+            "ar": "نساعد المؤسسات على إدارة أموالها بفعالية من خلال تقديم إرشادات متخصصة في تحسين التكاليف والتخطيط المالي وفرص الاستثمار التي تزيد من الربحية."
+          },
+          "benefits": {
+            "description": {
+              "en": "Improves financial stability and supports smart investment decisions.",
+              "ar": "يحسن الاستقرار المالي ويدعم القرارات الاستثمارية الذكية."
+            },
+            "video": "https://www.youtube.com/embed/BXJk2vA9c-0",
+            "features": []
+          },
+          "brochure": {
+            "pdf": "brochures/finance.pdf",
+            "document": "brochures/finance.docx"
+          },
+          "_id": "68a9f7df5c26e42c980d2941",
+          "slug": "financial-consultancy",
+          "icon": "blogs/1755969786489_istockphoto-1445807259-612x612.jpg",
+          "banner": "projects/1755970378982_business-consultants-is-checking-and-analysis-sales-figures-to-plan-business-strategies-photo.jpg",
+          "image": "blogs/1755969786489_istockphoto-1445807259-612x612.jpg",
+          "subServices": [
+            {
+              "title": {
+                "en": "Budget Management",
+                "ar": "إدارة الميزانية"
+              },
+              "description": {
+                "en": "Assisting in preparing accurate budgets and reducing unnecessary expenses.",
+                "ar": "المساعدة في إعداد ميزانيات دقيقة وتقليل النفقات غير الضرورية."
+              },
+              "_id": "68d7b8f7fc12817403c08745",
+              "icon": "flaticon-technology-1"
+            },
+            {
+              "title": {
+                "en": "Investment Planning",
+                "ar": "التخطيط الاستثماري"
+              },
+              "description": {
+                "en": "Developing tailored investment strategies to maximize returns.",
+                "ar": "تطوير استراتيجيات استثمارية مخصصة لتعظيم العوائد."
+              },
+              "_id": "68d7b8f7fc12817403c08746",
+              "icon": "flaticon-graphic"
+            }
+          ],
+          "isActive": true,
+          "isDeleted": false
+        },
+        {
+          "title": {
+            "en": "HR & Talent Management",
+            "ar": "إدارة الموارد البشرية والمواهب"
+          },
+          "shortDescription": {
+            "en": "Building strong teams and improving workplace culture.",
+            "ar": "بناء فرق قوية وتحسين ثقافة مكان العمل."
+          },
+          "longDescription": {
+            "en": "Our HR consultancy service focuses on recruiting, retaining, and developing talent. We design HR frameworks that improve employee engagement and enhance organizational productivity.",
+            "ar": "تركز خدمات الاستشارات الإدارية على توظيف المواهب والاحتفاظ بها وتطويرها. نحن نصمم أطرًا إدارية تعمل على تحسين مشاركة الموظفين وتعزيز إنتاجية المؤسسة."
+          },
+          "benefits": {
+            "description": {
+              "en": "Enables businesses to create motivated teams that drive organizational success.",
+              "ar": "تمكّن الشركات من إنشاء فرق متحمسة تدفع نجاح المؤسسة."
+            },
+            "video": "https://www.youtube.com/embed/Of2hCXrMujE",
+            "features": []
+          },
+          "brochure": {
+            "pdf": "brochures/hr.pdf",
+            "document": "brochures/hr.docx"
+          },
+          "_id": "68a9f7df5c26e42c980d2942",
+          "slug": "hr-talent-management",
+          "icon": "blogs/1755969852817_photo-1454165804606-c3d57bc86b40.jpg",
+          "banner": "projects/1755970393308_istockphoto-1445807259-612x612.jpg",
+          "image": "blogs/1755969852817_photo-1454165804606-c3d57bc86b40.jpg",
+          "subServices": [
+            {
+              "title": {
+                "en": "Recruitment Services",
+                "ar": "خدمات التوظيف"
+              },
+              "description": {
+                "en": "Helping businesses find the right talent through structured recruitment processes.",
+                "ar": "مساعدة الشركات في العثور على المواهب المناسبة من خلال عمليات توظيف منظمة."
+              },
+              "_id": "68d7b8f7fc12817403c08747",
+              "icon": "flaticon-graphic"
+            },
+            {
+              "title": {
+                "en": "Employee Training",
+                "ar": "تدريب الموظفين"
+              },
+              "description": {
+                "en": "Developing tailored training programs to enhance skills and productivity.",
+                "ar": "تطوير برامج تدريبية مخصصة لتعزيز المهارات والإنتاجية."
+              },
+              "_id": "68d7b8f7fc12817403c08748",
+              "icon": "flaticon-business-1"
+            }
+          ],
+          "isActive": true,
+          "isDeleted": false
+        }
+      ],
+      "partners": [
+        {
+          "title": {
+            "en": "Microsoft",
+            "ar": "مايكروسوفت"
+          },
+          "_id": "68a9f9ba5c26e42c980d294a",
+          "image": "partners/1755970124204_Microsoft-Logo-PNG-Photos.png",
+          "isActive": true,
+          "updatedAt": "2025-08-23T17:28:44.206Z"
+        },
+        {
+          "title": {
+            "en": "Apple",
+            "ar": "ابل"
+          },
+          "_id": "68a9f9ba5c26e42c980d294b",
+          "image": "partners/1755970139668_image-58-1024x512.png",
+          "isActive": true,
+          "updatedAt": "2025-08-23T17:29:10.523Z"
+        },
+        {
+          "title": {
+            "en": "Amazon Web Services",
+            "ar": "خدمات أمازون ويب"
+          },
+          "_id": "68a9f9ba5c26e42c980d294c",
+          "image": "partners/1755970159432_Amazon_Web_Services_Logo.svg.png",
+          "isActive": true,
+          "updatedAt": "2025-08-23T17:29:19.434Z"
+        },
+        {
+          "title": {
+            "en": "PwC",
+            "ar": "برايس ووترهاوس كوبرز"
+          },
+          "_id": "68a9f9ba5c26e42c980d294e",
+          "image": "partners/1756645668157_Google_2015_logo.svg.webp",
+          "isActive": true,
+          "updatedAt": "2025-08-31T13:07:48.159Z"
+        }
+      ]
+    },
+    "aboutPage": {
+      "shortDescription": {
+        "en": "<h1 class=\"ql-align-center\"><span style=\"background-color: rgb(255, 255, 255); color: rgb(34, 34, 34);\">Strategizers is a trusted consultancy partner helping organizations achieve excellence</span></h1>",
+        "ar": "<p>ستراتيجيزرز هي شريك استشاري موثوق يساعد المؤسسات على تحقيق التميز.</p>"
+      },
+      "longDescription": {
+        "en": "<p>Since our founding, Strategizers has supported businesses across industries by providing expertise in strategy, finance, and organizational development. Our goal is to drive innovation, growth, and sustainable success. We work closely with our clients to understand their unique challenges and design tailored solutions that deliver measurable impact. Our team brings together deep industry knowledge and a forward-looking perspective to anticipate market shifts and seize opportunities. From startups to established enterprises, we help organizations build resilience and adapt to changing environments. We emphasize data-driven decision-making, ensuring strategies are not only visionary but also practical and executable. Through workshops, advisory sessions, and hands-on implementation, we empower leaders to align teams with long-term objectives. Our finance experts provide clarity on capital allocation, investment strategies, and sustainable growth models. We also focus on strengthening organizational culture, fostering collaboration, and enhancing leadership capabilities. At Strategizers, we believe in building lasting partnerships based on trust, transparency, and shared success. Every project we undertake is guided by our commitment to excellence, integrity, and meaningful results. Looking ahead, we continue to innovate and expand our capabilities to better serve our clients in a rapidly evolving global economy.</p><p><strong> </strong></p>",
+        "ar": "<p>منذ تأسيس ستراتيجايزرز ونحن ندعم الشركات عبر مختلف القطاعات من خلال خبراتنا في الاستراتيجية، والمالية، وتطوير المنظمات. هدفنا هو قيادة الابتكار، وتحقيق النمو، وضمان النجاح المستدام. نعمل بشكل وثيق مع عملائنا لفهم تحدياتهم الفريدة وتصميم حلول مخصصة تحقق نتائج ملموسة. يجمع فريقنا بين المعرفة العميقة بالقطاعات المختلفة والرؤية المستقبلية لاستباق التغيرات واغتنام الفرص. من الشركات الناشئة إلى المؤسسات الراسخة، نساعد المنظمات على بناء المرونة والتكيف مع البيئات المتغيرة. نركز على اتخاذ القرارات المبنية على البيانات لضمان أن تكون الاستراتيجيات طموحة وعملية في الوقت نفسه. من خلال ورش العمل، والجلسات الاستشارية، والتنفيذ المباشر، نمكّن القادة من توحيد فرقهم مع الأهداف طويلة الأمد. يقدم خبراؤنا في المالية رؤية واضحة حول تخصيص رأس المال، واستراتيجيات الاستثمار، ونماذج النمو المستدام. كما نركز على تعزيز الثقافة التنظيمية، وتشجيع التعاون، وتنمية القدرات القيادية. في ستراتيجايزرز نؤمن ببناء شراكات طويلة الأمد قائمة على الثقة والشفافية والنجاح المشترك. كل مشروع نقوم به يستند إلى التزامنا بالتميز والنزاهة وتحقيق نتائج ذات معنى. ونحن نتطلع إلى المستقبل من خلال مواصلة الابتكار وتوسيع قدراتنا لخدمة عملائنا في اقتصاد عالمي سريع التطور.</p><p><strong> </strong></p>"
+      },
+      "mission": {
+        "title": {
+          "en": "Our Mission",
+          "ar": "مهمتنا"
+        },
+        "description": {
+          "en": "<p>To empower businesses with strategic insights that fuel growth and resilience.</p>",
+          "ar": "<p>تمكين الشركات من خلال رؤى استراتيجية تعزز النمو والمرونة.</p>"
+        },
+        "image": "website/1756026430667_business-team-collaboration-discussing-working-600nw-1823020430.webp"
+      },
+      "vision": {
+        "title": {
+          "en": "Our Vision",
+          "ar": "رؤيتنا"
+        },
+        "description": {
+          "en": "<p>To be the leading consultancy firm recognized for innovation and excellence worldwide.</p>",
+          "ar": "<p>أن نكون شركة الاستشارات الرائدة المعترف بها بالابتكار والتميز عالميًا.</p>"
+        },
+        "image": "website/1756026430668_business-consulting-meeting-working-brainstorming-new-project-finance-investment-concept-148096487.webp"
+      },
+      "values": {
+        "title": {
+          "en": "Our Values",
+          "ar": "قيمنا"
+        },
+        "description": {
+          "en": "<p>Integrity, collaboration, innovation, and client success.</p>",
+          "ar": "<p>النزاهة، التعاون، الابتكار، ونجاح العملاء.</p>"
+        },
+        "image": "website/1756026430670_business-team-collaboration-discussing-working-600nw-1823020430.webp"
+      },
+      "oppertunitiesSection": {
+        "title": {
+          "en": "Opportunities with Strategizers",
+          "ar": "الفرص مع ستراتيجيزرز"
+        },
+        "description": {
+          "en": "<p>Partner with us to unlock new business horizons and achieve your full potential.</p>",
+          "ar": "<p>شارك معنا لفتح آفاق جديدة للأعمال وتحقيق إمكاناتك الكاملة.</p>"
+        }
+      },
+      "historySection": {
+        "title": {
+          "en": "Our Journey",
+          "ar": "رحلتنا"
+        },
+        "timeline": [
+          {
+            "title": {
+              "en": "Founded",
+              "ar": "التأسيس"
+            },
+            "description": {
+              "en": "<p>Strategizers was established with a mission to redefine consultancy.</p>",
+              "ar": "<p>تم تأسيس ستراتيجيزرز بمهمة لإعادة تعريف الاستشارات.</p>"
+            },
+            "date": "2025-08-24T00:00:00.000Z",
+            "image": "website/1756026430712_business-team-collaboration-discussing-working-600nw-1823020430.webp",
+            "_id": "68b4630eff7c6c0c1ece366b"
+          },
+          {
+            "title": {
+              "en": "First International Client",
+              "ar": "أول عميل دولي"
+            },
+            "description": {
+              "en": "<p>Expanded operations globally by serving our first international partner.</p>",
+              "ar": "<p>وسعنا عملياتنا عالميًا من خلال خدمة أول شريك دولي.</p>"
+            },
+            "date": "2025-08-24T00:00:00.000Z",
+            "image": "website/1756026430713_business-consultants-is-checking-and-analysis-sales-figures-to-plan-business-strategies-photo.jpg",
+            "_id": "68b4630eff7c6c0c1ece366c"
+          },
+          {
+            "title": {
+              "en": "Recognized as Industry Leader",
+              "ar": "الاعتراف بنا كقادة في الصناعة"
+            },
+            "description": {
+              "en": "<p>Strategizers became recognized as a top consultancy firm in the GCC region.</p>",
+              "ar": "<p>أصبحت ستراتيجيزرز معترف بها كواحدة من أفضل شركات الاستشارات في منطقة الخليج.</p>"
+            },
+            "date": "2025-08-24T00:00:00.000Z",
+            "image": "website/1756026430715_istockphoto-1445807259-612x612.jpg",
+            "_id": "68b4630eff7c6c0c1ece366d"
+          },
+          {
+            "title": {
+              "en": "First International Client",
+              "ar": "أول عميل دولي"
+            },
+            "description": {
+              "en": "<p>Strategizers became recognized as a top consultancy firm in the GCC region.</p>",
+              "ar": "<p>وسعنا عملياتنا عالميًا من خلال خدمة أول شريك دولي.</p>"
+            },
+            "date": "2025-08-24T00:00:00.000Z",
+            "image": "website/1756640367642_business-consultants-is-checking-and-analysis-sales-figures-to-plan-business-strategies-photo.jpg",
+            "_id": "68b4630eff7c6c0c1ece366e"
+          },
+          {
+            "title": {
+              "en": "Execute",
+              "ar": "التخطيط الاستراتيجي"
+            },
+            "description": {
+              "en": "<p>Strategizers became recognized as a top consultancy firm in the GCC region.</p>",
+              "ar": "<p>تم تأسيس ستراتيجيزرز بمهمة لإعادة تعريف الاستشارات.</p>"
+            },
+            "date": "2025-08-24T00:00:00.000Z",
+            "image": "website/1756640367643_business-team-collaboration-discussing-working-600nw-1823020430.webp",
+            "_id": "68b4630eff7c6c0c1ece366f"
+          }
+        ]
+      },
+      "ourSmartApproach": [
+        {
+          "title": {
+            "en": "Analyze",
+            "ar": "تحليل"
+          },
+          "subTitle": {
+            "en": "Deep understanding of challenges",
+            "ar": "فهم عميق للتحديات"
+          },
+          "description": {
+            "en": "<p>We start with thorough research and analysis to identify gaps and opportunities.</p>",
+            "ar": "<p>نبدأ بأبحاث وتحليلات شاملة لتحديد الفجوات والفرص.</p>"
+          },
+          "image": "website/1756026430670_photo-1454165804606-c3d57bc86b40.jpg",
+          "_id": "68b4630eff7c6c0c1ece3670"
+        },
+        {
+          "title": {
+            "en": "Strategize",
+            "ar": "التخطيط الاستراتيجي"
+          },
+          "subTitle": {
+            "en": "Crafting actionable plans",
+            "ar": "تصميم خطط قابلة للتنفيذ"
+          },
+          "description": {
+            "en": "<p>Our experts design tailored strategies aligned with your vision.</p>",
+            "ar": "<p>يصمم خبراؤنا استراتيجيات مخصصة تتماشى مع رؤيتك.</p>"
+          },
+          "image": "website/1756026430709_business-consultants-is-checking-and-analysis-sales-figures-to-plan-business-strategies-photo.jpg",
+          "_id": "68b4630eff7c6c0c1ece3671"
+        },
+        {
+          "title": {
+            "en": "Execute",
+            "ar": "تنفيذ"
+          },
+          "subTitle": {
+            "en": "From plan to reality",
+            "ar": "من الخطة إلى الواقع"
+          },
+          "description": {
+            "en": "<p>We support you through implementation to ensure measurable results.</p>",
+            "ar": "<p>ندعمك أثناء التنفيذ لضمان نتائج قابلة للقياس.</p>"
+          },
+          "image": "website/1756026430710_business-consulting-meeting-working-brainstorming-new-project-finance-investment-concept-148096487.webp",
+          "_id": "68b4630eff7c6c0c1ece3672"
+        }
+      ],
+      "banner": "website/1756026430715_photo-1454165804606-c3d57bc86b40.jpg"
+    },
+    "servicePage": {
+      "banner": "website/1756640367643_business-consulting-meeting-working-brainstorming-new-project-finance-investment-concept-148096487.webp"
+    },
+    "blogPage": {
+      "banner": "website/1756026430724_business-consulting-meeting-working-brainstorming-new-project-finance-investment-concept-148096487.webp"
+    },
+    "projectPage": {
+      "banner": "website/1756026430724_business-team-collaboration-discussing-working-600nw-1823020430.webp"
+    },
+    "contactPage": {
+      "banner": "website/1756026430725_business-consultants-is-checking-and-analysis-sales-figures-to-plan-business-strategies-photo.jpg"
+    },
+    "teamPage": {
+      "banner": "website/1756026430725_business-consultants-is-checking-and-analysis-sales-figures-to-plan-business-strategies-photo.jpg"
+    },
+    "faqPage": {
+      "banner": "website/1756652302189_business-team-collaboration-discussing-working-600nw-1823020430.webp"
+    },
+    "testimonialPage": {
+      "banner": "website/1756652302189_business-consultants-is-checking-and-analysis-sales-figures-to-plan-business-strategies-photo.jpg"
+    },
+    "termsPage": {
+      "banner": "website/1756652302190_business-consulting-meeting-working-brainstorming-new-project-finance-investment-concept-148096487.webp"
+    },
+    "privacyPage": {
+      "banner": "website/1756652302190_business-team-collaboration-discussing-working-600nw-1823020430.webp"
+    },
+    "_id": "68b456e5d187ad60e64923c3",
+    "updatedAt": "2025-08-31T14:58:22.194Z"
+  }
+}
