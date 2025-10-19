@@ -10,9 +10,8 @@ const API_BASE_URL =
 // Fetch service data server-side
 async function getServiceData(slug: string) {
   try {
-    const response = await fetch(`${API_BASE_URL}/public/service/${slug}`, {
-      next: { revalidate: 60 }, // Revalidate every 60 seconds
-    });
+    console.log({ slug: `${API_BASE_URL}/public/service/${slug}` });
+    const response = await fetch(`${API_BASE_URL}/public/service/${slug}`);
 
     if (!response.ok) {
       throw new Error("Failed to fetch service data");

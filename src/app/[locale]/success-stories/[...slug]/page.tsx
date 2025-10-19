@@ -51,7 +51,7 @@ export async function generateMetadata({
     project.service.title[locale as "en" | "ar"] || project.service.title.en;
 
   // Use project tags as keywords
-  const keywords = project.tags || [];
+  const keywords = project?.tags || [];
 
   // Get project image for OpenGraph
   const imageUrl = project.image
@@ -64,16 +64,16 @@ export async function generateMetadata({
     title: `${title} - ${serviceTitle}`,
     description: shortDescription,
     keywords: keywords
-      .map((tag) => tag[locale as keyof typeof tag] || tag.en)
-      .join(", "),
+      ?.map((tag) => tag[locale as keyof typeof tag] || tag.en)
+      ?.join(", "),
     openGraph: {
       title: `${title} - ${serviceTitle}`,
       description: shortDescription,
       type: "article",
       images: imageUrl ? [{ url: imageUrl }] : undefined,
-      tags: project.tags
-        .map((tag) => tag[locale as keyof typeof tag] || tag.en)
-        .join(", "),
+      tags: project?.tags
+        ?.map((tag) => tag[locale as keyof typeof tag] || tag.en)
+        ?.join(", "),
     },
     twitter: {
       card: "summary_large_image",

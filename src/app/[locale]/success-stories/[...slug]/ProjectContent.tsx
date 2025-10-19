@@ -156,7 +156,7 @@ export default function ProjectContent({ slug }: ProjectContentProps) {
               {t("details.tags")}
             </p>
             <div className="flex flex-wrap gap-2">
-              {project.tags.map((tag, index) => (
+              {project?.tags?.map((tag, index) => (
                 <span
                   key={index}
                   className="px-3 py-1 bg-web-primary/10 text-web-primary text-sm rounded-full"
