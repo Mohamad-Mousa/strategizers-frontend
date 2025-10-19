@@ -34,7 +34,7 @@ export default function ProjectContent({ slug }: ProjectContentProps) {
   // Format date
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString(locale === "ar" ? "ar-SA" : "en-US", {
+    return date.toLocaleDateString(locale === "ar" ? "ar" : "en-US", {
       year: "numeric",
       month: "long",
       day: "numeric",
