@@ -5,7 +5,8 @@ import BlogContent from "./BlogContent";
 import type { Metadata } from "next";
 
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:4000/api/v1";
+  process.env.NEXT_PUBLIC_API_BASE_URL ||
+  "https://api-strat.othmanconstruction.com/api/v1";
 
 // Fetch blog data server-side
 async function getBlogData(slug: string) {
