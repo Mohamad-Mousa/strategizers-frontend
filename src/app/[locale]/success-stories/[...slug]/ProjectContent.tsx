@@ -161,7 +161,7 @@ export default function ProjectContent({ slug }: ProjectContentProps) {
                   key={index}
                   className="px-3 py-1 bg-web-primary/10 text-web-primary text-sm rounded-full"
                 >
-                  {tag}
+                  {tag[locale as keyof typeof tag] || tag.en}
                 </span>
               ))}
             </div>

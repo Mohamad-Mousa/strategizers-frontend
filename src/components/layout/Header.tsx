@@ -634,7 +634,7 @@ const Header = ({ className }: { className?: string }) => {
                               onMouseLeave={() => handleCourseHover(null)}
                             >
                               <Link
-                                href={`/${locale}/academy/course/${course.slug}`}
+                                href={`/${locale}/courses/${course.slug}`}
                                 className="block p-3 rounded-lg transition-colors group"
                               >
                                 <div className="flex items-center space-x-3">
@@ -710,7 +710,7 @@ const Header = ({ className }: { className?: string }) => {
               <div className="absolute inset-0 bg-black/65"></div>
 
               {/* Content */}
-              <div className="relative z-10 space-y-4 text-left">
+              <div className="relative z-10 space-y-4 en:text-left ar:text-right">
                 <h1 className="font-bold text-2xl text-white">
                   {t("solutions.title")}
                 </h1>
@@ -777,10 +777,7 @@ const Header = ({ className }: { className?: string }) => {
                 onMouseEnter={() => setIsAcademyHovered(true)}
                 onMouseLeave={() => setIsAcademyHovered(false)}
               >
-                <Link
-                  href={`/${locale}/academy`}
-                  className="py-7 relative cursor-pointer block"
-                >
+                <div className="py-7 relative cursor-pointer block">
                   <div
                     className={`group-hover:text-web-primary font-medium h-full flex items-center gap-2 ${
                       currentPage === "academy" || isAcademyHovered
@@ -802,7 +799,7 @@ const Header = ({ className }: { className?: string }) => {
                         : ""
                     }`}
                   ></div>
-                </Link>
+                </div>
               </div>
 
               <Link
@@ -1019,8 +1016,7 @@ const Header = ({ className }: { className?: string }) => {
                   <House />
                   <p>{t("mobile.home")}</p>
                 </Link>
-                <Link
-                  href={`/${locale}/academy`}
+                <div
                   className={`py-3 px-3 transition-colors font-medium flex items-center gap-2 ${
                     currentPage === "academy"
                       ? "text-white bg-web-primary"
@@ -1029,7 +1025,7 @@ const Header = ({ className }: { className?: string }) => {
                 >
                   <span className="text-lg">🎓</span>
                   {t("navigation.academy")}
-                </Link>
+                </div>
                 <Link
                   href={`/${locale}/success-stories`}
                   className={`py-3 px-3 transition-colors font-medium flex items-center gap-2 ${

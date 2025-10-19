@@ -260,6 +260,9 @@
     }
   },
   "jobApplication": {
+    "fullTime": "دوام كامل",
+    "partTime": "دوام جزئي",
+    "freelance": "عمل حر",
     "loading": "جاري التحميل...",
     "loadingDetails": "جاري تحميل تفاصيل الوظيفة...",
     "posted": "تم النشر",
@@ -506,7 +509,10 @@
   "jobCard": {
     "postedOn": "تم النشر في",
     "applied": "تم التقديم",
-    "applyNow": "قدم الآن"
+    "applyNow": "قدم الآن",
+    "fullTime": "دوام كامل",
+    "partTime": "دوام جزئي",
+    "freelance": "عمل حر"
   },
   "jobApplicationForm": {
     "title": "طلب التوظيف",
@@ -561,6 +567,9 @@
     }
   },
   "jobDetails": {
+    "fullTime": "دوام كامل",
+    "partTime": "دوام جزئي",
+    "freelance": "عمل حر",
     "postedOn": "تم النشر في",
     "active": "نشط",
     "jobDescription": "وصف الوظيفة",

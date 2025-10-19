@@ -63,13 +63,17 @@ export async function generateMetadata({
   return {
     title: `${title} - ${serviceTitle}`,
     description: shortDescription,
-    keywords,
+    keywords: keywords
+      .map((tag) => tag[locale as keyof typeof tag] || tag.en)
+      .join(", "),
     openGraph: {
       title: `${title} - ${serviceTitle}`,
       description: shortDescription,
       type: "article",
       images: imageUrl ? [{ url: imageUrl }] : undefined,
-      tags: project.tags,
+      tags: project.tags
+        .map((tag) => tag[locale as keyof typeof tag] || tag.en)
+        .join(", "),
     },
     twitter: {
       card: "summary_large_image",

@@ -1,7 +1,7 @@
 "use client";
 
 import Contact from "@/components/Contact";
-import { MoveRight, Loader2, AlertCircle } from "lucide-react";
+import { MoveRight, Loader2, AlertCircle, MoveLeft } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import NextImage from "next/image";
 import { useRouter } from "next/navigation";
@@ -140,7 +140,11 @@ export default function ServiceContent({ slug }: ServiceContentProps) {
                     ] || serviceItem.title.en}
                   </span>
 
-                  <MoveRight className="w-4 h-4" />
+                  {locale === "ar" ? (
+                    <MoveLeft className="w-4 h-4" />
+                  ) : (
+                    <MoveRight className="w-4 h-4" />
+                  )}
                 </Link>
               ))}
             </div>

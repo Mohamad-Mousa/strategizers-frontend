@@ -18,7 +18,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   // Format date
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString(locale === "ar" ? "ar-SA" : "en-US", {
+    return date.toLocaleDateString(locale === "ar" ? "ar" : "en-US", {
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -33,7 +33,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Link
       href={`/${locale}/success-stories/${project.slug}`}
-      className="block relative text-center group hover:no-underline"
+      className="block relative group hover:no-underline"
     >
       <div className="relative overflow-hidden rounded-md">
         <Image
@@ -66,7 +66,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       </div>
 
       {/* Project Info */}
-      <div className="mt-4 text-left">
+      <div className="mt-4 en:text-left ar:text-right">
         <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-web-primary transition-colors duration-300">
           {getLocalizedText(project.title)}
         </h3>
@@ -86,7 +86,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 key={index}
                 className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full"
               >
-                {tag}
+                {tag[locale as keyof typeof tag] || tag.en}
               </span>
             ))}
           </div>

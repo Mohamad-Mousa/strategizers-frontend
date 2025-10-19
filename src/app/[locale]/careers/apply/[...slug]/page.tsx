@@ -120,9 +120,13 @@ const ApplyPage = () => {
     <div className="flex flex-col gap-10 items-center justify-center">
       <Hero
         title={getLocalizedContent(job.title)}
-        subtitle={`${getLocalizedContent(job.type)} - ${t("posted")} ${new Date(
-          job.createdAt
-        ).toLocaleDateString()}`}
+        subtitle={`${getLocalizedContent(
+          job.type === "full-time"
+            ? t("fullTime")
+            : job.type === "part-time"
+            ? t("partTime")
+            : t("freelance")
+        )} - ${t("posted")} ${new Date(job.createdAt).toLocaleDateString()}`}
         background="/services.webp"
       />
 

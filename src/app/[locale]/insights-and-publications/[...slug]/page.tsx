@@ -65,7 +65,9 @@ export async function generateMetadata({
   return {
     title: `${title} - ${subtitle}`,
     description: plainDescription,
-    keywords,
+    keywords: keywords
+      .map((tag) => tag[locale as keyof typeof tag] || tag.en)
+      .join(", "),
     authors: blog.author ? [{ name: blog.author }] : undefined,
     openGraph: {
       title: `${title} - ${subtitle}`,
@@ -74,7 +76,9 @@ export async function generateMetadata({
       images: imageUrl ? [{ url: imageUrl }] : undefined,
       authors: blog.author ? [blog.author] : undefined,
       publishedTime: blog.updatedAt,
-      tags: blog.tags,
+      tags: blog.tags
+        .map((tag) => tag[locale as keyof typeof tag] || tag.en)
+        .join(", "),
     },
     twitter: {
       card: "summary_large_image",

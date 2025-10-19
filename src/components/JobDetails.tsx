@@ -40,15 +40,24 @@ const JobDetails = ({ job }: JobDetailsProps) => {
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
               {job.title}
             </h1>
-            <p className="text-lg text-gray-600 mb-2">{job.type}</p>
+            <p className="text-lg text-gray-600 mb-2">
+              {job.type === "full-time"
+                ? t("fullTime")
+                : job.type === "part-time"
+                ? t("partTime")
+                : t("freelance")}
+            </p>
           </div>
           <span
             className={`px-3 py-1 rounded-full text-sm font-medium ${getJobTypeColor(
               job.type
             )}`}
           >
-            {job.type.charAt(0).toUpperCase() +
-              job.type.slice(1).replace("-", " ")}
+            {job.type === "full-time"
+              ? t("fullTime")
+              : job.type === "part-time"
+              ? t("partTime")
+              : t("freelance")}
           </span>
         </div>
 
@@ -74,7 +83,10 @@ const JobDetails = ({ job }: JobDetailsProps) => {
           {t("jobDescription")}
         </h2>
         <div className="prose prose-gray max-w-none">
-          <p className="text-gray-700 leading-relaxed">{job.description}</p>
+          <p
+            className="text-gray-700 leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: job.description }}
+          />
         </div>
       </div>
 

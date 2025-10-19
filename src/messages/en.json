@@ -260,6 +260,9 @@
     }
   },
   "jobApplication": {
+    "fullTime": "Full Time",
+    "partTime": "Part Time",
+    "freelance": "Freelance",
     "loading": "Loading...",
     "loadingDetails": "Loading job details...",
     "posted": "Posted",
@@ -506,7 +509,10 @@
   "jobCard": {
     "postedOn": "Posted on",
     "applied": "Applied",
-    "applyNow": "Apply Now"
+    "applyNow": "Apply Now",
+    "fullTime": "Full Time",
+    "partTime": "Part Time",
+    "freelance": "Freelance"
   },
   "jobApplicationForm": {
     "title": "Job Application",
@@ -561,6 +567,9 @@
     }
   },
   "jobDetails": {
+    "fullTime": "Full Time",
+    "partTime": "Part Time",
+    "freelance": "Freelance",
     "postedOn": "Posted on",
     "active": "Active",
     "jobDescription": "Job Description",

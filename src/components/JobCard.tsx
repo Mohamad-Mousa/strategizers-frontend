@@ -39,7 +39,13 @@ const JobCard = ({
             >
               {title}
             </Link>
-            <p className="text-gray-600 text-sm mt-1">{department}</p>
+            <p className="text-gray-600 text-sm mt-1">
+              {department === "full-time"
+                ? t("fullTime")
+                : department === "part-time"
+                ? t("partTime")
+                : t("freelance")}
+            </p>
           </div>
 
           {/* Location and Date */}
