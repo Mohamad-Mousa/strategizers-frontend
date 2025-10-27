@@ -60,7 +60,7 @@ export interface Project {
   customer: string;
   link: string;
   date: string;
-  tags: string[];
+  tags: LocalizedText[];
   isActive: boolean;
   updatedAt: string;
 }

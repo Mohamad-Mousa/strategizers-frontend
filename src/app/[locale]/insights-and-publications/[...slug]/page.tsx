@@ -5,7 +5,8 @@ import BlogContent from "./BlogContent";
 import type { Metadata } from "next";
 
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:4000/api/v1";
+  process.env.NEXT_PUBLIC_API_BASE_URL ||
+  "https://api-strat.othmanconstruction.com/api/v1";
 
 // Fetch blog data server-side
 async function getBlogData(slug: string) {
@@ -65,7 +66,9 @@ export async function generateMetadata({
   return {
     title: `${title} - ${subtitle}`,
     description: plainDescription,
-    keywords,
+    keywords: keywords
+      .map((tag) => tag[locale as keyof typeof tag] || tag.en)
+      .join(", "),
     authors: blog.author ? [{ name: blog.author }] : undefined,
     openGraph: {
       title: `${title} - ${subtitle}`,
@@ -74,7 +77,9 @@ export async function generateMetadata({
       images: imageUrl ? [{ url: imageUrl }] : undefined,
       authors: blog.author ? [blog.author] : undefined,
       publishedTime: blog.updatedAt,
-      tags: blog.tags,
+      tags: blog.tags
+        .map((tag) => tag[locale as keyof typeof tag] || tag.en)
+        .join(", "),
     },
     twitter: {
       card: "summary_large_image",

@@ -43,7 +43,7 @@ export interface Blog {
   slug: string;
   image: string;
   author: string;
-  tags: string[];
+  tags: LocalizedText[];
   service?: BlogService;
   isActive?: boolean;
   updatedAt?: string;

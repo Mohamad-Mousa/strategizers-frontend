@@ -5,14 +5,14 @@ import ServiceContent from "./ServiceContent";
 import type { Metadata } from "next";
 
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:4000/api/v1";
+  process.env.NEXT_PUBLIC_API_BASE_URL ||
+  "https://api-strat.othmanconstruction.com/api/v1";
 
 // Fetch service data server-side
 async function getServiceData(slug: string) {
   try {
-    const response = await fetch(`${API_BASE_URL}/public/service/${slug}`, {
-      next: { revalidate: 60 }, // Revalidate every 60 seconds
-    });
+    console.log({ slug: `${API_BASE_URL}/public/service/${slug}` });
+    const response = await fetch(`${API_BASE_URL}/public/service/${slug}`);
 
     if (!response.ok) {
       throw new Error("Failed to fetch service data");

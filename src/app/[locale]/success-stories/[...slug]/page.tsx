@@ -5,7 +5,8 @@ import ProjectContent from "./ProjectContent";
 import type { Metadata } from "next";
 
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:4000/api/v1";
+  process.env.NEXT_PUBLIC_API_BASE_URL ||
+  "https://api-strat.othmanconstruction.com/api/v1";
 
 // Fetch project data server-side
 async function getProjectData(slug: string) {
@@ -51,7 +52,7 @@ export async function generateMetadata({
     project.service.title[locale as "en" | "ar"] || project.service.title.en;
 
   // Use project tags as keywords
-  const keywords = project.tags || [];
+  const keywords = project?.tags || [];
 
   // Get project image for OpenGraph
   const imageUrl = project.image
@@ -63,13 +64,17 @@ export async function generateMetadata({
   return {
     title: `${title} - ${serviceTitle}`,
     description: shortDescription,
-    keywords,
+    keywords: keywords
+      ?.map((tag) => tag[locale as keyof typeof tag] || tag.en)
+      ?.join(", "),
     openGraph: {
       title: `${title} - ${serviceTitle}`,
       description: shortDescription,
       type: "article",
       images: imageUrl ? [{ url: imageUrl }] : undefined,
-      tags: project.tags,
+      tags: project?.tags
+        ?.map((tag) => tag[locale as keyof typeof tag] || tag.en)
+        ?.join(", "),
     },
     twitter: {
       card: "summary_large_image",

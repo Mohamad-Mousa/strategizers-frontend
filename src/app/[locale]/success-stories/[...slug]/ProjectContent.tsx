@@ -34,7 +34,7 @@ export default function ProjectContent({ slug }: ProjectContentProps) {
   // Format date
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString(locale === "ar" ? "ar-SA" : "en-US", {
+    return date.toLocaleDateString(locale === "ar" ? "ar" : "en-US", {
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -156,12 +156,12 @@ export default function ProjectContent({ slug }: ProjectContentProps) {
               {t("details.tags")}
             </p>
             <div className="flex flex-wrap gap-2">
-              {project.tags.map((tag, index) => (
+              {project?.tags?.map((tag, index) => (
                 <span
                   key={index}
                   className="px-3 py-1 bg-web-primary/10 text-web-primary text-sm rounded-full"
                 >
-                  {tag}
+                  {tag[locale as keyof typeof tag] || tag.en}
                 </span>
               ))}
             </div>

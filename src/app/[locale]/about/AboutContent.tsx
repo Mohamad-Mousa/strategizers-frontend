@@ -395,8 +395,16 @@ export default function AboutContent() {
               ))}
 
               {/* Custom Navigation Buttons */}
-              <div className="swiper-button-prev !text-web-primary !left-0"></div>
-              <div className="swiper-button-next !text-web-primary !right-0"></div>
+              <div
+                className={`swiper-button-prev !text-web-primary ${
+                  locale === "ar" ? "!right-0" : "!left-0"
+                }`}
+              ></div>
+              <div
+                className={`swiper-button-next !text-web-primary ${
+                  locale === "ar" ? "!left-0" : "!right-0"
+                }`}
+              ></div>
 
               {/* Custom Pagination */}
               <div className="swiper-pagination !relative !mt-8 [&_.swiper-pagination-bullet]:!bg-web-primary [&_.swiper-pagination-bullet-active]:!bg-web-primary [&_.swiper-pagination-bullet]:!mx-1 !cursor-pointer"></div>

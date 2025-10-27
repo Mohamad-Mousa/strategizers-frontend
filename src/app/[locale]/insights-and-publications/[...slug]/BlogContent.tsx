@@ -127,7 +127,11 @@ export default function BlogContent({ slug }: BlogContentProps) {
         <p className="border-r border-gray-300 pr-2">
           {formatDate(blog.updatedAt)}
         </p>
-        <p>{blog.tags.join(", ")}</p>
+        <p>
+          {blog.tags
+            .map((tag) => tag[locale as keyof typeof tag] || tag.en)
+            .join(", ")}
+        </p>
       </div>
       <div
         className="text-gray-500 prose max-w-none"
@@ -140,7 +144,11 @@ export default function BlogContent({ slug }: BlogContentProps) {
       <div className="flex items-center gap-2 justify-between">
         <div className="flex items-center gap-2">
           <p className="font-bold">{t("tags")}:</p>
-          <p className="text-web-primary">{blog.tags.join(", ")}</p>
+          <p className="text-web-primary">
+            {blog.tags
+              .map((tag) => tag[locale as keyof typeof tag] || tag.en)
+              .join(", ")}
+          </p>
         </div>
       </div>
     </section>

@@ -3,7 +3,6 @@
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
   "https://api-strat.othmanconstruction.com/api/v1";
-// "http://localhost:4000/api/v1";
 
 // API Response Types
 export interface ApiResponse<T = any> {

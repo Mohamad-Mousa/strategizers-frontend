@@ -83,7 +83,12 @@ const DynamicHero = ({
         {/* Banner slides */}
         <div
           className="flex transition-transform duration-500 ease-in-out h-full"
-          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+          style={{
+            transform:
+              locale === "ar"
+                ? `translateX(${currentSlide * 100}%)`
+                : `translateX(-${currentSlide * 100}%)`,
+          }}
         >
           {banners.map((banner) => (
             <div

@@ -260,19 +260,33 @@
     }
   },
   "jobApplication": {
+    "fullTime": "دوام كامل",
+    "partTime": "دوام جزئي",
+    "freelance": "عمل حر",
     "loading": "جاري التحميل...",
     "loadingDetails": "جاري تحميل تفاصيل الوظيفة...",
     "posted": "تم النشر",
+    "apply": "تقدم",
+    "applyFor": "تقدم لوظيفة",
+    "joinOurTeam": "انضم إلى فريقنا وكن جزءاً من قصتنا الناجحة.",
     "errors": {
       "fetchFailed": "فشل في جلب تفاصيل الوظيفة",
       "fetchError": "حدث خطأ أثناء جلب تفاصيل الوظيفة",
       "notFound": "الوظيفة غير موجودة",
+      "notFoundDescription": "الوظيفة التي تبحث عنها غير موجودة أو تم حذفها.",
       "loadFailed": "فشل في تحميل تفاصيل الوظيفة",
       "retry": "إعادة المحاولة"
     },
     "notFound": {
       "description": "الوظيفة التي تبحث عنها غير موجودة أو تم حذفها.",
       "suggestion": "يرجى التحقق من الرابط أو العودة إلى صفحة الوظائف."
+    },
+    "keywords": {
+      "job": "وظيفة",
+      "career": "مهنة",
+      "apply": "تقدم",
+      "opportunity": "فرصة",
+      "employment": "توظيف"
     }
   },
   "bookConsultation": {
@@ -506,7 +520,10 @@
   "jobCard": {
     "postedOn": "تم النشر في",
     "applied": "تم التقديم",
-    "applyNow": "قدم الآن"
+    "applyNow": "قدم الآن",
+    "fullTime": "دوام كامل",
+    "partTime": "دوام جزئي",
+    "freelance": "عمل حر"
   },
   "jobApplicationForm": {
     "title": "طلب التوظيف",
@@ -561,6 +578,9 @@
     }
   },
   "jobDetails": {
+    "fullTime": "دوام كامل",
+    "partTime": "دوام جزئي",
+    "freelance": "عمل حر",
     "postedOn": "تم النشر في",
     "active": "نشط",
     "jobDescription": "وصف الوظيفة",

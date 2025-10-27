@@ -260,19 +260,33 @@
     }
   },
   "jobApplication": {
+    "fullTime": "Full Time",
+    "partTime": "Part Time",
+    "freelance": "Freelance",
     "loading": "Loading...",
     "loadingDetails": "Loading job details...",
     "posted": "Posted",
+    "apply": "Apply",
+    "applyFor": "Apply for",
+    "joinOurTeam": "Join our team and be part of our success story.",
     "errors": {
       "fetchFailed": "Failed to fetch job details",
       "fetchError": "An error occurred while fetching job details",
       "notFound": "Job Not Found",
+      "notFoundDescription": "The job you're looking for doesn't exist or has been removed.",
       "loadFailed": "Failed to load job details",
       "retry": "Retry"
     },
     "notFound": {
       "description": "The job you're looking for doesn't exist or has been removed.",
       "suggestion": "Please check the URL or return to the careers page."
+    },
+    "keywords": {
+      "job": "job",
+      "career": "career",
+      "apply": "apply",
+      "opportunity": "opportunity",
+      "employment": "employment"
     }
   },
   "bookConsultation": {
@@ -506,7 +520,10 @@
   "jobCard": {
     "postedOn": "Posted on",
     "applied": "Applied",
-    "applyNow": "Apply Now"
+    "applyNow": "Apply Now",
+    "fullTime": "Full Time",
+    "partTime": "Part Time",
+    "freelance": "Freelance"
   },
   "jobApplicationForm": {
     "title": "Job Application",
@@ -561,6 +578,9 @@
     }
   },
   "jobDetails": {
+    "fullTime": "Full Time",
+    "partTime": "Part Time",
+    "freelance": "Freelance",
     "postedOn": "Posted on",
     "active": "Active",
     "jobDescription": "Job Description",

@@ -51,7 +51,9 @@ const BlogCard = ({
       <div className={`flex flex-col gap-4 ${bodyClassName}`}>
         <div className="flex flex-col gap-2">
           <h3 className="text-web-primary font-bold text-sm">
-            {blog?.tags?.[0] || t("defaults.category")}
+            {blog?.service?.title[locale as keyof typeof blog.service.title] ||
+              blog?.service?.title?.en ||
+              t("defaults.category")}
           </h3>
           <p className="text-black hover:text-web-primary transition-colors duration-300 cursor-pointer text-2xl font-medium">
             {blog?.title?.[locale as keyof typeof blog.title] ||
