@@ -3,10 +3,12 @@ import { getTranslations } from "next-intl/server";
 import { SingleProjectResponse } from "@/types/project";
 import ProjectContent from "./ProjectContent";
 import type { Metadata } from "next";
+import { sanitizeTitle } from "@/lib/metadata";
+import { getImageUrl } from "@/lib/image";
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
-  "https://api-strat.othmanconstruction.com/api/v1";
+  "http://localhost:4000/api/v1";
 
 // Fetch project data server-side
 async function getProjectData(slug: string) {
@@ -44,13 +46,17 @@ export async function generateMetadata({
     };
   }
 
-  const title = project.title[locale as "en" | "ar"] || project.title.en;
+  const title = sanitizeTitle(
+    project.title[locale as "en" | "ar"] || project.title.en,
+    "Project"
+  );
+  const serviceTitle = sanitizeTitle(
+    project.service.title[locale as "en" | "ar"] || project.service.title.en,
+    "Success Story"
+  );
   const shortDescription =
     project.shortDescription[locale as "en" | "ar"] ||
     project.shortDescription.en;
-  const serviceTitle =
-    project.service.title[locale as "en" | "ar"] || project.service.title.en;
-
   // Use project tags as keywords
   const keywords = project?.tags || [];
 
@@ -58,7 +64,7 @@ export async function generateMetadata({
   const imageUrl = project.image
     ? project.image.startsWith("http")
       ? project.image
-      : `https://api-strat.othmanconstruction.com/${project.image}`
+      : getImageUrl(project.image)
     : undefined;
 
   return {

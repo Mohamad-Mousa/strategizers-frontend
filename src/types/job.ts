@@ -5,6 +5,7 @@ export interface Job {
   description: string;
   image: string;
   type: string;
+  location?: string;
   responsibilities: string[];
   requirements: string[];
   createdAt: string;

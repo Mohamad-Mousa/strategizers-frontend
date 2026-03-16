@@ -7,9 +7,45 @@ export interface LocalizedText {
 
 export interface SubService {
   title: LocalizedText;
-  description: LocalizedText;
+  outcome: LocalizedText;
   icon: string;
+  slug: string;
   _id: string;
+}
+
+export interface LocalizedItem {
+  en: string;
+  ar: string;
+  _id: string;
+}
+
+export interface SubServiceDetail {
+  _id: string;
+  title: LocalizedText;
+  outcome: LocalizedText;
+  oneLineValuePromise: LocalizedText;
+  strategicIssuesWeResolve: LocalizedItem[];
+  whatYouGet: LocalizedItem[];
+  service: {
+    _id: string;
+    title: LocalizedText;
+    slug: string;
+  };
+  slug: string;
+  icon: string;
+  isActive: boolean;
+  isDeleted: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SingleSubServiceResponse {
+  message: string;
+  error: boolean;
+  code: number;
+  results: {
+    subService: SubServiceDetail;
+  };
 }
 
 export interface ServiceBenefits {

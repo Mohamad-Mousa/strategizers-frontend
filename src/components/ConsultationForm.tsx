@@ -26,6 +26,7 @@ interface FormData {
   email: string;
   phoneCode: string;
   phoneNumber: string;
+  discussionPoints: string;
   expectedOutcomes: string;
   preferredDate: string;
   preferredTime: string;
@@ -45,6 +46,7 @@ const ConsultationForm = () => {
     email: "",
     phoneCode: "961",
     phoneNumber: "",
+    discussionPoints: "",
     expectedOutcomes: "",
     preferredDate: "",
     preferredTime: "",
@@ -76,6 +78,7 @@ const ConsultationForm = () => {
       "position",
       "email",
       "phoneNumber",
+      "discussionPoints",
     ];
 
     for (const field of requiredFields) {
@@ -113,6 +116,7 @@ const ConsultationForm = () => {
           code: formData.phoneCode,
           number: formData.phoneNumber,
         },
+        discussionPoints: formData.discussionPoints,
       };
 
       const response = await apiPost("/public/booking", submitData);
@@ -135,6 +139,7 @@ const ConsultationForm = () => {
         email: "",
         phoneCode: "961",
         phoneNumber: "",
+        discussionPoints: "",
         expectedOutcomes: "",
         preferredDate: "",
         preferredTime: "",
@@ -367,6 +372,23 @@ const ConsultationForm = () => {
                 />
               </div>
             </div>
+          </div>
+
+          {/* Discussion Points */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              {t("fields.discussionPoints")} *
+            </label>
+            <textarea
+              rows={4}
+              placeholder={t("placeholders.discussionPoints")}
+              value={formData.discussionPoints}
+              onChange={(e) =>
+                handleInputChange("discussionPoints", e.target.value)
+              }
+              required
+              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-web-primary focus:border-transparent transition-colors duration-300 resize-y min-h-[120px]"
+            />
           </div>
 
           {/* Submit Button */}

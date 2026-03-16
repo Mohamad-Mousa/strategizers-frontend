@@ -23,7 +23,10 @@ export const cairo = Cairo({
 });
 
 export const metadata: Metadata = {
-  title: "Strategizers",
+  title: {
+    default: "Strategizers",
+    template: "Strategizers | %s",
+  },
   description: "Strategizers official website",
 };
 

@@ -9,6 +9,7 @@ import {
 import NextImage from "next/image";
 import Link from "next/link";
 import { TeamMember } from "@/types/team";
+import { getImageUrl } from "@/lib/image";
 import { useLocale } from "next-intl";
 
 interface TeamMemberCardProps {
@@ -77,9 +78,7 @@ const TeamMemberCard = ({
     : description || "";
 
   const displayImage = teamMember
-    ? teamMember.image
-      ? `https://api-strat.othmanconstruction.com/${teamMember.image}`
-      : "/1.jpg"
+    ? getImageUrl(teamMember.image) || "/1.jpg"
     : image || "/1.jpg";
 
   const displayPhone = teamMember

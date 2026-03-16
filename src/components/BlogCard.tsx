@@ -3,6 +3,7 @@ import { LinkIcon } from "lucide-react";
 import NextImage from "next/image";
 import Link from "next/link";
 import { Blog } from "@/types/blog";
+import { getImageUrl } from "@/lib/image";
 import { useLocale, useTranslations } from "next-intl";
 
 const BlogCard = ({
@@ -21,9 +22,7 @@ const BlogCard = ({
       <div className="relative overflow-hidden rounded-md">
         <NextImage
           src={
-            blog?.image
-              ? `https://api-strat.othmanconstruction.com/${blog.image}`
-              : "/1.jpg"
+            getImageUrl(blog?.image) || "/1.jpg"
           }
           alt={blog?.title?.en || t("defaults.altText")}
           width={370}

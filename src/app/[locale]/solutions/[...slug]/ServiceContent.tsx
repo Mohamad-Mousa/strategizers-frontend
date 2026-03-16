@@ -7,6 +7,7 @@ import NextImage from "next/image";
 import { useRouter } from "next/navigation";
 import { useState, useEffect, useCallback } from "react";
 import { apiGet } from "@/lib/api";
+import { getImageUrl } from "@/lib/image";
 import {
   SingleServiceResponse,
   Service,
@@ -153,7 +154,7 @@ export default function ServiceContent({ slug }: ServiceContentProps) {
           <div className="flex flex-col gap-0">
             {service.brochure.pdf && (
               <a
-                href={`https://api-strat.othmanconstruction.com/${service.brochure.pdf}`}
+                href={getImageUrl(service.brochure.pdf)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border border-gray-200 p-4 flex items-center gap-2 cursor-pointer transition-colors duration-300 hover:bg-web-primary hover:text-white text-lg font-medium"
@@ -175,7 +176,7 @@ export default function ServiceContent({ slug }: ServiceContentProps) {
             )}
             {service.brochure.document && (
               <a
-                href={`https://api-strat.othmanconstruction.com/${service.brochure.document}`}
+                href={getImageUrl(service.brochure.document)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border border-gray-200 p-4 flex items-center gap-2 cursor-pointer transition-colors duration-300 hover:bg-web-primary hover:text-white text-lg font-medium"
@@ -204,9 +205,7 @@ export default function ServiceContent({ slug }: ServiceContentProps) {
       <div className="col-span-2 flex flex-col gap-4">
         <NextImage
           src={
-            service.image
-              ? `https://api-strat.othmanconstruction.com/${service.image}`
-              : "/1.jpg"
+            getImageUrl(service.image) || "/1.jpg"
           }
           alt={
             service.title[locale as keyof typeof service.title] ||
@@ -238,31 +237,30 @@ export default function ServiceContent({ slug }: ServiceContentProps) {
           </h1>
           <hr className="w-1/6 border-web-primary border-2 absolute bottom-0" />
         </div>
-        <div className="flex flex-col md:flex-row items-center gap-2 py-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 py-8">
           {service.subServices.map((subService) => (
-            <div
+            <Link
               key={subService._id}
-              className="flex flex-col gap-2 border border-gray-200 rounded-md p-4 relative group"
+              href={`/${locale}/solutions/${service.slug}/${subService.slug}`}
+              className="flex flex-col gap-2 border border-gray-200 rounded-md p-4 pt-10 relative group h-full min-h-[220px] w-full hover:border-web-primary transition-colors duration-300"
             >
-              {/* Icon at top center */}
-              <div className="text-web-primary absolute -top-6 left-1/2 -translate-x-1/2 bg-white rounded-full p-2 shadow group-hover:bg-web-primary group-hover:text-white transition-colors duration-300 w-12 h-12 flex items-center justify-center">
-                <span dangerouslySetInnerHTML={{ __html: subService.icon }} />
+              <div className="text-web-primary absolute -top-6 left-0 right-0 mx-auto w-12 h-12 flex items-center justify-center bg-white rounded-full p-2 shadow group-hover:bg-web-primary group-hover:text-white transition-colors duration-300">
+                <span className="inline-flex items-center justify-center" dangerouslySetInnerHTML={{ __html: subService.icon }} />
               </div>
-
-              <p className="font-semibold mt-8">
+              <p className="font-semibold mt-2 flex-shrink-0">
                 {subService.title[locale as keyof typeof subService.title] ||
                   subService.title.en}
               </p>
               <p
-                className="text-gray-600"
+                className="text-gray-600 text-sm flex-1 min-h-0"
                 dangerouslySetInnerHTML={{
                   __html:
-                    subService.description[
-                      locale as keyof typeof subService.description
-                    ] || subService.description.en,
+                    subService.outcome[
+                      locale as keyof typeof subService.outcome
+                    ] || subService.outcome.en,
                 }}
               />
-            </div>
+            </Link>
           ))}
         </div>
         <div className="relative">

@@ -4,6 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 import NextImage from "next/image";
 import Link from "next/link";
 import { AlertCircle, RefreshCw } from "lucide-react";
+import { getImageUrl } from "@/lib/image";
 
 const Services = () => {
   const { website, loading, error, refetchWebsite } = useWebsite();
@@ -96,9 +97,7 @@ const Services = () => {
               <div className="h-48 overflow-hidden">
                 <NextImage
                   src={
-                    service.image
-                      ? `https://api-strat.othmanconstruction.com/${service.image}`
-                      : "/1.jpg"
+                    getImageUrl(service.image) || "/1.jpg"
                   }
                   alt={
                     service.title[locale as keyof typeof service.title] ||

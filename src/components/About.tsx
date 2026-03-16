@@ -4,6 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 import NextImage from "next/image";
 import { useRouter } from "next/navigation";
 import { AlertCircle, RefreshCw } from "lucide-react";
+import { getImageUrl } from "@/lib/image";
 
 const About = () => {
   const { website, loading, error, refetchWebsite } = useWebsite();
@@ -112,9 +113,7 @@ const About = () => {
             <div className="relative">
               <NextImage
                 src={
-                  website?.aboutPage?.banner
-                    ? `https://api-strat.othmanconstruction.com/${website.aboutPage.banner}`
-                    : "/1.jpg"
+                  getImageUrl(website?.aboutPage?.banner) || "/1.jpg"
                 }
                 alt={t("altText.teamCollaboration")}
                 width={600}

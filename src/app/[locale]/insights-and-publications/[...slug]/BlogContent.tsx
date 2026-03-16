@@ -1,10 +1,11 @@
 "use client";
 
-import { Loader2, AlertCircle } from "lucide-react";
+import { Loader2, AlertCircle, Mail, Phone, Linkedin } from "lucide-react";
 import NextImage from "next/image";
 import { useState, useEffect, useCallback } from "react";
 import { apiGet } from "@/lib/api";
 import { SingleBlogResponse, Blog } from "@/types/blog";
+import { getImageUrl } from "@/lib/image";
 import { useLocale, useTranslations } from "next-intl";
 
 interface BlogContentProps {
@@ -104,9 +105,7 @@ export default function BlogContent({ slug }: BlogContentProps) {
     <section className="max-w-7xl mx-auto mt-20 px-6 flex flex-col gap-3">
       <NextImage
         src={
-          blog.image
-            ? `https://api-strat.othmanconstruction.com/${blog.image}`
-            : "/1.jpg"
+          getImageUrl(blog.image) || "/1.jpg"
         }
         alt={blog.title[locale as keyof typeof blog.title] || blog.title.en}
         width={1920}
@@ -151,6 +150,84 @@ export default function BlogContent({ slug }: BlogContentProps) {
           </p>
         </div>
       </div>
+
+      {/* Contacts Section */}
+      {blog.contacts && blog.contacts.length > 0 && (
+        <div className="mt-12 pt-8 border-t border-gray-200">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            {t("contacts.title")}
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {blog.contacts.map((contact) => (
+              <div
+                key={contact._id}
+                className="flex flex-col gap-3 p-6 bg-gray-50 rounded-lg border border-gray-200"
+              >
+                <div className="flex items-start gap-4">
+                  <NextImage
+                    src={getImageUrl(contact.image) || "/1.jpg"}
+                    alt={
+                      contact.name[locale as keyof typeof contact.name] ||
+                      contact.name.en
+                    }
+                    width={80}
+                    height={80}
+                    className="rounded-lg object-cover flex-shrink-0"
+                  />
+                  <div className="flex flex-col gap-1 min-w-0">
+                    <p className="font-bold text-lg text-gray-900">
+                      {contact.name[locale as keyof typeof contact.name] ||
+                        contact.name.en}
+                    </p>
+                    <p className="text-web-primary font-medium text-sm">
+                      {contact.position[locale as keyof typeof contact.position] ||
+                        contact.position.en}
+                    </p>
+                  </div>
+                </div>
+                {contact.description && (
+                  <p
+                    className="text-sm text-gray-600"
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        contact.description[
+                          locale as keyof typeof contact.description
+                        ] || contact.description.en,
+                    }}
+                  />
+                )}
+                <div className="flex flex-col gap-2 pt-2">
+                  <a
+                    href={`tel:+${contact.phone.code}${contact.phone.number}`}
+                    className="flex items-center gap-2 text-gray-700 hover:text-web-primary transition-colors"
+                  >
+                    <Phone className="w-4 h-4" />
+                    <span>+{contact.phone.code} {contact.phone.number}</span>
+                  </a>
+                  <a
+                    href={`mailto:${contact.email}`}
+                    className="flex items-center gap-2 text-gray-700 hover:text-web-primary transition-colors"
+                  >
+                    <Mail className="w-4 h-4" />
+                    <span className="text-sm truncate">{contact.email}</span>
+                  </a>
+                  {contact.social?.linkedin && (
+                    <a
+                      href={contact.social.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-gray-700 hover:text-web-primary transition-colors"
+                    >
+                      <Linkedin className="w-4 h-4" />
+                      <span className="text-sm">{t("contacts.linkedin")}</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </section>
   );
 }

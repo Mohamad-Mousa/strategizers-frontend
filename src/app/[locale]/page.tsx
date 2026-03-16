@@ -1,10 +1,11 @@
 import { WebsiteResponse, SeoTag } from "@/types/website";
+import { sanitizeTitle } from "@/lib/metadata";
 import HomeContent from "./HomeContent";
 import type { Metadata } from "next";
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
-  "https://api-strat.othmanconstruction.com/api/v1";
+  "http://localhost:4000/api/v1";
 
 // Fetch website data server-side
 async function getWebsiteData() {
@@ -37,13 +38,16 @@ export async function generateMetadata({
 
   if (!seo) {
     return {
-      title: "Strategizers - Home",
+      title: "Home",
       description:
         "Welcome to Strategizers - Your trusted partner for business solutions",
     };
   }
 
-  const title = seo.title[locale as "en" | "ar"] || seo.title.en;
+  const title = sanitizeTitle(
+    seo.title[locale as "en" | "ar"] || seo.title.en,
+    "Home"
+  );
   const description =
     seo.description[locale as "en" | "ar"] || seo.description.en;
 

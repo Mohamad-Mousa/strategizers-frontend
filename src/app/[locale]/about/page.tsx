@@ -1,12 +1,14 @@
 import Hero from "@/components/layout/Hero";
 import { getTranslations } from "next-intl/server";
 import { WebsiteResponse, SeoTag } from "@/types/website";
+import { sanitizeTitle } from "@/lib/metadata";
+import { getImageUrl } from "@/lib/image";
 import AboutContent from "./AboutContent";
 import type { Metadata } from "next";
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
-  "https://api-strat.othmanconstruction.com/api/v1";
+  "http://localhost:4000/api/v1";
 
 // Fetch website data server-side
 async function getWebsiteData() {
@@ -44,7 +46,10 @@ export async function generateMetadata({
     };
   }
 
-  const title = seo.title[locale as "en" | "ar"] || seo.title.en;
+  const title = sanitizeTitle(
+    seo.title[locale as "en" | "ar"] || seo.title.en,
+    "About Us"
+  );
   const description =
     seo.description[locale as "en" | "ar"] || seo.description.en;
 
@@ -87,9 +92,7 @@ export default async function AboutPage({
   const t = await getTranslations("about");
   const websiteData = await getWebsiteData();
 
-  const bannerUrl = websiteData?.aboutPage?.banner
-    ? `https://api-strat.othmanconstruction.com/${websiteData.aboutPage.banner}`
-    : "/services.webp";
+  const bannerUrl = getImageUrl(websiteData?.aboutPage?.banner) || "/services.webp";
 
   return (
     <div className="-mb-10">

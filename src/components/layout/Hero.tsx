@@ -7,7 +7,7 @@ const Hero = ({
   background,
 }: {
   title: string;
-  subtitle?: string;
+  subtitle?: string | React.ReactNode;
   background: string;
 }) => {
   return (
@@ -34,9 +34,13 @@ const Hero = ({
         ></div>
         <h1 className="text-white text-6xl font-bold relative z-10">{title}</h1>
         {subtitle && (
-          <p className="text-white text-lg font-medium relative z-10">
-            {subtitle}
-          </p>
+          <div className="relative z-10">
+            {typeof subtitle === "string" ? (
+              <p className="text-white text-lg font-medium">{subtitle}</p>
+            ) : (
+              subtitle
+            )}
+          </div>
         )}
       </div>
     </div>

@@ -1,12 +1,14 @@
 import Hero from "@/components/layout/Hero";
 import { getTranslations } from "next-intl/server";
 import { WebsiteResponse, SeoTag } from "@/types/website";
+import { sanitizeTitle } from "@/lib/metadata";
+import { getImageUrl } from "@/lib/image";
 import ConsultationContent from "./ConsultationContent";
 import type { Metadata } from "next";
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
-  "https://api-strat.othmanconstruction.com/api/v1";
+  "http://localhost:4000/api/v1";
 
 // Fetch website data server-side
 async function getWebsiteData() {
@@ -39,12 +41,15 @@ export async function generateMetadata({
 
   if (!seo) {
     return {
-      title: "Book Consultation",
-      description: "Schedule a consultation with our experts",
+      title: "Book a Free Consultation",
+      description: "Schedule a free consultation with our experts",
     };
   }
 
-  const title = seo.title[locale as "en" | "ar"] || seo.title.en;
+  const title = sanitizeTitle(
+    seo.title[locale as "en" | "ar"] || seo.title.en,
+    "Book a Free Consultation"
+  );
   const description =
     seo.description[locale as "en" | "ar"] || seo.description.en;
 
@@ -87,9 +92,7 @@ export default async function BookConsultation({
   const t = await getTranslations("bookConsultation");
   const websiteData = await getWebsiteData();
 
-  const bannerUrl = websiteData?.bookingPage?.banner
-    ? `https://api-strat.othmanconstruction.com/${websiteData.bookingPage.banner}`
-    : "/services.webp";
+  const bannerUrl = getImageUrl(websiteData?.bookingPage?.banner) || "/services.webp";
 
   return (
     <div className="flex flex-col gap-10 items-center justify-center">

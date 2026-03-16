@@ -6,6 +6,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import PartnerCard from "./PartnerCard";
 import { useWebsite } from "@/hooks/useWebsite";
+import { getImageUrl } from "@/lib/image";
 import { useLocale, useTranslations } from "next-intl";
 import { AlertCircle, RefreshCw } from "lucide-react";
 
@@ -104,9 +105,7 @@ const Partners = () => {
             <SwiperSlide key={index}>
               <PartnerCard
                 logo={
-                  partner?.image
-                    ? `https://api-strat.othmanconstruction.com/${partner.image}`
-                    : "/1.jpg"
+                  getImageUrl(partner?.image) || "/1.jpg"
                 }
                 name={partner.title[locale as keyof typeof partner.title]}
                 alt={partner.title[locale as keyof typeof partner.title]}

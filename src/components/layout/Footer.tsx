@@ -16,8 +16,13 @@ import {
 import TikTokIcon from "@/components/TikTokIcon";
 import { useState, useEffect, useCallback } from "react";
 import { apiPost, apiGet } from "@/lib/api";
+import { getImageUrl } from "@/lib/image";
 import { ServicesResponse, Service } from "@/types/service";
 import { BlogsResponse, Blog } from "@/types/blog";
+import {
+  AcademyCategoryResponse,
+  AcademyCategory,
+} from "@/types/academy";
 import { useLocale, useTranslations } from "next-intl";
 
 interface NewsletterResponse {
@@ -53,6 +58,11 @@ const Footer = () => {
 
   // Services state
   const [services, setServices] = useState<Service[]>([]);
+
+  // Academy categories state
+  const [academyCategories, setAcademyCategories] = useState<
+    AcademyCategory[]
+  >([]);
 
   // Blogs state
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -109,7 +119,7 @@ const Footer = () => {
   const fetchServices = useCallback(async () => {
     try {
       const response: ServicesResponse = await apiGet(
-        `/public/service?page=1&limit=6`
+        `/public/service?page=1&limit=100`
       );
 
       if (!response.error) {
@@ -135,11 +145,27 @@ const Footer = () => {
     }
   }, []);
 
-  // Fetch services and blogs on component mount
+  // Fetch academy categories function
+  const fetchAcademyCategories = useCallback(async () => {
+    try {
+      const response: AcademyCategoryResponse = await apiGet(
+        `/public/academy-category`
+      );
+
+      if (!response.error) {
+        setAcademyCategories(response.results.data || []);
+      }
+    } catch (err) {
+      console.error("Error fetching academy categories:", err);
+    }
+  }, []);
+
+  // Fetch services, academy categories, and blogs on component mount
   useEffect(() => {
     fetchServices();
+    fetchAcademyCategories();
     fetchBlogs();
-  }, [fetchServices, fetchBlogs]);
+  }, [fetchServices, fetchAcademyCategories, fetchBlogs]);
 
   // Helper function to format social media URLs
   const formatSocialUrl = (url: string, platform: string) => {
@@ -169,31 +195,94 @@ const Footer = () => {
     return `https://${url.includes(domain) ? url : `${domain}/${url}`}`;
   };
 
+  // About us and related pages
+  const aboutLinks = [
+    { href: `/${locale}/about`, label: t("links.about") },
+    { href: `/${locale}/our-talents`, label: t("links.ourTalents") },
+    { href: `/${locale}/faq`, label: t("links.faq") },
+    { href: `/${locale}/testimonials`, label: t("links.testimonials") },
+  ];
+
+  // Website pages for Useful Links (excluding About us related)
+  const usefulLinks = [
+    { href: `/${locale}`, label: t("links.home") },
+    { href: `/${locale}/solutions`, label: t("links.solutions") },
+    { href: `/${locale}/careers`, label: t("links.careers") },
+    { href: `/${locale}/insights-and-publications`, label: t("links.insights") },
+    { href: `/${locale}/success-stories`, label: t("links.successStories") },
+    { href: `/${locale}/contact`, label: t("links.contact") },
+    { href: `/${locale}/industries`, label: t("links.industries") },
+    { href: `/${locale}/book-consultation`, label: t("links.bookConsultation") },
+    { href: `/${locale}/privacy-policy`, label: t("links.privacyPolicy") },
+    { href: `/${locale}/terms-and-conditions`, label: t("links.termsAndConditions") },
+  ];
+
   return (
-    <footer className="bg-web-gray text-white py-20 px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mt-10">
+    <footer className="bg-web-gray text-white mt-10">
+      <div className="py-28 px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-16">
       {/* Company Info */}
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-6 lg:col-span-2">
         <NextImage
           src="/logo.png"
           alt={t("altText.logo")}
           width={100}
           height={100}
         />
-        <p className="text-[#848484] text-base">{t("company.description")}</p>
+        <p className="text-[#848484] text-base leading-relaxed">{t("company.description")}</p>
       </div>
 
-      {/* Useful Links */}
-      <div className="flex flex-col gap-4">
+      {/* Useful Links - Website Pages */}
+      <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-2">
           <p className="text-2xl text-white">{t("links.title")}</p>
           <div className="bg-web-primary w-[70px] h-[1px]"></div>
         </div>
-        <ul className="flex flex-col gap-4">
+        <ul className="flex flex-col gap-3">
+          {usefulLinks.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                className="text-[#848484] hover:text-web-primary transition-all duration-300 cursor-pointer text-sm"
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* About us */}
+      <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-2">
+          <p className="text-2xl text-white">{t("about.title")}</p>
+          <div className="bg-web-primary w-[70px] h-[1px]"></div>
+        </div>
+        <ul className="flex flex-col gap-3">
+          {aboutLinks.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                className="text-[#848484] hover:text-web-primary transition-all duration-300 cursor-pointer text-sm"
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Solutions */}
+      <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-2">
+          <p className="text-2xl text-white">{t("solutions.title")}</p>
+          <div className="bg-web-primary w-[70px] h-[1px]"></div>
+        </div>
+        <ul className="flex flex-col gap-3">
           {services.map((service) => (
             <li key={service._id}>
               <Link
                 href={`/${locale}/solutions/${service.slug}`}
-                className="text-white hover:text-web-primary transition-all duration-300 cursor-pointer"
+                className="text-[#848484] hover:text-web-primary transition-all duration-300 cursor-pointer text-sm"
               >
                 {service.title[locale as keyof typeof service.title] ||
                   service.title.en}
@@ -203,8 +292,29 @@ const Footer = () => {
         </ul>
       </div>
 
+      {/* Academy */}
+      <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-2">
+          <p className="text-2xl text-white">{t("academy.title")}</p>
+          <div className="bg-web-primary w-[70px] h-[1px]"></div>
+        </div>
+        <ul className="flex flex-col gap-3">
+          {academyCategories.map((category) => (
+            <li key={category._id}>
+              <Link
+                href={`/${locale}/academy-categories/${category._id}`}
+                className="text-[#848484] hover:text-web-primary transition-all duration-300 cursor-pointer text-sm"
+              >
+                {category.title[locale as keyof typeof category.title] ||
+                  category.title.en}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+
       {/* Latest News */}
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-2">
           <p className="text-2xl text-white">{t("news.title")}</p>
           <div className="bg-web-primary w-[70px] h-[1px]"></div>
@@ -220,9 +330,7 @@ const Footer = () => {
                 <div className="relative overflow-hidden rounded-lg">
                   <NextImage
                     src={
-                      blog.image
-                        ? `https://api-strat.othmanconstruction.com/${blog.image}`
-                        : "/1.jpg"
+                      getImageUrl(blog.image) || "/1.jpg"
                     }
                     alt={
                       blog.title[locale as keyof typeof blog.title] ||
@@ -250,53 +358,23 @@ const Footer = () => {
           ))}
         </div>
       </div>
+      </div>
 
-      {/* Newsletter & Social */}
-      <div className="flex flex-col gap-4">
-        <div className="flex flex-col gap-2">
-          <p className="text-2xl text-white">{t("newsletter.title")}</p>
-          <div className="bg-web-primary w-[70px] h-[1px]"></div>
-        </div>
-        <p className="text-[#848484] text-base">
-          {t("newsletter.description")}
-        </p>
-
-        {/* Newsletter Form */}
-        <form onSubmit={handleNewsletterSubscription} className="space-y-3">
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <svg
-                className="w-4 h-4 text-[#848484]"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
-                />
-              </svg>
-            </div>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder={t("newsletter.placeholder")}
-              className="w-full pl-10 pr-12 py-3 bg-white border border-[#555] rounded-lg text-black placeholder-[#848484] focus:outline-none focus:border-web-primary transition-colors duration-300"
-              disabled={isSubscribing}
-            />
-            <button
-              type="submit"
-              disabled={isSubscribing}
-              className="absolute inset-y-0 right-0 pr-3 flex items-center disabled:opacity-50"
-            >
-              {isSubscribing ? (
-                <Loader2 className="w-5 h-5 text-web-primary animate-spin" />
-              ) : (
+      {/* Newsletter & Social - below Solutions, Academy, Latest News */}
+      <div className="px-12 pb-12 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 border-t border-[#333] pt-12">
+        <div className="flex flex-col gap-4 max-w-md">
+          <div className="flex flex-col gap-2">
+            <p className="text-2xl text-white">{t("newsletter.title")}</p>
+            <div className="bg-web-primary w-[70px] h-[1px]"></div>
+          </div>
+          <p className="text-[#848484] text-base">
+            {t("newsletter.description")}
+          </p>
+          <form onSubmit={handleNewsletterSubscription} className="space-y-3">
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg
-                  className="w-5 h-5 text-web-primary cursor-pointer"
+                  className="w-4 h-4 text-[#848484]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -305,102 +383,137 @@ const Footer = () => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                    d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
                   />
                 </svg>
-              )}
-            </button>
+              </div>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder={t("newsletter.placeholder")}
+                className="w-full pl-10 pr-12 py-3 bg-white border border-[#555] rounded-lg text-black placeholder-[#848484] focus:outline-none focus:border-web-primary transition-colors duration-300"
+                disabled={isSubscribing}
+              />
+              <button
+                type="submit"
+                disabled={isSubscribing}
+                className="absolute inset-y-0 right-0 pr-3 flex items-center disabled:opacity-50"
+              >
+                {isSubscribing ? (
+                  <Loader2 className="w-5 h-5 text-web-primary animate-spin" />
+                ) : (
+                  <svg
+                    className="w-5 h-5 text-web-primary cursor-pointer"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                    />
+                  </svg>
+                )}
+              </button>
+            </div>
+            {subscriptionStatus === "success" && (
+              <div className="flex items-center gap-2 text-green-400 text-sm">
+                <CheckCircle className="w-4 h-4" />
+                <span>{subscriptionMessage}</span>
+              </div>
+            )}
+            {subscriptionStatus === "error" && (
+              <div className="flex items-center gap-2 text-red-400 text-sm">
+                <AlertCircle className="w-4 h-4" />
+                <span>{subscriptionMessage}</span>
+              </div>
+            )}
+          </form>
+        </div>
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-2">
+            <p className="text-2xl text-white">{t("social.title")}</p>
+            <div className="bg-web-primary w-[70px] h-[1px]"></div>
           </div>
-
-          {/* Status Messages */}
-          {subscriptionStatus === "success" && (
-            <div className="flex items-center gap-2 text-green-400 text-sm">
-              <CheckCircle className="w-4 h-4" />
-              <span>{subscriptionMessage}</span>
-            </div>
-          )}
-
-          {subscriptionStatus === "error" && (
-            <div className="flex items-center gap-2 text-red-400 text-sm">
-              <AlertCircle className="w-4 h-4" />
-              <span>{subscriptionMessage}</span>
-            </div>
-          )}
-        </form>
-
-        {/* Social Media */}
-        <div className="flex flex-col gap-2 mt-4">
-          <p className="text-2xl text-white">{t("social.title")}</p>
-          <div className="bg-web-primary w-[70px] h-[1px]"></div>
+          <div className="flex items-center gap-4">
+            {settings?.social?.facebook && (
+              <Link
+                href={
+                  formatSocialUrl(settings.social.facebook, "facebook") || "#"
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#848484] hover:text-web-primary transition-colors duration-300 border rounded-full p-2"
+              >
+                <Facebook size={16} />
+              </Link>
+            )}
+            {settings?.social?.twitter && (
+              <Link
+                href={formatSocialUrl(settings.social.twitter, "twitter") || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#848484] hover:text-web-primary transition-colors duration-300 border rounded-full p-2"
+              >
+                <Twitter size={16} />
+              </Link>
+            )}
+            {settings?.social?.linkedin && (
+              <Link
+                href={
+                  formatSocialUrl(settings.social.linkedin, "linkedin") || "#"
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#848484] hover:text-web-primary transition-colors duration-300 border rounded-full p-2"
+              >
+                <Linkedin size={16} />
+              </Link>
+            )}
+            {settings?.social?.instagram && (
+              <Link
+                href={
+                  formatSocialUrl(settings.social.instagram, "instagram") || "#"
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#848484] hover:text-web-primary transition-colors duration-300 border rounded-full p-2"
+              >
+                <Instagram size={16} />
+              </Link>
+            )}
+            {settings?.social?.youtube && (
+              <Link
+                href={formatSocialUrl(settings.social.youtube, "youtube") || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#848484] hover:text-web-primary transition-colors duration-300 border rounded-full p-2"
+              >
+                <Youtube size={16} />
+              </Link>
+            )}
+            {settings?.social?.tiktok && (
+              <Link
+                href={formatSocialUrl(settings.social.tiktok, "tiktok") || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#848484] hover:text-web-primary transition-colors duration-300 border rounded-full p-2"
+              >
+                <TikTokIcon size={16} />
+              </Link>
+            )}
+          </div>
         </div>
-        <div className="flex items-center gap-4">
-          {settings?.social?.facebook && (
-            <Link
-              href={
-                formatSocialUrl(settings.social.facebook, "facebook") || "#"
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#848484] hover:text-web-primary transition-colors duration-300 border rounded-full p-2"
-            >
-              <Facebook size={16} />
-            </Link>
-          )}
-          {settings?.social?.twitter && (
-            <Link
-              href={formatSocialUrl(settings.social.twitter, "twitter") || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#848484] hover:text-web-primary transition-colors duration-300 border rounded-full p-2"
-            >
-              <Twitter size={16} />
-            </Link>
-          )}
-          {settings?.social?.linkedin && (
-            <Link
-              href={
-                formatSocialUrl(settings.social.linkedin, "linkedin") || "#"
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#848484] hover:text-web-primary transition-colors duration-300 border rounded-full p-2"
-            >
-              <Linkedin size={16} />
-            </Link>
-          )}
-          {settings?.social?.instagram && (
-            <Link
-              href={
-                formatSocialUrl(settings.social.instagram, "instagram") || "#"
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#848484] hover:text-web-primary transition-colors duration-300 border rounded-full p-2"
-            >
-              <Instagram size={16} />
-            </Link>
-          )}
-          {settings?.social?.youtube && (
-            <Link
-              href={formatSocialUrl(settings.social.youtube, "youtube") || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#848484] hover:text-web-primary transition-colors duration-300 border rounded-full p-2"
-            >
-              <Youtube size={16} />
-            </Link>
-          )}
-          {settings?.social?.tiktok && (
-            <Link
-              href={formatSocialUrl(settings.social.tiktok, "tiktok") || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#848484] hover:text-web-primary transition-colors duration-300 border rounded-full p-2"
-            >
-              <TikTokIcon size={16} />
-            </Link>
-          )}
-        </div>
+      </div>
+      <div className="border-t border-[#333] py-6 px-12">
+        <p className="text-[#848484] text-sm text-center">
+          {t("allRightsReserved", {
+            year: new Date().getFullYear(),
+          })}
+        </p>
       </div>
     </footer>
   );

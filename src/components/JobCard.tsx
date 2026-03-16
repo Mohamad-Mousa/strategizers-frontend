@@ -1,4 +1,4 @@
-import { Calendar, CheckCircle } from "lucide-react";
+import { Calendar, CheckCircle, MapPin } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -10,6 +10,7 @@ interface JobCardProps {
   postedDate: string;
   slug: string;
   jobId?: string;
+  location?: string;
 }
 
 const JobCard = ({
@@ -18,6 +19,7 @@ const JobCard = ({
   postedDate,
   slug,
   jobId,
+  location,
 }: JobCardProps) => {
   const router = useRouter();
   const locale = useLocale();
@@ -49,13 +51,19 @@ const JobCard = ({
           </div>
 
           {/* Location and Date */}
-          <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
+          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-4">
             <div className="flex items-center gap-1">
               <Calendar className="w-4 h-4" />
               <span>
                 {t("postedOn")} {postedDate}
               </span>
             </div>
+            {location && (
+              <div className="flex items-center gap-1">
+                <MapPin className="w-4 h-4" />
+                <span>{location}</span>
+              </div>
+            )}
           </div>
         </div>
 

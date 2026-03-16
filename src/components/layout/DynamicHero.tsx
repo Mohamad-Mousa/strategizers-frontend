@@ -4,6 +4,7 @@ import Header from "./Header";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { getImageUrl } from "@/lib/image";
 
 interface Banner {
   title: {
@@ -95,7 +96,7 @@ const DynamicHero = ({
               key={banner._id}
               className="w-full h-full flex-shrink-0 bg-web-gray flex flex-col items-center justify-center relative gap-4"
               style={{
-                backgroundImage: `url(https://api-strat.othmanconstruction.com/${banner.image})`,
+                backgroundImage: `url(${getImageUrl(banner.image)})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center top",
                 backgroundRepeat: "no-repeat",
@@ -131,13 +132,13 @@ const DynamicHero = ({
           <>
             <button
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all duration-300"
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all duration-300 cursor-pointer"
             >
               <ChevronLeft size={24} />
             </button>
             <button
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all duration-300"
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all duration-300 cursor-pointer"
             >
               <ChevronRight size={24} />
             </button>
@@ -148,15 +149,15 @@ const DynamicHero = ({
         {banners.length > 1 && (
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
             {banners.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentSlide
-                    ? "bg-white"
-                    : "bg-white/50 hover:bg-white/75"
-                }`}
-              />
+<button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
+                index === currentSlide
+                  ? "bg-white"
+                  : "bg-white/50 hover:bg-white/75"
+              }`}
+            />
             ))}
           </div>
         )}

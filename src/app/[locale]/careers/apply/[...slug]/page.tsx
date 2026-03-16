@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { sanitizeTitle } from "@/lib/metadata";
+import { getImageUrl } from "@/lib/image";
 import { apiGet } from "@/lib/api";
 import { Job } from "@/types/job";
 import ApplyPageContent from "./pageContent";
@@ -36,7 +38,10 @@ export async function generateMetadata({
     }
 
     const job = response.results;
-    const jobTitle = getLocalizedContent(job.title, locale);
+    const jobTitle = sanitizeTitle(
+      getLocalizedContent(job.title, locale),
+      "Job"
+    );
     const jobDescription = getLocalizedContent(job.description, locale);
 
     // Create dynamic title: "Apply | Job Title"
@@ -66,7 +71,7 @@ export async function generateMetadata({
         images: job.image
           ? [
               {
-                url: `https://api-strat.othmanconstruction.com/${job.image}`,
+                url: getImageUrl(job.image),
                 width: 1200,
                 height: 630,
                 alt: jobTitle,
@@ -79,7 +84,7 @@ export async function generateMetadata({
         title: pageTitle,
         description: pageDescription,
         images: job.image
-          ? [`https://api-strat.othmanconstruction.com/${job.image}`]
+          ? [getImageUrl(job.image)]
           : undefined,
       },
       alternates: {

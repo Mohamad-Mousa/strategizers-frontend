@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Project } from "@/types/project";
+import { getImageUrl } from "@/lib/image";
 import { useLocale } from "next-intl";
 
 interface ProjectCardProps {
@@ -26,15 +26,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   };
 
   // Build image URL
-  const imageUrl = project.image.startsWith("http")
-    ? project.image
-    : `https://api-strat.othmanconstruction.com/${project.image}`;
+  const imageUrl = getImageUrl(project.image);
 
   return (
-    <Link
-      href={`/${locale}/success-stories/${project.slug}`}
-      className="block relative group hover:no-underline"
-    >
+    <div className="block relative group">
       <div className="relative overflow-hidden rounded-md">
         <Image
           src={imageUrl}
@@ -92,6 +87,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           </div>
         )}
       </div>
-    </Link>
+    </div>
   );
 }

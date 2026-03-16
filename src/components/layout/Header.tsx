@@ -29,8 +29,16 @@ import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { useSettings } from "@/hooks/useSettings";
 import { apiGet } from "@/lib/api";
-import { ServicesResponse, Service } from "@/types/service";
-import { AcademyResponse, Program } from "@/types/academy";
+import { getImageUrl } from "@/lib/image";
+import {
+  ServicesResponse,
+  Service,
+  SingleServiceResponse,
+} from "@/types/service";
+import {
+  AcademyCategoryResponse,
+  AcademyCategory,
+} from "@/types/academy";
 
 function stripLeadingLocale(pathname: string): string {
   // result always starts with "/" (or is just "/")
@@ -51,8 +59,39 @@ const Header = ({ className }: { className?: string }) => {
   // Services state
   const [services, setServices] = useState<Service[]>([]);
 
-  // Academy state
-  const [programs, setPrograms] = useState<Program[]>([]);
+  // Academy state (categories)
+  const [academyCategories, setAcademyCategories] = useState<
+    AcademyCategory[]
+  >([]);
+
+  // Hovered service (for subservices submenu)
+  const [hoveredServiceSlug, setHoveredServiceSlug] = useState<string | null>(
+    null
+  );
+  const [hoveredServiceDetails, setHoveredServiceDetails] =
+    useState<Service | null>(null);
+  const [isLoadingSubservices, setIsLoadingSubservices] = useState(false);
+  const hoverServiceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Fetch service details (with subservices) when hovering
+  const fetchServiceDetails = useCallback(async (slug: string) => {
+    setIsLoadingSubservices(true);
+    setHoveredServiceDetails(null);
+    try {
+      const response: SingleServiceResponse = await apiGet(
+        `/public/service/${slug}`
+      );
+      if (!response.error && response.results?.service) {
+        setHoveredServiceDetails(response.results.service);
+      } else {
+        setHoveredServiceDetails(null);
+      }
+    } catch (err) {
+      setHoveredServiceDetails(null);
+    } finally {
+      setIsLoadingSubservices(false);
+    }
+  }, []);
 
   // Helper function to format social media URLs
   const formatSocialUrl = (url: string, platform: string) => {
@@ -97,109 +136,27 @@ const Header = ({ className }: { className?: string }) => {
     }
   }, []);
 
-  // Fetch academy programs function
-  const fetchAcademyPrograms = useCallback(async () => {
+  // Fetch academy categories function
+  const fetchAcademyCategories = useCallback(async () => {
     try {
-      const response: AcademyResponse = await apiGet(
-        `/public/program?page=1&limit=10&sortBy=createdAt&sortDirection=desc&term=&program=`
+      const response: AcademyCategoryResponse = await apiGet(
+        `/public/academy-category`
       );
 
       if (!response.error) {
-        setPrograms(response.results.data);
+        setAcademyCategories(response.results.data || []);
       }
     } catch (err) {
-      console.error("Error fetching academy programs:", err);
+      console.error("Error fetching academy categories:", err);
     }
   }, []);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAboutHovered, setIsAboutHovered] = useState(false);
   const [isSolutionsHovered, setIsSolutionsHovered] = useState(false);
-  const [isAcademyHovered, setIsAcademyHovered] = useState(false);
 
-  // Academy hover states for hierarchical navigation
-  const [selectedProgram, setSelectedProgram] = useState<string | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedCourse, setSelectedCourse] = useState<string | null>(null);
-
-  // Timeout refs for delayed clearing
-  const programTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const categoryTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const courseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  // Helper functions for Academy data filtering
-  const getSelectedProgramData = () => {
-    return programs.find((program) => program._id === selectedProgram);
-  };
-
-  const getSelectedCategoryData = () => {
-    const program = getSelectedProgramData();
-    return program?.categories.find(
-      (category) => category._id === selectedCategory
-    );
-  };
-
-  // Reset functions
-  const resetAcademySelections = () => {
-    setSelectedProgram(null);
-    setSelectedCategory(null);
-    setSelectedCourse(null);
-  };
-
-  // Hover management functions with delays
-  const handleProgramHover = (programId: string | null) => {
-    // Clear any existing timeout
-    if (programTimeoutRef.current) {
-      clearTimeout(programTimeoutRef.current);
-    }
-
-    if (programId) {
-      setSelectedProgram(programId);
-      setSelectedCategory(null);
-      setSelectedCourse(null);
-    } else {
-      // Delay clearing to allow moving to categories section
-      programTimeoutRef.current = setTimeout(() => {
-        setSelectedProgram(null);
-        setSelectedCategory(null);
-        setSelectedCourse(null);
-      }, 300);
-    }
-  };
-
-  const handleCategoryHover = (categoryId: string | null) => {
-    // Clear any existing timeout
-    if (categoryTimeoutRef.current) {
-      clearTimeout(categoryTimeoutRef.current);
-    }
-
-    if (categoryId) {
-      setSelectedCategory(categoryId);
-      setSelectedCourse(null);
-    } else {
-      // Delay clearing to allow moving to courses section
-      categoryTimeoutRef.current = setTimeout(() => {
-        setSelectedCategory(null);
-        setSelectedCourse(null);
-      }, 300);
-    }
-  };
-
-  const handleCourseHover = (courseId: string | null) => {
-    // Clear any existing timeout
-    if (courseTimeoutRef.current) {
-      clearTimeout(courseTimeoutRef.current);
-    }
-
-    if (courseId) {
-      setSelectedCourse(courseId);
-    } else {
-      // Delay clearing to allow moving to course details
-      courseTimeoutRef.current = setTimeout(() => {
-        setSelectedCourse(null);
-      }, 300);
-    }
-  };
+  // Timeout ref for Solutions dropdown close delay
+  const solutionsCloseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Language toggle function
   const toggleLanguage = useCallback(() => {
@@ -213,11 +170,11 @@ const Header = ({ className }: { className?: string }) => {
     router.push(href, { locale: newLocale });
   }, [locale, pathname, searchParams, router]);
 
-  // Fetch services and academy programs on component mount
+  // Fetch services and academy categories on component mount
   useEffect(() => {
     fetchServices();
-    fetchAcademyPrograms();
-  }, [fetchServices, fetchAcademyPrograms]);
+    fetchAcademyCategories();
+  }, [fetchServices, fetchAcademyCategories]);
 
   // Prevent body scrolling when menu is open
   useEffect(() => {
@@ -391,306 +348,27 @@ const Header = ({ className }: { className?: string }) => {
       </div>
 
       {/* Main Navigation */}
-      <nav className="bg-white shadow-lg">
-        <div className="container mx-auto">
-          {/* Academy Dropdown */}
-          <div
-            onMouseEnter={() => setIsAcademyHovered(true)}
-            onMouseLeave={() => {
-              setIsAcademyHovered(false);
-              // Clear all timeouts and reset selections
-              if (programTimeoutRef.current)
-                clearTimeout(programTimeoutRef.current);
-              if (categoryTimeoutRef.current)
-                clearTimeout(categoryTimeoutRef.current);
-              if (courseTimeoutRef.current)
-                clearTimeout(courseTimeoutRef.current);
-              resetAcademySelections();
-            }}
-            className={`absolute top-full w-full bg-transparent shadow-lg transition-all duration-300 z-50 ${
-              isAcademyHovered
-                ? "opacity-100 visible translate-y-0"
-                : "opacity-0 invisible -translate-y-2"
-            }`}
-          >
-            <div className="container mx-auto">
-              <div className="grid grid-cols-4">
-                {/* Programs Section - Always Visible */}
-                <div
-                  className={`space-y-4 col-span-1 bg-white px-4 transition-all duration-500 ${
-                    isAcademyHovered
-                      ? "opacity-100 translate-x-0"
-                      : "opacity-0 -translate-x-4"
-                  }`}
-                >
-                  <div className="flex items-center justify-between">
-                    <h3
-                      className={`text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2 flex-1 transition-all duration-500 delay-100 ${
-                        isAcademyHovered
-                          ? "opacity-100 translate-y-0"
-                          : "opacity-0 -translate-y-2"
-                      }`}
-                    >
-                      {t("academy.programs")}
-                    </h3>
-                  </div>
-                  <div className="space-y-2">
-                    {programs && programs.length > 0 ? (
-                      programs.map((program, index) => (
-                        <div
-                          key={program._id}
-                          className={`relative transition-all duration-500 ${
-                            isAcademyHovered
-                              ? "opacity-100 translate-x-0"
-                              : "opacity-0 -translate-x-4"
-                          }`}
-                          style={{ transitionDelay: `${150 + index * 50}ms` }}
-                          onMouseEnter={() => handleProgramHover(program._id)}
-                          onMouseLeave={() => handleProgramHover(null)}
-                        >
-                          <div className="block p-3 rounded-lg transition-colors group">
-                            <div className="flex items-start space-x-3">
-                              <div className="w-12 h-12 rounded-lg overflow-hidden bg-gray-100">
-                                <NextImage
-                                  src={
-                                    program.image
-                                      ? `https://api-strat.othmanconstruction.com/${program.image}`
-                                      : "/1.jpg"
-                                  }
-                                  alt={
-                                    program.title[
-                                      locale as keyof typeof program.title
-                                    ] || program.title.en
-                                  }
-                                  width={48}
-                                  height={48}
-                                  className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300"
-                                />
-                              </div>
-                              <div className="flex-1">
-                                <div className="flex items-center justify-between">
-                                  <p
-                                    className={`font-medium transition-colors ${
-                                      selectedProgram === program._id
-                                        ? "text-web-primary"
-                                        : "text-gray-900 group-hover:text-web-primary"
-                                    }`}
-                                  >
-                                    {program.title[
-                                      locale as keyof typeof program.title
-                                    ] || program.title.en}
-                                  </p>
-                                </div>
-                              </div>
-                              {locale === "en" ? (
-                                <ChevronRight
-                                  className={`font-medium transition-colors ${
-                                    selectedProgram === program._id
-                                      ? "text-web-primary"
-                                      : "text-gray-900 group-hover:text-web-primary"
-                                  }`}
-                                />
-                              ) : (
-                                <ChevronLeft
-                                  className={`font-medium transition-colors ${
-                                    selectedProgram === program._id
-                                      ? "text-web-primary"
-                                      : "text-gray-900 group-hover:text-web-primary"
-                                  }`}
-                                />
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      ))
-                    ) : (
-                      <div className="p-4 text-center animate-fadeInUp">
-                        <p className="text-gray-500 text-sm">
-                          {t("academy.noProgramsFound")}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Categories Section - Only visible when a program is selected */}
-                {selectedProgram && (
-                  <div
-                    className={`space-y-4 border-l border-gray-200 col-span-1 px-3 bg-white animate-slideInFromRight ${
-                      locale === "ar"
-                        ? "animate-slideInFromLeft"
-                        : "animate-slideInFromRight"
-                    }`}
-                    onMouseEnter={() => {
-                      // Cancel program timeout when hovering over categories section
-                      if (programTimeoutRef.current) {
-                        clearTimeout(programTimeoutRef.current);
-                      }
-                    }}
-                  >
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2 flex-1 animate-fadeInUp">
-                        {t("academy.categories")}
-                      </h3>
-                    </div>
-                    <div className="space-y-2">
-                      {(() => {
-                        const categories = getSelectedProgramData()?.categories;
-                        return categories && categories.length > 0 ? (
-                          categories.map((category, index) => (
-                            <div
-                              key={category._id}
-                              className="relative opacity-0 animate-fadeInStagger"
-                              style={{
-                                animationDelay: `${index * 80}ms`,
-                                animationFillMode: "forwards",
-                              }}
-                              onMouseEnter={() =>
-                                handleCategoryHover(category._id)
-                              }
-                              onMouseLeave={() => handleCategoryHover(null)}
-                            >
-                              <div className="block p-3 rounded-lg transition-colors group">
-                                <div className="flex items-center justify-between">
-                                  <div className="flex items-center gap-2 flex-1">
-                                    <p
-                                      className={`font-medium transition-colors ${
-                                        selectedCategory === category._id
-                                          ? "text-web-primary"
-                                          : "text-gray-900 group-hover:text-web-primary"
-                                      }`}
-                                    >
-                                      {category.title[
-                                        locale as keyof typeof category.title
-                                      ] || category.title.en}
-                                    </p>
-                                  </div>
-                                  {locale === "en" ? (
-                                    <ChevronRight
-                                      className={`font-medium transition-colors ${
-                                        selectedCategory === category._id
-                                          ? "text-web-primary"
-                                          : "text-gray-900 group-hover:text-web-primary"
-                                      }`}
-                                    />
-                                  ) : (
-                                    <ChevronLeft
-                                      className={`font-medium transition-colors ${
-                                        selectedCategory === category._id
-                                          ? "text-web-primary"
-                                          : "text-gray-900 group-hover:text-web-primary"
-                                      }`}
-                                    />
-                                  )}
-                                </div>
-                              </div>
-                            </div>
-                          ))
-                        ) : (
-                          <div className="p-4 text-center animate-fadeInUp">
-                            <p className="text-gray-500 text-sm">
-                              {t("academy.noCategoriesFound")}
-                            </p>
-                          </div>
-                        );
-                      })()}
-                    </div>
-                  </div>
-                )}
-
-                {/* Courses Section - Only visible when a category is selected */}
-                {selectedCategory && (
-                  <div
-                    className={`space-y-4 border-l border-gray-200 col-span-1 px-3 bg-white animate-slideInFromRight ${
-                      locale === "ar"
-                        ? "animate-slideInFromLeft"
-                        : "animate-slideInFromRight"
-                    }`}
-                    onMouseEnter={() => {
-                      // Cancel category timeout when hovering over courses section
-                      if (categoryTimeoutRef.current) {
-                        clearTimeout(categoryTimeoutRef.current);
-                      }
-                    }}
-                  >
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2 flex-1 animate-fadeInUp">
-                        {t("academy.courses")}
-                      </h3>
-                    </div>
-                    <div className="space-y-2">
-                      {(() => {
-                        const courses = getSelectedCategoryData()?.courses;
-                        return courses && courses.length > 0 ? (
-                          courses.map((course, index) => (
-                            <div
-                              key={course._id}
-                              className="relative opacity-0 animate-fadeInStagger"
-                              style={{
-                                animationDelay: `${index * 80}ms`,
-                                animationFillMode: "forwards",
-                              }}
-                              onMouseEnter={() => handleCourseHover(course._id)}
-                              onMouseLeave={() => handleCourseHover(null)}
-                            >
-                              <Link
-                                href={`/${locale}/courses/${course.slug}`}
-                                className="block p-3 rounded-lg transition-colors group"
-                              >
-                                <div className="flex items-center space-x-3">
-                                  <div className="w-10 h-10 rounded-lg overflow-hidden bg-gray-100">
-                                    <NextImage
-                                      src={
-                                        course.image
-                                          ? `https://api-strat.othmanconstruction.com/${course.image}`
-                                          : "/1.jpg"
-                                      }
-                                      alt={
-                                        course.title[
-                                          locale as keyof typeof course.title
-                                        ] || course.title.en
-                                      }
-                                      width={40}
-                                      height={40}
-                                      className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300"
-                                    />
-                                  </div>
-                                  <div className="flex-1">
-                                    <p
-                                      className={`font-medium transition-colors text-sm ${
-                                        selectedCourse === course._id
-                                          ? "text-web-primary"
-                                          : "text-gray-900 group-hover:text-web-primary"
-                                      }`}
-                                    >
-                                      {course.title[
-                                        locale as keyof typeof course.title
-                                      ] || course.title.en}
-                                    </p>
-                                  </div>
-                                </div>
-                              </Link>
-                            </div>
-                          ))
-                        ) : (
-                          <div className="p-4 text-center animate-fadeInUp">
-                            <p className="text-gray-500 text-sm">
-                              {t("academy.noCoursesFound")}
-                            </p>
-                          </div>
-                        );
-                      })()}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-
+      <nav className="bg-white shadow-lg relative">
+        <div className="container mx-auto relative">
           {/* Solutions Dropdown */}
           <div
-            onMouseEnter={() => setIsSolutionsHovered(true)}
-            onMouseLeave={() => setIsSolutionsHovered(false)}
+            onMouseEnter={() => {
+              if (solutionsCloseTimeoutRef.current) {
+                clearTimeout(solutionsCloseTimeoutRef.current);
+                solutionsCloseTimeoutRef.current = null;
+              }
+              setIsSolutionsHovered(true);
+            }}
+            onMouseLeave={() => {
+              setIsSolutionsHovered(false);
+              if (hoverServiceTimeoutRef.current) {
+                clearTimeout(hoverServiceTimeoutRef.current);
+                hoverServiceTimeoutRef.current = null;
+              }
+              setHoveredServiceSlug(null);
+              setHoveredServiceDetails(null);
+              setIsLoadingSubservices(false);
+            }}
             className={`absolute top-full w-full bg-white shadow-lg transition-all duration-300 flex items-stretch gap-4 ${
               isSolutionsHovered
                 ? "opacity-100 visible translate-y-0"
@@ -724,37 +402,189 @@ const Header = ({ className }: { className?: string }) => {
               </div>
             </div>
 
-            <div className="col-span-2 gap-4 px-4 w-2/3">
-              {services.map((service) => (
-                <Link
-                  key={service._id}
-                  href={`/${locale}/solutions/${service.slug}`}
-                  className="flex items-center justify-between border-b border-gray-300 py-2 hover:text-web-primary transition-all duration-300 cursor-pointer group"
-                >
-                  <p className="text-lg font-semibold">
-                    {service.title[locale as keyof typeof service.title] ||
-                      service.title.en}
-                  </p>
-
-                  {/* Right side: image */}
-                  <div className="w-1/3 h-14 overflow-hidden rounded-md">
-                    <NextImage
-                      src={
-                        service.image
-                          ? `https://api-strat.othmanconstruction.com/${service.image}`
-                          : "/1.jpg"
+            <div className="flex-1 flex gap-4 px-4 h-[380px] min-w-0">
+              {/* Solutions section - left (smaller when images hidden) */}
+              <div
+                className={`flex flex-col gap-2 border-r border-gray-200 pr-4 min-w-[220px] transition-all duration-300 ${
+                  hoveredServiceSlug ? "flex-initial" : "flex-[2]"
+                }`}
+              >
+                <h3 className="text-sm font-bold uppercase tracking-wider text-web-primary border-b-2 border-web-primary pt-4 pb-2 mb-3 w-fit">
+                  {t("navigation.solutions")}
+                </h3>
+                {services.map((service) => (
+                  <div
+                    key={service._id}
+                    onMouseEnter={() => {
+                      if (hoverServiceTimeoutRef.current) {
+                        clearTimeout(hoverServiceTimeoutRef.current);
+                        hoverServiceTimeoutRef.current = null;
                       }
-                      alt={
-                        service.title[locale as keyof typeof service.title] ||
-                        service.title.en
-                      }
-                      width={160}
-                      height={50}
-                      className="object-cover w-full h-full group-hover:scale-110 transition-all duration-300"
-                    />
+                      setHoveredServiceSlug(service.slug);
+                      fetchServiceDetails(service.slug);
+                    }}
+                    onMouseLeave={() => {
+                      hoverServiceTimeoutRef.current = setTimeout(() => {
+                        setHoveredServiceSlug(null);
+                        setHoveredServiceDetails(null);
+                        setIsLoadingSubservices(false);
+                        hoverServiceTimeoutRef.current = null;
+                      }, 150);
+                    }}
+                  >
+                    <Link
+                      href={`/${locale}/solutions/${service.slug}`}
+                      className={`flex items-center justify-between border-b border-gray-300 py-2 transition-all duration-300 cursor-pointer group ${
+                        hoveredServiceSlug === service.slug
+                          ? "text-web-primary"
+                          : "hover:text-web-primary"
+                      }`}
+                    >
+                      <p
+                        className={`text-base font-medium transition-colors duration-200 min-w-0 flex-1 truncate ${
+                          hoveredServiceSlug === service.slug
+                            ? "text-web-primary"
+                            : "text-gray-700 group-hover:text-web-primary"
+                        }`}
+                      >
+                        {service.title[
+                          locale as keyof typeof service.title
+                        ] || service.title.en}
+                      </p>
+                      <div
+                        className={`overflow-hidden rounded-md flex-shrink-0 transition-all duration-300 ease-out ${
+                          hoveredServiceSlug ? "w-0 h-14 opacity-0" : "w-40 h-14 opacity-100"
+                        }`}
+                      >
+                        <NextImage
+                          src={
+                            getImageUrl(service.image) || "/1.jpg"
+                          }
+                          alt={
+                            service.title[
+                              locale as keyof typeof service.title
+                            ] || service.title.en
+                          }
+                          width={160}
+                          height={50}
+                          className="object-cover w-full h-full group-hover:scale-110 transition-all duration-300"
+                        />
+                      </div>
+                    </Link>
                   </div>
-                </Link>
-              ))}
+                ))}
+              </div>
+
+              {/* Academy or Subservices section - right */}
+              {hoveredServiceSlug ? (
+                <div
+                  className="flex-1 flex flex-col min-w-[200px] h-full animate-slideInFromRight"
+                  onMouseEnter={() => {
+                    if (hoverServiceTimeoutRef.current) {
+                      clearTimeout(hoverServiceTimeoutRef.current);
+                      hoverServiceTimeoutRef.current = null;
+                    }
+                  }}
+                  onMouseLeave={() => {
+                    hoverServiceTimeoutRef.current = setTimeout(() => {
+                      setHoveredServiceSlug(null);
+                      setHoveredServiceDetails(null);
+                      setIsLoadingSubservices(false);
+                      hoverServiceTimeoutRef.current = null;
+                    }, 150);
+                  }}
+                >
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-web-primary border-b-2 border-web-primary pt-4 pb-2 mb-3 w-fit">
+                    {(() => {
+                      const hoveredService = services.find(
+                        (s) => s.slug === hoveredServiceSlug
+                      );
+                      return (
+                        hoveredService?.title?.[
+                          locale as keyof typeof hoveredService.title
+                        ] ||
+                        hoveredService?.title?.en ||
+                        hoveredServiceDetails?.title?.[
+                          locale as keyof typeof hoveredServiceDetails.title
+                        ] ||
+                        hoveredServiceDetails?.title?.en ||
+                        t("solutions.subservices")
+                      );
+                    })()}
+                  </h3>
+                  <div className="flex flex-col gap-2">
+                    {isLoadingSubservices ? (
+                      <p className="text-gray-500 text-sm py-2 animate-fadeInUp">
+                        {t("solutions.loading")}
+                      </p>
+                    ) : hoveredServiceDetails?.subServices?.length ? (
+                      hoveredServiceDetails.subServices.map((sub, index) => (
+                        <Link
+                          key={sub._id}
+                          href={`/${locale}/solutions/${hoveredServiceDetails.slug}/${sub.slug}`}
+                          className="border-b border-gray-300 py-2 text-base font-medium text-gray-700 hover:text-web-primary transition-all duration-300 cursor-pointer animate-fadeInStagger"
+                          style={{ animationDelay: `${index * 50}ms` }}
+                        >
+                          {sub.title[
+                            locale as keyof typeof sub.title
+                          ] || sub.title.en}
+                        </Link>
+                      ))
+                    ) : (
+                      <p className="text-gray-500 text-sm py-2">
+                        {t("solutions.noSubservices")}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              ) : (
+                <div className="flex-1 flex flex-col min-w-[200px] h-full animate-fadeInUp">
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-web-primary border-b-2 border-web-primary pt-4 pb-2 mb-3 w-fit">
+                    {t("navigation.academy")}
+                  </h3>
+                  <div className="flex flex-col gap-2">
+                    {academyCategories && academyCategories.length > 0 ? (
+                      academyCategories.map((category) => (
+                        <Link
+                          key={category._id}
+                          href={`/${locale}/academy-categories/${category._id}`}
+                          className="flex items-center justify-between border-b border-gray-300 py-2 hover:text-web-primary transition-all duration-300 cursor-pointer group"
+                        >
+                          <p className="text-base font-medium text-gray-700 group-hover:text-web-primary">
+                            {category.title[
+                              locale as keyof typeof category.title
+                            ] || category.title.en}
+                          </p>
+                          {category.courses?.[0]?.image && (
+                            <div className="w-40 h-14 overflow-hidden rounded-md flex-shrink-0">
+                              <NextImage
+                                src={
+                                  getImageUrl(category.courses[0].image) ||
+                                  "/1.jpg"
+                                }
+                                alt={
+                                  category.title[
+                                    locale as keyof typeof category.title
+                                  ] || category.title.en
+                                }
+                                width={160}
+                                height={50}
+                                className="object-cover w-full h-full group-hover:scale-110 transition-all duration-300"
+                              />
+                            </div>
+                          )}
+                        </Link>
+                      ))
+                    ) : (
+                      <div className="p-4 text-center">
+                        <p className="text-gray-500 text-sm">
+                          {t("academy.noCategoriesFound")}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           <div className="flex justify-between items-center py-3 md:py-0">
@@ -771,58 +601,39 @@ const Header = ({ className }: { className?: string }) => {
             </div>
 
             <div className="hidden lg:flex items-center space-x-8">
-              {/* Academy Navigation */}
-              <div
-                className="relative group"
-                onMouseEnter={() => setIsAcademyHovered(true)}
-                onMouseLeave={() => setIsAcademyHovered(false)}
-              >
-                <div className="py-7 relative cursor-pointer block">
-                  <div
-                    className={`group-hover:text-web-primary font-medium h-full flex items-center gap-2 ${
-                      currentPage === "academy" || isAcademyHovered
-                        ? "text-web-primary"
-                        : ""
-                    }`}
-                  >
-                    {t("navigation.academy")}
-                    {isAcademyHovered ? (
-                      <ChevronUp size={12} />
-                    ) : (
-                      <ChevronDown size={12} />
-                    )}
-                  </div>
-                  <div
-                    className={`h-1 bg-web-primary absolute bottom-0 w-0 group-hover:w-full transition-all duration-300 ${
-                      currentPage === "academy" || isAcademyHovered
-                        ? "w-full"
-                        : ""
-                    }`}
-                  ></div>
-                </div>
-              </div>
-
-              <Link
-                href={`/${locale}/success-stories`}
+              {/* Industries - placeholder route (commented out for now) */}
+              {/* <Link
+                href={`/${locale}/industries`}
                 className="py-7 relative group cursor-pointer"
               >
                 <div
                   className={`group-hover:text-web-primary font-medium h-full ${
-                    currentPage === "success-stories" ? "text-web-primary" : ""
+                    currentPage === "industries" ? "text-web-primary" : ""
                   }`}
                 >
-                  {t("navigation.successStories")}
+                  {t("navigation.industries")}
                 </div>
                 <div
                   className={`h-1 bg-web-primary absolute bottom-0 w-0 group-hover:w-full transition-all duration-300 ${
-                    currentPage === "success-stories" ? "w-full" : ""
+                    currentPage === "industries" ? "w-full" : ""
                   }`}
                 ></div>
-              </Link>
+              </Link> */}
               <div
                 className="relative group"
-                onMouseEnter={() => setIsSolutionsHovered(true)}
-                onMouseLeave={() => setIsSolutionsHovered(false)}
+                onMouseEnter={() => {
+                  if (solutionsCloseTimeoutRef.current) {
+                    clearTimeout(solutionsCloseTimeoutRef.current);
+                    solutionsCloseTimeoutRef.current = null;
+                  }
+                  setIsSolutionsHovered(true);
+                }}
+                onMouseLeave={() => {
+                  solutionsCloseTimeoutRef.current = setTimeout(() => {
+                    setIsSolutionsHovered(false);
+                    solutionsCloseTimeoutRef.current = null;
+                  }, 150);
+                }}
               >
                 <Link
                   href={`/${locale}/solutions`}
@@ -851,6 +662,23 @@ const Header = ({ className }: { className?: string }) => {
                   ></div>
                 </Link>
               </div>
+              <Link
+                href={`/${locale}/success-stories`}
+                className="py-7 relative group cursor-pointer"
+              >
+                <div
+                  className={`group-hover:text-web-primary font-medium h-full ${
+                    currentPage === "success-stories" ? "text-web-primary" : ""
+                  }`}
+                >
+                  {t("navigation.successStories")}
+                </div>
+                <div
+                  className={`h-1 bg-web-primary absolute bottom-0 w-0 group-hover:w-full transition-all duration-300 ${
+                    currentPage === "success-stories" ? "w-full" : ""
+                  }`}
+                ></div>
+              </Link>
               <Link
                 href={`/${locale}/insights-and-publications`}
                 className="py-7 relative group cursor-pointer"
@@ -1016,27 +844,18 @@ const Header = ({ className }: { className?: string }) => {
                   <House />
                   <p>{t("mobile.home")}</p>
                 </Link>
-                <div
+                {/* Industries - commented out for now */}
+                {/* <Link
+                  href={`/${locale}/industries`}
                   className={`py-3 px-3 transition-colors font-medium flex items-center gap-2 ${
-                    currentPage === "academy"
+                    currentPage === "industries"
                       ? "text-white bg-web-primary"
                       : "text-gray-700 hover:bg-web-primary hover:text-white"
                   }`}
                 >
-                  <span className="text-lg">🎓</span>
-                  {t("navigation.academy")}
-                </div>
-                <Link
-                  href={`/${locale}/success-stories`}
-                  className={`py-3 px-3 transition-colors font-medium flex items-center gap-2 ${
-                    currentPage === "success-stories"
-                      ? "text-white bg-web-primary"
-                      : "text-gray-700 hover:bg-web-primary hover:text-white"
-                  }`}
-                >
-                  <Folder />
-                  {t("mobile.successStories")}
-                </Link>
+                  <span className="text-lg">🏭</span>
+                  {t("navigation.industries")}
+                </Link> */}
                 <Link
                   href={`/${locale}/solutions`}
                   className={`py-3 px-3 transition-colors font-medium flex items-center gap-2 ${
@@ -1047,6 +866,17 @@ const Header = ({ className }: { className?: string }) => {
                 >
                   <Handshake />
                   {t("mobile.solutions")}
+                </Link>
+                <Link
+                  href={`/${locale}/success-stories`}
+                  className={`py-3 px-3 transition-colors font-medium flex items-center gap-2 ${
+                    currentPage === "success-stories"
+                      ? "text-white bg-web-primary"
+                      : "text-gray-700 hover:bg-web-primary hover:text-white"
+                  }`}
+                >
+                  <Folder />
+                  {t("mobile.successStories")}
                 </Link>
                 <Link
                   href={`/${locale}/insights-and-publications`}

@@ -2,6 +2,7 @@ import { useSettings } from "@/hooks/useSettings";
 import { Mail, Phone, Loader2, AlertCircle } from "lucide-react";
 import NextImage from "next/image";
 import { useLocale } from "next-intl";
+import { getImageUrl } from "@/lib/image";
 
 const Contact = () => {
   const { settings, loading, error, refetchSettings } = useSettings();
@@ -72,9 +73,7 @@ const Contact = () => {
           <div className="flex items-center gap-2">
             <NextImage
               src={
-                member.image
-                  ? `https://api-strat.othmanconstruction.com/${member.image}`
-                  : "/1.jpg"
+                getImageUrl(member.image) || "/1.jpg"
               }
               alt={
                 member.name[locale as keyof typeof member.name] ||

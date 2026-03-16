@@ -3,6 +3,7 @@
 import { useLocale, useTranslations } from "next-intl";
 import NextImage from "next/image";
 import Link from "next/link";
+import { getImageUrl } from "@/lib/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
@@ -63,9 +64,7 @@ export default function AboutContent() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-7xl mx-auto mt-10">
         <NextImage
           src={
-            website?.aboutPage?.banner
-              ? `https://api-strat.othmanconstruction.com/${website.aboutPage.banner}`
-              : "/1.jpg"
+            getImageUrl(website?.aboutPage?.banner) || "/1.jpg"
           }
           alt={t("altText.aboutUs")}
           width={500}
@@ -106,9 +105,7 @@ export default function AboutContent() {
             <div className="flex flex-col gap-3 items-center justify-center border border-gray-200 rounded-md transition-all duration-300 cursor-pointer w-full hover:shadow-md hover:border-web-primary">
               <NextImage
                 src={
-                  website?.aboutPage?.mission?.image
-                    ? `https://api-strat.othmanconstruction.com/${website.aboutPage.mission.image}`
-                    : "/1.jpg"
+                  getImageUrl(website?.aboutPage?.mission?.image) || "/1.jpg"
                 }
                 alt={
                   website?.aboutPage?.mission?.title?.[
@@ -143,9 +140,7 @@ export default function AboutContent() {
             <div className="flex flex-col gap-3 items-center justify-center border border-gray-200 rounded-md transition-all duration-300 cursor-pointer w-full hover:shadow-md hover:border-web-primary">
               <NextImage
                 src={
-                  website?.aboutPage?.vision?.image
-                    ? `https://api-strat.othmanconstruction.com/${website.aboutPage.vision.image}`
-                    : "/1.jpg"
+                  getImageUrl(website?.aboutPage?.vision?.image) || "/1.jpg"
                 }
                 alt={
                   website?.aboutPage?.vision?.title?.[
@@ -180,9 +175,7 @@ export default function AboutContent() {
             <div className="flex flex-col gap-3 items-center justify-center border border-gray-200 rounded-md transition-all duration-300 cursor-pointer w-full hover:shadow-md hover:border-web-primary">
               <NextImage
                 src={
-                  website?.aboutPage?.values?.image
-                    ? `https://api-strat.othmanconstruction.com/${website.aboutPage.values.image}`
-                    : "/1.jpg"
+                  getImageUrl(website?.aboutPage?.values?.image) || "/1.jpg"
                 }
                 alt={
                   website?.aboutPage?.values?.title?.[
@@ -235,9 +228,7 @@ export default function AboutContent() {
               >
                 <NextImage
                   src={
-                    item.image
-                      ? `https://api-strat.othmanconstruction.com/${item.image}`
-                      : "/1.jpg"
+                    getImageUrl(item.image) || "/1.jpg"
                   }
                   alt={
                     item.title[locale as keyof typeof item.title] ||
@@ -358,9 +349,7 @@ export default function AboutContent() {
                   <div className="flex flex-col gap-3 items-center justify-start border border-gray-200 rounded-md transition-all duration-300 cursor-pointer w-full hover:shadow-md hover:border-web-primary py-6 h-full">
                     <NextImage
                       src={
-                        i.image
-                          ? `https://api-strat.othmanconstruction.com/${i.image}`
-                          : "/1.jpg"
+                        getImageUrl(i.image) || "/1.jpg"
                       }
                       alt={t("altText.timeline")}
                       width={500}

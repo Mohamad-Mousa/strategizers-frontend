@@ -2,6 +2,7 @@
 import { useLocale } from "next-intl";
 import ServiceCard from "./ServiceCard";
 import { useWebsite } from "@/hooks/useWebsite";
+import { getImageUrl } from "@/lib/image";
 import { AlertCircle, RefreshCw } from "lucide-react";
 
 const SectionOne = () => {
@@ -86,9 +87,7 @@ const SectionOne = () => {
                   ] || service.description.en
                 }
                 image={
-                  service.image
-                    ? `https://api-strat.othmanconstruction.com/${service.image}`
-                    : "/1.jpg"
+                  getImageUrl(service.image) || "/1.jpg"
                 }
               />
             )

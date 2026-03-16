@@ -3,10 +3,12 @@ import { getTranslations } from "next-intl/server";
 import { SingleBlogResponse } from "@/types/blog";
 import BlogContent from "./BlogContent";
 import type { Metadata } from "next";
+import { sanitizeTitle } from "@/lib/metadata";
+import { getImageUrl } from "@/lib/image";
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
-  "https://api-strat.othmanconstruction.com/api/v1";
+  "http://localhost:4000/api/v1";
 
 // Fetch blog data server-side
 async function getBlogData(slug: string) {
@@ -44,8 +46,14 @@ export async function generateMetadata({
     };
   }
 
-  const title = blog.title[locale as "en" | "ar"] || blog.title.en;
-  const subtitle = blog.subTitle[locale as "en" | "ar"] || blog.subTitle.en;
+  const title = sanitizeTitle(
+    blog.title[locale as "en" | "ar"] || blog.title.en,
+    "Article"
+  );
+  const subtitle = sanitizeTitle(
+    blog.subTitle[locale as "en" | "ar"] || blog.subTitle.en,
+    "Insights"
+  );
   const description =
     blog.description[locale as "en" | "ar"] || blog.description.en;
 
@@ -59,9 +67,7 @@ export async function generateMetadata({
   const keywords = blog.tags || [];
 
   // Get blog image for OpenGraph
-  const imageUrl = blog.image
-    ? `https://api-strat.othmanconstruction.com/${blog.image}`
-    : undefined;
+  const imageUrl = getImageUrl(blog.image) || undefined;
 
   return {
     title: `${title} - ${subtitle}`,

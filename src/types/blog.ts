@@ -35,6 +35,22 @@ export interface BlogService {
   isDeleted: boolean;
 }
 
+export interface BlogContact {
+  _id: string;
+  name: LocalizedText;
+  position: LocalizedText;
+  image: string;
+  description?: LocalizedText;
+  phone: { number: number; code: number };
+  email: string;
+  social?: {
+    facebook?: string;
+    instagram?: string;
+    linkedin?: string;
+    twitter?: string;
+  };
+}
+
 export interface Blog {
   _id: string;
   title: LocalizedText;
@@ -45,6 +61,7 @@ export interface Blog {
   author: string;
   tags: LocalizedText[];
   service?: BlogService;
+  contacts?: BlogContact[];
   isActive?: boolean;
   updatedAt?: string;
 }

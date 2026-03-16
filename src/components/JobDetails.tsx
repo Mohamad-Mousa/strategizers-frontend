@@ -1,6 +1,7 @@
-import { Calendar, Clock, FileText, CheckCircle, Users } from "lucide-react";
+import { Calendar, Clock, FileText, CheckCircle, Users, MapPin } from "lucide-react";
 import NextImage from "next/image";
 import { Job } from "@/types/job";
+import { getImageUrl } from "@/lib/image";
 import { useTranslations } from "next-intl";
 
 interface JobDetailsProps {
@@ -69,6 +70,12 @@ const JobDetails = ({ job }: JobDetailsProps) => {
               {t("postedOn")} {formatDate(job.createdAt)}
             </span>
           </div>
+          {job.location && (
+            <div className="flex items-center gap-1">
+              <MapPin className="w-4 h-4" />
+              <span>{job.location}</span>
+            </div>
+          )}
           <div className="flex items-center gap-1">
             <Clock className="w-4 h-4" />
             <span>{t("active")}</span>
@@ -126,7 +133,7 @@ const JobDetails = ({ job }: JobDetailsProps) => {
       {job.image && (
         <div className="mt-8">
           <NextImage
-            src={`https://api-strat.othmanconstruction.com/${job.image}`}
+            src={getImageUrl(job.image)}
             alt={job.title}
             width={400}
             height={300}

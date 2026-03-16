@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Service } from "@/types/service";
+import { getImageUrl } from "@/lib/image";
 import { useLocale } from "next-intl";
 
 const LinkIcon = () => {
@@ -54,9 +55,7 @@ export default function ServiceCard({
       "Customer Insight Analytics solutions deliver targeted and actionable customer analysis that help financial.";
 
   const displayImage = service
-    ? service.image
-      ? `https://api-strat.othmanconstruction.com/${service.image}`
-      : "/1.jpg"
+    ? getImageUrl(service.image) || "/1.jpg"
     : image || "/1.jpg";
 
   const displaySlug = service?.slug || slug || "customer-insights";

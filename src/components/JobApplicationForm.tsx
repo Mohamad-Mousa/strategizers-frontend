@@ -5,7 +5,6 @@ import {
   User,
   Mail,
   Phone,
-  Calendar,
   MessageSquare,
   CheckCircle,
   AlertCircle,
@@ -29,8 +28,6 @@ interface FormData {
   email: string;
   phoneCode: string;
   phoneNumber: string;
-  gender: string;
-  dob: string;
   message: string;
   document: File | null;
 }
@@ -49,8 +46,6 @@ const JobApplicationForm = ({
     email: "",
     phoneCode: "961",
     phoneNumber: "",
-    gender: "",
-    dob: "",
     message: "",
     document: null,
   });
@@ -86,8 +81,6 @@ const JobApplicationForm = ({
       "lastName",
       "email",
       "phoneNumber",
-      "gender",
-      "dob",
       "message",
     ];
 
@@ -128,8 +121,6 @@ const JobApplicationForm = ({
       submitData.append("email", formData.email);
       submitData.append("phone[code]", formData.phoneCode);
       submitData.append("phone[number]", formData.phoneNumber);
-      submitData.append("gender", formData.gender);
-      submitData.append("dob", formData.dob);
       submitData.append("message", formData.message);
 
       if (formData.document) {
@@ -158,8 +149,6 @@ const JobApplicationForm = ({
         email: "",
         phoneCode: "961",
         phoneNumber: "",
-        gender: "",
-        dob: "",
         message: "",
         document: null,
       });
@@ -315,41 +304,6 @@ const JobApplicationForm = ({
                   className="flex-1 px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-web-primary focus:border-transparent transition-colors duration-300"
                 />
               </div>
-            </div>
-          </div>
-
-          {/* Additional Information */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Gender */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                {t("fields.gender")}
-              </label>
-              <select
-                value={formData.gender}
-                onChange={(e) => handleInputChange("gender", e.target.value)}
-                required
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-web-primary focus:border-transparent transition-colors duration-300"
-              >
-                <option value="">{t("placeholders.selectGender")}</option>
-                <option value="male">{t("options.male")}</option>
-                <option value="female">{t("options.female")}</option>
-              </select>
-            </div>
-
-            {/* Date of Birth */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                <Calendar className="w-4 h-4 inline mr-2" />
-                {t("fields.dateOfBirth")}
-              </label>
-              <input
-                type="date"
-                value={formData.dob}
-                onChange={(e) => handleInputChange("dob", e.target.value)}
-                required
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-web-primary focus:border-transparent transition-colors duration-300"
-              />
             </div>
           </div>
 

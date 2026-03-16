@@ -4,16 +4,15 @@ import NextImage from "next/image";
 import { useState, useEffect } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { apiGet } from "@/lib/api";
+import { getImageUrl } from "@/lib/image";
 import { SingleProjectResponse, Project } from "@/types/project";
 import {
   Loader2,
   AlertCircle,
-  ExternalLink,
   Calendar,
   Tag,
   Building2,
 } from "lucide-react";
-import Link from "next/link";
 
 interface ProjectContentProps {
   slug: string;
@@ -42,11 +41,7 @@ export default function ProjectContent({ slug }: ProjectContentProps) {
   };
 
   // Build image URL
-  const buildImageUrl = (imagePath: string) => {
-    return imagePath.startsWith("http")
-      ? imagePath
-      : `https://api-strat.othmanconstruction.com/${imagePath}`;
-  };
+  const buildImageUrl = (imagePath: string) => getImageUrl(imagePath);
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -121,20 +116,6 @@ export default function ProjectContent({ slug }: ProjectContentProps) {
             <p className="font-medium">{project.customer}</p>
           </div>
           <div className="flex items-center gap-2">
-            <ExternalLink className="w-5 h-5 text-web-primary" />
-            <p className="text-web-primary font-medium w-1/4">
-              {t("details.liveDemo")}
-            </p>
-            <Link
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-web-primary hover:text-web-primary/80 underline"
-            >
-              {project.link}
-            </Link>
-          </div>
-          <div className="flex items-center gap-2">
             <Tag className="w-5 h-5 text-web-primary" />
             <p className="text-web-primary font-medium w-1/4">
               {t("details.category")}
@@ -182,12 +163,6 @@ export default function ProjectContent({ slug }: ProjectContentProps) {
               __html: getLocalizedText(project.shortDescription),
             }}
           />
-          <button
-            onClick={() => window.open(project.link, "_blank")}
-            className="bg-web-primary text-white px-6 py-4 rounded-full hover:text-web-primary hover:bg-white transition-all duration-300 cursor-pointer hover:border-web-primary border w-48"
-          >
-            {t("launchButton")}
-          </button>
         </div>
       </div>
 

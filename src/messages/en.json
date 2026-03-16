@@ -21,7 +21,7 @@
     },
     "cta": {
       "description": "Over 20 years of experience we'll ensure you get the best guidance.",
-      "button": "Request Quote"
+      "button": "Contact Us"
     }
   },
   "successStories": {
@@ -57,7 +57,7 @@
     },
     "launchButton": "Launch Project",
     "sections": {
-      "analysis": "Project Analysis",
+      "analysis": "Project Challenge",
       "solutions": "Project Solutions",
       "results": "Project Results"
     }
@@ -96,6 +96,35 @@
     "sections": {
       "subservices": "Subservices",
       "benefits": "Key Benefits of the Service"
+    },
+    "cta": {
+      "title": "Human Capital",
+      "subtitle": "Making humans better at work and work better for humans",
+      "description": "We know that human capital is at the heart of your organization. Together we are harnessing the science of people to create the organizations of the future.",
+      "contactButton": "Contact us",
+      "rfpButton": "Submit RFP"
+    }
+  },
+  "singleSubService": {
+    "hero": {
+      "title": "Subservice"
+    },
+    "backToSolution": "Back to solution",
+    "sidebar": {
+      "allSolutions": "All Solutions",
+      "parentService": "Parent Service"
+    },
+    "loading": "Loading subservice...",
+    "notFound": "Subservice not found",
+    "notFoundDescription": "The subservice you're looking for doesn't exist",
+    "errors": {
+      "fetchFailed": "Failed to fetch subservice",
+      "fetchError": "An error occurred while fetching subservice"
+    },
+    "sections": {
+      "valuePromise": "One-Line Value Promise",
+      "strategicIssues": "Strategic Issues We Resolve",
+      "whatYouGet": "What You Get"
     },
     "cta": {
       "title": "Human Capital",
@@ -160,7 +189,11 @@
       "fetchError": "An error occurred while fetching blog"
     },
     "by": "by",
-    "tags": "Tags"
+    "tags": "Tags",
+    "contacts": {
+      "title": "Contacts",
+      "linkedin": "LinkedIn"
+    }
   },
   "faq": {
     "hero": {
@@ -248,6 +281,28 @@
       "title": "Careers"
     },
     "loading": "Loading job opportunities...",
+    "filters": {
+      "title": "Filters",
+      "search": "Search",
+      "searchPlaceholder": "Search by title or description...",
+      "type": "Job Type",
+      "allTypes": "All Types",
+      "types": {
+        "full-time": "Full Time",
+        "part-time": "Part Time",
+        "freelance": "Freelance"
+      },
+      "location": "Location",
+      "locationPlaceholder": "Enter location...",
+      "sortBy": "Sort By",
+      "sortNewest": "Newest First",
+      "sortOldest": "Oldest First",
+      "sortTitleAsc": "Title (A-Z)",
+      "sortTitleDesc": "Title (Z-A)",
+      "apply": "Apply",
+      "clear": "Clear",
+      "perPage": "Per page"
+    },
     "errors": {
       "fetchFailed": "Failed to fetch jobs",
       "fetchError": "An error occurred while fetching jobs",
@@ -257,6 +312,11 @@
     "empty": {
       "title": "No job opportunities available at the moment.",
       "description": "Please check back later for new openings."
+    },
+    "pagination": {
+      "showing": "Showing {from}-{to} of {total} jobs",
+      "perPage": "{count} per page",
+      "pageOption": "Page {page} of {total}"
     }
   },
   "jobApplication": {
@@ -291,7 +351,7 @@
   },
   "bookConsultation": {
     "hero": {
-      "title": "Book Consultation"
+      "title": "Book a Free Consultation"
     }
   },
   "about": {
@@ -313,7 +373,7 @@
       "timeline": "Timeline information is not available at the moment."
     },
     "smartApproach": {
-      "title": "Our Smart Approach"
+      "title": "Our Approach"
     },
     "opportunities": {
       "button": "View Solutions"
@@ -323,7 +383,7 @@
     },
     "cta": {
       "description": "Over 20 years of experience we'll ensure you get the best guidance.",
-      "button": "Request Quote"
+      "button": "Contact Us"
     }
   },
   "home": {
@@ -339,8 +399,31 @@
     "company": {
       "description": "We have built an enviable reputation in the consumer goods, heavy industry, high-tech, manufacturing, medical, recreational vehicle, and transportation sectors. Our multidisciplinary team of engineering experts with 20 years of experience ensures you always get the best guidance."
     },
+    "about": {
+      "title": "About Us"
+    },
     "links": {
-      "title": "Useful Links"
+      "title": "Useful Links",
+      "home": "Home",
+      "about": "About Us",
+      "ourTalents": "Our Talents",
+      "faq": "FAQ",
+      "testimonials": "Testimonials",
+      "solutions": "Solutions",
+      "careers": "Careers",
+      "insights": "Insights & Publications",
+      "successStories": "Success Stories",
+      "contact": "Contact Us",
+      "industries": "Industries",
+      "bookConsultation": "Book a Free Consultation",
+      "privacyPolicy": "Privacy Policy",
+      "termsAndConditions": "Terms and Conditions"
+    },
+    "solutions": {
+      "title": "Solutions"
+    },
+    "academy": {
+      "title": "Academy"
     },
     "legal": {
       "privacyPolicy": "Privacy Policy",
@@ -362,7 +445,8 @@
     },
     "social": {
       "title": "Follow us on"
-    }
+    },
+    "allRightsReserved": "© {year} Strategizers®. All rights reserved"
   },
   "header": {
     "altText": {
@@ -378,7 +462,10 @@
     "solutions": {
       "title": "Consulting services",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis expedita quos, ipsa fuga, et magni hic maiores quo cupiditate aliquam optio corporis eius eaque libero.",
-      "learnMore": "Learn More"
+      "learnMore": "Learn More",
+      "subservices": "Subservices",
+      "noSubservices": "No subservices found",
+      "loading": "Loading..."
     },
     "navigation": {
       "home": "Home",
@@ -392,7 +479,8 @@
       "insights": "Insights & Publications",
       "successStories": "Success Stories",
       "contact": "Contact Us",
-      "academy": "Academy"
+      "academy": "Academy",
+      "industries": "Industries"
     },
     "cta": {
       "button": "BOOK A Free Consultation"
@@ -462,7 +550,7 @@
     }
   },
   "consultationForm": {
-    "title": "Book Your Consultation",
+    "title": "Book a Free Consultation",
     "description": "Fill out the form below to schedule a consultation with our experts.",
     "fields": {
       "firstName": "First Name",
@@ -472,7 +560,8 @@
       "position": "Position",
       "isDecisionMaker": "Are you a decision maker?",
       "email": "Professional Email",
-      "phoneNumber": "Business Mobile Number"
+      "phoneNumber": "Business Mobile Number",
+      "discussionPoints": "Discussion Points"
     },
     "placeholders": {
       "firstName": "Enter your first name",
@@ -481,15 +570,16 @@
       "companyWebsite": "https://www.yourcompany.com",
       "position": "e.g., CEO, Manager, Director",
       "email": "your.email@company.com",
-      "phoneNumber": "Enter your mobile number"
+      "phoneNumber": "Enter your mobile number",
+      "discussionPoints": "What topics would you like to discuss?"
     },
     "options": {
       "yes": "Yes",
       "no": "No"
     },
     "buttons": {
-      "submit": "Book Consultation",
-      "booking": "Booking Consultation..."
+      "submit": "Book a Free Consultation",
+      "booking": "Booking a Free Consultation..."
     },
     "errors": {
       "fillField": "Please fill in the {field} field.",
@@ -526,7 +616,7 @@
     "freelance": "Freelance"
   },
   "jobApplicationForm": {
-    "title": "Job Application",
+    "title": "Apply Now",
     "description": "Please fill out the form below to apply for this position.",
     "fields": {
       "firstName": "First Name",
@@ -581,11 +671,12 @@
     "fullTime": "Full Time",
     "partTime": "Part Time",
     "freelance": "Freelance",
+    "location": "Location",
     "postedOn": "Posted on",
     "active": "Active",
-    "jobDescription": "Job Description",
+    "jobDescription": "Job Purpose",
     "keyResponsibilities": "Key Responsibilities",
-    "requirements": "Requirements",
+    "requirements": "Qualifications",
     "readyToApply": "Ready to Apply?",
     "applyDescription": "Fill out the application form to submit your candidacy for this position."
   },
@@ -703,6 +794,65 @@
       "description": "The terms and conditions content is currently unavailable."
     }
   },
+  "academyCategory": {
+    "hero": {
+      "title": "Academy",
+      "listTitle": "Academy Categories"
+    },
+    "breadcrumb": {
+      "academy": "Academy",
+      "categories": "Categories"
+    },
+    "backToAcademy": "Back to Academy",
+    "otherCategories": "Other Categories",
+    "noOtherCategories": "No other categories available",
+    "categoriesDescription": "Click on a category to view its courses.",
+    "courses": "courses",
+    "noCategoriesFound": "No categories found",
+    "noCoursesFound": "No courses in this category",
+    "viewCourse": "View course",
+    "viewCategory": "View category",
+    "loading": "Loading...",
+    "notFound": "Category not found",
+    "notFoundDescription": "The category you're looking for doesn't exist.",
+    "errors": {
+      "fetchFailed": "Failed to fetch category",
+      "fetchError": "An error occurred while fetching the category"
+    },
+    "retry": "Try again"
+  },
+  "program": {
+    "hero": {
+      "title": "Program"
+    },
+    "breadcrumb": {
+      "academy": "Academy",
+      "programs": "Programs"
+    },
+    "backToAcademy": "Back to Academy",
+    "backToProgram": "Back to program",
+    "stats": {
+      "categories": "categories",
+      "courses": "courses"
+    },
+    "loading": "Loading program...",
+    "notFound": "Program not found",
+    "notFoundDescription": "The program you're looking for doesn't exist.",
+    "errors": {
+      "fetchFailed": "Failed to fetch program",
+      "fetchError": "An error occurred while fetching the program"
+    },
+    "retry": "Try again",
+    "otherPrograms": "Other Programs",
+    "categories": "Categories",
+    "categoriesDescription": "Click on a category to view its courses.",
+    "courses": "courses",
+    "noCategoriesFound": "No categories found",
+    "noCoursesFound": "No courses in this category",
+    "viewCourse": "View course",
+    "noOtherPrograms": "No other programs available",
+    "backToSolutions": "Back to Solutions"
+  },
   "course": {
     "loading": "Loading course...",
     "error": {
@@ -723,6 +873,18 @@
       "inactive": "Inactive"
     },
     "courseId": "Course ID",
-    "slug": "Course Slug"
+    "slug": "Course Slug",
+    "backToAcademy": "Back to Academy",
+    "programOverview": "Program Overview",
+    "programDuration": "Duration",
+    "programDurationDetails": "Duration Details",
+    "programObjectives": "Program Objectives",
+    "targetAudience": "Target Audience",
+    "expectedBenefits": "Expected Organizational Benefits",
+    "deliveryFormat": "Delivery Format",
+    "programMethodology": "Program Methodology",
+    "programOutline": "Program Outline",
+    "sampleActivities": "Sample Practical Activities",
+    "module": "Module"
   }
 }

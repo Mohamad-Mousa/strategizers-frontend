@@ -21,7 +21,7 @@
     },
     "cta": {
       "description": "أكثر من 20 عاماً من الخبرة سنضمن لك الحصول على أفضل إرشاد.",
-      "button": "اطلب عرض سعر"
+      "button": "اتصل بنا"
     }
   },
   "successStories": {
@@ -57,7 +57,7 @@
     },
     "launchButton": "تشغيل المشروع",
     "sections": {
-      "analysis": "تحليل المشروع",
+      "analysis": "تحدي المشروع",
       "solutions": "حلول المشروع",
       "results": "نتائج المشروع"
     }
@@ -96,6 +96,35 @@
     "sections": {
       "subservices": "الخدمات الفرعية",
       "benefits": "الفوائد الرئيسية للخدمة"
+    },
+    "cta": {
+      "title": "رأس المال البشري",
+      "subtitle": "جعل البشر أفضل في العمل والعمل أفضل للبشر",
+      "description": "نحن نعلم أن رأس المال البشري هو في قلب مؤسستك. معاً نحن نستغل علم الأشخاص لإنشاء مؤسسات المستقبل.",
+      "contactButton": "اتصل بنا",
+      "rfpButton": "إرسال طلب الاقتراح"
+    }
+  },
+  "singleSubService": {
+    "hero": {
+      "title": "الخدمة الفرعية"
+    },
+    "backToSolution": "العودة للحل",
+    "sidebar": {
+      "allSolutions": "جميع الحلول",
+      "parentService": "الخدمة الأم"
+    },
+    "loading": "جاري تحميل الخدمة الفرعية...",
+    "notFound": "لم يتم العثور على الخدمة الفرعية",
+    "notFoundDescription": "الخدمة الفرعية التي تبحث عنها غير موجودة",
+    "errors": {
+      "fetchFailed": "فشل في جلب الخدمة الفرعية",
+      "fetchError": "حدث خطأ أثناء جلب الخدمة الفرعية"
+    },
+    "sections": {
+      "valuePromise": "وعد القيمة في سطر واحد",
+      "strategicIssues": "القضايا الاستراتيجية التي نحلها",
+      "whatYouGet": "ما الذي ستحصل عليه"
     },
     "cta": {
       "title": "رأس المال البشري",
@@ -160,7 +189,11 @@
       "fetchError": "حدث خطأ أثناء جلب المدونة"
     },
     "by": "بواسطة",
-    "tags": "العلامات"
+    "tags": "العلامات",
+    "contacts": {
+      "title": "جهات الاتصال",
+      "linkedin": "لينكد إن"
+    }
   },
   "faq": {
     "hero": {
@@ -248,6 +281,28 @@
       "title": "الوظائف"
     },
     "loading": "جاري تحميل الفرص الوظيفية...",
+    "filters": {
+      "title": "الفلاتر",
+      "search": "بحث",
+      "searchPlaceholder": "ابحث بالعنوان أو الوصف...",
+      "type": "نوع الوظيفة",
+      "allTypes": "جميع الأنواع",
+      "types": {
+        "full-time": "دوام كامل",
+        "part-time": "دوام جزئي",
+        "freelance": "عمل حر"
+      },
+      "location": "الموقع",
+      "locationPlaceholder": "أدخل الموقع...",
+      "sortBy": "ترتيب حسب",
+      "sortNewest": "الأحدث أولاً",
+      "sortOldest": "الأقدم أولاً",
+      "sortTitleAsc": "العنوان (أ-ي)",
+      "sortTitleDesc": "العنوان (ي-أ)",
+      "apply": "تطبيق",
+      "clear": "مسح",
+      "perPage": "لكل صفحة"
+    },
     "errors": {
       "fetchFailed": "فشل في جلب الوظائف",
       "fetchError": "حدث خطأ أثناء جلب الوظائف",
@@ -257,6 +312,11 @@
     "empty": {
       "title": "لا توجد فرص وظيفية متاحة في الوقت الحالي.",
       "description": "يرجى العودة لاحقاً للحصول على فرص جديدة."
+    },
+    "pagination": {
+      "showing": "عرض {from}-{to} من {total} وظيفة",
+      "perPage": "{count} لكل صفحة",
+      "pageOption": "صفحة {page} من {total}"
     }
   },
   "jobApplication": {
@@ -291,7 +351,7 @@
   },
   "bookConsultation": {
     "hero": {
-      "title": "احجز استشارة"
+      "title": "احجز استشارة مجانية"
     }
   },
   "about": {
@@ -313,7 +373,7 @@
       "timeline": "معلومات الجدول الزمني غير متاحة في الوقت الحالي."
     },
     "smartApproach": {
-      "title": "نهجنا الذكي"
+      "title": "نهجنا"
     },
     "opportunities": {
       "button": "عرض الحلول"
@@ -323,7 +383,7 @@
     },
     "cta": {
       "description": "أكثر من 20 عاماً من الخبرة سنضمن لك الحصول على أفضل إرشاد.",
-      "button": "اطلب عرض سعر"
+      "button": "اتصل بنا"
     }
   },
   "home": {
@@ -339,8 +399,31 @@
     "company": {
       "description": "لقد بنينا سمعة حسد عليها في قطاعات السلع الاستهلاكية، الصناعة الثقيلة، التقنية العالية، التصنيع، الطبية، المركبات الترفيهية، والنقل. فريقنا متعدد التخصصات من خبراء الهندسة ذوي 20 عاماً من الخبرة يضمن لك دائماً الحصول على أفضل إرشاد."
     },
+    "about": {
+      "title": "من نحن"
+    },
     "links": {
-      "title": "روابط مفيدة"
+      "title": "روابط مفيدة",
+      "home": "الرئيسية",
+      "about": "من نحن",
+      "ourTalents": "الموهوبين",
+      "faq": "الأسئلة الشائعة",
+      "testimonials": "الشهادات",
+      "solutions": "الحلول",
+      "careers": "الوظائف",
+      "insights": "الرؤى والمنشورات",
+      "successStories": "قصص النجاح",
+      "contact": "اتصل بنا",
+      "industries": "الصناعات",
+      "bookConsultation": "احجز استشارة مجانية",
+      "privacyPolicy": "سياسة الخصوصية",
+      "termsAndConditions": "الشروط والأحكام"
+    },
+    "solutions": {
+      "title": "الحلول"
+    },
+    "academy": {
+      "title": "الأكاديمية"
     },
     "legal": {
       "privacyPolicy": "سياسة الخصوصية",
@@ -362,7 +445,8 @@
     },
     "social": {
       "title": "تابعنا على"
-    }
+    },
+    "allRightsReserved": "© {year} Strategizers®. جميع الحقوق محفوظة"
   },
   "header": {
     "altText": {
@@ -378,7 +462,10 @@
     "solutions": {
       "title": "الخدمات الاستشارية",
       "description": "نحن نقدم خدمات استشارية شاملة في مختلف القطاعات. فريقنا المتخصص يضمن لك الحصول على أفضل الحلول الاستراتيجية والتقنية لتطوير عملك.",
-      "learnMore": "اعرف المزيد"
+      "learnMore": "اعرف المزيد",
+      "subservices": "الخدمات الفرعية",
+      "noSubservices": "لا توجد خدمات فرعية",
+      "loading": "جاري التحميل..."
     },
     "navigation": {
       "home": "الرئيسية",
@@ -392,7 +479,8 @@
       "insights": "الرؤى والمنشورات",
       "successStories": "قصص النجاح",
       "contact": "اتصل بنا",
-      "academy": "الأكاديمية"
+      "academy": "الأكاديمية",
+      "industries": "الصناعات"
     },
     "cta": {
       "button": "احجز استشارة مجانية"
@@ -462,7 +550,7 @@
     }
   },
   "consultationForm": {
-    "title": "احجز استشارتك",
+    "title": "احجز استشارة مجانية",
     "description": "املأ النموذج أدناه لجدولة استشارة مع خبرائنا.",
     "fields": {
       "firstName": "الاسم الأول",
@@ -472,7 +560,8 @@
       "position": "المنصب",
       "isDecisionMaker": "هل أنت صانع قرار؟",
       "email": "البريد الإلكتروني المهني",
-      "phoneNumber": "رقم الهاتف المحمول التجاري"
+      "phoneNumber": "رقم الهاتف المحمول التجاري",
+      "discussionPoints": "نقاط النقاش"
     },
     "placeholders": {
       "firstName": "أدخل اسمك الأول",
@@ -481,15 +570,16 @@
       "companyWebsite": "https://www.yourcompany.com",
       "position": "مثال: الرئيس التنفيذي، المدير، المدير العام",
       "email": "your.email@company.com",
-      "phoneNumber": "أدخل رقم هاتفك المحمول"
+      "phoneNumber": "أدخل رقم هاتفك المحمول",
+      "discussionPoints": "ما المواضيع التي تود مناقشتها؟"
     },
     "options": {
       "yes": "نعم",
       "no": "لا"
     },
     "buttons": {
-      "submit": "احجز الاستشارة",
-      "booking": "جاري حجز الاستشارة..."
+      "submit": "احجز استشارة مجانية",
+      "booking": "جاري حجز الاستشارة المجانية..."
     },
     "errors": {
       "fillField": "يرجى ملء حقل {field}.",
@@ -526,7 +616,7 @@
     "freelance": "عمل حر"
   },
   "jobApplicationForm": {
-    "title": "طلب التوظيف",
+    "title": "قدم الآن",
     "description": "يرجى ملء النموذج أدناه للتقديم على هذه الوظيفة.",
     "fields": {
       "firstName": "الاسم الأول",
@@ -581,11 +671,12 @@
     "fullTime": "دوام كامل",
     "partTime": "دوام جزئي",
     "freelance": "عمل حر",
+    "location": "الموقع",
     "postedOn": "تم النشر في",
     "active": "نشط",
-    "jobDescription": "وصف الوظيفة",
+    "jobDescription": "الغرض من الوظيفة",
     "keyResponsibilities": "المسؤوليات الرئيسية",
-    "requirements": "المتطلبات",
+    "requirements": "المؤهلات",
     "readyToApply": "مستعد للتقديم؟",
     "applyDescription": "املأ نموذج الطلب لتقديم ترشيحك لهذه الوظيفة."
   },
@@ -703,6 +794,65 @@
       "description": "محتوى الشروط والأحكام غير متاح حاليًا."
     }
   },
+  "academyCategory": {
+    "hero": {
+      "title": "الأكاديمية",
+      "listTitle": "فئات الأكاديمية"
+    },
+    "breadcrumb": {
+      "academy": "الأكاديمية",
+      "categories": "الفئات"
+    },
+    "backToAcademy": "العودة للأكاديمية",
+    "otherCategories": "فئات أخرى",
+    "noOtherCategories": "لا توجد فئات أخرى متاحة",
+    "categoriesDescription": "انقر على الفئة لعرض الدورات المرتبطة بها.",
+    "courses": "دورات",
+    "noCategoriesFound": "لا توجد فئات",
+    "noCoursesFound": "لا توجد دورات في هذه الفئة",
+    "viewCourse": "عرض الدورة",
+    "viewCategory": "عرض الفئة",
+    "loading": "جاري التحميل...",
+    "notFound": "الفئة غير موجودة",
+    "notFoundDescription": "الفئة التي تبحث عنها غير موجودة.",
+    "errors": {
+      "fetchFailed": "فشل في تحميل الفئة",
+      "fetchError": "حدث خطأ أثناء تحميل الفئة"
+    },
+    "retry": "حاول مرة أخرى"
+  },
+  "program": {
+    "hero": {
+      "title": "البرنامج"
+    },
+    "breadcrumb": {
+      "academy": "الأكاديمية",
+      "programs": "البرامج"
+    },
+    "backToAcademy": "العودة للأكاديمية",
+    "backToProgram": "العودة للبرنامج",
+    "stats": {
+      "categories": "فئات",
+      "courses": "دورات"
+    },
+    "loading": "جاري تحميل البرنامج...",
+    "notFound": "البرنامج غير موجود",
+    "notFoundDescription": "البرنامج الذي تبحث عنه غير موجود.",
+    "errors": {
+      "fetchFailed": "فشل في تحميل البرنامج",
+      "fetchError": "حدث خطأ أثناء تحميل البرنامج"
+    },
+    "retry": "حاول مرة أخرى",
+    "otherPrograms": "برامج أخرى",
+    "categories": "الفئات",
+    "categoriesDescription": "انقر على الفئة لعرض الدورات المرتبطة بها.",
+    "courses": "دورات",
+    "noCategoriesFound": "لا توجد فئات",
+    "noCoursesFound": "لا توجد دورات في هذه الفئة",
+    "viewCourse": "عرض الدورة",
+    "noOtherPrograms": "لا توجد برامج أخرى متاحة",
+    "backToSolutions": "العودة للحلول"
+  },
   "course": {
     "loading": "جاري تحميل الدورة...",
     "error": {
@@ -723,6 +873,18 @@
       "inactive": "غير نشط"
     },
     "courseId": "معرف الدورة",
-    "slug": "رابط الدورة"
+    "slug": "رابط الدورة",
+    "backToAcademy": "العودة للأكاديمية",
+    "programOverview": "نظرة عامة على البرنامج",
+    "programDuration": "المدة",
+    "programDurationDetails": "تفاصيل المدة",
+    "programObjectives": "أهداف البرنامج",
+    "targetAudience": "الجمهور المستهدف",
+    "expectedBenefits": "الفوائد المؤسسية المتوقعة",
+    "deliveryFormat": "صيغة التقديم",
+    "programMethodology": "منهجية البرنامج",
+    "programOutline": "محتوى البرنامج",
+    "sampleActivities": "أنشطة عملية نموذجية",
+    "module": "الوحدة"
   }
 }
