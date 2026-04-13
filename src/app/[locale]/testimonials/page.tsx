@@ -1,4 +1,4 @@
-import Hero from "@/components/layout/Hero";
+import PageHero from "@/components/layout/PageHero";
 import { getTranslations } from "next-intl/server";
 import { WebsiteResponse, SeoTag } from "@/types/website";
 import { sanitizeTitle } from "@/lib/metadata";
@@ -9,7 +9,7 @@ import type { Metadata } from "next";
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
-  "http://localhost:4000/api/v1";
+      "https://strategizers-backend.onrender.com/api/v1";
 
 // Fetch website data server-side
 async function getWebsiteData() {
@@ -97,7 +97,7 @@ export default async function TestimonialsPage({
 
   return (
     <div className="-mb-10">
-      <Hero title={t("hero.title")} background={bannerUrl} />
+      <PageHero title={t("hero.title")} background={bannerUrl} />
 
       {/* Testimonials Section - Client Component */}
       <TestimonialsClient />

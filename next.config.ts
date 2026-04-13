@@ -10,13 +10,16 @@ const nextConfig: NextConfig = {
       {
         protocol: "http",
         hostname: "localhost",
-        port: "4000",
+        pathname: "/**",
+      },
+      {
+        protocol: "http",
+        hostname: "127.0.0.1",
         pathname: "/**",
       },
       {
         protocol: "https",
-        hostname: "localhost",
-        port: "4000",
+        hostname: "strategizers-backend.onrender.com",
         pathname: "/**",
       },
       {

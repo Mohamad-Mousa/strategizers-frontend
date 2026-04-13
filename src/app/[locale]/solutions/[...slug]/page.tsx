@@ -1,4 +1,3 @@
-import Hero from "@/components/layout/Hero";
 import { getTranslations } from "next-intl/server";
 import {
   SingleServiceResponse,
@@ -12,7 +11,7 @@ import { getImageUrl } from "@/lib/image";
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
-  "http://localhost:4000/api/v1";
+  "https://strategizers-backend.onrender.com/api/v1";
 
 // Fetch service data server-side
 async function getServiceData(slug: string) {
@@ -160,10 +159,7 @@ export default async function SingleSolutionPage({
       {isSubService ? (
         <SubServiceContent slug={slugArray[1]} />
       ) : (
-        <>
-          <Hero title={t("hero.title")} background="/services.webp" />
-          <ServiceContent slug={slugArray[0]} />
-        </>
+        <ServiceContent slug={slugArray[0]} />
       )}
     </div>
   );

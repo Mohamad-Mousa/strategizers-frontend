@@ -1,4 +1,4 @@
-import Hero from "@/components/layout/Hero";
+import PageHero from "@/components/layout/PageHero";
 import { getTranslations } from "next-intl/server";
 import ProgramContent from "./ProgramContent";
 import type { Metadata } from "next";
@@ -7,7 +7,7 @@ import { getImageUrl } from "@/lib/image";
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
-  "http://localhost:4000/api/v1";
+  "https://strategizers-backend.onrender.com/api/v1";
 
 // Fetch program data server-side
 async function getProgramData(slug: string) {
@@ -118,7 +118,7 @@ export default async function ProgramPage({
 
   return (
     <div className="flex flex-col">
-      <Hero
+      <PageHero
         title={heroTitle}
         subtitle={heroSubtitle}
         background={bannerUrl}

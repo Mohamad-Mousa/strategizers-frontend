@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Project } from "@/types/project";
 import { getImageUrl } from "@/lib/image";
 import { useLocale } from "next-intl";
@@ -29,7 +30,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const imageUrl = getImageUrl(project.image);
 
   return (
-    <div className="block relative group">
+    <Link
+      href={`/${locale}/success-stories/${project.slug}`}
+      className="block relative group rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-web-primary"
+    >
       <div className="relative overflow-hidden rounded-md">
         <Image
           src={imageUrl}
@@ -87,6 +91,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           </div>
         )}
       </div>
-    </div>
+    </Link>
   );
 }

@@ -1,9 +1,22 @@
 "use client";
 
 import Contact from "@/components/Contact";
-import { MoveRight, Loader2, AlertCircle, MoveLeft } from "lucide-react";
+import Header from "@/components/layout/Header";
+import {
+  MoveRight,
+  Loader2,
+  AlertCircle,
+  MoveLeft,
+  ArrowRight,
+  ArrowLeft,
+  Sparkles,
+  CheckCircle2,
+  MessageSquare,
+  FileText,
+  Download,
+  Play,
+} from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import NextImage from "next/image";
 import { useRouter } from "next/navigation";
 import { useState, useEffect, useCallback } from "react";
 import { apiGet } from "@/lib/api";
@@ -14,9 +27,18 @@ import {
   ServicesResponse,
 } from "@/types/service";
 import Link from "next/link";
+import Image from "next/image";
 
 interface ServiceContentProps {
   slug: string;
+}
+
+function getLocalized(
+  obj: { en: string; ar: string } | undefined,
+  locale: string
+): string {
+  if (!obj) return "";
+  return obj[locale as "en" | "ar"] || obj.en || "";
 }
 
 export default function ServiceContent({ slug }: ServiceContentProps) {
@@ -28,6 +50,7 @@ export default function ServiceContent({ slug }: ServiceContentProps) {
   const [allServices, setAllServices] = useState<Service[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [showVideo, setShowVideo] = useState(false);
 
   const fetchService = useCallback(async () => {
     try {
@@ -75,274 +98,391 @@ export default function ServiceContent({ slug }: ServiceContentProps) {
   // Loading State
   if (isLoading) {
     return (
-      <section className="max-w-7xl mx-auto mt-20 px-6">
-        <div className="flex items-center justify-center py-20">
-          <div className="flex items-center gap-3">
-            <Loader2 className="w-6 h-6 animate-spin text-web-primary" />
-            <span className="text-gray-600">{t("loading")}</span>
-          </div>
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="flex items-center gap-3">
+          <Loader2 className="w-8 h-8 animate-spin text-web-primary" />
+          <span className="text-white/80 text-lg">{t("loading")}</span>
         </div>
-      </section>
+      </div>
     );
   }
 
   // Error State
   if (error) {
     return (
-      <section className="max-w-7xl mx-auto mt-20 px-6">
-        <div className="flex items-center justify-center py-20">
-          <div className="flex items-center gap-3 text-red-600">
-            <AlertCircle className="w-6 h-6" />
-            <span>{error}</span>
-          </div>
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="flex items-center gap-3 text-red-400">
+          <AlertCircle className="w-8 h-8" />
+          <span className="text-lg">{error}</span>
         </div>
-      </section>
+      </div>
     );
   }
 
   // Service not found
   if (!service) {
     return (
-      <section className="max-w-7xl mx-auto mt-20 px-6">
-        <div className="flex items-center justify-center py-20">
-          <div className="text-center">
-            <p className="text-gray-600 text-lg">{t("notFound")}</p>
-            <p className="text-gray-400 text-sm mt-2">
-              {t("notFoundDescription")}
-            </p>
-          </div>
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-white/80 text-xl">{t("notFound")}</p>
+          <p className="text-white/50 mt-2">{t("notFoundDescription")}</p>
         </div>
-      </section>
+      </div>
     );
   }
 
-  return (
-    <section className="max-w-7xl mx-auto mt-20 px-6 gap-4 grid grid-cols-1 md:grid-cols-3">
-      <div className="flex flex-col gap-4">
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col gap-2">
-            <h3 className="text-lg font-semibold text-gray-700 mb-2">
-              {t("sidebar.allSolutions")}
-            </h3>
-            <div className="flex flex-col gap-1 max-h-96 overflow-y-auto">
-              {allServices.map((serviceItem) => (
-                <Link
-                  key={serviceItem._id}
-                  href={`/${locale}/solutions/${serviceItem.slug}`}
-                  className={`p-3 rounded-md transition-colors duration-300 flex items-center gap-2 justify-between group ${
-                    service?._id === serviceItem._id
-                      ? "bg-web-primary text-white"
-                      : "bg-gray-50 hover:bg-web-primary hover:text-white text-gray-700"
-                  }`}
-                >
-                  <span className="text-sm font-medium truncate">
-                    {serviceItem.title[
-                      locale as keyof typeof serviceItem.title
-                    ] || serviceItem.title.en}
-                  </span>
+  const serviceTitle = getLocalized(service.title, locale);
+  const shortDescription = getLocalized(service.shortDescription, locale);
+  const longDescription = getLocalized(service.longDescription, locale);
+  const benefitsDescription = getLocalized(
+    service.benefits.description,
+    locale
+  );
 
-                  {locale === "ar" ? (
-                    <MoveLeft className="w-4 h-4" />
-                  ) : (
-                    <MoveRight className="w-4 h-4" />
-                  )}
-                </Link>
-              ))}
+  return (
+    <div className="flex flex-col bg-white">
+      {/* Hero Section - Dark immersive */}
+      <section className="relative min-h-[85vh] bg-web-gray overflow-hidden">
+        <div className="w-full flex justify-center">
+          <Header className="absolute z-50 w-full md:w-[80%]" />
+        </div>
+
+        {/* Background Image with Gradient */}
+        <div className="absolute inset-0">
+          <Image
+            src={getImageUrl(service.banner || service.image)}
+            alt={serviceTitle}
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
+        </div>
+
+        {/* Hero Content */}
+        <div className="relative z-10 container mx-auto px-6 h-full flex flex-col justify-end pb-20 pt-40 min-h-[85vh]">
+          <div className="max-w-4xl">
+            {/* Breadcrumb */}
+            <nav className="flex items-center gap-2 text-sm text-white/60 mb-8 animate-slideUpFade">
+              <Link
+                href={`/${locale}/solutions`}
+                className="hover:text-white transition-colors"
+              >
+                {t("sidebar.allSolutions")}
+              </Link>
+              <span>/</span>
+              <span className="text-white/90">{serviceTitle}</span>
+            </nav>
+
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight animate-slideUpFade" style={{ animationDelay: "100ms" }}>
+              {serviceTitle}
+            </h1>
+
+            {shortDescription && (
+              <p
+                className="text-white/80 text-lg md:text-xl max-w-2xl leading-relaxed animate-slideUpFade [&_strong]:font-semibold [&_strong]:text-white"
+                style={{ animationDelay: "200ms" }}
+                dangerouslySetInnerHTML={{ __html: shortDescription }}
+              />
+            )}
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2">
+            <div className="w-1.5 h-3 bg-white/60 rounded-full" />
+          </div>
+        </div>
+      </section>
+
+      {/* What We Do Section */}
+      <section className="py-20 md:py-28 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-7xl mx-auto">
+            {/* Section Header */}
+            <div className="mb-16 animate-slideUpFade">
+              <span className="text-sm font-medium text-web-primary uppercase tracking-wider mb-4 block">
+                {t("sections.whatWeDo")}
+              </span>
+              {longDescription && (
+                <div
+                  className="text-2xl md:text-3xl lg:text-4xl font-medium text-gray-900 leading-snug max-w-4xl prose prose-lg [&_p]:mb-0 [&_strong]:text-web-primary"
+                  dangerouslySetInnerHTML={{ __html: longDescription }}
+                />
+              )}
+            </div>
+
+            {/* Subservices Grid */}
+            {service.subServices && service.subServices.length > 0 && (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                {service.subServices.map((subService, index) => (
+                  <Link
+                    key={subService._id}
+                    href={`/${locale}/solutions/${service.slug}/${subService.slug}`}
+                    className="group animate-slideUpFade"
+                    style={{ animationDelay: `${index * 80}ms` }}
+                  >
+                    <article className="h-full">
+                      {/* Icon Grid */}
+                      <div className="mb-6 grid grid-cols-3 gap-1 w-12 h-12">
+                        {[...Array(9)].map((_, i) => (
+                          <div
+                            key={i}
+                            className={`w-3 h-3 rounded-sm transition-all duration-300 ${
+                              i < 4
+                                ? "bg-web-primary group-hover:bg-web-primary/80"
+                                : "bg-gray-200 group-hover:bg-web-primary/20"
+                            }`}
+                          />
+                        ))}
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-web-primary transition-colors">
+                        {getLocalized(subService.title, locale)}
+                      </h3>
+
+                      {/* Description */}
+                      <p
+                        className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-4"
+                        dangerouslySetInnerHTML={{
+                          __html: getLocalized(subService.outcome, locale),
+                        }}
+                      />
+
+                      {/* Read More Link */}
+                      <span className="text-sm font-medium text-gray-400 group-hover:text-web-primary transition-colors flex items-center gap-1">
+                        {t("readMore")}
+                        {locale === "ar" ? (
+                          <MoveLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                        ) : (
+                          <MoveRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        )}
+                      </span>
+                    </article>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section with Video */}
+      {(service.benefits.list?.length > 0 || service.benefits.video) && (
+        <section className="py-20 md:py-28 bg-gray-50">
+          <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto">
+              {/* Section Title */}
+              <div className="text-center mb-16 animate-slideUpFade">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 text-balance">
+                  {t("sections.benefits")}
+                </h2>
+                {benefitsDescription && (
+                  <p
+                    className="text-gray-600 text-lg max-w-2xl mx-auto"
+                    dangerouslySetInnerHTML={{ __html: benefitsDescription }}
+                  />
+                )}
+              </div>
+
+              {/* Video Section */}
+              {service.benefits.video && (
+                <div className="mb-16 animate-slideUpFade" style={{ animationDelay: "100ms" }}>
+                  <div className="relative aspect-video rounded-2xl overflow-hidden bg-gray-900 shadow-2xl">
+                    {!showVideo ? (
+                      <>
+                        <Image
+                          src={getImageUrl(service.banner || service.image)}
+                          alt={serviceTitle}
+                          fill
+                          className="object-cover opacity-60"
+                        />
+                        <button
+                          onClick={() => setShowVideo(true)}
+                          className="absolute inset-0 flex items-center justify-center group cursor-pointer"
+                        >
+                          <div className="w-24 h-24 rounded-full bg-white/90 flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:bg-web-primary transition-all duration-300">
+                            <Play className="w-10 h-10 text-web-primary group-hover:text-white transition-colors ml-1" />
+                          </div>
+                        </button>
+                      </>
+                    ) : (
+                      <iframe
+                        src={`${service.benefits.video}?autoplay=1`}
+                        allow="autoplay; fullscreen"
+                        allowFullScreen
+                        className="absolute inset-0 w-full h-full"
+                      />
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Benefits Grid */}
+              {service.benefits.list && service.benefits.list.length > 0 && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {service.benefits.list.map((benefit, idx) => (
+                    <div
+                      key={idx}
+                      className="flex items-start gap-4 p-6 rounded-2xl bg-white border border-gray-100 hover:border-web-primary/20 hover:shadow-lg transition-all duration-300 animate-slideUpFade"
+                      style={{ animationDelay: `${(idx + 2) * 80}ms` }}
+                    >
+                      <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-center">
+                        <CheckCircle2 className="w-6 h-6 text-emerald-500" />
+                      </div>
+                      <p
+                        className="text-gray-700 leading-relaxed pt-2"
+                        dangerouslySetInnerHTML={{
+                          __html: getLocalized(benefit, locale),
+                        }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
-          <h1 className="text-2xl font-bold">{t("sidebar.brochures")}</h1>
-          <div className="flex flex-col gap-0">
-            {service.brochure.pdf && (
-              <a
-                href={getImageUrl(service.brochure.pdf)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="border border-gray-200 p-4 flex items-center gap-2 cursor-pointer transition-colors duration-300 hover:bg-web-primary hover:text-white text-lg font-medium"
-              >
-                <svg
-                  width="30px"
-                  height="30px"
-                  viewBox="-4 0 40 40"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M25.6686 26.0962C25.1812 26.2401 24.4656 26.2563 23.6984 26.145C22.875 26.0256 22.0351 25.7739 21.2096 25.403C22.6817 25.1888 23.8237 25.2548 24.8005 25.6009C25.0319 25.6829 25.412 25.9021 25.6686 26.0962ZM17.4552 24.7459C17.3953 24.7622 17.3363 24.7776 17.2776 24.7939C16.8815 24.9017 16.4961 25.0069 16.1247 25.1005L15.6239 25.2275C14.6165 25.4824 13.5865 25.7428 12.5692 26.0529C12.9558 25.1206 13.315 24.178 13.6667 23.2564C13.9271 22.5742 14.193 21.8773 14.468 21.1894C14.6075 21.4198 14.7531 21.6503 14.9046 21.8814C15.5948 22.9326 16.4624 23.9045 17.4552 24.7459ZM14.8927 14.2326C14.958 15.383 14.7098 16.4897 14.3457 17.5514C13.8972 16.2386 13.6882 14.7889 14.2489 13.6185C14.3927 13.3185 14.5105 13.1581 14.5869 13.0744C14.7049 13.2566 14.8601 13.6642 14.8927 14.2326ZM9.63347 28.8054C9.38148 29.2562 9.12426 29.6782 8.86063 30.0767C8.22442 31.0355 7.18393 32.0621 6.64941 32.0621C6.59681 32.0621 6.53316 32.0536 6.44015 31.9554C6.38028 31.8926 6.37069 31.8476 6.37359 31.7862C6.39161 31.4337 6.85867 30.8059 7.53527 30.2238C8.14939 29.6957 8.84352 29.2262 9.63347 28.8054ZM27.3706 26.1461C27.2889 24.9719 25.3123 24.2186 25.2928 24.2116C24.5287 23.9407 23.6986 23.8091 22.7552 23.8091C21.7453 23.8091 20.6565 23.9552 19.2582 24.2819C18.014 23.3999 16.9392 22.2957 16.1362 21.0733C15.7816 20.5332 15.4628 19.9941 15.1849 19.4675C15.8633 17.8454 16.4742 16.1013 16.3632 14.1479C16.2737 12.5816 15.5674 11.5295 14.6069 11.5295C13.948 11.5295 13.3807 12.0175 12.9194 12.9813C12.0965 14.6987 12.3128 16.8962 13.562 19.5184C13.1121 20.5751 12.6941 21.6706 12.2895 22.7311C11.7861 24.0498 11.2674 25.4103 10.6828 26.7045C9.04334 27.3532 7.69648 28.1399 6.57402 29.1057C5.8387 29.7373 4.95223 30.7028 4.90163 31.7107C4.87693 32.1854 5.03969 32.6207 5.37044 32.9695C5.72183 33.3398 6.16329 33.5348 6.6487 33.5354C8.25189 33.5354 9.79489 31.3327 10.0876 30.8909C10.6767 30.0029 11.2281 29.0124 11.7684 27.8699C13.1292 27.3781 14.5794 27.011 15.985 26.6562L16.4884 26.5283C16.8668 26.4321 17.2601 26.3257 17.6635 26.2153C18.0904 26.0999 18.5296 25.9802 18.976 25.8665C20.4193 26.7844 21.9714 27.3831 23.4851 27.6028C24.7601 27.7883 25.8924 27.6807 26.6589 27.2811C27.3486 26.9219 27.3866 26.3676 27.3706 26.1461ZM30.4755 36.2428C30.4755 38.3932 28.5802 38.5258 28.1978 38.5301H3.74486C1.60224 38.5301 1.47322 36.6218 1.46913 36.2428L1.46884 3.75642C1.46884 1.6039 3.36763 1.4734 3.74457 1.46908H20.263L20.2718 1.4778V7.92396C20.2718 9.21763 21.0539 11.6669 24.0158 11.6669H30.4203L30.4753 11.7218L30.4755 36.2428ZM28.9572 10.1976H24.0169C21.8749 10.1976 21.7453 8.29969 21.7424 7.92417V2.95307L28.9572 10.1976ZM31.9447 36.2428V11.1157L21.7424 0.871022V0.823357H21.6936L20.8742 0H3.74491C2.44954 0 0 0.785336 0 3.75711V36.2435C0 37.5427 0.782956 40 3.74491 40H28.2001C29.4952 39.9997 31.9447 39.2143 31.9447 36.2428Z"
-                    fill="currentColor"
-                  />
-                </svg>
-                {t("sidebar.downloadPdf")}
-              </a>
-            )}
-            {service.brochure.document && (
-              <a
-                href={getImageUrl(service.brochure.document)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="border border-gray-200 p-4 flex items-center gap-2 cursor-pointer transition-colors duration-300 hover:bg-web-primary hover:text-white text-lg font-medium"
-              >
-                <svg
-                  width="30px"
-                  height="30px"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H10C10.5523 23 11 22.5523 11 22C11 21.4477 10.5523 21 10 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM12.952 12.694C12.783 12.1682 12.2198 11.879 11.694 12.048C11.1682 12.217 10.879 12.7802 11.048 13.306L13.298 20.306C13.4309 20.7196 13.8156 21 14.25 21C14.6844 21 15.0691 20.7196 15.202 20.306L16.5 16.2679L17.798 20.306C17.9309 20.7196 18.3156 21 18.75 21C19.1844 21 19.5691 20.7196 19.702 20.306L21.952 13.306C22.121 12.7802 21.8318 12.217 21.306 12.048C20.7802 11.879 20.217 12.1682 20.048 12.694L18.75 16.7321L17.452 12.694C17.3191 12.2804 16.9344 12 16.5 12C16.0656 12 15.6809 12.2804 15.548 12.694L14.25 16.7321L12.952 12.694Z"
-                    fill="currentColor"
-                  />
-                </svg>
-                {t("sidebar.downloadDoc")}
-              </a>
-            )}
-          </div>
-        </div>
-        <Contact />
-      </div>
-      <div className="col-span-2 flex flex-col gap-4">
-        <NextImage
-          src={
-            getImageUrl(service.image) || "/1.jpg"
-          }
-          alt={
-            service.title[locale as keyof typeof service.title] ||
-            service.title.en
-          }
-          width={1920}
-          height={1080}
-          className="w-full rounded-lg"
-        />
-        <p
-          dangerouslySetInnerHTML={{
-            __html:
-              service.shortDescription[
-                locale as keyof typeof service.shortDescription
-              ] || service.shortDescription.en,
-          }}
-        />
-        <p
-          dangerouslySetInnerHTML={{
-            __html:
-              service.longDescription[
-                locale as keyof typeof service.longDescription
-              ] || service.longDescription.en,
-          }}
-        />
-        <div className="relative">
-          <h1 className="border-b border-gray-200 pb-2 text-2xl font-bold">
-            {t("sections.subservices")}
-          </h1>
-          <hr className="w-1/6 border-web-primary border-2 absolute bottom-0" />
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 py-8">
-          {service.subServices.map((subService) => (
-            <Link
-              key={subService._id}
-              href={`/${locale}/solutions/${service.slug}/${subService.slug}`}
-              className="flex flex-col gap-2 border border-gray-200 rounded-md p-4 pt-10 relative group h-full min-h-[220px] w-full hover:border-web-primary transition-colors duration-300"
-            >
-              <div className="text-web-primary absolute -top-6 left-0 right-0 mx-auto w-12 h-12 flex items-center justify-center bg-white rounded-full p-2 shadow group-hover:bg-web-primary group-hover:text-white transition-colors duration-300">
-                <span className="inline-flex items-center justify-center" dangerouslySetInnerHTML={{ __html: subService.icon }} />
+        </section>
+      )}
+
+      {/* Solutions Navigation */}
+      <section className="py-16 bg-white border-t border-gray-100">
+        <div className="container mx-auto px-6">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {/* Other Solutions */}
+              <div className="lg:col-span-2">
+                <h3 className="text-xl font-bold text-gray-900 mb-6">
+                  {t("sidebar.allSolutions")}
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {allServices
+                    .filter((s) => s._id !== service._id)
+                    .slice(0, 6)
+                    .map((serviceItem) => (
+                      <Link
+                        key={serviceItem._id}
+                        href={`/${locale}/solutions/${serviceItem.slug}`}
+                        className="group flex items-center gap-4 p-4 rounded-xl border border-gray-200 hover:border-web-primary/40 hover:bg-web-primary/5 transition-all duration-300"
+                      >
+                        <span
+                          className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center text-gray-600 group-hover:bg-web-primary/10 group-hover:text-web-primary transition-colors [&_svg]:w-5 [&_svg]:h-5"
+                          dangerouslySetInnerHTML={{ __html: serviceItem.icon }}
+                        />
+                        <span className="font-medium text-gray-700 group-hover:text-web-primary transition-colors flex-1">
+                          {getLocalized(serviceItem.title, locale)}
+                        </span>
+                        {locale === "ar" ? (
+                          <ArrowLeft className="w-5 h-5 text-gray-400 group-hover:text-web-primary group-hover:-translate-x-1 transition-all" />
+                        ) : (
+                          <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-web-primary group-hover:translate-x-1 transition-all" />
+                        )}
+                      </Link>
+                    ))}
+                </div>
               </div>
-              <p className="font-semibold mt-2 flex-shrink-0">
-                {subService.title[locale as keyof typeof subService.title] ||
-                  subService.title.en}
-              </p>
-              <p
-                className="text-gray-600 text-sm flex-1 min-h-0"
-                dangerouslySetInnerHTML={{
-                  __html:
-                    subService.outcome[
-                      locale as keyof typeof subService.outcome
-                    ] || subService.outcome.en,
-                }}
-              />
-            </Link>
-          ))}
-        </div>
-        <div className="relative">
-          <h1 className="border-b border-gray-200 pb-2 text-2xl font-bold">
-            {t("sections.benefits")}
-          </h1>
-          <hr className="w-1/6 border-web-primary border-2 absolute bottom-0" />
-        </div>
-        <p
-          dangerouslySetInnerHTML={{
-            __html:
-              service.benefits.description[
-                locale as keyof typeof service.benefits.description
-              ] || service.benefits.description.en,
-          }}
-        />
-        {service.benefits.video && (
-          <iframe
-            height="400"
-            src={service.benefits.video}
-            title={
-              service.title[locale as keyof typeof service.title] ||
-              service.title.en
-            }
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-            className="w-full rounded-lg"
-          ></iframe>
-        )}
-        {/* Human Capital Section */}
-        <div className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-800 rounded-lg p-12 text-white">
-          {/* Background Glowing Elements */}
-          <div className="absolute inset-0 overflow-hidden">
-            {/* Green glowing circles */}
-            <div className="absolute top-10 right-20 w-32 h-32 bg-web-primary/30 rounded-full blur-xl animate-pulse"></div>
-            <div className="absolute bottom-20 right-40 w-24 h-24 bg-web-primary/40 rounded-full blur-lg animate-pulse delay-1000"></div>
-            <div className="absolute top-1/2 right-10 w-16 h-16 bg-web-primary/25 rounded-full blur-md animate-pulse delay-500"></div>
 
-            {/* Curved glowing lines */}
-            <div className="absolute top-1/4 right-0 w-64 h-1 bg-gradient-to-l from-web-primary/40 to-transparent blur-sm transform rotate-12"></div>
-            <div className="absolute bottom-1/3 right-0 w-48 h-1 bg-gradient-to-l from-web-primary/40 to-transparent blur-sm transform -rotate-12"></div>
+              {/* Brochure Downloads & Contact */}
+              <div className="space-y-6">
+                {/* Brochures */}
+                {(service.brochure?.pdf || service.brochure?.document) && (
+                  <div className="p-6 rounded-2xl bg-gray-50 border border-gray-100">
+                    <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                      <Download className="w-5 h-5 text-web-primary" />
+                      {t("sidebar.brochures")}
+                    </h4>
+                    <div className="space-y-3">
+                      {service.brochure.pdf && (
+                        <a
+                          href={getImageUrl(service.brochure.pdf)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-3 p-3 rounded-xl bg-red-50 border border-red-100 hover:border-red-200 transition-colors group"
+                        >
+                          <div className="w-10 h-10 rounded-lg bg-red-500 flex items-center justify-center">
+                            <FileText className="w-5 h-5 text-white" />
+                          </div>
+                          <div className="flex-1">
+                            <span className="text-sm font-medium text-gray-900 block">
+                              {t("sidebar.pdfBrochure")}
+                            </span>
+                            <span className="text-xs text-gray-500">PDF</span>
+                          </div>
+                          <Download className="w-4 h-4 text-red-500 group-hover:translate-y-0.5 transition-transform" />
+                        </a>
+                      )}
+                      {service.brochure.document && (
+                        <a
+                          href={getImageUrl(service.brochure.document)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-3 p-3 rounded-xl bg-blue-50 border border-blue-100 hover:border-blue-200 transition-colors group"
+                        >
+                          <div className="w-10 h-10 rounded-lg bg-blue-500 flex items-center justify-center">
+                            <FileText className="w-5 h-5 text-white" />
+                          </div>
+                          <div className="flex-1">
+                            <span className="text-sm font-medium text-gray-900 block">
+                              {t("sidebar.wordBrochure")}
+                            </span>
+                            <span className="text-xs text-gray-500">DOC</span>
+                          </div>
+                          <Download className="w-4 h-4 text-blue-500 group-hover:translate-y-0.5 transition-transform" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                )}
 
-            {/* Abstract shapes */}
-            <div className="absolute top-20 right-32 w-20 h-20 border border-web-primary/30 rounded-full"></div>
-            <div className="absolute bottom-32 right-24 w-12 h-12 border border-web-primary/40 rounded-full"></div>
+                {/* Contact CTA */}
+                <Contact />
+              </div>
+            </div>
           </div>
+        </div>
+      </section>
 
-          {/* Content */}
-          <div className="relative z-10 max-w-2xl">
-            <h2 className="text-5xl font-bold mb-6 leading-tight">
+      {/* Full-width CTA Section */}
+      <section className="relative py-24 md:py-32 bg-web-gray overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-web-primary/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-web-primary/15 rounded-full blur-3xl" />
+        </div>
+
+        <div className="relative z-10 container mx-auto px-6">
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="inline-block px-4 py-2 rounded-full bg-white/10 text-white/80 text-sm font-medium mb-6">
+              {t("cta.badge")}
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 text-balance">
               {t("cta.title")}
             </h2>
-
-            <h3 className="text-2xl font-bold mb-6 leading-relaxed">
-              {t("cta.subtitle")}
-              <span className="text-sm align-super ml-1">™</span>
-            </h3>
-
-            <p className="text-lg text-gray-300 mb-8 leading-relaxed">
+            <p className="text-white/70 text-lg mb-10 leading-relaxed">
               {t("cta.description")}
             </p>
-
-            {/* Call-to-Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => router.push(`/${locale}/contact`)}
-                className="bg-transparent border-2 border-web-primary text-web-primary hover:bg-web-primary hover:text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-web-primary focus:ring-offset-2 focus:ring-offset-gray-900 cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 bg-white text-web-gray hover:bg-gray-100 px-8 py-4 rounded-xl font-semibold transition-all duration-300 cursor-pointer"
               >
+                <MessageSquare className="w-5 h-5" />
                 {t("cta.contactButton")}
               </button>
               <button
                 onClick={() => router.push(`/${locale}/proposal`)}
-                className="bg-transparent border-2 border-web-primary text-web-primary hover:bg-web-primary hover:text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-web-primary focus:ring-offset-2 focus:ring-offset-gray-900 cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 px-8 py-4 rounded-xl font-semibold transition-all duration-300 cursor-pointer"
               >
+                <FileText className="w-5 h-5" />
                 {t("cta.rfpButton")}
               </button>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

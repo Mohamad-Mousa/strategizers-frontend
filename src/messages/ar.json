@@ -89,16 +89,21 @@
     },
     "sidebar": {
       "allSolutions": "جميع الحلول",
-      "brochures": "الكتيبات الخاصة بنا",
+      "brochures": "تحميل الموارد",
       "downloadPdf": "تحميل PDF",
-      "downloadDoc": "تحميل Doc"
+      "downloadDoc": "تحميل Doc",
+      "pdfBrochure": "كتيب PDF",
+      "wordBrochure": "مستند Word"
     },
     "sections": {
       "subservices": "الخدمات الفرعية",
-      "benefits": "الفوائد الرئيسية للخدمة"
+      "benefits": "الفوائد الرئيسية للخدمة",
+      "whatWeDo": "ماذا نفعل"
     },
+    "readMore": "اقرأ المزيد",
     "cta": {
-      "title": "رأس المال البشري",
+      "badge": "مستعد للتحول؟",
+      "title": "لنبني شيئاً رائعاً معاً",
       "subtitle": "جعل البشر أفضل في العمل والعمل أفضل للبشر",
       "description": "نحن نعلم أن رأس المال البشري هو في قلب مؤسستك. معاً نحن نستغل علم الأشخاص لإنشاء مؤسسات المستقبل.",
       "contactButton": "اتصل بنا",
@@ -173,7 +178,7 @@
       "fetchError": "حدث خطأ أثناء جلب المدونات"
     },
     "empty": {
-      "title": "لم يتم العثور على مدونات",
+      "title": "لم يتم العثور على مدون������ت",
       "description": "ارجع لاحقاً للحصول على رؤى ومنشورات جديدة"
     }
   },
@@ -383,7 +388,7 @@
     },
     "cta": {
       "description": "أكثر من 20 عاماً من الخبرة سنضمن لك الحصول على أفضل إرشاد.",
-      "button": "اتصل بنا"
+      "button": "ات��ل بنا"
     }
   },
   "home": {
@@ -552,18 +557,90 @@
   "consultationForm": {
     "title": "احجز استشارة مجانية",
     "description": "املأ النموذج أدناه لجدولة استشارة مع خبرائنا.",
+    "badge": "استشارة مجانية",
+    "infoTitle": "جدولة جلسة استراتيجية مجانية",
+    "infoDescription": "اتخذ الخطوة الأولى نحو تحويل عملك. مستشارونا الخبراء مستعدون لمساعدتك في التغلب على التحديات واكتشاف فرص جديدة.",
+    "steps": {
+      "personal": "المعلومات الشخصية",
+      "company": "الشركة",
+      "details": "التفاصيل"
+    },
+    "benefits": {
+      "expert": "إرشاد خبير من متخصصين في المجال",
+      "personalized": "حلول مخصصة لعملك",
+      "actionable": "رؤى قابلة للتنفيذ يمكنك تطبيقها فوراً"
+    },
+    "contact": {
+      "title": "لديك أسئلة؟",
+      "description": "تواصل معنا مباشرة"
+    },
+    "navigation": {
+      "previous": "السابق",
+      "next": "التالي",
+      "submit": "إرسال الطلب"
+    },
     "fields": {
       "firstName": "الاسم الأول",
-      "lastName": "الاسم الأخير",
+      "lastName": "اسم العائلة",
+      "email": "عنوان البريد الإلكتروني",
+      "phoneNumber": "رقم الهاتف",
       "companyName": "اسم الشركة",
-      "companyWebsite": "موقع الشركة",
-      "position": "المنصب",
-      "isDecisionMaker": "هل أنت صانع قرار؟",
-      "email": "البريد الإلكتروني المهني",
-      "phoneNumber": "رقم الهاتف المحمول التجاري",
-      "discussionPoints": "نقاط النقاش"
+      "companyWebsite": "موقع الويب للشركة",
+      "position": "منصبك",
+      "isDecisionMaker": "هل أنت صانع قرار��",
+      "discussionPoints": "نقاط النقاش",
+      "expectedOutcomes": "النتائج المتوقعة",
+      "preferredDate": "التاريخ المفضل",
+      "preferredTime": "الوقت المفضل",
+      "consultationType": "نوع الاستشارة"
     },
     "placeholders": {
+      "firstName": "أحمد",
+      "lastName": "محمد",
+      "email": "ahmed.m@company.com",
+      "phoneNumber": "71 234 567",
+      "companyName": "شركتك",
+      "companyWebsite": "https://www.yourcompany.com",
+      "position": "الرئيس التنفيذي / المدير",
+      "discussionPoints": "أخبرنا عما تود مناقشته",
+      "expectedOutcomes": "ما هي النتائج التي تتطلعها؟"
+    },
+    "labels": {
+      "decisionMaker": "أنا صانع القرار",
+      "agreeTerms": "أوافق على الشروط والأحكام"
+    },
+    "errors": {
+      "title": "خطأ",
+      "fillField": "يرجى ملء حقل {field}.",
+      "bookingFailed": "فشل في حجز الاستشارة"
+    },
+    "success": {
+      "title": "نجاح!",
+      "bookingSuccess": "تم حجز استشارتك بنجاح! سنتواصل معك خلال 24 ساعة."
+    },
+    "step": "الخطوة",
+    "of": "من",
+    "needHelp": "هل تحتاج إلى مساعدة فورية?",
+    "buttons": {
+      "back": "رجوع",
+      "next": "التالي",
+      "submit": "احجز استشارة مجانية",
+      "booking": "جاري حجز الاستشارة المجانية..."
+    },
+    "options": {
+      "yes": "نعم",
+      "no": "لا"
+    },
+    "hints": {
+      "discussionPoints": "أخبرنا عما تود مناقشته لكي نتمكن من الاستعداد للاستشارة."
+    },
+    "footer": {
+      "agreement": "بالموافقة على الإرسال، فأنت توافق على",
+      "terms": "الشروط والأحكام",
+      "and": "و",
+      "privacy": "سياسة الخصوصية"
+    },
+    "oldPlaceholders": {
       "firstName": "أدخل اسمك الأول",
       "lastName": "أدخل اسمك الأخير",
       "companyName": "أدخل اسم شركتك",
@@ -593,7 +670,7 @@
       "terms": "الشروط والأحكام",
       "and": "و",
       "privacy": "سياسة الخصوصية",
-      "confirmation": "سنتواصل معك خلال 24 ساعة لتأكيد استشارتك."
+      "confirmation": "��نتواصل معك خلال 24 ساعة لتأكيد استشارتك."
     }
   },
   "blogCard": {
@@ -681,6 +758,17 @@
     "applyDescription": "املأ نموذج الطلب لتقديم ترشيحك لهذه الوظيفة."
   },
   "rfpForm": {
+    "badge": "طلب عرض سعر",
+    "infoTitle": "أخبرنا عن مشروعك",
+    "infoDescription": "قدّم تفاصيل المشروع وسياق المؤسسة وأي وثائق داعمة لنعدّ عرضاً دقيقاً.",
+    "benefits": {
+      "personal": "اسمك ودورك وبيانات التواصل للتواصل مع الشخص المناسب.",
+      "company": "معلومات المنظمة والإيرادات لتحديد نطاق التعاون.",
+      "project": "الأهداف والنطاق ومجالات العمل التي تحتاجون دعماً فيها.",
+      "document": "ملخصات أو مواصفات أو ملفات RFP (PDF أو Word أو صور) حتى 10 ميجابايت."
+    },
+    "responseLabel": "وقت الاستجابة المعتاد",
+    "responseTime": "خلال 2–3 أيام عمل",
     "title": "تقديم طلب عرض سعر (RFP)",
     "description": "يرجى ملء النموذج أدناه لتقديم طلب عرض السعر. سنراجع متطلباتك وسنعود إليك بعرض مفصل.",
     "sections": {
@@ -692,6 +780,8 @@
       "additionalInformation": "معلومات إضافية"
     },
     "fields": {
+      "title": "اللقب",
+      "comment": "تعليقات أو أسئلة إضافية",
       "projectTitle": "عنوان المشروع",
       "firstName": "الاسم الأول",
       "lastName": "الاسم الأخير",
@@ -707,6 +797,7 @@
       "additionalComments": "تعليقات أو أسئلة إضافية"
     },
     "placeholders": {
+      "selectTitle": "اختر اللقب",
       "projectTitle": "أدخل عنوان مشروعك",
       "firstName": "أدخل اسمك الأول",
       "lastName": "أدخل اسمك الأخير",
@@ -881,7 +972,7 @@
     "programObjectives": "أهداف البرنامج",
     "targetAudience": "الجمهور المستهدف",
     "expectedBenefits": "الفوائد المؤسسية المتوقعة",
-    "deliveryFormat": "صيغة التقديم",
+    "deliveryFormat": "صيغ�� التقديم",
     "programMethodology": "منهجية البرنامج",
     "programOutline": "محتوى البرنامج",
     "sampleActivities": "أنشطة عملية نموذجية",

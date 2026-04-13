@@ -89,16 +89,21 @@
     },
     "sidebar": {
       "allSolutions": "All Solutions",
-      "brochures": "Our Brochures",
+      "brochures": "Download Resources",
       "downloadPdf": "Download PDF",
-      "downloadDoc": "Download Doc"
+      "downloadDoc": "Download Doc",
+      "pdfBrochure": "PDF Brochure",
+      "wordBrochure": "Word Document"
     },
     "sections": {
       "subservices": "Subservices",
-      "benefits": "Key Benefits of the Service"
+      "benefits": "Key Benefits of the Service",
+      "whatWeDo": "What We Do"
     },
+    "readMore": "Read more",
     "cta": {
-      "title": "Human Capital",
+      "badge": "Ready to Transform?",
+      "title": "Let's Build Something Great Together",
       "subtitle": "Making humans better at work and work better for humans",
       "description": "We know that human capital is at the heart of your organization. Together we are harnessing the science of people to create the organizations of the future.",
       "contactButton": "Contact us",
@@ -552,6 +557,31 @@
   "consultationForm": {
     "title": "Book a Free Consultation",
     "description": "Fill out the form below to schedule a consultation with our experts.",
+    "badge": "Free Consultation",
+    "infoTitle": "Schedule Your Free Strategy Session",
+    "infoDescription": "Take the first step towards transforming your business. Our expert consultants are ready to help you navigate challenges and unlock new opportunities.",
+    "steps": {
+      "personal": "Personal Info",
+      "company": "Company",
+      "details": "Details"
+    },
+    "benefits": {
+      "expert": "Expert guidance from industry specialists",
+      "personalized": "Personalized solutions for your business",
+      "actionable": "Actionable insights you can implement immediately"
+    },
+    "contact": {
+      "title": "Have questions?",
+      "description": "Reach out to us directly"
+    },
+    "step": "Step",
+    "of": "of",
+    "needHelp": "Need immediate help?",
+    "navigation": {
+      "previous": "Previous",
+      "next": "Next",
+      "submit": "Submit Request"
+    },
     "fields": {
       "firstName": "First Name",
       "lastName": "Last Name",
@@ -578,14 +608,21 @@
       "no": "No"
     },
     "buttons": {
+      "back": "Back",
+      "next": "Next",
       "submit": "Book a Free Consultation",
       "booking": "Booking a Free Consultation..."
     },
+    "hints": {
+      "discussionPoints": "Share what you'd like to discuss so we can prepare for your consultation."
+    },
     "errors": {
+      "title": "Error",
       "fillField": "Please fill in the {field} field.",
       "bookingFailed": "Failed to book consultation"
     },
     "success": {
+      "title": "Success!",
       "bookingSuccess": "Your consultation has been booked successfully! We'll contact you within 24 hours."
     },
     "footer": {
@@ -681,6 +718,17 @@
     "applyDescription": "Fill out the application form to submit your candidacy for this position."
   },
   "rfpForm": {
+    "badge": "Request for Proposal",
+    "infoTitle": "Tell us about your project",
+    "infoDescription": "Share clear project details, company context, and any supporting documents so we can prepare an accurate proposal.",
+    "benefits": {
+      "personal": "Your name, role, and contact details so we can reach the right person.",
+      "company": "Organization and revenue context to scope engagement appropriately.",
+      "project": "Goals, scope, and focus areas you need help with.",
+      "document": "Briefs, RFPs, or specs (PDF, Word, or images) up to 10MB."
+    },
+    "responseLabel": "Typical response time",
+    "responseTime": "2–3 business days",
     "title": "Submit Request for Proposal (RFP)",
     "description": "Please fill out the form below to submit your proposal request. We'll review your requirements and get back to you with a detailed proposal.",
     "sections": {
@@ -692,6 +740,8 @@
       "additionalInformation": "Additional Information"
     },
     "fields": {
+      "title": "Title",
+      "comment": "Additional Comments or Questions",
       "projectTitle": "Project Title",
       "firstName": "First Name",
       "lastName": "Last Name",
@@ -707,6 +757,7 @@
       "additionalComments": "Additional Comments or Questions"
     },
     "placeholders": {
+      "selectTitle": "Select title",
       "projectTitle": "Enter your project title",
       "firstName": "Enter your first name",
       "lastName": "Enter your last name",

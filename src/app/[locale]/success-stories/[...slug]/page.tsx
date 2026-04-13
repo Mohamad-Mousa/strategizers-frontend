@@ -1,4 +1,4 @@
-import Hero from "@/components/layout/Hero";
+import PageHero from "@/components/layout/PageHero";
 import { getTranslations } from "next-intl/server";
 import { SingleProjectResponse } from "@/types/project";
 import ProjectContent from "./ProjectContent";
@@ -8,7 +8,7 @@ import { getImageUrl } from "@/lib/image";
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
-  "http://localhost:4000/api/v1";
+      "https://strategizers-backend.onrender.com/api/v1";
 
 // Fetch project data server-side
 async function getProjectData(slug: string) {
@@ -102,7 +102,7 @@ export default async function SingleProjectPage({
 
   return (
     <div className="flex flex-col">
-      <Hero title={t("hero.title")} background="/services.webp" />
+      <PageHero title={t("hero.title")} background="/services.webp" />
 
       {/* Project Content - Client Component */}
       <ProjectContent slug={slugString} />
