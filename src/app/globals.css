@@ -5,6 +5,14 @@
   --color-web-gray: #222222;
 }
 
+.font-cairo {
+  font-family: "Cairo", sans-serif;
+}
+
+.font-quicksand {
+  font-family: "Quicksand", sans-serif;
+}
+
 @keyframes fade-in-up {
   from {
     opacity: 0;
