@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useParams } from "next/navigation";
-import Hero from "@/components/layout/Hero";
+import PageHero from "@/components/layout/PageHero";
 import JobApplicationForm from "@/components/JobApplicationForm";
 import JobDetails from "@/components/JobDetails";
 import { apiGet } from "@/lib/api";
@@ -55,7 +55,7 @@ const ApplyPage = () => {
   if (loading) {
     return (
       <div className="flex flex-col gap-10 items-center justify-center">
-        <Hero title={t("loading")} background="/services.webp" />
+        <PageHero title={t("loading")} background="/services.webp" />
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center py-20">
             <div className="flex items-center gap-3">
@@ -72,7 +72,7 @@ const ApplyPage = () => {
   if (error) {
     return (
       <div className="flex flex-col gap-10 items-center justify-center">
-        <Hero title={t("errors.notFound")} background="/services.webp" />
+        <PageHero title={t("errors.notFound")} background="/services.webp" />
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center py-20">
             <div className="text-center">
@@ -99,7 +99,7 @@ const ApplyPage = () => {
   if (!job) {
     return (
       <div className="flex flex-col gap-10 items-center justify-center">
-        <Hero title={t("errors.notFound")} background="/services.webp" />
+        <PageHero title={t("errors.notFound")} background="/services.webp" />
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center py-20">
             <div className="text-center">
@@ -118,7 +118,7 @@ const ApplyPage = () => {
 
   return (
     <div className="flex flex-col gap-10 items-center justify-center">
-      <Hero
+      <PageHero
         title={getLocalizedContent(job.title)}
         subtitle={`${getLocalizedContent(
           job.type === "full-time"
