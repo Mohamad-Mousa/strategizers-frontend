@@ -2,7 +2,7 @@
 // API Configuration
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
-  "https://strategizers-backend.onrender.com/api/v1";
+  "https://api.strategizers-me.com/api/v1";
 
 // API Response Types
 export interface ApiResponse<T = any> {

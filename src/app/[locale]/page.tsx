@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
-  "http://localhost:4000/api/v1";
+  "https://api.strategizers-me.com/api/v1";
 
 // Fetch website data server-side
 async function getWebsiteData() {
