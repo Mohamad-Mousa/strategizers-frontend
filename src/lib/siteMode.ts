@@ -16,6 +16,7 @@ const API_BASE_URL =
   "https://api.strategizers-me.com/api/v1";
 const SETTINGS_ENDPOINT = `${API_BASE_URL}/public/setting`;
 const CACHE_TTL_MS = 30_000;
+const SETTINGS_TIMEOUT_MS = 2_000;
 
 const DEFAULT_MODE_STATUS: SiteModeStatus = {
   maintenanceEnabled: false,
@@ -99,14 +100,23 @@ export async function getSiteModeStatus(): Promise<SiteModeStatus> {
   }
 
   try {
-    const response = await fetch(SETTINGS_ENDPOINT, {
-      method: "GET",
-      headers: { Accept: "application/json" },
-      cache: "no-store",
-    });
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), SETTINGS_TIMEOUT_MS);
+    const response = await (async () => {
+      try {
+        return await fetch(SETTINGS_ENDPOINT, {
+          method: "GET",
+          headers: { Accept: "application/json" },
+          cache: "no-store",
+          signal: controller.signal,
+        });
+      } finally {
+        clearTimeout(timeout);
+      }
+    })();
 
     if (!response.ok) {
-      return DEFAULT_MODE_STATUS;
+      return siteModeCache?.value ?? DEFAULT_MODE_STATUS;
     }
 
     const data = (await response.json()) as {
@@ -115,7 +125,7 @@ export async function getSiteModeStatus(): Promise<SiteModeStatus> {
     const settings = data?.results?.settings;
 
     if (!settings || typeof settings !== "object") {
-      return DEFAULT_MODE_STATUS;
+      return siteModeCache?.value ?? DEFAULT_MODE_STATUS;
     }
 
     const value = resolveSiteModeStatus(settings);
@@ -123,6 +133,6 @@ export async function getSiteModeStatus(): Promise<SiteModeStatus> {
     return value;
   } catch (error) {
     console.error("Error fetching site mode status:", error);
-    return DEFAULT_MODE_STATUS;
+    return siteModeCache?.value ?? DEFAULT_MODE_STATUS;
   }
 }
