@@ -271,7 +271,7 @@ export default function ServiceContent({ slug }: ServiceContentProps) {
       </section>
 
       {/* Benefits Section with Video */}
-      {(service.benefits.list?.length > 0 || service.benefits.video) && (
+      {(service.benefits.features?.length > 0 || service.benefits.video) && (
         <section className="py-20 md:py-28 bg-gray-50">
           <div className="container mx-auto px-6">
             <div className="max-w-7xl mx-auto">
@@ -322,9 +322,9 @@ export default function ServiceContent({ slug }: ServiceContentProps) {
               )}
 
               {/* Benefits Grid */}
-              {service.benefits.list && service.benefits.list.length > 0 && (
+              {service.benefits.features && service.benefits.features.length > 0 && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {service.benefits.list.map((benefit, idx) => (
+                  {service.benefits.features.map((benefit, idx) => (
                     <div
                       key={idx}
                       className="flex items-start gap-4 p-6 rounded-2xl bg-white border border-gray-100 hover:border-web-primary/20 hover:shadow-lg transition-all duration-300 animate-slideUpFade"
