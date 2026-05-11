@@ -28,6 +28,11 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
       {
+        protocol: "https",
+        hostname: "api.strategizers-me.com",
+        pathname: "/**",
+      },
+      {
         protocol: "http",
         hostname: "api.strategizers.com",
         pathname: "/**",
